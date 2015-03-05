@@ -1,0 +1,51 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.hex
+
+# Makefile C Dependencies
+*.d
+
+# Octave scripts
+*.m
+
+# Data file
+*.dat
+
+# Debug file
+*.log
+
+# Eclipse project
+.cproject
+.project
+
+#Qt project
+#pvmcm.config
+#pvmcm.creator
+#pvmcm.files
+#pvmcm.includes
+vpmcm.creator.user
+pvmcm.creator.user
+
+#File Created
+arch/
+
+#jsHint config
+.jshintrc
