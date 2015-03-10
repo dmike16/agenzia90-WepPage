@@ -2,8 +2,25 @@ var dmUtil = dmUtil || {};
 dmUtil.global = this;
 dmUtil.doc= document;
 dmUtil.EventUtil = {
-
-    aboutHandler : (function (){
+    
+    getUniqueId  : (function (){
+                if(typeof document.documentElement.uniqueID != 'undefined'){
+                    return function(element){
+                        return element.uniqueID;
+                    };
+                }
+                var uID=0;
+                return function(element){
+                    return element.__uniqueID || (element.__uniqueID='uniqueID__'+ uID++);
+                };
+            })(),
+    isHostMethod: (function(){
+        return function(obj,methodName){
+            var tp = typeof obj[methodName];
+            return ((tp ==='function'||t==='object')&& !!obj[methodName])|| t==='unknown';
+        };
+})()};
+dmUtil.EventUtil.aboutHandler = (function (){
         var docE=dmUtil.doc.documentElement;
 
         if(dmUtil.EventUtil.isHostMethod(docE,'addEventListener') && 
@@ -19,30 +36,102 @@ dmUtil.EventUtil = {
             };
         } else if(dmUtil.EventUtil.isHostMethod(docE,'attachEvent')&&
         dmUtil.EventUtil.isHostMethod(docE,'deatachEvent')){
+ 
+            var eventListeners={},elements={},
+            getElement = function(uid){
+                return elements[uid];
+            },
+            setElement=function(uid,element){
+                elements[uid]=element;
+            },
+            createListener=function(uid,handler){
+                return {
+                    handler: handler,
+                    wrapperHandeler: wrapper(uid,handler)
+                };
+            },
+            wrapper = function(uid,handler){
+                if(handler.handlerEvent){
+                    return function(e){
+                        handler.handlerEvent(e);
+                    };
+                } else {
+                    return function(e){
+                        handler.call(getElement(uid),e || dmUtil.global.event);
+                    };
+                }
+            };
             docE=null;
             return{
                 addListener : function(element,eventName,handler){
-                    element.attachEvent('on'+eventName,handler);
+                    var uid = dmUtil.EventUtil.getUniqueId(element);
+                    setElement(uid,element);
+                    if(!eventListeners[uid]){
+                        eventListeners[uid]={};
+                    }
+                    if(!eventListeners[uid][eventName]){
+                        eventListeners[uid][eventName]=[];
+                    }
+                    var listener=createListener(uid,handler);
+                    eventListeners[uid][eventName].push(listener);
+                    element.attachEvent('on'+eventName,listener.wrapperHandeler);
                 },
                 removeListener: function(element,eventName,handler){
-                    element.deatachEvent('on'+eventName,handler);
-                }
+                    var uid =getUniqueId(element),listener;
+                    if(eventListeners[uid] && eventListeners[uid][eventName]){
+                        var i=eventListeners[uid][eventName].length -1;
+                        do{
+                            listener=eventListeners[uid][eventName][i];
+                            if(listener && listener.handler ===handler){
+                                element.deatachEvent('on'+eventName,listener.wrapperHandeler);
+                                eventListeners[uid][eventName][i]=null;
+                            }
+                        } while(i--);
+                    }
+                }            
             };
         } else {
             docE=null;
+            var createDispatcher=function(uid,eventName){
+                return function(e){
+                    if(handlers[uid]&&handlers[uid][eventName]){
+                        var handlersForEvent =handlers[uid][eventName];
+                        for(var i=0,len=handlersForEvent.length; i<len;i++){
+                            handlersForEvent[i].call(this, e || dmUtil.global.event);
+                        }
+                    }
+                };
+            };
+            var handlers ={};
             return {
                 addListener: function(element,eventName,handler){
-                    element['on'+eventName]=handler;
+                    var uid=dmUtil.EventUtil.getUniqueId(element);
+                    if(!handlers[uid]){
+                        handlers[uid]={};
+                    }
+                    if(!handler[uid][eventName]){
+                        handlers[uid][eventName]=[];
+                        var existingHandler=element['on'+eventName];
+                        if(existingHandler){
+                            handlers[uid][eventName].push(existingHandler);
+                        }
+                        element['on'+eventName]=createDispatcher(uid,eventName);
+                    }
+                    handlers[uid][eventName].push(handler);
                 },
                 removeListener: function(element,eventName,handler){
-                    element['on'+eventName]=null;
+                    var uid=dmUtil.EventUtil.getUniqueId(element);
+                    if(handlers[uid]&&handlers[uid][eventName]){
+                        var handlersForEvent=handlerEvent[uid][eventName];
+                        var i=handlersForEvent.length-1;
+                        do{
+                            if(handlerEvent[i]===handler){
+                                handlersForEvent.splice(i,1);
+                            }
+                        } while(i--);
+                    }
                 }
             };
         }
-    })(),
-    isHostMethod: function(obj,methodName){
-        var tp = typeof obj[methodName];
-        return ((tp ==='function'||t==='object')&& !!obj[methodName])|| t==='unknown';
-    }
-};
+})();
 
