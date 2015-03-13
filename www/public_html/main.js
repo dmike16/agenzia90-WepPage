@@ -14,12 +14,39 @@ dmUtil.EventUtil = {
                     return element.__uniqueID || (element.__uniqueID='uniqueID__'+ uID++);
                 };
             })(),
-    isHostMethod: (function(){
-        return function(obj,methodName){
+    isHostMethod: function(obj,methodName){
             var tp = typeof obj[methodName];
             return ((tp ==='function'||t==='object')&& !!obj[methodName])|| t==='unknown';
-        };
-})()};
+        },
+
+    formatEvent: function(evt){
+            evt.charCode = (evt.type == "keypress")? evt.keyCode : 0;
+            evt.evntPhase = 2;
+            evt.isChar =(evt.charCode > 0);
+            evt.pageX = evt.clientX + dmUtil.doc.body.scrollLeft;
+            evt.pageY = evt.clientY + dmUtil.doc.body.scrollTop;
+            evt.preventDefault = function(){
+                this.returnvalue = false;
+            };
+            switch(evt.type){
+            case "mouseout":
+                evt.relatedTarget = evt.toElement;
+                break;
+            case "mouseover":
+                evt.relatedTarget = evt.fromElement;
+                break;
+            default:
+                break;
+            }
+            evt.stopPropagation = function(){
+                this.cancelBubble = true;
+            };
+            evt.target=evt.srcElement;
+            evt.time = (new Date()).getTime();
+
+            return evt;
+        } 
+};
 dmUtil.EventUtil.aboutHandler = (function (){
         var docE=dmUtil.doc.documentElement;
 
@@ -57,7 +84,8 @@ dmUtil.EventUtil.aboutHandler = (function (){
                     };
                 } else {
                     return function(e){
-                        handler.call(getElement(uid),e || dmUtil.global.event);
+                        handler.call(getElement(uid),
+                        dmUtil.formatEvent(e || dmUtil.global.event));
                     };
                 }
             };
@@ -134,4 +162,58 @@ dmUtil.EventUtil.aboutHandler = (function (){
             };
         }
 })();
+dmUtil.stringUtil ={
+    trim : (function(){
+        var reTrimTop=/^\s+/,reTrimBottom=/\s\s*$/;
+        return function(str){
+            return str.replace(reTrimTop,"").replace(reTrimBottom,"");
+        };
+    })(),
+    stripHtml :(function(){
+        var stripReg = /<(?=((?:.|\s)*?>))\1/g;
+        return function(str){
+            return str.replace(stripReg,"");
+        };
+    })()
+};
+dmUtil.arrayUtil={
+    IndexOf: (function(){
+        if(!Array.prototype.indexOf){
+            return function(arr,ele,fromIndex){
+                if(arr === null){
+                    return -1;
+                }
+                var k,O=Object(arr);
+                var len= O.length >>> 0;
 
+                if(len === 0){
+                    return -1;
+                }
+                var n=+fromIndex || 0;
+                if(n >= len){
+                    return -1;
+                }
+                k = Math.max(n>=0? n: len + n,0);
+                do{
+                    if(k in O && O[k] === ele){
+                        return  k;
+                    }
+                    k++;
+                } while(k<len);
+                
+                return -1;
+            };
+        } else {
+            return function(arr,ele,fromIndex){
+                arr.IndexOf(ele,fromIndex);
+            };
+        }
+        
+    })()
+};
+dmUtil.classList = (function(){
+    if(!("classList" in document.createElement("_"))){
+           
+    } else {}
+
+})();

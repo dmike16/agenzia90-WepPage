@@ -19,6 +19,6 @@ function inserMainScript(url,callback){
         script=null;
 }
 
-inserMainScript("gesture.js",function(){
-    AppInit();
+inserMainScript("main.js",function(){
+    alert("scipt loaded");
 });
