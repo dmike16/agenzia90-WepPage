@@ -205,7 +205,7 @@ dmUtil.arrayUtil={
             };
         } else {
             return function(arr,ele,fromIndex){
-                arr.IndexOf(ele,fromIndex);
+                return arr.indexOf(ele,fromIndex);
             };
         }
         
@@ -213,7 +213,137 @@ dmUtil.arrayUtil={
 };
 dmUtil.classList = (function(){
     if(!("classList" in document.createElement("_"))){
-           
-    } else {}
+        var checkTokenAndGetIndex=function(classList,token){
+            if(token ===""){
+                return -2;
+            }
+            if(/s/.test(token)){
+                return -3;
+            }
+            return dmUtil.arrayUtil.IndexOf(classList,token);
+        }
+        ,classList =function(elem){
+            var trimmedClasses = dmUtil.stringUtil.trim(elem.getAttribute("class")|| "")
+            ,classes = trimmedClasses?trimmedClasses.split(/s+/): []
+            ,i=0
+            ,len =classes.length;
+            for(;i<len;i++){
+                this.push(classes[i]);
+            }
+            this._updateClassName = function(){
+                elem.setAttribute("class",this.toString());
+            };
+        }
+        ,classListProto=classList.prototype = [];
+        classListProto.item = function(i){
+            return this[i] || null;
+        };
+        classListProto.contains = function(token){
+            token += "";
+            return checkTokenAndGetIndex(this,token) !== -1;
+        };
+        classListProto.add = function(){
+            var tokens = arguments
+            ,i=0
+            ,l=tokens.length
+            ,token
+            ,update = false;
+            do{
+                token= tokens[i]+ "";
+                if(checkTokenAndGetIndex(this,token)===-1){
+                    this.push(token);
+                    update=true;
+                }
+            }while(i++<l);
+            if(update){
+                this._updateClassName();
+            }
+        };
+        classListProto.remove=function(){
+            var tokens=arguments
+            ,i=0
+            ,l=tokens.length
+            ,token
+            ,update=false
+            ,index;
+            do{
+                token =tokens[i]+ "";
+                index=checkTokenAndGetIndex(this,token);
+                while(index!==-1){
+                    this.split(index,1);
+                    update=true;
+                    index=checkTokenAndGetIndex(this,token);
+                }
+            }while(++i<l);
+            if(update){
+                this._updateClassName();
+            }
+        };
+        classListProto.toggle=function(token,force){
+            token += "";
+            var result = this.contains(token)
+            ,method = result?
+                force !== true && "remove"
+            :
+                force !==false && "add";
+            if(method){
+                this[method](token);
+            }
+            if(force===true || force ===false){
+                return force;
+            } else {
+                return !result;
+            }
+        };
+        classListProto.toString=function(){
+            return this.join(" ");
+        };
+        return function(ele){
+            return new classList(ele);
+        };
+    } else {
+        var testElement = dmUtil.doc.createElement("_");
+        testElement.classList.add("c1","c2");
+        if(!testElement.classList.contains("c2")){
+            var createMethod=function(method){
+                var original=DOMTokenList.prototype[method];
+                DOMTokenList.prototype[method]=function(token){
+                    var i,len=arguments.length;
+                    for(i=0;i<len;i++){
+                        token=arguments[i];
+                        original.call(this,token);
+                    }
+                };
+            };
+            createElement("add");
+            createElement("remove");
+        }
+        testElement.classList.toggle("c3",false);
+        if(testElement.classList.contains("c3")){
+            var _toggle=DOMTokenList.prototype.toggle;
+            DOMTokenList.prototype.toggle=function(token,force){
+                if(1 in arguments && !this.contains(token)=== !force){
+                    return force;
+                }else{
+                    return _toggle.call(this,token);
+                }
+            };
+        }
+        testElement =null;
 
+        return function(ele){
+            return ele.classList;
+        };
+    }
 })();
+dmUtil.animation={
+    Frame: (function(){
+        var lastTime=0;
+        var vendors=['webkit','moz'];
+        var testExistence = dmUtil.global.requestAnimationFrame;
+        for(var x=vendors.length;--x && !testExistence;){
+            testExistence=dmUtil.global[vendors[x]+'RequestAnimationFrame'];
+        }
+        
+    })()
+};
