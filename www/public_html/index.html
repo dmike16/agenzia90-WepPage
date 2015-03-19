@@ -3,27 +3,28 @@
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
-    <title>Agenzia90 | Home Page</title>
+    <title>90 s.r.l.s | Home Page</title>
     <link rel="stylesheet" type="text/css" href="main.css"/>
-    <link rel="stylesheet" type="text/css" href="RobotoDraft.css"/>
-    <link rel="shortcut icon" href="resources/icontemp.ico"/>
+    <link rel="shortcut icon" href="resources/icon/tab/tabIcon.ico"/>
     <link rel="stylesheet" href="resources/font-awesome-4.3.0/css/font-awesome.min.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic|Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'/>
   </head>
   <body>
    <header>
       <div class="header-wrapper">
       <div class="header-logo">
-          <img alt="Agenzia90 icon" src="resources/Logo90.jpg"/>
+          <img alt="Agenzia90 icon" src="resources/Logo90.svg"/>
       </div>
 	  <div class="header-title">
-          <span>Agenzia 90</span>
+          <span>90 Consulenza <br/>Automobilistica</span>
           <div class="header-subTitle">
             <ul>
                 <li> Consulenza Automobilistica</li>
                 <li> Pratiche Auto, revisioni</li>
                 <li> Revisioni</li>
             </ul>
+            <img id="gif" src="resources/carCar.gif" alt="alt tag" style="float:left;">
           </div>
       </div>
       </div>
@@ -94,10 +95,58 @@
       </div>
     </header>
     <div id="grid-cont">
-        <section class="grid_outer chapter">
+        <div class="grid_outer clear-fix">
+            <div id="blockRight">
+                <div class="blockRight-wrapper" style="top: 0px;width:auto;max-height:none;">
+                    <div class="list-wrapper">
+                        <h3><i class="fa fa-question-circle title-icon"></i>Link Utili</h3>
+                        <nav>
+                            <dl role="tablist">
+                                <dt role="tab" tabindex="0">
+                                    <a href="http://www.motorizzazioneroma.it/" target="_blank">Motorizzazione.it</a>
+                                </dt>
+                                <dt role="tab" tabindex="0">
+                                    <a href="#">Dove Siamo</a>
+                                </dt>
+                                <dt role="tab" tabindex="0">
+                                    <a href="#">Servizi</a>
+                                </dt>
+                                <dt  role="tab" tabindex="0">
+                                    <a href="#">Social</a>
+                                </dt>
+                            </dl>
+                        </nav>
+                    </div>
+                    <div class="info-side">
+                        <h3><i class="fa fa-info-circle title-icon"></i>Informazioni</h3>
+                        <p>90</p>
+                        <p>Consulenza Automobilistica</p>
+                        <p> s.r.l.s</p>
+                        <address>
+                            <p>Via bho 26<br/>
+                            00XXX Roma(RM)<p/>
+                            <p>P.I e C.F 98402482082<p/>
+                            <p>tel. 06/XXXXXXXX-06/XXXXXXXX<p/>
+                            <a href="mailto:cipmiky@gmail.com">WebMaster</a><br/>
+                            <p>Fax. 06/XXXXXXXX<p/>
+                            <p>Altre info</p>
+                    </div>
+                </div>
+        </div>
+            <div id="blockLeft">
+                <div class="blockLeft-wrapper">
+                    <div id="newsEvent-block">
 
-        </section>
-    </div>
+                    </div>
+                    <div id="history-block">
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+</div>
+
     <footer>
     <div class="footer-grid">
 	<div class="footer-L">&nbsp;</div>
@@ -116,13 +165,10 @@
     <div class="mask-modal"></div>
     <script type="text/javascript" src="main.js"></script>
     <!--script type="text/javascript">
-        var s=dmUtil.stringUtil.trim("   bedroom bella zio");
-        alert("["+s+"]");
-        var ss=dmUtil.stringUtil.stripHtml("</p >Bella zio </p>");
-        alert(ss);
-        alert(("classList" in document.createElement("_")));
-        var a="cals clas   if flkdf lkdflfk df";
-        alert(a.split(/\s\s*/));
+        var h=document.getElementById("gif");
+        document.body.onload=function(){
+            h.style.display="block";
+        };
     </script-->
 
     </body>
