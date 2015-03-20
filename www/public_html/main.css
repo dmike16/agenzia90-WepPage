@@ -61,6 +61,10 @@ header{
     margin: 0;
     flex: 0 0 auto;
     padding: 0 10px 0 0;
+    width:210px;
+    height:190px;
+    background: url("resources/Logo90.svg") no-repeat center center;
+    background-size: 200px 189px;
     z-index: 2;
 }
 div[class="header-wrapper"] .header-title .header-subTitle{
@@ -549,7 +553,7 @@ dl dd {
 }
 
 a{
-    color: #178102;
+    color: #045753;
     text-decoration: none;
     background: transparent;
     transition: color 0.1s linear;
@@ -624,6 +628,43 @@ html body{
     padding:20px 15px;
     background:#D9E1E2;/*#f4f7f8;*/
 }
+#grid-cont .blockLeft-wrapper{
+    margin-right:5px;
+    border-radius: 9px;
+    background: #F4F3F6;/*#f4f7f8;*/
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.16);
+    overflow: hidden;
+    position: relative;
+}
+.blockLeft-wrapper #newsEvent-block{
+    height:250px;
+    padding: 10px 4px 4px 4px;
+}
+.blockLeft-wrapper #history-block{
+    padding: 4px 4px 4px 4px;
+}
+.blockLeft-wrapper #newsEvent-block h2 i,
+.blockLeft-wrapper #history-block h2 i{
+    font-size: 2.3em;
+    color: #c0c0c0;
+}
+.blockLeft-wrapper #newsEvent-block h2,
+.blockLeft-wrapper #history-block h2 {
+    line-height:2.0;
+    color:blue;
+    position:relative;
+}
+#newsEvent-block .news-wrapper{
+    height:100%;
+    position: relative;
+}
+#history-block::before{
+    content:"&nbsp;";
+    display: block;
+    margin-top:0;
+    min-height:48px;
+    visibility:hidden;
+}
 .blockRight-wrapper  h3{
     font-weight: 700;
     font-size: 1.05em;
@@ -648,34 +689,38 @@ html body{
     position:relative;
     border-top: 2px solid #eee;
 }
-.list-wrapper nav dl dt a{
-    color:#178102;
-}
+
 .list-wrapper nav dl dt a:hover {
     color: #45F113;
 }
-.info-side > p{
-    color: #178102;
-    text-align: center;
-    font-weight:500;
-    padding:0;
-    margin:8px 0;
+.info-side object{
+    position:relative;
+    padding-left:24px;
+    margin:8px auto;
+    width:100%;
+    height:100px;
 }
 .info-side address{
-    background: url("resources/icon/infoBlock/postIT.svg") center center no-repeat;
-    background-size:231px 240px;
+    background: url("resources/icon/infoBlock/postITpiega.svg") center center no-repeat;
+    background-size:231px 249px;
     min-height:231px;
     position:relative;
     white-space:nowrap;
     text-align:center;
-    color:#178102;
+    color:#045753;
+    margin:0;
+    padding:0;
 }
 .info-side address p:first-child{
-    padding-top:50px;
+    padding-top:35px;
 }
 .info-side address p{
-    margin:0;
-    padding:5px 0 2px 5px;
+    padding:0;
+    margin:9px 19px 2px 19px;
+    position:relative;
+    font-size:0.9em;
+    line-height:1.5;
+    font-weight:400;
 }
 
 .Fixed{
@@ -946,8 +991,10 @@ li{
      .header-wrapper .header-title{
         font-size: 2.2em;
     }
-    .header-wrapper .header-logo img {
+    .header-wrapper .header-logo {
     width: 150px;
+    height: 140px;
+    background-size:150px 140px;
     }
      .header-subTitle li::before{
     content:url("resources/icon/ulElement/discStyleSmall.svg");
@@ -1050,9 +1097,6 @@ li{
     .header-wrapper .header-title{
 	width:100%;
     }
-    .header-wrapper .header-logo img {
-    width: 100px;
-    }
      .header-wrapper .header-title span br{
         display: block;
     }
@@ -1103,8 +1147,10 @@ li{
         padding: 30px 15px 0;
 
 }
-    .header-wrapper .header-logo img {
-    width: 50px;
+    .header-wrapper .header-logo {
+    width: 100px;
+    height: 100px;
+    background-size: 95px 90px;
 }
     .header-wrapper .header-title{
         font-size: 20px;
