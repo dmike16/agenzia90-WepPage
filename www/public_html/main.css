@@ -640,6 +640,12 @@ html body{
     -moz-box-sizing: preserv-3d;
     box-sizing:border-box;
 }
+hr{
+    height:1px;
+    margin:3px 0 12px;
+    border:0;
+    background:#ccc;
+}
 
 #grid-cont{
     background: #f9f9f9;
@@ -667,11 +673,11 @@ html body{
     float:none;
     clear: both;
 }
-#grid-cont #blockLeft{
+#grid-cont #landing-block{
     display: block;
-    width: 75%;
-    float:right;
+    width: 100%;
     margin-top:20px;
+    clear:both;
 }
 #grid-cont #block-center{
     display: block;
@@ -681,19 +687,17 @@ html body{
     background:#F9F9F9;
     clear:both;
    }
-#grid-cont .action-bar-wrapper:hover{
-    opacity:1.0;
-}
 #grid-cont .action-bar-wrapper{
     width:940px;
     height:115px;
     margin:0 auto;
 }
-#grid-cont .blockLeft-wrapper{
-    margin-right:5px;
+#grid-cont .landing-block-wrapper{
+    margin:0 auto;
+    width:940px;
     background: #F9F9F9;/*#f4f7f8;*/
     overflow: hidden;
-    position: relative;
+    padding:80px 0;
 }
 .action-bar-wrapper .action-item-wrapper{
     display: block;
@@ -707,23 +711,77 @@ html body{
     box-shadow: 1px 2px 5px rgba(0,0,0,0.12);
     background-color:fefefe;
 }
-.blockLeft-wrapper #newsEvent-block{
-    height:250px;
+.landing-block-wrapper #newsEvent-block{
     padding: 10px 4px 4px 4px;
+    clear:both;
 }
-.blockLeft-wrapper #history-block{
+.landing-block-wrapper #history-block{
     padding: 4px 4px 4px 4px;
 }
-.blockLeft-wrapper #newsEvent-block h2 i,
-.blockLeft-wrapper #history-block h2 i{
+.landing-block-wrapper #newsEvent-block h2 i,
+.landing-block-wrapper #history-block h2 i{
     font-size: 2.3em;
-    color: #c0c0c0;
+    color: rgba(41,44,220,1);
+    margin-right:18px;
 }
-.blockLeft-wrapper #newsEvent-block h2,
-.blockLeft-wrapper #history-block h2 {
+.landing-block-wrapper #newsEvent-block h2,
+.landing-block-wrapper #history-block h2 {
     line-height:2.0;
-    color:blue;
+    font-size:22px;
+    letter-spacing:7px;
+    color:rgba(19,221,31,1);
     position:relative;
+    border-bottom:1px solid rgba(0,0,0,0.3);
+}
+.col-1{
+    display:inline;
+    float:left;
+    width:562px;
+    height:244px;
+    margin-top:9px;
+    margin-left:10px;
+    margin-right:auto;
+    overflow-y:scroll;
+   }
+.col-2{
+    width:302px;
+    display:inline;
+    float:right;
+    margin-top:50px;
+    margin-left:0;
+    margin-right:10px;
+    max-height:100%;
+}
+.news-wrapper .col-1{
+    border:1px solid #ccc;
+    background-color:#e8e8e8;
+    border-radius:4px;
+    box-shadow:inset 0px 1px 2px rgba(0,0,0,0.2),0px 1px 0px #fff;
+    font-size:0.95em;
+    line-height:2.0;
+    font-size:400;
+}
+.news-wrapper .col-1::-webkit-scrollbar{
+    width:6px;
+    height:1px;
+}
+
+.news-wrapper .col-1::-webkit-scrollbar-thumb{
+    height: 6px; 
+    background-color:rgba(236, 218, 36, 0.33);
+    border-radius:1px;
+}
+.news-wrapper .col-1::-webkit-scrollbar-track{
+    background-color:#999;
+
+}
+.news-wrapper .col-1::-webkit-scrollbar-track-piece{
+    background-color:#ccc;
+
+}
+
+.news-wrapper img {
+    margin-bottom:10px;
 }
 #newsEvent-block .news-wrapper{
     height:100%;
@@ -785,6 +843,12 @@ html body{
     left:90px;
     background-color:#fefefe;
     overflow:hidden;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+   
 }
 .action-item-wrapper nav dl {
     display:inline-block;
@@ -802,19 +866,21 @@ html body{
     border-top: none;
 }
 .action-item-wrapper nav dl dt::after{
-    content:">";
+    content: '>';
     position:relative;
     color:#045753;
-    left:7px;
-    font-weight:700;
+    left:5px;
+    top:1px;
+    font-weight:400;
+    line-height:1;
     font-size:0.95em;
-    -webkit-transition: left 0.5s ease-in-out;
-    -moz-transition: left 0.5s ease-in-out;
-    -o-transition: left 0.5s ease-in-out;
-    transition: left 0.3s 0.2s ease-in-out;
+    -webkit-transition: left 190ms ease-out;
+    -moz-transition: left 190ms ease-out;
+    -o-transition: left 190ms ease-out;
+    transition: left 190ms  ease-out;
 }
 .action-item-wrapper nav dl dt:hover::after{
-    left:18px;
+    left:10px;
 }
 .action-item-wrapper nav dl dt a:hover {
     color: #09c;
