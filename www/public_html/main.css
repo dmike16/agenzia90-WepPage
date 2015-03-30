@@ -250,6 +250,7 @@ i[class^="icon-"]::before{
 }
 .left-icon{
     margin-right:8px;
+    width:18px;
 }
 .search{
     position: absolute;
@@ -502,7 +503,7 @@ a{
     transition: color 0.1s linear;
     -webkit-transition: color 0.1s linear;
     -moz-transition: color 0.1s linear;
-    cursor: auto;
+    cursor: pointer;
 
 }
 
@@ -645,7 +646,6 @@ html body{
     float: left;
     height: 100%;
     padding-bottom: 100px;
-    padding-left: 109px;
     padding-top:80px;
     width: 100%;
     -webkit-transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -662,6 +662,7 @@ html body{
 }
 #grid-cont #blockTop{
     display:block;
+    margin:0 auto;
     width:940px;
     float:none;
     clear: both;
@@ -672,25 +673,39 @@ html body{
     float:right;
     margin-top:20px;
 }
-#grid-cont #blockRight{
+#grid-cont #block-center{
     display: block;
-    width:25%;
-    float:right;
+    width:100%;
     min-height:1px;
     margin-top:20px;
+    background:#F9F9F9;
+    clear:both;
    }
-#grid-cont .blockRight-wrapper:hover{
+#grid-cont .action-bar-wrapper:hover{
     opacity:1.0;
 }
-#grid-cont .blockRight-wrapper{
-    padding:20px 15px;
-    background:#D9E1E2;/*#f4f7f8;*/
+#grid-cont .action-bar-wrapper{
+    width:940px;
+    height:115px;
+    margin:0 auto;
 }
 #grid-cont .blockLeft-wrapper{
     margin-right:5px;
     background: #F9F9F9;/*#f4f7f8;*/
     overflow: hidden;
     position: relative;
+}
+.action-bar-wrapper .action-item-wrapper{
+    display: block;
+    float: left;
+    height:100%;
+    width:48%;
+    overflow:hidden;
+    position:relative;
+    margin:0 14px 20px 0;
+    border-radius:1px;
+    box-shadow: 1px 2px 5px rgba(0,0,0,0.12);
+    background-color:fefefe;
 }
 .blockLeft-wrapper #newsEvent-block{
     height:250px;
@@ -721,7 +736,7 @@ html body{
     min-height:48px;
     visibility:hidden;
 }
-.blockRight-wrapper  h3{
+.block-center-wrapper  h3{
     font-weight: 700;
     font-size: 1.05em;
     position: relative;
@@ -732,45 +747,101 @@ html body{
 .title-icon{
     margin-right:5px;
 }
-.list-wrapper nav {
+.action-item-wrapper .action-item-icon{
+    left:0;
+    top:0;
+    width:90px;
+    height:100%;
+    position:absolute;
+    display:block;
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+.action-item-icon::after{
+    content:"";
+    display:block;
+    height:100%;
+    width:100%;
+    opacity:1;
+    background:rgba(0,0,0,0.2);
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+.action-item-icon:hover::after{
+    opacity:0;
+
+}
+
+.action-item-wrapper nav {
     font-size: 1em;
     line-height: 1.5;
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:90px;
+    background-color:#fefefe;
+    overflow:hidden;
 }
-.list-wrapper nav dl dt:first-child{
+.action-item-wrapper nav dl {
+    display:inline-block;
+    min-height:100%;
+    margin:0;
+    padding:5px 35px;
+}
+.action-item-wrapper nav dl dt:first-child{
     border-top: none;
 
 }
-.list-wrapper nav dl dt{
+.action-item-wrapper nav dl dt{
     padding:10px 0 10px 10px;
     position:relative;
-    border-top: 2px solid #eee;
+    border-top: none;
 }
-
-.list-wrapper nav dl dt a:hover {
+.action-item-wrapper nav dl dt::after{
+    content:">";
+    position:relative;
+    color:#045753;
+    left:7px;
+    font-weight:700;
+    font-size:0.95em;
+    -webkit-transition: left 0.5s ease-in-out;
+    -moz-transition: left 0.5s ease-in-out;
+    -o-transition: left 0.5s ease-in-out;
+    transition: left 0.3s 0.2s ease-in-out;
+}
+.action-item-wrapper nav dl dt:hover::after{
+    left:18px;
+}
+.action-item-wrapper nav dl dt a:hover {
     color: #09c;
 }
-.info-side object{
+.action-item-wrapper object{
     position:relative;
     padding-left:24px;
     margin:8px auto;
     width:100%;
     height:100px;
 }
-.info-side address{
-    background: url("resources/icon/infoBlock/postITpiega.svg") center center no-repeat;
-    background-size:231px 249px;
-    min-height:231px;
-    position:relative;
+.action-item-wrapper address{
+    font-size: 1em;
+    line-height: 1.5;
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:90px;
+    background-color:#f9f9f9;
+    overflow:hidden;
     white-space:nowrap;
-    text-align:center;
     color:#045753;
     margin:0;
     padding:0;
 }
-.info-side address p:first-child{
-    padding-top:35px;
-}
-.info-side address p{
+.action-item-wrapper address p{
     padding:0;
     margin:9px 19px 2px 19px;
     position:relative;
@@ -803,14 +874,14 @@ html body{
     height:320px;
     background-color:#F9F9F9;
     width:940px;
-    margin:0 14px 20px 0;
-    position:relative;
 }
 a.cardslide-prev{
     float:left;
+    background-image:url(resources/icon/slideCard/arrowleft.svg);
 }
 a.cardslide-next{
     float:right;
+    background-image:url(resources/icon/slideCard/arrowright.svg);
 }
 .cardslide-prev{
     position: absolute;
@@ -829,7 +900,36 @@ a.cardslide-next{
 .cardslide-prev,.cardslide-next{
     width:20px;
     height:36px;
-
+    text-indent:-1000em;
+}
+#blockTop .pagination{
+    position: relative;
+    width:100%;
+    text-align:center;
+    z-index:4;
+}
+#blockTop .pagination ul{
+    margin:0;
+}
+#blockTop .pagination ul li{
+    display:inline-block;
+    width:12px;
+    height:12px;
+    text-indent:-1000em;
+    margin: 0 2px;
+    border-radius: 6px;
+    background-color: #ccc;
+    cursor: pointer;
+    -webkit-transition: color .5s ease-in;
+    -moz-transition: color .5s ease-in;
+    -o-transition: color .5s ease-in;
+    transition: color .5s ease-in
+}
+#blockTop .pagination ul li.active{
+    background-color:#33c11f;
+}
+#blockTop .pagination ul li[class=""]:hover{
+    background-color:#aaa;
 }
 .card-col{
     width:481px;
@@ -839,7 +939,7 @@ a.cardslide-next{
     margin-right:10px;
 }
 .capture-col{
-    margin-top: 40px;
+    margin-top: 0px;
     width: 340px;
     display:inline;
     float: left;
@@ -857,18 +957,26 @@ a.cardslide-next{
 
 }
 .capture-col p{
-    margin: 0 0 15px;
+    margin: 10px 0;
 }
 a.link-button{
     color:#fff;
     background-color:hsl(196,44%,50%);
     white-space:nowrap;
     display: inline-block;
-    padding:16px 32px;
+    min-width: 54px;
+    outline:0;
+    padding:8px 15px;
     font-size:1.3em;
     font-weight:500;
     line-height:1.4;
+    text-align: center;
     cursor:pointer;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
     -webkit-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
