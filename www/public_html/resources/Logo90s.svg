@@ -7,10 +7,11 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
-   width="128"
+   width="123"
    height="25"
    id="svg2"
    inkscape:version="0.48.4 r9939"
@@ -27,18 +28,70 @@
      inkscape:window-width="1214"
      inkscape:window-height="770"
      id="namedview3053"
-     showgrid="false"
-     inkscape:zoom="11.722772"
-     inkscape:cx="33.968695"
-     inkscape:cy="23.202703"
-     inkscape:window-x="213"
-     inkscape:window-y="64"
+     showgrid="true"
+     inkscape:zoom="8.2892516"
+     inkscape:cx="90.494976"
+     inkscape:cy="-1.5409315"
+     inkscape:window-x="154"
+     inkscape:window-y="121"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
+     inkscape:current-layer="svg2">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4001"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
   <defs
      id="defs4">
-     <style type="text/css">@import url(http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,900italic);</style>
-    </defs>
+    <linearGradient
+       id="linearGradient4539">
+      <stop
+         style="stop-color:#ba131b;stop-opacity:1;"
+         offset="0"
+         id="stop4541" />
+      <stop
+         id="stop4547"
+         offset="0.53333336"
+         style="stop-color:#ba131b;stop-opacity:0.80658436" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.404"
+         offset="1"
+         id="stop4543" />
+    </linearGradient>
+    <style
+       type="text/css"
+       id="style3985">@import url(http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,900italic);</style>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4539"
+       id="linearGradient4545"
+       x1="15"
+       y1="80"
+       x2="15"
+       y2="65"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       inkscape:collect="always"
+       id="filter4556"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.19051595"
+         id="feGaussianBlur4558" />
+    </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4539"
+       id="linearGradient4565"
+       gradientUnits="userSpaceOnUse"
+       x1="15"
+       y1="80"
+       x2="15"
+       y2="65" />
+  </defs>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -52,7 +105,7 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="matrix(0.21772511,0,0,0.27396678,-0.54652341,-261.48396)"
+     transform="matrix(0.31676697,0,0,0.24323211,0.33083985,-231.18689)"
      id="layer1">
     <path
        d="m 68.976266,955.42051 -1.715678,-1.23186 -6.213871,8.78451 -1.757111,1.81582 -48.43306,60.82222 10.812962,5.6279 44.828718,-56.28306 40.773894,59.00696 11.48878,-5.0841 -44.378183,-63.9084 -1.802155,-2.17887 -0.857837,-2.14232 -2.299585,-2.75995 0.814605,0.72666 z"
@@ -114,15 +167,14 @@
   </g>
   <text
      xml:space="preserve"
-     x="38.0042"
-     y="18.584908"
+     x="76.884766"
+     y="16.310122"
      id="text3055"
-     transform="scale(0.77305773,1.2935645)"
-     style="font-size:22.86057472px;font-style:italic;font-weight:700;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#0a4bd6;fill-opacity:1;stroke:none;font-family:'Roboto','Open Sans',sans-serif;" 
-     sodipodi:linespacing="125%">
-     <tspan
+     transform="scale(0.7413692,1.3488556)"
+     style="font-size:20.25933837999999909px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#bd2a07;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan3057"
-       x="38.0042"
-       y="18.584908">90 s.r.l.s</tspan></text>
+       x="76.884766"
+       y="16.310122">90 s.r.l.s</tspan></text>
 </svg>
