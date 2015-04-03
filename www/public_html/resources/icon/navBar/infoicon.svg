@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.83261824"
-     inkscape:cx="95.266677"
-     inkscape:cy="205.67764"
+     inkscape:cx="108.32961"
+     inkscape:cy="253.71886"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -589,18 +589,6 @@
          id="feBlend4636" />
     </filter>
     <filter
-       inkscape:collect="always"
-       id="filter4300"
-       x="-0.32959129"
-       width="1.6591826"
-       y="-0.12016156"
-       height="1.2403231">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="7.5029795"
-         id="feGaussianBlur4302" />
-    </filter>
-    <filter
        id="filter4362"
        inkscape:label="Ridged border"
        inkscape:menu="Bevels"
@@ -813,14 +801,14 @@
        y="657.24359" />
     <path
        sodipodi:type="arc"
-       style="fill:#292cdc;fill-opacity:1;fill-rule:nonzero;stroke:none;filter:url(#filter3916)"
+       style="fill:#13a3d3;fill-opacity:0.88584475;fill-rule:nonzero;stroke:none;filter:url(#filter3916)"
        id="path3125"
        sodipodi:cx="185"
        sodipodi:cy="185"
        sodipodi:rx="145"
        sodipodi:ry="125"
        d="m 330,185 a 145,125 0 1 1 -290,0 145,125 0 1 1 290,0 z"
-       transform="matrix(1.0955038,0,0,1.2701679,-1.1004233,618.19266)"
+       transform="matrix(0.93927649,0,0,1.0141077,28.95091,659.21343)"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
