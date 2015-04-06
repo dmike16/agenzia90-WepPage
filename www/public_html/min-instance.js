@@ -42,5 +42,6 @@ function inserMainScript(url,callback,sID){
         });
     };
     inserMainScript("http://connect.facebook.net/it_IT/sdk.js",fbInit,"facebook-jssdk");
+    inserMainScript("https://platform.twitter.com/widgets.js",function(){return;},"twitter-wjs");
 })();
 

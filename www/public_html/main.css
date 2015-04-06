@@ -226,7 +226,7 @@ ul li {
     font-size:0.95em;
     font-weight:400;
 }
-#horizontal-nav nav dt:hover + [role="tabpanel"]{
+#horizontal-nav nav dt:hover + [role="tabpanel"],#horizontal-nav nav .pannell:hover{
     display: block;
     opacity: 1.0;
 }
@@ -425,7 +425,7 @@ button {
 #pOne-16{
     float: right!important;
 }
-.fb-like-conteiner,.plusone-container{
+.fb-like-conteiner,.plusone-container,.twitter-follow-container{
     margin:0;
     text-align:right;
     float:right;
@@ -434,7 +434,7 @@ button {
     width:100px;
     margin:5px 0 0;
 }
-.fb-like-conteiner.col-2{
+.fb-like-conteiner.col-2, .twitter-follow-container.col-2{
     width:120px;
     margin: 5px 0 0;
 }
@@ -1206,33 +1206,6 @@ li{
     }
     button::-moz-focus-inner{
 	border: none;
-    }
-    #grid-cont{
-	padding-left: 0;
-	}
-    footer{
-	padding-left: 0;
-	z-index: 0;
-    }
-    footer .footer-grid{
-	width: 1160px;
-    }
-    footer .footer-L {
-	-webkit-transform: translateX(0px);
-	-moz-transform: translateX(0px);
-	-ms-transform: translateX(0px);
-	-o-transform: translateX(0px);
-	transform: translateX(0px);
-    }
-    footer .footer-R {
-	-webkit-transform: translateX(0px);
-	-moz-transform: translateX(0px);
-	-ms-transform: translateX(0px);
-	-o-transform: translateX(0px);
-	transform: translateX(0px);
-    }
-    .moduleA1{
-	width:1160px;
     }
 }
 
