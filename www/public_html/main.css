@@ -778,6 +778,41 @@ hr{
     text-align:center;
     padding-right:40px;
 }
+#work-time {
+    min-width:100%;
+    margin:0;
+    padding:0;
+}
+#work-time div {
+   text-align:center;
+   padding-top:10px;
+   min-height:40px;
+   border:1px solid #ddd;
+   background-color:#09c;
+   color:#f9f9f9;
+   border-radius: 4px;
+}
+#work-time div span.medium{
+    font-weight: 400;
+    font-size:1.5em;
+    line-height:0.8;
+}
+#work-time div span.small{
+    font-weight:400;
+    font-size:1.01em;
+    line-height:0.9;
+}
+#work-time div .half-inline{
+    width:48%;
+    display:inline-block;
+    border:none;
+    min-height:0;
+    border-radius: 0;
+    padding: 0;
+    background-color:inherit;
+    color:inherit;
+    margin:auto 0;
+}
 .block-center-wrapper  h3{
     font-weight: 700;
     font-size: 1.05em;
@@ -919,6 +954,7 @@ hr{
     z-index:2;
     position:relative;
     left:0;
+    overflow:hidden;
 }
 .resources-card{
     height:320px;
