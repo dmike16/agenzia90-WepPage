@@ -704,6 +704,59 @@ hr{
     display:inline-block;
     position:absolute;
 }
+.click-to-expand{
+    position:relative;
+    min-width:2px;
+    cursor:pointer;
+}
+.click-to-expand::after{
+    display:block;
+    content:'^';
+    position:absolute;
+    right:10px;
+    top:0;
+    color:rgb(111,210,234);
+    height:34px;
+    font-weight:400;
+    font-size:30px;
+    line-height:1.5;
+    -webkit-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -ms-transform: rotate(0);
+    -o-transform: rotate(0);
+    transform: rotate(0);
+    -webkit-transition: transform 0.5s ease-in-out;
+    -moz-transition: transform 0.5s ease-in-out;
+    -o-transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
+}
+.click-to-expand:hover{
+    background-color:#ccc;
+}
+.click-to-expand:focus{
+    outline:0;
+    border:none;
+}
+.expandible{
+    display:none;
+    opacity:0;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+}
+.click-to-expand:focus::after{
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+
+}
+.click-to-expand:focus + [class="expandible"]{
+    display:block;
+    opacity:1.0;
+}
 .news-wrapper .col-1{
     height:244px;
     border:1px solid #ccc;
@@ -766,7 +819,7 @@ hr{
     padding:10px 70px 0px 40px;
     line-height:2.1;
     font-weight:300;
-    font-size:1.15em;
+    font-size:1.2em;
     border-right: 2px solid #ccc;
     border-bottom: 2px solid #ccc;
     border-bottom-right-radius: 3px;
