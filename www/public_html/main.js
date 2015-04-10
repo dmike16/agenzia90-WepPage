@@ -1,52 +1,115 @@
+/**
+ * This module rappresent my personal utility, that i use to develop
+ * my web sites
+ *
+ * @module dmUtil
+ */
 var dmUtil = dmUtil || {};
+/**
+ * Rappresent the globl object. In broswer enviroment is the window object
+ *
+ * @class global
+ * @static
+ *
+ */
 dmUtil.global = this;
-dmUtil.doc= document;
+/**
+ * Rappresent the docuemnt DOM object
+ *
+ * @class doc
+ * @static
+ *
+ */
+dmUtil.doc = document;
+/**
+ * It's a collection of events utilities
+ *
+ * @class EventUtil
+ * @static
+ *
+ */
 dmUtil.EventUtil = {
-    
-    getUniqueId  : (function (){
-                if(typeof document.documentElement.uniqueID != 'undefined'){
-                    return function(element){
-                        return element.uniqueID;
-                    };
-                }
-                var uID=0;
-                return function(element){
-                    return element.__uniqueID || (element.__uniqueID='uniqueID__'+ uID++);
-                };
-            })(),
-    isHostMethod: function(obj,methodName){
-            var tp = typeof obj[methodName];
-            return ((tp ==='function'||t==='object')&& !!obj[methodName])|| t==='unknown';
-        },
-
-    formatEvent: function(evt){
-            evt.charCode = (evt.type == "keypress")? evt.keyCode : 0;
-            evt.evntPhase = 2;
-            evt.isChar =(evt.charCode > 0);
-            evt.pageX = evt.clientX + dmUtil.doc.body.scrollLeft;
-            evt.pageY = evt.clientY + dmUtil.doc.body.scrollTop;
-            evt.preventDefault = function(){
-                this.returnvalue = false;
+    /**
+     * This method is used in the addListener to create a specific id to 
+     * the envent. It's only an internal method
+     *
+     * @method getUniqueId
+     * @private
+     * @param {Object} element DOM element 
+     * @return {Integer} unique ID  of the element
+     *
+    */
+    getUniqueId  : (function () {
+        "use strict";
+        if (typeof document.documentElement.uniqueID !== 'undefined') {
+            return function (element) {
+                return element.uniqueID;
             };
-            switch(evt.type){
-            case "mouseout":
-                evt.relatedTarget = evt.toElement;
-                break;
-            case "mouseover":
-                evt.relatedTarget = evt.fromElement;
-                break;
-            default:
-                break;
-            }
-            evt.stopPropagation = function(){
-                this.cancelBubble = true;
-            };
-            evt.target=evt.srcElement;
-            evt.time = (new Date()).getTime();
+        }
+        var uID = 0;
+        return function (element) {
+            return element.__uniqueID || (element.__uniqueID = 'uniqueID__' + uID++);
+        };
+    }()),
+    /**
+     * Check if the object has the specific method
+     *
+     *  @method isHostMethod
+     *  @param {Object} obj An object
+     *  @param {String} The name of the method we wanto to check
+     *  @return {Boolean} True if the object has the method, false otherwise
+     */
+    isHostMethod: function (obj, methodName) {
+        "use strict";
+        var tp = typeof obj[methodName];
+        return ((tp === 'function' || tp === 'object') && !!obj[methodName]) || tp === 'unknown';
+    },
+    /**
+     * This method is used to format  
+     * the envent object so it's proprities are almost the same in all broswer.
+     *
+     * @method formatEvent
+     * @param {Object} event Object 
+     * @return {Object} The event object 
+     *
+    */
+    formatEvent: function (evt) {
+        "use strict";
+        evt.charCode = (evt.type === "keypress") ? evt.keyCode : 0;
+        evt.evntPhase = 2;
+        evt.isChar = (evt.charCode > 0);
+        evt.pageX = evt.clientX + dmUtil.doc.body.scrollLeft;
+        evt.pageY = evt.clientY + dmUtil.doc.body.scrollTop;
+        evt.preventDefault = function () {
+            this.returnvalue = false;
+        };
+        switch (evt.type) {
+        case "mouseout":
+            evt.relatedTarget = evt.toElement;
+            break;
+        case "mouseover":
+            evt.relatedTarget = evt.fromElement;
+            break;
+        default:
+            break;
+        }
+        evt.stopPropagation = function () {
+            this.cancelBubble = true;
+        };
+        evt.target = evt.srcElement;
+        evt.time = (new Date()).getTime();
 
-            return evt;
-        } 
+        return evt;
+    }
 };
+/**
+ * The object that handles the cross Broswer add and remove envent listeners
+ *
+ * @namespace EventUtil
+ * @class aboutHandler
+ * @static
+ *
+ */
 dmUtil.EventUtil.aboutHandler = (function (){
         var docE=dmUtil.doc.documentElement;
 
@@ -54,9 +117,30 @@ dmUtil.EventUtil.aboutHandler = (function (){
         dmUtil.EventUtil.isHostMethod(docE,'removeEventListener')){
             docE=null;
             return {
+                /**
+                 * This method add the event listener to a DOM object
+                 *
+                 * @method addListener
+                 * @param {Object} element DOM element that handles the event
+                 * @param {String} eventName The name of the event
+                 * @param {String}[capture=false] If it's supported rappresent 
+                 * the bubbling fase.True=(down to up).False=(up to down).
+                 * @return {Void}
+                 */
                 addListener : function(element,eventName,handler,capture){
                     element.addEventListener(eventName,handler,capture);
                 },
+                /**
+                 * This method remove the event listener from a DOM object
+                 *
+                 * @method removeListener
+                 * @param {Object} element DOM element that handles the event
+                 * @param {String} eventName The name of the event
+                 * @param {String}[capture=false] If it's supported rappresent 
+                 * the bubbling fase.True=(down to up).False=(up to down).
+                 *  This value must be the same of that used in addListener.
+                 * @return {Void}
+                 */
                 removeListener: function(element,eventName,handler,capture){
                     element.removeEventListener(eventName,handler,capture);
                 }
