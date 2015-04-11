@@ -709,26 +709,34 @@ hr{
     min-width:2px;
     cursor:pointer;
 }
-.click-to-expand::after{
-    display:block;
-    content:'^';
+.click-to-expand h3{
+    display: inline;
+    float:left;
+}
+.click-arrow{
+    width:20px;
+    height:28px;
+    float:right;
+    margin-left:6px;
+    padding-right:10px;
+    position:relative;
+    cursor:pointer;
+    border-left:1px solid #ccc;
+}
+.click-arrow a{
+    zoom:1;
     position:absolute;
-    right:10px;
-    top:0;
-    color:rgb(111,210,234);
-    height:34px;
-    font-weight:400;
-    font-size:30px;
-    line-height:1.5;
-    -webkit-transform: rotate(0);
-    -moz-transform: rotate(0);
-    -ms-transform: rotate(0);
-    -o-transform: rotate(0);
-    transform: rotate(0);
-    -webkit-transition: transform 0.5s ease-in-out;
-    -moz-transition: transform 0.5s ease-in-out;
-    -o-transition: transform 0.5s ease-in-out;
-    transition: transform 0.5s ease-in-out;
+    top: 13px;
+    left: 5px;
+    display:block;
+    text-indent:-9999em;
+    width:10px;
+    height:5px;
+    background:url(resources/icon/navBar/quicknav_icon.png) no-repeat;
+}
+.click-arrow a.arrow-active{
+    background-position:0 -5px;
+    display:none;
 }
 .click-to-expand:hover{
     background-color:#ccc;
@@ -745,13 +753,11 @@ hr{
     -o-transition: opacity 0.5s ease-in-out;
     transition: opacity 0.5s ease-in-out;
 }
-.click-to-expand:focus::after{
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
-
+.click-to-expand:focus > [class="click-arrow"] > [class="arrow-inactive"]{
+    display:none;
+} 
+.click-to-expand:focus > [class="click-arrow"] > [class="arrow-active"]{
+    display:block;
 }
 .click-to-expand:focus + [class="expandible"]{
     display:block;
