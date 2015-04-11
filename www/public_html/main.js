@@ -112,6 +112,7 @@ dmUtil.EventUtil = {
     * @final
     * 
     */
+};
      
     /**
     * The object that handles the cross Broswer add and remove envent listeners
@@ -123,7 +124,7 @@ dmUtil.EventUtil = {
     * 
     */
 
-    aboutHandler: (function () {
+dmUtil.EventUtil.aboutHandler= (function () {
     "use strict";
 
     var docE = dmUtil.doc.documentElement;
@@ -263,8 +264,8 @@ dmUtil.EventUtil = {
             }
         };
     }
-}())
-};
+}());
+
 /**
  * It's a collection of string utilities
  *
