@@ -422,10 +422,13 @@ button {
 .place-space{
     height:30px;
 }
+.place-space.col-1{
+    width:400px;
+}
 #pOne-16{
     float: right!important;
 }
-.fb-like-conteiner,.plusone-container,.twitter-follow-container{
+.fb-like-conteiner,.plusone-container,.twitter-follow-container,.circles-gplusone-container{
     margin:0;
     text-align:right;
     float:right;
@@ -433,6 +436,10 @@ button {
 .plusone-container.col-2{
     width:100px;
     margin:5px 0 0;
+}
+.circles-gplusone-container.col-2{
+    width:170px;
+    margin: 5px 0 0;
 }
 .fb-like-conteiner.col-2, .twitter-follow-container.col-2{
     width:120px;
@@ -772,7 +779,6 @@ hr{
     font-size:1.05em;
     line-height:2.0;
     font-weight:400;
-    overflow-y:scroll;
 }
 .news-wrapper h3::before{
     display:inline-block;
@@ -787,6 +793,7 @@ hr{
     content:" ";
     border-top-left-radius:15px;
 }
+/*
 .news-wrapper .col-1::-webkit-scrollbar{
     width:6px;
     height:1px;
@@ -805,7 +812,7 @@ hr{
     background-color:#ccc;
 
 }
-
+*/
 .news-wrapper img {
     margin-bottom:10px;
 }

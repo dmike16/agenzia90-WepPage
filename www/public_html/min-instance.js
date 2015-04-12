@@ -35,7 +35,8 @@ function inserMainScript(url, callback, sID) {
         parsetags: 'explicit'
     };
     inserMainScript("https://apis.google.com/js/plusone.js", function () {
-        gapi.plusone.render("pOne-16", {"size": "medium", "href": "https://plus.google.com/b/112281711139690699166/112281711139690699166/posts"});
+        gapi.plusone.render("pOne-16", {"href": "https://plus.google.com/112281711139690699166", "size": "medium", "rel":"publisher"});
+        gapi.follow.render("follwOne-16",{"class":"g-follow", "href":"https://plus.google.com/112281711139690699166", "height": "20", "rel":"publisher"})
     });
 
     //insert the facebook like button
