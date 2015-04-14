@@ -901,7 +901,7 @@ hr{
     background-repeat:no-repeat;
     background-position:center;
 }
-.action-item-icon::after{
+/*.action-item-icon::after{
     content:"";
     display:block;
     height:100%;
@@ -917,7 +917,7 @@ hr{
     opacity:0;
 
 }
-
+*/
 .action-item-wrapper nav {
     font-size: 1em;
     line-height: 1.5;
