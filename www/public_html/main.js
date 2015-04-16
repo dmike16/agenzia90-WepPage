@@ -3,20 +3,21 @@
  * @class UtilityBuild
  * @constructor
  */
-var UtilityBuild;
+var UtilityBuild = (function () {
 /**
  * This contains the modules on which is based my lib
  * @property modules
  * @type object
  */
-UtilityBuild.modules = {};
+    var modules = {}
+    ,_UtilityBuild;
 /**
  * This module rappresent my personal utility, that i use to develop
  * my web sites
  *
  * @module dmUtil
  */
-UtilityBuild.modules.dmUtil = function (_self) {
+    modules.dmUtil = function (_self) {
     /**
     * It's a collection of events utilities
     *
@@ -42,11 +43,12 @@ UtilityBuild.modules.dmUtil = function (_self) {
             getUniqueId = function getUniqueId(element) {
                 return element.uniqueID;
             };
+        } else {
+            var uID = 0;
+            getUniqueId = function getUniqueId(element) {
+                return element.__uniqueID || (element.__uniqueID = 'uniqueID__' + uID++);
+            };
         }
-        var uID = 0;
-        getUniqueId = function getUniqueId(element) {
-            return element.__uniqueID || (element.__uniqueID = 'uniqueID__' + uID++);
-        };
 
         /**
         * Check if the object has the specific method
@@ -540,26 +542,26 @@ UtilityBuild.modules.dmUtil = function (_self) {
 } ;
 
 // Define SandBox constructor
-function UtilityBuild() {
-    var args = Array.prototype.slice.call(arguments)
-    //Last argument is callback function
-    ,callback = args.pop()
-    ,modules = (args[0] && typeof arg[0] === "string") ? args : args[0]
-    ,i;
-    // Make sure it's call like a constructor
-    if (!(this instanceof UtilityBuild)) {
-        return new UtilityBuild(modules, callback);
-    }
-    /**
-    * Rappresent the globl object. In broswer enviroment is the window object
-    *
-    * 
-    * @property global
-    * @for UtilityBuild
-    * @type DOMObject
-    *
-    */
-    this.global =  window;
+    _UtilityBuild = function _UtilityBuild() {
+        var args = Array.prototype.slice.call(arguments)
+        //Last argument is callback function
+        ,callback = args.pop()
+        ,modules_set = (args[0] && typeof args[0] === "string") ? args : args[0]
+        ,i;
+        // Make sure it's call like a constructor
+        if (!(this instanceof _UtilityBuild)) {
+            return new _UtilityBuild(modules_set, callback);
+        }
+        /**
+        *  Rappresent the globl object. In broswer enviroment is the window object
+        *
+        * 
+        * @property global
+        * @for UtilityBuild
+        * @type DOMObject
+        *
+        */
+        this.global =  window;
 
     /**
     * Rappresent the docuemnt DOM object
@@ -569,26 +571,28 @@ function UtilityBuild() {
     * @type DOMObject
     *
     */
-    this.doc = document;
+        this.doc = document;
 
     //Add modules
-    if (!modules || modules === '*') {
-        modules = [];
-        for (i in UtilityBuild.modules) {
-            if (UtilityBuild.modules.hasOwnProperty(i)) {
-                modules.push(i);
+        if (!modules_set || modules_set === '*') {
+            modules_set = [];
+            for (i in modules) {
+                if (modules.hasOwnProperty(i)) {
+                    modules_set.push(i);
+                }
             }
         }
-    }
 
     //Initialize the modules
-    for (i = modules.length; i--;) {
-        UtilityBuild.modules[modules[i]](this);
-    }
+        for (i = modules_set.length; i--;) {
+            modules[modules_set[i]](this);
+        }
 
-    callback(this);
-}
+        callback(this);
+    };
 
+    return _UtilityBuild;
+}());
 /*
 dmUtil.animation={
     Frame: (function(){
