@@ -24,9 +24,6 @@ function inserMainScript(url, callback, sID) {
     script = null;
 }
 
-/*inserMainScript("main.js",function(){
-    alert("scipt loaded");
-});*/
 (function () {
     "use strict";
     //Insert the plusone button
@@ -36,7 +33,7 @@ function inserMainScript(url, callback, sID) {
     };
     inserMainScript("https://apis.google.com/js/plusone.js", function () {
         gapi.plusone.render("pOne-16", {"href": "https://plus.google.com/112281711139690699166", "size": "medium", "rel":"publisher"});
-        gapi.follow.render("follwOne-16",{"class":"g-follow", "href":"https://plus.google.com/112281711139690699166", "height": "20", "rel":"publisher"})
+        gapi.follow.render("follwOne-16",{"class":"g-follow", "href":"https://plus.google.com/112281711139690699166", "height": "20", "rel":"publisher"});
     });
 
     //insert the facebook like button
@@ -51,4 +48,6 @@ function inserMainScript(url, callback, sID) {
     
     //Insert the twitter share button
     inserMainScript("https://platform.twitter.com/widgets.js", function () {return; }, "twitter-wjs");
+    inserMainScript("main.js", function(){alert("scipt loaded");});
+
 }());

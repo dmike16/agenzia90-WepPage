@@ -793,26 +793,6 @@ hr{
     content:" ";
     border-top-left-radius:15px;
 }
-/*
-.news-wrapper .col-1::-webkit-scrollbar{
-    width:6px;
-    height:1px;
-}
-
-.news-wrapper .col-1::-webkit-scrollbar-thumb{
-    height: 6px; 
-    background-color:rgba(236, 218, 36, 0.33);
-    border-radius:1px;
-}
-.news-wrapper .col-1::-webkit-scrollbar-track{
-    background-color:#999;
-
-}
-.news-wrapper .col-1::-webkit-scrollbar-track-piece{
-    background-color:#ccc;
-
-}
-*/
 .news-wrapper img {
     margin-bottom:10px;
 }
@@ -842,7 +822,7 @@ hr{
     font-size:0.80em;
     line-height:0.95;
     text-align:center;
-    padding-right:40px;
+    padding-right:34px;
 }
 #work-time {
     min-width:100%;
