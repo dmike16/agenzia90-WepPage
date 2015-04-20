@@ -108,6 +108,7 @@ ul li {
 #horizontal-nav nav dt a{
     color: #479AB8;
     font-weight:700;
+    font-size:1.0em;
 }
 #horizontal-nav nav{
     padding: 0;
