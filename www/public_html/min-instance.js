@@ -48,6 +48,6 @@ function inserMainScript(url, callback, sID) {
     
     //Insert the twitter share button
     inserMainScript("https://platform.twitter.com/widgets.js", function () {return; }, "twitter-wjs");
-    inserMainScript("main.js", function(){alert("scipt loaded");});
+    inserMainScript("main.js", function(){return;});
 
 }());

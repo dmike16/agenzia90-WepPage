@@ -105,6 +105,10 @@ ul li {
     min-width: 100%;
     position:relative;
 }
+#horizontal-nav nav dt a{
+    color: #479AB8;
+    font-weight:700;
+}
 #horizontal-nav nav{
     padding: 0;
     -webkit-transform: translateZ(0);
@@ -669,20 +673,22 @@ hr{
     background-color:fefefe;
 }
 .landing-block-wrapper #history-block,.landing-block-wrapper #newsEvent-block,
-.landing-block-wrapper #location-block{
+.landing-block-wrapper #location-block,.landing-block-wrapper #services-block{
     width:100%;
     position:relative;
     padding: 0;
     clear:both;
 }
 .landing-block-wrapper #newsEvent-block h2 i,
-.landing-block-wrapper #history-block h2 i,.landing-block-wrapper #location-block h2 i{
+.landing-block-wrapper #history-block h2 i,.landing-block-wrapper #location-block h2 i,
+.landing-block-wrapper #services-block h2 i{
     font-size: 2.3em;
     color: #ABACBA;
     margin-right:18px;
 }
 .landing-block-wrapper #newsEvent-block h2,
-.landing-block-wrapper #history-block h2,.landing-block-wrapper #location-block h2{
+.landing-block-wrapper #history-block h2,.landing-block-wrapper #location-block h2,
+.landing-block-wrapper #services-block h2{
     line-height:2.0;
     font-size:22px;
     letter-spacing:7px;
@@ -807,7 +813,7 @@ hr{
     min-height:48px;
     visibility:hidden;
 }
-.history-wrapper .col-1,.location-wrapper .col-1{
+.history-wrapper .col-1,.location-wrapper .col-1, .services-wrapper .col-1{
     min-height: 344px;
     padding:10px 70px 0px 40px;
     line-height:2.1;
