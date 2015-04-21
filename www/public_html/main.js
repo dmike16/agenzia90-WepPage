@@ -538,7 +538,58 @@ var UtilityBuild = (function () {
         };
     }
     }());
-
+	/**
+    * It's a cross broswer compatible request animated Frame  function.
+    *
+    * 
+    * @class animatedFrame
+    * @static
+    * 
+    *
+    */
+	_self.animatedFrame = (function () {
+		var lastTime = 0
+		,vendor = ['ms', 'moz', 'webkit', 'o']
+		,x = vendor.length
+		,rqAF = window.requestAnimationFrame
+		,cnAF = window.cancelAnimationFrame;
+		
+		for(;x-- && !rqAF;){
+			rqAF = window[vendor[x] + 'RequestAnimationFrame'];
+			cnAF = window[vendor[x] + 'CancelAnimationFrame'] || window[vendor[x] + 'CancelAnimationFrame'];
+		}
+		if (!rqAF) {
+			return {
+				/**
+				*This method is used in the addListener to create a specific id to 
+				* the envent. It's only an internal method
+				*
+				* @method aminatedFramiRequest
+				* @param {Object} element DOM element 
+				* @param {function} the callback Method which is passed one element that represent 
+				*	the current time when callbacks queued by requestAnimationFrame begin to fire.
+				* @return {Integer} unique ID  of the element
+				*
+				*/
+				request: function request(callback, element) {
+					var curr_time = new Date().getTime()
+					,time_to_call = Math.max(0, 16 - (curr_time -lastTime))
+					,id = window.setTimeout(function () { 
+					callback(curr_time + time_to_call);}, time_to_call);
+					lastTime = curr_time + time_to_call;
+					return id;
+				},
+				cancel : function cancel(id) {
+					window.clearTimeout(id);
+				}
+			};
+		}
+		return {
+			request: rqAF,
+			cancel: cnAF
+		};
+	}()); 
+	
 } ;
 
 // Define SandBox constructor
@@ -593,15 +644,3 @@ var UtilityBuild = (function () {
 
     return _UtilityBuild;
 }());
-/*
-dmUtil.animation={
-    Frame: (function(){
-        var lastTime=0;
-        var vendors=['webkit','moz'];
-        var testExistence = dmUtil.global.requestAnimationFrame;
-        for(var x=vendors.length;--x && !testExistence;){
-            testExistence=dmUtil.global[vendors[x]+'RequestAnimationFrame'];
-        }
-        
-    })()
-};*/
