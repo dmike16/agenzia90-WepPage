@@ -831,6 +831,15 @@ hr{
     text-align:center;
     padding-right:34px;
 }
+.small-advice {
+	font-weight:400;
+	font-size: 0.85em;
+	line-height: 1.0;
+}
+.small-advice p {
+	padding-left: 70px;
+	text-decoration: underline;
+}
 #work-time {
     min-width:100%;
     margin:0;
