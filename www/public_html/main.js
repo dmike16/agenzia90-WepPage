@@ -548,6 +548,7 @@ var UtilityBuild = (function () {
     *
     */
 	_self.animatedFrame = (function () {
+		"use strict";
 		var lastTime = 0
 		,vendor = ['ms', 'moz', 'webkit', 'o']
 		,x = vendor.length
