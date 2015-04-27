@@ -590,7 +590,65 @@ var UtilityBuild = (function () {
 			cancel: cnAF
 		};
 	}()); 
-	
+	/**
+    * It's a class that define the animation object. 
+    * Simple call the function and you'll have an animation object.
+    *
+    * 
+    * @class AnimateObject
+    * @constructor
+    * @parem{} ele Rappresent the DOM element of which create the class list
+    *
+    */
+	_self.AnimateObject = (function () {
+		var _linear = function linear(p) {
+			return p;
+		}
+		,_quadratic = function quadratic(p) {
+			return Math.pow(p,2);
+		}
+		,_cubic = function cubic(p) {
+			return Math.pow(p,3);
+		}
+		,_circ = function circ(p) {
+			return 1-Math.sin(Math.acos(p));
+		}
+		,_back = function back(p,x) {
+			return Math.pow(p,2)*((x+1)*p-x);
+		}
+		,AnimateObject = function AnimateObject(_delay, _duration, _delta, _step) {
+			if (!(this instanceof AnimateObject)) {
+				return new AnimateObject(_delay, _duration, _delta, _step);
+			}
+			this.delay = _delay;
+			this.duration = _duration;
+			if (typeof _delta === "String"){
+				switch (_delta) {
+					case 'linear':
+						this.delta = _linear;
+						break;
+					case 'quadratic':
+						this.delta = _quadratic;
+						break;
+					case 'cubic':
+						this.delta = _cubic;
+						break;
+					case 'circ':
+						this.delta =_circ;
+						break;
+					case 'back':
+						this.delta = _back;
+						break;
+					default: 
+						this.delta = _linear;
+						break;
+					}
+			} else {
+				this.delta = _delta;				
+			}
+			this.step = _step;			
+		};
+	}());
 } ;
 
 // Define SandBox constructor
