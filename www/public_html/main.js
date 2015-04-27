@@ -573,7 +573,7 @@ var UtilityBuild = (function () {
 				*
 				*/
 				request: function request(callback, element) {
-					var curr_time = new Date().getTime()
+					var curr_time = performance.now()
 					,time_to_call = Math.max(0, 16 - (curr_time -lastTime))
 					,id = window.setTimeout(function () { 
 					callback(curr_time + time_to_call);}, time_to_call);
