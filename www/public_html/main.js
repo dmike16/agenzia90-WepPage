@@ -22,8 +22,8 @@ var UtilityBuild = (function () {
 	_self.bind = (function crossFuncUtilities() {
      	"use strict";
 	    if (typeof Function.prototype.bind === "undefined") {
-	    function.prototype.bind = function bind(this_arg) {
-            var f_to_bind = this;
+	    Function.prototype.bind = function bind(this_arg) {
+            var f_to_bind = this
 	        ,slice = Array.prototype.slice
 	    	,args = slice.call(arguments, 1)
             ,fbound = function () {
@@ -36,7 +36,7 @@ var UtilityBuild = (function () {
             fbound.prototype = Object.create(f_to_bind.prototype);
             return fbound;
 		};
-		//}
+	}
 }());
     /**
     * It's a collection of events utilities
