@@ -287,19 +287,24 @@
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="min-instance.js"></script>
 
-    <!--script type="text/javascript">
+    <script type="text/javascript">
         UtilityBuild(['dmUtil'],function(obj){
             console.log(obj);
+			var Point = function (x, y) {
+				this.x = x;
+				this.y = y;
+			};
+			Point.prototype.toString = function () {
+				return this.x + ',' + this.y;
+			};
+			var p = new Point(1,2);
+			console.log(p.toString());
+			var yAxisPoint = obj.bind(Point,null,0);
+			var ax = new yAxisPoint(5);
+			console.log(ax.toString());
+			
         });
-		var f = performance.now();
-		console.log(f)
-		f = performance.now();
-		console.log(f);
-		f = performance.now();
-		console.log(f);
-		f = new Date().getTime();
-		console.log(f);
-    </script-->
+    </script>
 
     </body>
 </html>

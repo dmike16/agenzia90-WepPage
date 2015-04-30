@@ -18,6 +18,22 @@ var UtilityBuild = (function () {
  * @module dmUtil
  */
     modules.dmUtil = function (_self) {
+	//Pollify Bind Func
+	_self.bind = (function crossFuncUtilities() {
+		
+		"use strict";
+		//if (typeof Function.prototype.bind === "undefined") {
+			return  function bind(func, this_arg) {
+				var f_to_bind = func
+				,slice = Array.prototype.slice
+				,args = slice.call(arguments, 2);
+				
+				return function () {
+					return f_to_bind.apply(this_arg, args.concat(slice.call(arguments)));
+				};
+			};
+		//}
+	}());
     /**
     * It's a collection of events utilities
     *
@@ -622,7 +638,7 @@ var UtilityBuild = (function () {
 			}
 			this.delay = _delay;
 			this.duration = _duration;
-			if (typeof _delta === "String"){
+			if (typeof _delta === "string"){
 				switch (_delta) {
 					case 'linear':
 						this.delta = _linear;
@@ -648,6 +664,7 @@ var UtilityBuild = (function () {
 			}
 			this.step = _step;			
 		};
+		return AnimateObject;
 	}());
 } ;
 
