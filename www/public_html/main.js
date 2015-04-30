@@ -20,20 +20,24 @@ var UtilityBuild = (function () {
     modules.dmUtil = function (_self) {
 	//Pollify Bind Func
 	_self.bind = (function crossFuncUtilities() {
-		
-		"use strict";
-		//if (typeof Function.prototype.bind === "undefined") {
-			return  function bind(func, this_arg) {
-				var f_to_bind = func
-				,slice = Array.prototype.slice
-				,args = slice.call(arguments, 2);
-				
-				return function () {
-					return f_to_bind.apply(this_arg, args.concat(slice.call(arguments)));
-				};
-			};
+     	"use strict";
+	    if (typeof Function.prototype.bind === "undefined") {
+	    function.prototype.bind = function bind(this_arg) {
+            var f_to_bind = this;
+	        ,slice = Array.prototype.slice
+	    	,args = slice.call(arguments, 1)
+            ,fbound = function () {
+            if (this instanceof fbound) {
+                f_to_bind.apply(this, args.concat(slice.call(arguments)));
+            } else {
+    	        return f_to_bind.apply(this_arg,args.concat(slice.call(arguments)));
+            }
+            };
+            fbound.prototype = Object.create(f_to_bind.prototype);
+            return fbound;
+		};
 		//}
-	}());
+}());
     /**
     * It's a collection of events utilities
     *

@@ -287,7 +287,7 @@
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="min-instance.js"></script>
 
-    <script type="text/javascript">
+    <!---script type="text/javascript">
         UtilityBuild(['dmUtil'],function(obj){
             console.log(obj);
 			var Point = function (x, y) {
@@ -298,13 +298,15 @@
 				return this.x + ',' + this.y;
 			};
 			var p = new Point(1,2);
-			console.log(p.toString());
-			var yAxisPoint = obj.bind(Point,null,0);
+            console.log(Point.prototype['toString'].call(p));
+            var yAxisPoint = obj.bind(Point,null,0);
 			var ax = new yAxisPoint(5);
+            console.log(p);
+            console.log(ax);
 			console.log(ax.toString());
 			
         });
-    </script>
+    </script-->
 
     </body>
 </html>
