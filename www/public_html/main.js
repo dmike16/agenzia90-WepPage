@@ -19,7 +19,7 @@ var UtilityBuild = (function () {
  */
     modules.dmUtil = function (_self) {
 	//Pollify Bind Func
-	_self.bind = (function crossFuncUtilities() {
+	(function crossFuncUtilities() {
      	"use strict";
 	    if (typeof Function.prototype.bind === "undefined") {
 	    Function.prototype.bind = function bind(this_arg) {
@@ -666,7 +666,9 @@ var UtilityBuild = (function () {
 			} else {
 				this.delta = _delta;				
 			}
-			this.step = _step;			
+			this.step = _step;
+            this.timePassed = 0;
+            this.progress = 0;            
 		};
 		return AnimateObject;
 	}());
