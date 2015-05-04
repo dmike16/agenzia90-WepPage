@@ -617,7 +617,11 @@ var UtilityBuild = (function () {
     * 
     * @class AnimateObject
     * @constructor
-    * @parem{} ele Rappresent the DOM element of which create the class list
+    * @param{Integer} Rappresent the delay of the aniamtion
+    * @param{Integer} Rappresent the duration
+    * @param{String|Function} Rappresent the built-in progression function. if it's a function object will be used as a 
+    * the progression function
+    * @param{Function} Rappresent the function that handles the animation
     *
     */
 	_self.AnimateObject = (function () {
@@ -640,8 +644,24 @@ var UtilityBuild = (function () {
 			if (!(this instanceof AnimateObject)) {
 				return new AnimateObject(_delay, _duration, _delta, _step);
 			}
+            var start = 0;
+            /** It's the delay of the animation
+             *
+             * @property delay
+             * @type Integer
+             */
 			this.delay = _delay;
+            /** It's the duration of the animation
+             *
+             * @property duration
+             * @type Integer
+             */
 			this.duration = _duration;
+            /** It's the progression method of the animation
+             *
+             * @property delta
+             * @type String|Function
+             */
 			if (typeof _delta === "string"){
 				switch (_delta) {
 					case 'linear':
@@ -666,10 +686,56 @@ var UtilityBuild = (function () {
 			} else {
 				this.delta = _delta;				
 			}
+            /** It's the function thas handles the animation
+             *
+             * @property step
+             * @type Function
+             */
 			this.step = _step;
+            /** It's the time passed
+             * 
+             * @property timePassed
+             * @type Number
+             * @default 0
+             */
             this.timePassed = 0;
-            this.progress = 0;            
-		};
+            /** It's the progress value of the animation
+             *
+             * @property progress
+             * @type Float
+             * @default 0
+             */
+            this.progress = 0;
+            this.startTimeCount = function () {
+                start = performance.now() ? (performance.now() + performance.timing.navigationStart) :
+                Date.now();
+            };  
+            this.getStartTime = function () {
+                return start;
+            };   
+		}
+        , AnimateObjectProto = AnimateObject.prototype;
+        AnimateObjectProto = [];
+        AnimateObjectProto.animate = function animate(time_stamp) {
+            if (arguments.length !== 1) {
+                console.log("Error can't pass argument to this function");
+                return ;
+            }
+            this.timePassed = time_stamp - this.getStartTime();
+            this.progress = this.timePassed / this.duration;
+            if (this.progress > 1) {
+                this.progress = 1;
+            }
+            var delta = this.delta(this.progress);
+            this.step(delta);
+            if (this.progress === 1) {
+                this.progress  = 0;
+                _self.animatedFrame.cancel(id);
+            } else {
+                id = _self.animatedFrame.request(this.animate.bind(this));
+            }
+        };
+
 		return AnimateObject;
 	}());
 } ;
