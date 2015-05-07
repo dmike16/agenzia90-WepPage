@@ -287,13 +287,29 @@
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="min-instance.js"></script>
 
-    <!--script type="text/javascript">
+    <script type="text/javascript">
         UtilityBuild(['dmUtil'],function(obj){
             console.log(performance.now()+performance.timing.navigationStart);
             console.log(Date.now());
             console.log(performance.timing.navigationStart);
+            var opacMove = function opacMove(delta,ele) { tab1.style.opacity = 1 * delta + ""; }
+            ,animation1 = obj.AnimateObject(0,200,'linear',opacMove)
+            ,id = 0
+            ,mouse_hover = false
+            ,tab1 = obj.doc.querySelector("#horizontal-nav .horizontal-nav-wrapper nav #tab3")
+            ,tab2 = obj.doc.querySelector("#horizontal-nav .horizontal-nav-wrapper nav #tab4");
+            
+            obj.EventUtility.aboutHandler.addListener(tab1, 'mouseover', function (evt) {
+                if(evt.type === 'mouseover') {
+                    mouse_hover = true;
+                }
+                obj.animatedFrame.cancel(id);
+                animation1.startTimeCount();
+                animation1.timePassed = animation1.getStartTime();
+                id = obj.animatedFrame.request(animation1.animate.bind(animation1));
+            })
         });
-    </script-->
+    </script>
 
     </body>
 </html>

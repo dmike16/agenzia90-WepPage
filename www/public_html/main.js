@@ -125,7 +125,7 @@ var UtilityBuild = (function () {
         *
         * 
         * @property aboutHandler
-        * @type ClasObject
+        * @type ClassObject
         * 
         * 
         */
@@ -592,7 +592,7 @@ var UtilityBuild = (function () {
 				* @return {Integer} unique ID  of the element
 				*
 				*/
-				request: function request(callback, element) {
+				request: function request(callback) {
 					var curr_time = performance.now()
 					,time_to_call = Math.max(0, 16 - (curr_time -lastTime))
 					,id = window.setTimeout(function () { 
@@ -606,8 +606,8 @@ var UtilityBuild = (function () {
 			};
 		}
 		return {
-			request: rqAF,
-			cancel: cnAF
+            request: function (callback) { rqAF(callback); },
+            cancel: function (id) { cnAF(id); }
 		};
 	}()); 
 	/**
@@ -662,7 +662,7 @@ var UtilityBuild = (function () {
              * @property delta
              * @type String|Function
              */
-			if (typeof _delta === "string"){
+			if (typeof _delta === "string" || typeof _delta === "undefined"){
 				switch (_delta) {
 					case 'linear':
 						this.delta = _linear;
@@ -707,15 +707,13 @@ var UtilityBuild = (function () {
              */
             this.progress = 0;
             this.startTimeCount = function () {
-                start = performance.now() ? (performance.now() + performance.timing.navigationStart) :
-                Date.now();
+                start = performance.now() ? performance.now() : Date.now();
             };  
             this.getStartTime = function () {
                 return start;
             };   
 		}
-        , AnimateObjectProto = AnimateObject.prototype;
-        AnimateObjectProto = [];
+        , AnimateObjectProto = AnimateObject.prototype = [];
         AnimateObjectProto.animate = function animate(time_stamp) {
             if (arguments.length !== 1) {
                 console.log("Error can't pass argument to this function");
