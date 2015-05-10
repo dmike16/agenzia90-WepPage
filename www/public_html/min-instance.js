@@ -31,7 +31,7 @@ function inserMainScript(url, callback, sID) {
         lang: 'it',
         parsetags: 'explicit'
     };
-    inserMainScript("https://apis.google.com/js/plusone.js", function () {
+    inserMainScript("https://apis.google.com/js/platform.js", function () {
         gapi.plusone.render("pOne-16", {"href": "https://plus.google.com/112281711139690699166", "size": "medium", "rel":"publisher"});
         gapi.follow.render("follwOne-16",{"class":"g-follow", "href":"https://plus.google.com/112281711139690699166", "height": "20", "rel":"publisher"});
     });
