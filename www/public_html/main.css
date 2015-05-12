@@ -170,20 +170,25 @@ ul li {
     border-top: 2px solid transparent;
     padding: 35px 0 9px 0;
     z-index: 3;
-    opacity: 0;
+    /*opacity: 0;
     transition-delay: 0.2s;
     transition-duration: 0.5s;
     transition-property: opacity;
-    transition-timing-function: cubic-bezier(0.2, 0.5, 0.1, 1);
+    transition-timing-function: cubic-bezier(0.2, 0.5, 0.1, 1);*/
     position:absolute;
 }
+#horizontal-nav  .panell-active {
+    display: block;
+    visibility: visible;
+}
+
 #horizontal-nav nav #pannel3{
-    left: 8%;
+    left: 11%;
     border-top-color:#CF13B5;
     color:#CF13B5;
 }
 #horizontal-nav nav #pannel4{
-    left: 35%;
+    left: 37%;
     border-top-color:#E3670E;
     color:#E3670E;
 }
@@ -233,7 +238,6 @@ ul li {
 }
 #horizontal-nav nav dt:hover + [role="tabpanel"],#horizontal-nav nav .pannell:hover{
     display: block;
-    opacity: 1.0;
 }
 i[class^="icon-"]{
     margin-left: 10px;

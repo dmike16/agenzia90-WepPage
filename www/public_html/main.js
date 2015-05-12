@@ -640,9 +640,9 @@ var UtilityBuild = (function () {
 		,_back = function back(p,x) {
 			return Math.pow(p,2)*((x+1)*p-x);
 		}
-		,AnimateObject = function AnimateObject(_delay, _duration, _delta, _step) {
+		,AnimateObject = function AnimateObject(_delay, _duration, _delta, _step, _closureAct) {
 			if (!(this instanceof AnimateObject)) {
-				return new AnimateObject(_delay, _duration, _delta, _step);
+				return new AnimateObject(_delay, _duration, _delta, _step, _closureAct);
 			}
             var start = 0;
             /** It's the delay of the animation
@@ -692,6 +692,7 @@ var UtilityBuild = (function () {
              * @type Function
              */
 			this.step = _step;
+            this.closureAct = _closureAct || function () {};
             /** It's the time passed
              * 
              * @property timePassed
@@ -728,6 +729,7 @@ var UtilityBuild = (function () {
             this.step(delta);
             if (this.progress === 1) {
                 this.progress  = 0;
+                this.closureAct();
                 _self.animatedFrame.cancel(id);
             } else {
                 id = _self.animatedFrame.request(this.animate.bind(this));
