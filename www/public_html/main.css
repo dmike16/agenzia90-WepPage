@@ -783,10 +783,6 @@ hr{
 }
 .news-wrapper .col-1{
     height:244px;
-    border:1px solid #ccc;
-    background-color:#f9f9f9;
-    border-radius:4px;
-    box-shadow:inset 0px 1px 2px rgba(0,0,0,0.2),0px 1px 0px #fff;
     font-size:1.05em;
     line-height:2.0;
     font-weight:400;
