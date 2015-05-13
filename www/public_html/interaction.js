@@ -38,13 +38,30 @@
             default:
                 return;
             }
+        }
+        ,sch = cssSelector(".header-wrapper .search")
+        ,activeRemoveFocus = function activeRemoveFocus(evt) {
+            switch (evt.type) {
+            case 'focus':
+                console.log(evt.target);
+                evt.currentTarget.classList.add("active");
+                break;
+            case 'blur':
+                evt.currentTarget.classList.remove("active");
+                break;
+            default:
+                return;
+            }
         };
         obj.EventUtility.aboutHandler.addListener(tab1, 'mouseover', navInteract);
         obj.EventUtility.aboutHandler.addListener(tab1, 'mouseout',navInteract);
         obj.EventUtility.aboutHandler.addListener(tab2, 'mouseover', navInteract);
         obj.EventUtility.aboutHandler.addListener(tab2, 'mouseout',navInteract);
+        obj.EventUtility.aboutHandler.addListener(sch, 'focus', activeRemoveFocus, true);
+        obj.EventUtility.aboutHandler.addListener(sch, 'blur', activeRemoveFocus, true);
         tab1 = null;
         tab2 = null;
+        sch = null;
     });
 }());
 
