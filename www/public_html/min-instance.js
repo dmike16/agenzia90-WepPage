@@ -2,7 +2,6 @@
 function inserMainScript(url, callback, sID) {
     "use strict";
     var script = document.createElement("script");
-    script.async = true;
     script.type = "text/javascript";
     if (sID) {
         script.id = sID;
@@ -20,6 +19,7 @@ function inserMainScript(url, callback, sID) {
         };
     }
     script.src = url;
+    script.async = true;
     document.getElementsByTagName("head")[0].appendChild(script);
     script = null;
 }

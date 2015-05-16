@@ -765,21 +765,15 @@ hr{
 }
 .expandible{
     display:none;
-    opacity:0;
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    -o-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
 }
-.click-to-expand:focus > [class="click-arrow"] > [class="arrow-inactive"]{
+.click-arrow.active .arrow-inactive{
     display:none;
 } 
-.click-to-expand:focus > [class="click-arrow"] > [class="arrow-active"]{
+.click-arrow.active .arrow-active{
     display:block;
 }
-.click-to-expand:focus + [class="expandible"]{
+.expandible.showMe{
     display:block;
-    opacity:1.0;
 }
 .news-wrapper .col-1{
     height:244px;
