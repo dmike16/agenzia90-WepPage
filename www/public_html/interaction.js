@@ -5,7 +5,8 @@
         // Dependencies
         var cssSelector = obj.doc.querySelector.bind(obj.doc) 
         ,aEventListener = obj.EventUtility.aboutHandler.addListener
-        ,if_doc = obj.doc.getElementsByTagName("iframe")[0].contentWindow.document
+        ,if_ = obj.doc.getElementsByTagName("iframe")[0]
+        ,if_doc = if_.contentWindow.document
         ,if_cssSelector = obj.doc.querySelector.bind(if_doc)
         //
         // Boolean Variables
@@ -19,9 +20,9 @@
         ,pan1 = cssSelector("#pannel3")
         ,pan2 = cssSelector("#pannel4")
         ,sch = cssSelector(".header-wrapper .search")
-        ,if_click_to_exapnd = if_cssSelector(".click-to-expand")
-        ,if_expandble = if_cssSelector(".expandible")
-        ,if_arrow = if_cssSelector(".click-arrow")
+        ,if_click_to_exapnd = null
+        ,if_expandble = null
+        ,if_arrow = null
         //
         // Animations Core function 
         ,opacPan = function opacPan(delta) { panell.style.opacity = 1 * delta + ""; }
@@ -89,7 +90,24 @@
         aEventListener(tab2, 'mouseout', gestureEvent);
         aEventListener(sch, 'focus', gestureEvent, true);
         aEventListener(sch, 'blur', gestureEvent, true);
-        aEventListener(if_click_to_exapnd, 'click', gestureEvent);
+
+        if (if_doc.readyState === "complete") {
+            if_click_to_exapnd = if_cssSelector(".click-to-expand");
+            if_expandble = if_cssSelector(".expandible");
+            if_arrow = if_cssSelector(".click-arrow");
+
+            aEventListener(if_click_to_exapnd, 'click', gestureEvent);
+        } else {
+            if_.onload = function loadIframe () {
+                if_click_to_exapnd = if_cssSelector(".click-to-expand");
+                if_expandble = if_cssSelector(".expandible");
+                if_arrow = if_cssSelector(".click-arrow");
+
+                aEventListener(if_click_to_exapnd, 'click', gestureEvent);
+                if_click_to_exapnd = null;
+
+            };
+        }
         //
         // Clear unuseful Dom Object
         tab1 = null;
