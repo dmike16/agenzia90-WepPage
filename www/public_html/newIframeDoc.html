@@ -51,5 +51,44 @@
         <p>I veicoli interessati dalla scadenza di febbraio con rinnovo da effettuare nel mese di marzo sono tutti i veicoli di competenza della Lombardia e del Piemonte, immatricolati nel mese di marzo.</p>
         <p>Se il bollo viene pagato successivamente al termine previsto del 31 marzo, oltre alla tassa si dovranno corrispondere anche le sanzioni e gli interessi che saranno calcolati in base ai giorni di ritardo.</p>
     </div>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript">
+        ({
+            init : function init() {
+                var tmp = UtilityBuild(['dmUtil'], function(obj) {
+                    "use strict";
+                    var click_on = false
+                    ,id = 0
+                    ,dom_ele = null
+                    ,opacityTrans = function opacPan(delta) { dom_ele.style.opacity = 1 * delta + ""; }
+                    ,endAnimation = function endPan() { dom_ele.removeAttribute("style"); }
+                    ,animations = obj.AnimateObject(200,300,'cubic',opacityTrans,endAnimation)
+                    ,cssSelector = obj.doc.querySelector.bind(obj.doc) 
+                    ,click_to_exp = cssSelector(".click-to-expand")
+                    ,click_arrow = cssSelector(".click-arrow")
+                    ,expandible = cssSelector(".expandible");
+
+                    obj.EventUtility.aboutHandler.addListener(click_to_exp, 'click', function () {
+                        if (!click_on) {
+                            var subject = animations;
+                            dom_ele = expandible;
+                            click_on = true;
+                            obj.ClassList(expandible).add("showMe");
+                            obj.ClassList(click_arrow).add("active");
+                            obj.animatedFrame.cancel(id);
+                            subject.startTimeCount();
+                            subject.timePassed = subject.getStartTime();
+                            id = obj.animatedFrame.request(subject.animate.bind(subject));
+                        } else if (click_on) {
+                            click_on = false;
+                            obj.ClassList(expandible).remove("showMe");
+                            obj.ClassList(click_arrow).remove("active");
+                        }                         
+                    })
+                    click_to_exp = null;
+                })
+            }
+        }).init();
+    </script>
   </body>
 </html>

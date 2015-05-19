@@ -5,9 +5,6 @@
         // Dependencies
         var cssSelector = obj.doc.querySelector.bind(obj.doc) 
         ,aEventListener = obj.EventUtility.aboutHandler.addListener
-        ,if_ = obj.doc.getElementsByTagName("iframe")[0]
-        ,if_doc = if_.contentWindow.document
-        ,if_cssSelector = obj.doc.querySelector.bind(if_doc)
         //
         // Boolean Variables
         ,mouse_hover = false
@@ -20,10 +17,7 @@
         ,pan1 = cssSelector("#pannel3")
         ,pan2 = cssSelector("#pannel4")
         ,sch = cssSelector(".header-wrapper .search")
-        ,if_click_to_exapnd = null
-        ,if_expandble = null
-        ,if_arrow = null
-        //
+         //
         // Animations Core function 
         ,opacPan = function opacPan(delta) { panell.style.opacity = 1 * delta + ""; }
         ,endPan = function endPan() { panell.removeAttribute("style"); }
@@ -62,22 +56,6 @@
             case 'blur':
                 obj.ClassList(evt.currentTarget).remove("active");
                 break;
-            case 'click':
-                if (!click_on) {
-                panell = if_expandble;
-                click_on = true;
-                obj.ClassList(if_expandble).add("showMe");
-                obj.ClassList(if_arrow).add("active");
-                obj.animatedFrame.cancel(id);
-                subject.startTimeCount();
-                subject.timePassed = subject.getStartTime();
-                id = obj.animatedFrame.request(subject.animate.bind(subject));
-            } else if (click_on) {
-                click_on = false;
-                obj.ClassList(if_expandble).remove("showMe");
-                obj.ClassList(if_arrow).remove("active");
-            }
-            break;
             default:
                 return;
             }
@@ -90,30 +68,11 @@
         aEventListener(tab2, 'mouseout', gestureEvent);
         aEventListener(sch, 'focus', gestureEvent, true);
         aEventListener(sch, 'blur', gestureEvent, true);
-
-        if (if_doc.readyState === "complete") {
-            if_click_to_exapnd = if_cssSelector(".click-to-expand");
-            if_expandble = if_cssSelector(".expandible");
-            if_arrow = if_cssSelector(".click-arrow");
-
-            aEventListener(if_click_to_exapnd, 'click', gestureEvent);
-        } else {
-            if_.onload = function loadIframe () {
-                if_click_to_exapnd = if_cssSelector(".click-to-expand");
-                if_expandble = if_cssSelector(".expandible");
-                if_arrow = if_cssSelector(".click-arrow");
-
-                aEventListener(if_click_to_exapnd, 'click', gestureEvent);
-                if_click_to_exapnd = null;
-
-            };
-        }
         //
         // Clear unuseful Dom Object
         tab1 = null;
         tab2 = null;
         sch = null;
-        if_click_to_exapnd = null;
     });
 }());
 
