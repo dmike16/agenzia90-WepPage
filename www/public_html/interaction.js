@@ -17,7 +17,12 @@
         ,pan1 = cssSelector("#pannel3")
         ,pan2 = cssSelector("#pannel4")
         ,sch = cssSelector(".header-wrapper .search")
-         //
+        ,card_prev = cssSelector(".cardslide-prev")
+        ,card_next = null
+        ,card_frame = null
+        ,presentation_width = 0
+        ,card_left = 0
+        //
         // Animations Core function 
         ,opacPan = function opacPan(delta) { panell.style.opacity = 1 * delta + ""; }
         ,endPan = function endPan() { panell.removeAttribute("style"); }
@@ -56,6 +61,23 @@
             case 'blur':
                 obj.ClassList(evt.currentTarget).remove("active");
                 break;
+            case 'click':
+                evt.preventDefault();
+                if ((obj.ClassList(evt.currentTarget).contains("cardslide-next"))) {
+                    card_left -= 940;
+                    if (card_left <= -presentation_width) {
+                        card_left  = 0;
+                    }
+                    card_frame.style.left =  card_left+"px";
+                }
+                if ((obj.ClassList(evt.currentTarget).contains("cardslide-prev"))) {
+                    if (card_left >= 0) {
+                        card_left  = -presentation_width;
+                    }
+                    card_left += 940;
+                    card_frame.style.left =  card_left+"px";
+                }
+                break;
             default:
                 return;
             }
@@ -68,11 +90,23 @@
         aEventListener(tab2, 'mouseout', gestureEvent);
         aEventListener(sch, 'focus', gestureEvent, true);
         aEventListener(sch, 'blur', gestureEvent, true);
+        
+        if (  card_prev !== null) {
+            card_next = cssSelector(".cardslide-next");
+            card_frame = cssSelector(".resources-card").getElementsByTagName("ul")[0];
+            presentation_width = parseInt(card_frame.style.width);
+            console.log(presentation_width);
+            aEventListener(card_prev, 'click', gestureEvent);
+            aEventListener(card_next, 'click', gestureEvent);
+        }
+
         //
         // Clear unuseful Dom Object
         tab1 = null;
         tab2 = null;
         sch = null;
+        card_prev = null;
+        card_next = null;
     });
 }());
 
