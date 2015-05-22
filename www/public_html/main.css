@@ -1068,7 +1068,7 @@ a.cardslide-next{
     transition: color .5s ease-in
 }
 #blockTop .pagination ul li.active{
-    background-color:#33c11f;
+    background-color:#479AB8;
 }
 #blockTop .pagination ul li[class=""]:hover{
     background-color:#aaa;

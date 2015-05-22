@@ -95,7 +95,6 @@
             card_next = cssSelector(".cardslide-next");
             card_frame = cssSelector(".resources-card").getElementsByTagName("ul")[0];
             presentation_width = parseInt(card_frame.style.width);
-            console.log(presentation_width);
             aEventListener(card_prev, 'click', gestureEvent);
             aEventListener(card_next, 'click', gestureEvent);
         }
