@@ -22,8 +22,8 @@
         ,card_frame = null
         ,presentation_width = 0
         ,card_left = 0
-        ,pag_markers = cssSelector('.pagination').getElementsByTagName("li")
-        ,pag_markers_len = pag_markers.length
+        ,pag_markers = null
+        ,pag_markers_len = 0
         ,pag_id = 0
         //
         // Animations Core function 
@@ -116,6 +116,8 @@
         if (card_prev !== null) {
             card_next = cssSelector(".cardslide-next");
             card_frame = cssSelector(".resources-card").getElementsByTagName("ul")[0];
+            pag_markers = cssSelector('.pagination').getElementsByTagName("li");
+            pag_markers_len = pag_markers.length;
             presentation_width = parseInt(card_frame.style.width);
             aEventListener(card_prev, 'click', gestureEvent);
             aEventListener(card_next, 'click', gestureEvent);
