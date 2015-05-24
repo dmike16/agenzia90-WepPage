@@ -90,7 +90,7 @@ ul li {
     overflow:visible;
     padding-top:5px;
     z-index:3;
-    color: #479AB8;
+    color: #0000FF;
     -webkit-transform: translateZ(0);
    -moz-transform: translateZ(0);
     -ms-transform: translateZ(0);
@@ -106,7 +106,7 @@ ul li {
     position:relative;
 }
 #horizontal-nav nav dt a{
-    color: #479AB8;
+    color: #0000FF;/*#479AB8;*/
     font-weight:700;
     font-size:1.0em;
 }
@@ -346,13 +346,13 @@ i[class^="icon-"]::before{
     background-color:#ccc;
 }
 .search:hover #search-ic{
-    color:#09c;
+    color:#00FF00;
 }
 .search:hover form input{
-    border-bottom:1px solid #09c;;
+    border-bottom:1px solid #00FF00;
 }
 .search:hover .left, .search:hover .right{
-    background-color:#09c;
+    background-color:#00FF00;
 }
 .search:hover,.search.active{
     width:245px;
