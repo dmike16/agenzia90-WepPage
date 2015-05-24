@@ -22,6 +22,9 @@
         ,card_frame = null
         ,presentation_width = 0
         ,card_left = 0
+        ,pag_markers = cssSelector('.pagination').getElementsByTagName("li")
+        ,pag_markers_len = pag_markers.length
+        ,pag_id = 0
         //
         // Animations Core function 
         ,opacPan = function opacPan(delta) { panell.style.opacity = 1 * delta + ""; }
@@ -65,9 +68,19 @@
                 evt.preventDefault();
                 if ((obj.ClassList(evt.currentTarget).contains("cardslide-next"))) {
                     card_left -= 940;
+                    pag_id += 1;
+                    
                     if (card_left <= -presentation_width) {
                         card_left  = 0;
                     }
+                    
+                    obj.ClassList(pag_markers[pag_id-1]).remove("active");
+                    
+                    if (pag_id > pag_markers_len-1) {
+                        pag_id = 0;
+                    }
+                    
+                    obj.ClassList(pag_markers[pag_id]).add("active");
                     card_frame.style.left =  card_left+"px";
                 }
                 if ((obj.ClassList(evt.currentTarget).contains("cardslide-prev"))) {
@@ -75,6 +88,15 @@
                         card_left  = -presentation_width;
                     }
                     card_left += 940;
+                    obj.ClassList(pag_markers[pag_id]).remove("active");
+                    pag_id -= 1;
+
+                    if (pag_id < 0) {
+                        pag_id = pag_markers_len -1;
+                    }
+
+                    obj.ClassList(pag_markers[pag_id]).add("active");
+                    
                     card_frame.style.left =  card_left+"px";
                 }
                 break;
@@ -91,7 +113,7 @@
         aEventListener(sch, 'focus', gestureEvent, true);
         aEventListener(sch, 'blur', gestureEvent, true);
         
-        if (  card_prev !== null) {
+        if (card_prev !== null) {
             card_next = cssSelector(".cardslide-next");
             card_frame = cssSelector(".resources-card").getElementsByTagName("ul")[0];
             presentation_width = parseInt(card_frame.style.width);
