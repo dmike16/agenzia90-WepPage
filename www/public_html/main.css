@@ -818,13 +818,13 @@ hr{
     border-bottom: 2px solid #ccc;
     border-bottom-right-radius: 3px;
 }
-.history-wrapper .col-2 p{
+/*.history-wrapper .col-2 p{
     font-weight:600;
     font-size:0.80em;
     line-height:0.95;
     text-align:center;
     padding-right:34px;
-}
+}*/
 .small-advice {
 	font-weight:400;
 	font-size: 0.85em;
@@ -844,7 +844,7 @@ hr{
    padding-top:10px;
    min-height:40px;
    border:1px solid #ddd;
-   background-color:#09c;
+   background-color:#495D64;
    color:#f9f9f9;
    border-radius: 4px;
 }
