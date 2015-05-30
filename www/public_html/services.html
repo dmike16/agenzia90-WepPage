@@ -11,49 +11,39 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic|Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'/>
   </head>
   <body>
-    <header>
-      <div class="header-wrapper">
+    <header class="header" role="banner">
           <div class="logo">
-              <a href="index.html">
-                  <img src="resources/Logo90s.svg" width="123" height="25" alt="90 s.r.l.s"/>
+              <a class="site-logo-link" href="index.html">
+                  <img class="site-logo-image" src="resources/Logo90s.svg" alt="90 s.r.l.s"/>
               </a>
           </div>
-          <div class="quickseparetor">
-              &nbsp;
-          </div>
-          <div class="under-block">
-              &nbsp;
-          </div>
-            <div id="horizontal-nav">
-                <div class="horizontal-nav-wrapper">
-                    <nav>
-                        <dl role="tablist">
-                                                  
-                             <dt id="tab2" tabindex="0" role="tab" aria-expanded="false">
-                          <a href="services.html"> Servizi </a>
-                            </dt>
-                           <dt id="tab3" tabindex="0" role="tab" aria-controls="pannel3" aria-expanded="false">
-                                Dove Siamo<i class="icon-caret-down"></i>
-                            </dt>
-                            <div id="pannel3" class="pannell" role="tabpanel">
-                                <dd>
-                                   <a href="location.html"><i class="fa fa-map-marker left-icon"></i>Map</a>
-                                   <a href="navigator.html"><i class="fa fa-location-arrow left-icon"></i>Come Raggiungerci</a>
-                                </dd>
-                            </div>
-                            <dt id="tab4" tabindex="0" role="tab" aria-controls="pannel4" aria-expanded="false">
-                                Social<i class="icon-caret-down"></i>
-                            </dt>
-                             <div id="pannel4" class="pannell" role="tabpanel">
-                                <dd>
-                                    <a href="https://www.facebook.com/90srls"><i class="fa fa-facebook-official left-icon"></i>Facebook</a>
-                                    <a href="#"><i class="fa fa-google-plus-square left-icon"></i>Google+</a>
-                                </dd>
-                            </div>
-                        </dl>
-                    </nav>
-                </div>
-            </div>
+          <nav id="horizontal-nav">
+                <dl class="nav-main" role="tablist">
+                    <dt id="tab2" tabindex="0" role="tab" aria-expanded="false">
+                        <a class="services" href="services.html"> Servizi </a>
+                    </dt>
+                    <dt id="tab3" tabindex="0" role="tab" aria-controls="pannel3" aria-expanded="false">
+                        <a class="pos" href="#">Dove Siamo<i class="icon-caret-down"></i></a>
+                    </dt>
+                    <div id="pannel3" class="pannell" role="tabpanel">
+                        <dd>
+                            <a href="location.html"><i class="fa fa-map-marker left-icon"></i>Map</a>
+                            <a class="nav-main-last" href="navigator.html"><i class="fa fa-location-arrow left-icon"></i>Come Raggiungerci</a>
+                        </dd>
+                    </div>
+                    <dt id="tab4" tabindex="0" role="tab" aria-controls="pannel4" aria-expanded="false">
+                        <a class="soc" href="#">Social<i class="icon-caret-down"></i></a>
+                    </dt>
+                    <div id="pannel4" class="pannell" role="tabpanel">
+                        <dd>
+                            <a href="https://www.facebook.com/90srls" target="_blank"><i class="fa fa-facebook-official left-icon"></i>Facebook</a>
+                            <a class="nav-main-last" href="https://plus.google.com/b/112281711139690699166/112281711139690699166/posts" target="_blank"><i class="fa fa-google-plus-square left-icon"></i>Google+</a>
+                        </dd>
+                    </div>
+                     <dt class="nav-main-last" id="tab5" tabindex="0" role="tab" aria-expanded="false">
+                        <a class="link" href="services.html"> Link Utili </a>
+                    </dt>
+                </dl>
              <div class="search">
                 <div class="search-inner">
                     <div id="search-ic">
@@ -65,8 +55,8 @@
                     </form>
                     <div class="right"></div>
                 </div>
-            </div>
-        </header>
+            </nav>
+    </header>
       <div id="grid-cont">
         <div class="grid_outer clear-fix">
             <div id="blockTop" class="clear-fix">

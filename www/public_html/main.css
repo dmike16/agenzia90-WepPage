@@ -6,7 +6,7 @@ html{
     overflow-x: hidden;
 }
 body{
-    font-family: 'Roboto','Open Sans',sans-serif;
+    font-family: 'Open Sans',sans-serif;
     margin: 0;
     line-height: 1.5;
     background-color: #fff;
@@ -29,38 +29,40 @@ h1{
     font-size: 2em;
     margin: .67em 0;
 }
-.addToBorder{
-    border: 1px solid #0000FF;
+.header{
+    background-color: #fff;
+    border-bottom: 1px solid #efefef;
+    height: 67px;
+    left: 0;
+    padding: 0;
+    top: 0;
+    width:100%;
+    position: fixed;
+    z-index:20;
 }
 
-header{
-    margin: 0 -10px 0 -10px;
-    padding: 31px 10px 0px 10px;
-    background-color: #F9F9F9;/*  #0E30C5; rgba(14,48,197,0.78);*/
-    position: relative;
+.logo{
+    display: block;
+    float:left;
 }
-
-.header-wrapper {
+.logo:after {
+    clear:both;
+    content:" ";
     display:block;
-    max-width:940px;
-    height: 41px;
-    margin:0 auto;
-    clear: both;
-    border-bottom: 1px solid #ccc;
-    position: relative;
-     -webkit-transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    -moz-transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility:hidden;
 }
-.header-wrapper .logo{
-    display: inline-block;
-    margin-top:-6px;
-    margin-left:0px;
-    margin-bottom:0px;
-    width: 160px;
-    padding-right:10px;
+.site-logo-link {
+    display:block;
+    padding:15px 25px 0 25px;
+    margin: 0;
+    line-height:33px;
 }
-
+.site-logo-image {
+    float:left;
+    height:47px;
+    margin:0;
+    width:88px;
+}
 .quickseparetor{
     width:20px;
     height:28px;
@@ -69,12 +71,6 @@ header{
     padding-right:10px;
     position:relative;
     border-right:1px solid #ccc;
-}
-.header-wrapper .under-block{
-    display:inline-block;
-    width:740px;
-    height:100%;
-    position: relative;
 }
 
 ul {
@@ -85,76 +81,62 @@ ul li {
     padding: 1px 0;
 }
 #horizontal-nav {
-    display: inline-block;
-    margin: 0 auto 0 auto;
+    display:block;
+    background:#fff;
     overflow:visible;
-    padding-top:5px;
-    z-index:3;
-    color: #0000FF;
-    -webkit-transform: translateZ(0);
+    height:67px;
+    /*-webkit-transform: translateZ(0);
    -moz-transform: translateZ(0);
     -ms-transform: translateZ(0);
     -o-transform: translateZ(0);
-    transform: translateZ(0);
-    width: 520px;
-    left:50px;
-    right: 0;
-    position: absolute; 
+    transform: translateZ(0);*/
 }
-.horizontal-nav-wrapper {
-    min-width: 100%;
-    position:relative;
-}
-#horizontal-nav nav dt a{
-    color: #0000FF;/*#479AB8;*/
-    font-weight:700;
-    font-size:1.0em;
-}
-#horizontal-nav nav{
-    padding: 0;
-    -webkit-transform: translateZ(0);
-   -moz-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    -o-transform: translateZ(0);
-    transform: translateZ(0);
 
-    
-}
-#horizontal-nav nav dl dt{
-    display: inline-block;
-    margin-left: 51px;
-    border-left: 2px solid transparent;
-    font-weight: 700;
-    max-width: 170px;
-    padding: 0;
-    cursor: pointer;
-    text-align: left;
-}
-#horizontal-nav nav dl dt:first-child{
-    margin-left: 0;
-}
-.horizontal-nav-wrapper dl {
-    display: block;
+dl.nav-main {
+    float: left;
+    font-size:22px;
     margin: 0;
-    line-height:1.5;
 }
-#horizontal-nav nav dt:focus{
+dl.nav-main dt{
+    float:left;
+    border-left: 1px solid #f5f5f5;
+    cursor: pointer;
+}
+dl.nav-main a {
+    border-bottom:3px solid #fff;
+    color: #959595;
+    display:block;
+    height:67px;
+    padding:13px 30px 12px 30px;
+    white-space:nowrap;
+}
+dl.nav-main dt.nav-main-last {
+    border-right:1px solid #f5f5f5;
+}
+dl.nav-main dd a {
+    font-size: 15px;
+    height:45px;
+}
+dl.nav-main dd a.nav-main-last{
+    border:none;
+}
+dl.nav-main a.services:hover{
+    border-bottom-color: #4386fc;
+}
+dl.nav-main a.pos:hover{
+    border-bottom-color:hsl(123, 55%, 41%);
+}
+dl.nav-main a.soc:hover{
+    border-bottom-color:hsl(34, 88%, 47%);
+}
+dl.nav-main a.link:hover{
+    border-bottom-color:hsl(8, 70%, 44%);
+}
+
+#horizontal-nav .nav-main dt:focus{
     background-color: transparent;
     outline: 0;
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
-}
-#horizontal-nav nav span.ui-item-disc{
-    display:inline-block;
-    background: transparent center center no-repeat;
-    background-size: 26px 26px;
-    text-indent: -9999px;
-    border: 0;
-    height: 19px;
-    overflow:hidden;
-    width:26px;
-    border-radius: 50%;
-    box-shadow: 2px 4px 5px rgba(0,0,0,0.26);
-    margin-right: 12px;
 }
 #horizontal-nav dd {
     display: block;
@@ -164,9 +146,10 @@ ul li {
     top: 35px;
     left: 0;
     right:0;
-    width: 190px;
+    top:67px;
+    width: 199px;
     margin: 0;
-    background-color: #f9f9f9;/* #D9E1E2;  #0E30C5;*/
+    background-color: #fff;/* #D9E1E2;  #0E30C5;*/
     border-top: 2px solid transparent;
     padding: 35px 0 9px 0;
     z-index: 3;
@@ -182,14 +165,12 @@ ul li {
     visibility: visible;
 }
 
-#horizontal-nav nav #pannel3{
-    left: 11%;
-    border-top-color:#CF13B5;
+#horizontal-nav .nav-main #pannel3{
+    left: 17.8%;
     color:#CF13B5;
 }
-#horizontal-nav nav #pannel4{
-    left: 37%;
-    border-top-color:#E3670E;
+#horizontal-nav .nav-main #pannel4{
+    left: 29%;
     color:#E3670E;
 }
 #horizontal-nav .pannell::before, #horizontal-nav .pannell::after{
@@ -210,33 +191,18 @@ ul li {
 }
  #horizontal-nav .pannell::after{
     left: 85px;
-    top: -21px;
+    top: -22px;
     position: absolute;
     border-bottom-color:black;
     z-index: 2;
 }
 #horizontal-nav #pannel3::after{
-    border-bottom-color:#CF13B5;
+    border-bottom-color:hsl(123, 55%, 41%);
 }
 #horizontal-nav #pannel4::after{
-    border-bottom-color:#E3670E;
+    border-bottom-color:hsl(34, 88%, 47%);
 }
-#horizontal-nav .place-nav-pannel{
-    display: inline-block;
-    border-left: 2px solid transparent;
-    padding: 0 32px 12px 32px;
-    font-weight: 700;
-    visibility:hidden;
-}
-#horizontal-nav nav a{
-    display: block;
-    border-left: 2px solid transparent;
-    padding:9px 7px 10px 8px;
-    white-space: nowrap;
-    font-size:0.95em;
-    font-weight:400;
-}
-#horizontal-nav nav dt:hover + [role="tabpanel"],#horizontal-nav nav .pannell:hover{
+#horizontal-nav .nav-main dt:hover + [role="tabpanel"],#horizontal-nav .nav-main .pannell:hover{
     display: block;
 }
 i[class^="icon-"]{
@@ -271,15 +237,16 @@ i[class^="icon-"]::before{
     width:18px;
 }
 .search{
-    position: absolute;
     width:50px;
-    height:28px;
-    display:inline-block;
-    margin-top:-3px;
-    margin-bottom:7px;
+    height:33px;
+    float:right;
+    margin:0;
+    font-size:15px;
     overflow:hidden;
     z-index:2;
+    position:absolute;
     right:0px;
+    top: 5px;
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
     -ms-transform: translateZ(0);
@@ -296,22 +263,25 @@ i[class^="icon-"]::before{
 
 }
 .search #search-ic{
-    display:inline-block;
-    width:50px;
-    height:28px;
+    display:block;
+    float:left;
+    width:58px;
+    height:33px;
     font-size:1.5em;
-    font-weight:200;
-    line-height:1.5;
-    color: #ccc;
+    font-weight:600;
+    line-height:16px;
+    color: #959595;
+    padding-top: 10px;
 }
 .search-inner{
     width:245px;
 }
 .search form {
-    margin-top: 2px;
-    margin-bottom:15px;
+    margin-top: 4px;
+    margin-bottom:8px;
     width:162px;
-    display: inline-block;
+    display: block;
+    float:left;
 }
 #search-google{
     font-weight:normal;
@@ -321,7 +291,6 @@ i[class^="icon-"]::before{
     font-size: 0.95em;
     width:178px;
     border: none;
-    margin-left:6px;
     z-index:2;
     position: relative;
     background-color:transparent;
@@ -346,13 +315,13 @@ i[class^="icon-"]::before{
     background-color:#ccc;
 }
 .search:hover #search-ic{
-    color:#00FF00;
+    color:#6896F9;
 }
 .search:hover form input{
-    border-bottom:1px solid #00FF00;
+    border-bottom:1px solid #6896F9;
 }
 .search:hover .left, .search:hover .right{
-    background-color:#00FF00;
+    background-color:#6896F9;
 }
 .search:hover,.search.active{
     width:245px;

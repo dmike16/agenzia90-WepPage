@@ -12,11 +12,11 @@
         ,id = 0
         //
         // Dom Element
-        ,tab1 = cssSelector("#horizontal-nav .horizontal-nav-wrapper nav #tab3")
-        ,tab2 = cssSelector("#horizontal-nav .horizontal-nav-wrapper nav #tab4")
+        ,tab1 = cssSelector("#horizontal-nav #tab3")
+        ,tab2 = cssSelector("#horizontal-nav #tab4")
         ,pan1 = cssSelector("#pannel3")
         ,pan2 = cssSelector("#pannel4")
-        ,sch = cssSelector(".header-wrapper .search")
+        ,sch = cssSelector(".header .search")
         ,card_prev = cssSelector(".cardslide-prev")
         ,card_next = null
         ,card_frame = null
