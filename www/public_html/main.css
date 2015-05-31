@@ -166,7 +166,7 @@ dl.nav-main a.link:hover{
 }
 
 #horizontal-nav .nav-main #pannel3{
-    left: 17.8%;
+    left: 17.7%;
     color:#CF13B5;
 }
 #horizontal-nav .nav-main #pannel4{
@@ -315,13 +315,13 @@ i[class^="icon-"]::before{
     background-color:#ccc;
 }
 .search:hover #search-ic{
-    color:#6896F9;
+    color:#4386fc;
 }
 .search:hover form input{
-    border-bottom:1px solid #6896F9;
+    border-bottom:1px solid #4386fc;
 }
 .search:hover .left, .search:hover .right{
-    background-color:#6896F9;
+    background-color:#4386fc;
 }
 .search:hover,.search.active{
     width:245px;
@@ -334,6 +334,45 @@ i[class^="icon-"]::before{
 ::selection{
     background-color: #09c;
     color:#fff;
+}
+.section-intro {
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size: cover;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+    height:100%;
+    left:0;
+    min-height:600px;
+    overflow:hidden;
+    padding:0;
+    position:relative;
+    text-align:center;
+    top:66px;
+    width:100%;
+}
+.section-photo{
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 500px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+.homePage .section-photo-intro {
+    background:url("resources/sectionIntroPhoto.png") center top no-repeat;
+    background-size:cover;
+}
+section {
+    border-bottom:1px solid #f1f1f1;
 }
 button {
     -webkit-appearance: none;
@@ -597,9 +636,13 @@ hr{
     box-sizing: border-box;
 }
 
-#grid-cont .grid_outer {
-    margin: auto;
-    width: 1160px;
+.grid_outer {
+    margin: 0 auto;
+    width: 1080px;
+    position:relative;
+    top:30%;
+    padding-right:20px;
+    padding-left:20px;
 }
 #grid-cont #blockTop{
     display:block;
@@ -973,17 +1016,16 @@ hr{
     backface-visibility:hidden;
 }
 .resources-flow-layout{
-    margin: 0 -14px 0 0;
+    margin: 0;
     width: 940px;
     display: block;
-    z-index:2;
     position:relative;
     left:0;
     overflow:hidden;
 }
 .resources-card{
     height:320px;
-    background-color:#F9F9F9;
+    background-color:transparent;
     width:940px;
 }
 a.cardslide-prev{
@@ -1037,7 +1079,7 @@ a.cardslide-next{
     transition: color .5s ease-in
 }
 #blockTop .pagination ul li.active{
-    background-color:#479AB8;
+    background-color:#37CD2D;
 }
 #blockTop .pagination ul li[class=""]:hover{
     background-color:#aaa;
@@ -1060,7 +1102,7 @@ a.cardslide-next{
 }
 .capture-col h3 {
     font-family: 'Lobster',cursive,'Roboto','Open Sans',sans-serif;
-    color: hsl(8,70%,44%);
+    color: hsl(116, 64%, 49%);
     font-size: 2.7em;
     font-weight:400;
     margin: 21px 0 14px 0;
@@ -1072,7 +1114,7 @@ a.cardslide-next{
 }
 a.link-button{
     color:#fff;
-    background-color:hsl(196,44%,50%);
+    background-color:#4386fc;
     white-space:nowrap;
     display: inline-block;
     min-width: 54px;
