@@ -371,6 +371,9 @@ i[class^="icon-"]::before{
     background:url("resources/sectionIntroPhoto.png") center top no-repeat;
     background-size:cover;
 }
+.services .section-photo-intro {
+    background: #959595;
+}
 section {
     border-bottom:1px solid #f1f1f1;
 }
