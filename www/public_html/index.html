@@ -23,7 +23,7 @@
                         <a class="services" href="services.html"> Servizi </a>
                     </dt>
                     <dt id="tab3" tabindex="0" role="tab" aria-controls="pannel3" aria-expanded="false">
-                        <a class="pos" href="#">Dove Siamo<i class="icon-caret-down"></i></a>
+                        <a class="pos" href="#" onclick="disableDefaultAction(event)">Dove Siamo<i class="icon-caret-down"></i></a>
                     </dt>
                     <div id="pannel3" class="pannell" role="tabpanel">
                         <dd>
@@ -32,7 +32,7 @@
                         </dd>
                     </div>
                     <dt id="tab4" tabindex="0" role="tab" aria-controls="pannel4" aria-expanded="false">
-                        <a class="soc" href="#">Social<i class="icon-caret-down"></i></a>
+                        <a class="soc" href="#" onclick="disableDefaultAction(event)">Social<i class="icon-caret-down"></i></a>
                     </dt>
                     <div id="pannel4" class="pannell" role="tabpanel">
                         <dd>
@@ -148,27 +148,29 @@
 </section>
       <div id="grid-cont">
           <section class="info-space" role="note">
-            <div class="info-col-1">
-                <h2>Contatti</h2>
-                <address>
-                    <p><i class="fa fa-road left-icon"></i>Via Silvestro Gherardi 24 00146 Roma(RM)</p>
-                    <p><i class="fa fa-info-circle left-icon"></i>P.I. e C.F 02868410602</p>
-                    <p><i class="fa fa-mobile left-icon"></i>tel/cell 06 01905227/339 2457552</p>
-                    <p><i class="fa fa-envelope-o left-icon"></i>90srls@gmail.com <a href="mailto:90srls@gmail.com"><span class="act-circ act-circ-type1"><i class="fa fa-envelope-o"></i></span></a>
-                    </p>
-                </address>
+              <div class="grid_outer">
+                <div class="info-col-1">
+                    <h2>Contatti</h2>
+                    <address>
+                        <p><i class="fa fa-road left-icon"></i>Via Silvestro Gherardi 24 00146 Roma(RM)</p>
+                        <p><i class="fa fa-info-circle left-icon"></i>P.I. e C.F 02868410602</p>
+                        <p><i class="fa fa-mobile left-icon"></i>tel/cell 06 01905227/339 2457552</p>
+                        <p><i class="fa fa-envelope-o left-icon"></i>90srls@gmail.com <a href="mailto:90srls@gmail.com"><span class="act-circ act-circ-type1"><i class="fa fa-envelope-o"></i></span></a>
+                        </p>
+                    </address>
+                </div>
+                <div class="info-col-2">
+                    <h2>Orario</h2>
+                    <dl>
+                        <dt><i class="fa fa-clock-o"></i> da Lunedi a Venerdi</dt>
+                        <dd><p>Matt. 09:00 <i class="fa fa-cog fa-spin"></i>  13:30</p>
+                            <p>Pom. 15:30  <i class="fa fa-cog fa-spin"></i>  19:30</p></dd>
+                        <dt><i class="fa fa-clock-o"></i> Sabato</dt>
+                        <dd><p>Matt. 09:00 <i class="fa fa-cog fa-spin"></i>  13:00</p></dd>
+                    </dl>
+                </div>
             </div>
-            <div class="info-col-2">
-                <h2>Orario</h2>
-                <dl>
-                    <dt><i class="fa fa-clock-o"></i> da Lunedi a Venerdi</dt>
-                    <dd><p>Matt. 09:00 <i class="fa fa-cog fa-spin"></i>  13:30</p>
-                        <p>Pom. 15:30  <i class="fa fa-cog fa-spin"></i>  19:30</p></dd>
-                    <dt><i class="fa fa-clock-o"></i> Sabato</dt>
-                    <dd><p>Matt. 09:00 <i class="fa fa-cog fa-spin"></i>  13:00</p></dd>
-                </dl>
-            </div>
-          </section>
+         </section>
         <div class="grid_outer clear-fix">
             <div id="landing-block" class="clear-fix">
                 <div class="landing-block-wrapper">
@@ -287,5 +289,10 @@
     <div class="mask-modal"></div>
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="min-instance.js"></script>
+    <script type="text/javascript">
+        function disableDefaultAction(evt){
+            evt.preventDefault();
+        }
+    </script>
     </body>
 </html>

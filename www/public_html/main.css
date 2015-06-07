@@ -96,6 +96,7 @@ dl.nav-main {
     float: left;
     font-size:22px;
     margin: 0;
+    position:relative;
 }
 dl.nav-main dt{
     float:left;
@@ -166,11 +167,11 @@ dl.nav-main a.link:hover{
 }
 
 #horizontal-nav .nav-main #pannel3{
-    left: 17.7%;
+    left: 20.7%;
     color:#CF13B5;
 }
 #horizontal-nav .nav-main #pannel4{
-    left: 29%;
+    left: 49%;
     color:#E3670E;
 }
 #horizontal-nav .pannell::before, #horizontal-nav .pannell::after{
@@ -1254,7 +1255,13 @@ li{
 	border: none;
     }
 }
+@media only screen and (max-width: 1200px) and (min-width: 768px){
+    .homePage .section-photo-intro {
+    background:url("resources/sectionIntroPhoto1200.png") center top no-repeat;
+    background-size:cover;
+}
 
+}
 @media screen and (max-width:1240px){
     .header-wrapper.qp-headerfixed-active .header-title {
         font-size: 40px;
