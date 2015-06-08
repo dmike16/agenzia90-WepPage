@@ -684,7 +684,7 @@
        color-interpolation-filters="sRGB">
       <feBlend
          id="feBlend4091"
-         in2="result91"
+         in2="SourceGraphic"
          result="result1"
          mode="screen" />
       <feGaussianBlur
@@ -799,7 +799,7 @@
        color-interpolation-filters="sRGB">
       <feBlend
          id="feBlend4127"
-         in2="result91"
+         in2="SourceGraphic"
          result="result1"
          mode="screen" />
       <feGaussianBlur
@@ -872,7 +872,7 @@
        color-interpolation-filters="sRGB">
       <feBlend
          id="feBlend4151"
-         in2="result91"
+         in2="SourceGraphic"
          result="result1"
          mode="screen" />
       <feGaussianBlur
@@ -940,7 +940,7 @@
        color-interpolation-filters="sRGB">
       <feBlend
          id="feBlend4173"
-         in2="result91"
+         in2="SourceGraphic"
          result="result1"
          mode="screen" />
       <feGaussianBlur
@@ -1099,7 +1099,7 @@
        color-interpolation-filters="sRGB">
       <feBlend
          id="feBlend4261"
-         in2="result91"
+         in2="SourceGraphic"
          result="result1"
          mode="screen" />
       <feGaussianBlur
@@ -1351,7 +1351,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.53"
-     inkscape:cx="554.93198"
+     inkscape:cx="192.66783"
      inkscape:cy="399.56553"
      inkscape:document-units="px"
      inkscape:current-layer="layer5"
@@ -2146,7 +2146,7 @@
            style="fill:#0000ff"
            inkscape:connector-curvature="0" />
         <polygon
-           points="65.7186,81.1276 101.51,11.9254 135.013,81.1275 125.77,81.1275 101.435,30.8633 74.9901,81.1276 "
+           points="135.013,81.1275 125.77,81.1275 101.435,30.8633 74.9901,81.1276 65.7186,81.1276 101.51,11.9254 "
            id="_256049576-5"
            style="fill:#00ff00" />
         <path
@@ -2210,7 +2210,7 @@
         <polygon
            style="fill:#00ff00"
            id="polygon6285"
-           points="101.51,11.9254 135.013,81.1275 125.77,81.1275 101.435,30.8633 74.9901,81.1276 65.7186,81.1276 " />
+           points="125.77,81.1275 101.435,30.8633 74.9901,81.1276 65.7186,81.1276 101.51,11.9254 135.013,81.1275 " />
         <path
            inkscape:connector-curvature="0"
            style="fill:#0000ff"
@@ -2255,7 +2255,7 @@
            style="fill:#0000ff"
            inkscape:connector-curvature="0" />
         <polygon
-           points="74.9901,81.1276 65.7186,81.1276 101.51,11.9254 135.013,81.1275 125.77,81.1275 101.435,30.8633 "
+           points="101.51,11.9254 135.013,81.1275 125.77,81.1275 101.435,30.8633 74.9901,81.1276 65.7186,81.1276 "
            id="polygon6307"
            style="fill:#00ff00" />
         <path
@@ -2288,6 +2288,269 @@
         </g>
       </g>
     </g>
+    <path
+       sodipodi:type="arc"
+       style="fill:#f8f2f5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path2985"
+       sodipodi:cx="96.974648"
+       sodipodi:cy="110.56839"
+       sodipodi:rx="20.203051"
+       sodipodi:ry="19.192898"
+       d="m 117.1777,110.56839 a 20.203051,19.192898 0 1 1 -40.406103,0 20.203051,19.192898 0 1 1 40.406103,0 z"
+       transform="matrix(0.13105869,0,0,0.17713899,99.673806,410.21449)" />
+    <path
+       transform="matrix(0.13105869,0,0,0.17713899,99.673806,297.12608)"
+       d="m 117.1777,110.56839 a 20.203051,19.192898 0 1 1 -40.406103,0 20.203051,19.192898 0 1 1 40.406103,0 z"
+       sodipodi:ry="19.192898"
+       sodipodi:rx="20.203051"
+       sodipodi:cy="110.56839"
+       sodipodi:cx="96.974648"
+       id="path2987"
+       style="fill:#f8f2f5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       sodipodi:type="arc" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#f8f2f5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path2989"
+       sodipodi:cx="96.974648"
+       sodipodi:cy="110.56839"
+       sodipodi:rx="20.203051"
+       sodipodi:ry="19.192898"
+       d="m 117.1777,110.56839 a 20.203051,19.192898 0 1 1 -40.406103,0 20.203051,19.192898 0 1 1 40.406103,0 z"
+       transform="matrix(0.13105869,0,0,0.17713899,99.673806,463.71229)" />
+    <path
+       transform="matrix(0.13105869,0,0,0.17713899,99.673806,339.43623)"
+       d="m 117.1777,110.56839 a 20.203051,19.192898 0 1 1 -40.406103,0 20.203051,19.192898 0 1 1 40.406103,0 z"
+       sodipodi:ry="19.192898"
+       sodipodi:rx="20.203051"
+       sodipodi:cy="110.56839"
+       sodipodi:cx="96.974648"
+       id="path2991"
+       style="fill:#f8f2f5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       sodipodi:type="arc" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#f8f2f5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path2993"
+       sodipodi:cx="96.974648"
+       sodipodi:cy="110.56839"
+       sodipodi:rx="20.203051"
+       sodipodi:ry="19.192898"
+       d="m 117.1777,110.56839 a 20.203051,19.192898 0 1 1 -40.406103,0 20.203051,19.192898 0 1 1 40.406103,0 z"
+       transform="matrix(0.13105869,0,0,0.17713899,99.673806,317.10412)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#f8f2f5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path2997"
+       sodipodi:cx="96.974648"
+       sodipodi:cy="110.56839"
+       sodipodi:rx="20.203051"
+       sodipodi:ry="19.192898"
+       d="m 117.1777,110.56839 a 20.203051,19.192898 0 1 1 -40.406103,0 20.203051,19.192898 0 1 1 40.406103,0 z"
+       transform="matrix(0.13105869,0,0,0.17713899,99.673806,484.02303)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#f8f2f5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path3001"
+       sodipodi:cx="96.974648"
+       sodipodi:cy="110.56839"
+       sodipodi:rx="20.203051"
+       sodipodi:ry="19.192898"
+       d="m 117.1777,110.56839 a 20.203051,19.192898 0 1 1 -40.406103,0 20.203051,19.192898 0 1 1 40.406103,0 z"
+       transform="matrix(0.13105869,0,0,0.17713899,99.673806,383.49506)" />
+    <path
+       transform="matrix(0.13105869,0,0,0.17713899,99.673806,435.69014)"
+       d="m 117.1777,110.56839 a 20.203051,19.192898 0 1 1 -40.406103,0 20.203051,19.192898 0 1 1 40.406103,0 z"
+       sodipodi:ry="19.192898"
+       sodipodi:rx="20.203051"
+       sodipodi:cy="110.56839"
+       sodipodi:cx="96.974648"
+       id="path3003"
+       style="fill:#f8f2f5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       sodipodi:type="arc" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#f8f2f5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path3005"
+       sodipodi:cx="96.974648"
+       sodipodi:cy="110.56839"
+       sodipodi:rx="20.203051"
+       sodipodi:ry="19.192898"
+       d="m 117.1777,110.56839 a 20.203051,19.192898 0 1 1 -40.406103,0 20.203051,19.192898 0 1 1 40.406103,0 z"
+       transform="matrix(0.13105869,0,0,0.17713899,99.673806,364.69784)" />
+    <path
+       transform="matrix(0.13105869,0,0,0.17713899,99.673806,272.58019)"
+       d="m 117.1777,110.56839 a 20.203051,19.192898 0 1 1 -40.406103,0 20.203051,19.192898 0 1 1 40.406103,0 z"
+       sodipodi:ry="19.192898"
+       sodipodi:rx="20.203051"
+       sodipodi:cy="110.56839"
+       sodipodi:cx="96.974648"
+       id="path3007"
+       style="fill:#f8f2f5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       sodipodi:type="arc" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#f8f2f5;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path3009"
+       sodipodi:cx="96.974648"
+       sodipodi:cy="110.56839"
+       sodipodi:rx="20.203051"
+       sodipodi:ry="19.192898"
+       d="m 117.1777,110.56839 a 20.203051,19.192898 0 1 1 -40.406103,0 20.203051,19.192898 0 1 1 40.406103,0 z"
+       transform="matrix(0.13105869,0,0,0.17713899,99.673806,240.89838)" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.09466696px;font-style:normal;font-weight:bold;text-align:start;line-height:125%;letter-spacing:1.87950015px;word-spacing:0px;text-anchor:start;fill:#f8f2f5;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       x="205.48822"
+       y="160.8694"
+       id="text3011"
+       sodipodi:linespacing="125%"
+       transform="scale(0.60647403,1.6488752)"><tspan
+         sodipodi:role="line"
+         id="tspan3013"
+         x="205.48822"
+         y="160.8694">Passaggio di propietà </tspan><tspan
+         sodipodi:role="line"
+         x="205.48822"
+         y="168.48773"
+         id="tspan3015"
+         dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0">con autentica di firma</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.09466648px;font-style:normal;font-weight:bold;text-align:start;line-height:125%;letter-spacing:2.20912051px;word-spacing:0px;text-anchor:start;fill:#f8f2f5;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       x="139.02647"
+       y="262.77161"
+       id="text3017"
+       sodipodi:linespacing="125%"
+       transform="scale(0.89394461,1.1186375)"><tspan
+         sodipodi:role="line"
+         id="tspan3019"
+         x="139.02647"
+         y="262.77161">Rinnovo Patente</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.09466648px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:1.88020468px;word-spacing:0px;fill:#f8f2f5;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       x="144.51016"
+       y="273.19046"
+       id="text3021"
+       sodipodi:linespacing="125%"
+       transform="scale(0.86015325,1.1625835)"><tspan
+         sodipodi:role="line"
+         id="tspan3023"
+         x="144.51016"
+         y="273.19046">Pagemento Bolli</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.09466648px;font-style:normal;font-weight:bold;line-height:100.99999905%;letter-spacing:1.88020468px;word-spacing:0px;fill:#f8f2f5;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       x="144.79585"
+       y="288.88965"
+       id="text3025"
+       sodipodi:linespacing="101%"
+       transform="scale(0.86015325,1.1625835)"><tspan
+         sodipodi:role="line"
+         id="tspan3027"
+         x="144.79585"
+         y="288.88965">Sportello Telematico</tspan><tspan
+         sodipodi:role="line"
+         x="144.79585"
+         y="295.04526"
+         id="tspan3029">dell'automibilista (STA)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.09466648px;font-style:normal;font-weight:bold;line-height:100.99999905%;letter-spacing:1.88020468px;word-spacing:0px;fill:#f8f2f5;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       x="145.03987"
+       y="309.51407"
+       id="text3031"
+       sodipodi:linespacing="101%"
+       transform="scale(0.86015325,1.1625835)"><tspan
+         sodipodi:role="line"
+         id="tspan3033"
+         x="145.03987"
+         y="309.51407">Visure Motorizzazione e</tspan><tspan
+         sodipodi:role="line"
+         x="145.03987"
+         y="315.66968"
+         id="tspan3035">PRA</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.09466648px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:1.88020468px;word-spacing:0px;fill:#f8f2f5;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       x="145.74149"
+       y="330.75415"
+       id="text3037"
+       sodipodi:linespacing="125%"
+       transform="scale(0.86015325,1.1625835)"><tspan
+         sodipodi:role="line"
+         id="tspan3039"
+         x="145.74149"
+         y="330.75415">Immatricolazioni</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.09466648px;font-style:normal;font-weight:bold;line-height:100.99999905%;letter-spacing:1.88020468px;word-spacing:0px;fill:#f8f2f5;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       x="146.03906"
+       y="348.4176"
+       id="text3037-5"
+       sodipodi:linespacing="101%"
+       transform="scale(0.86015325,1.1625835)"><tspan
+         sodipodi:role="line"
+         id="tspan3039-5"
+         x="146.03906"
+         y="348.4176">Immatricolazioni e veicoli</tspan><tspan
+         sodipodi:role="line"
+         x="146.03906"
+         y="354.57321"
+         id="tspan3062">esteri</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.09466648px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:1.88020468px;word-spacing:0px;fill:#f8f2f5;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       x="145.74149"
+       y="371.40042"
+       id="text3037-4"
+       sodipodi:linespacing="125%"
+       transform="scale(0.86015325,1.1625835)"><tspan
+         sodipodi:role="line"
+         id="tspan3039-9"
+         x="145.74149"
+         y="371.40042">Radiazioni</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.09466648px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:1.88020468px;word-spacing:0px;fill:#f8f2f5;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       x="146.05577"
+       y="393.97601"
+       id="text3037-4-1"
+       sodipodi:linespacing="125%"
+       transform="scale(0.86015325,1.1625835)"><tspan
+         sodipodi:role="line"
+         x="146.05577"
+         y="393.97601"
+         id="tspan3175">Duplicati carte di circolazione</tspan><tspan
+         sodipodi:role="line"
+         x="146.05577"
+         y="401.59436"
+         id="tspan3179">e certificati di proprietà</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.09466648px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:1.88020468px;word-spacing:0px;fill:#f8f2f5;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       x="146.28792"
+       y="417.41672"
+       id="text3037-4-4"
+       sodipodi:linespacing="125%"
+       transform="scale(0.86015325,1.1625835)"><tspan
+         sodipodi:role="line"
+         id="tspan3039-9-4"
+         x="146.28792"
+         y="417.41672">Trasporto conto terzi</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.09466648px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:1.88020468px;word-spacing:0px;fill:#f8f2f5;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       x="145.75819"
+       y="434.88705"
+       id="text3037-4-0"
+       sodipodi:linespacing="125%"
+       transform="scale(0.86015325,1.1625835)"><tspan
+         sodipodi:role="line"
+         id="tspan3039-9-9"
+         x="145.75819"
+         y="434.88705">Licenze conto proprio</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
