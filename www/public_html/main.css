@@ -375,6 +375,12 @@ i[class^="icon-"]::before{
 .services .section-photo-intro {
     background: #1086A1;
 }
+.location .section-photo-intro{
+    background-color:#7E0DA1;
+}
+.navigator .section-photo-intro {
+    background-color:#15714A;
+}
 section {
     border-bottom:1px solid #f1f1f1;
 }
