@@ -373,7 +373,7 @@ i[class^="icon-"]::before{
     background-size:cover;
 }
 .services .section-photo-intro {
-    background: #959595;
+    background: #1086A1;
 }
 section {
     border-bottom:1px solid #f1f1f1;
@@ -434,7 +434,6 @@ button {
     left: 12px;
 }
 .footer-grid{
-    border-top:1px solid #ccc;
     padding-top:10px;
 }
 .place-space.col-1{
@@ -492,7 +491,9 @@ img {
     max-width: 100%;
     border: 0;
 }
-
+img {
+    display:inline-block;
+}
 a:active, a:hover, a:focus {
     outline: 0;
     color: #4386fc;
@@ -619,7 +620,6 @@ hr{
     background: #fff;
     position:relative;
     z-index:1;
-    padding-bottom: 100px;
     width: 100%;
     -webkit-transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     -moz-transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -633,6 +633,10 @@ hr{
     margin: 0 auto;
     max-width: 948px;
     clear:both;
+    width:100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 .grid_outer.primary-block{
     top:30%;
@@ -697,49 +701,45 @@ hr{
 .info-space a {
     color:#fff;
 }
-#grid-cont #landing-block{
-    display: block;
-    width: 100%;
-    margin-top:20px;
-    clear:both;
+.section-base {
+    height:600px;
+    padding:40px 0;
 }
-#grid-cont .landing-block-wrapper{
-    margin:0 auto;
-    width:940px;
-    background: #F9F9F9;/*#f4f7f8;*/
-    overflow: hidden;
-    padding:80px 0;
+.photo-crop {
+    background-repeat:no-repeat;
+    position:absolute;
+    width:49%;
 }
-.landing-block-wrapper #history-block,.landing-block-wrapper #newsEvent-block,
-.landing-block-wrapper #location-block,.landing-block-wrapper #services-block{
-    width:100%;
-    position:relative;
-    padding: 0;
-    clear:both;
+.section-base .photo-crop{
+    height:570px;
+    left:0;
+    top:244px;
+    width:48%;
 }
-.landing-block-wrapper #newsEvent-block h2 i,
-.landing-block-wrapper #history-block h2 i,.landing-block-wrapper #location-block h2 i,
-.landing-block-wrapper #services-block h2 i{
-    font-size: 2.3em;
-    color: #ABACBA;
-    margin-right:18px;
+.section-base .photo-crop .photo-container{
+    height:570px;
+    max-width: initial;
+    position:absolute;
+    right:0;
 }
-.landing-block-wrapper #newsEvent-block h2,
-.landing-block-wrapper #history-block h2,.landing-block-wrapper #location-block h2,
-.landing-block-wrapper #services-block h2{
-    line-height:2.0;
-    font-size:22px;
-    letter-spacing:7px;
-    color:rgba(71, 154, 184, 1);
-    position:relative;
-    border-bottom:1px solid rgba(0,0,0,0.3);
+.heading-headline{
+    color:#212121;
+    font-size:48px;
+    font-weight:300;
+    line-height:1;
+    margin:5px 0 15px 0;
+}
+.section-body{
+    color:#555;
+    font-size:21px;
+    font-weight:200;
+    line-height:1.4;
 }
 .col-1{
     display:block;
     float:left;
-    width:562px;
-    margin-top:9px;
-    margin-left:10px;
+    width:47%;
+    margin:0 1% 22px;
 }
 .col-2{
     width:302px;
@@ -834,30 +834,6 @@ hr{
     height:100%;
     position: relative;
 }
-#history-block::before{
-    content:'&nbsp;';
-    display: block;
-    margin-top:0;
-    min-height:48px;
-    visibility:hidden;
-}
-.history-wrapper .col-1,.location-wrapper .col-1, .services-wrapper .col-1{
-    min-height: 344px;
-    padding:10px 70px 0px 40px;
-    line-height:2.1;
-    font-weight:300;
-    font-size:1.2em;
-    border-right: 2px solid #ccc;
-    border-bottom: 2px solid #ccc;
-    border-bottom-right-radius: 3px;
-}
-/*.history-wrapper .col-2 p{
-    font-weight:600;
-    font-size:0.80em;
-    line-height:0.95;
-    text-align:center;
-    padding-right:34px;
-}*/
 .small-advice {
 	font-weight:400;
 	font-size: 0.85em;
@@ -866,41 +842,6 @@ hr{
 .small-advice p {
 	padding-left: 70px;
 	text-decoration: underline;
-}
-#work-time {
-    min-width:100%;
-    margin:0;
-    padding:0;
-}
-#work-time div {
-   text-align:center;
-   padding-top:10px;
-   min-height:40px;
-   border:1px solid #ddd;
-   background-color:#495D64;
-   color:#f9f9f9;
-   border-radius: 4px;
-}
-#work-time div span.medium{
-    font-weight: 400;
-    font-size:1.5em;
-    line-height:0.8;
-}
-#work-time div span.small{
-    font-weight:400;
-    font-size:1.01em;
-    line-height:0.9;
-}
-#work-time div .half-inline{
-    width:48%;
-    display:inline-block;
-    border:none;
-    min-height:0;
-    border-radius: 0;
-    padding: 0;
-    background-color:inherit;
-    color:inherit;
-    margin:auto 0;
 }
 .block-center-wrapper  h3{
     font-weight: 700;
