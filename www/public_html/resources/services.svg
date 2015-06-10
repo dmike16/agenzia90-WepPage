@@ -145,7 +145,7 @@
      inkscape:cx="524.52123"
      inkscape:cy="93.162644"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:window-width="1535"
      inkscape:window-height="876"
@@ -169,15 +169,7 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="sfondo"
-     sodipodi:insensitive="true">
-    <rect
-       style="fill:#1c5fc6;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       id="rect4344"
-       width="1020.254"
-       height="652.55853"
-       x="2.2233562"
-       y="2.4820471" />
+     inkscape:label="sfondo">
     <path
        style="fill:url(#linearGradient4886);fill-opacity:1;fill-rule:nonzero;stroke:none"
        d="M 860.64952,2.4829421 C 783.64438,95.248806 736.86933,217.52264 736.86933,351.51254 c 0,113.09101 33.33839,217.817 90.03653,303.51605 l 195.56564,0 0,-652.5456479 -161.82198,0 z"
@@ -197,7 +189,7 @@
            style="fill:#0000ff"
            inkscape:connector-curvature="0" />
         <polygon
-           points="101.51,11.9254 135.013,81.1275 125.77,81.1275 101.435,30.8633 74.9901,81.1276 65.7186,81.1276 "
+           points="135.013,81.1275 125.77,81.1275 101.435,30.8633 74.9901,81.1276 65.7186,81.1276 101.51,11.9254 "
            id="_256049576"
            style="fill:#00ff00" />
         <path
@@ -235,7 +227,8 @@
      inkscape:label="scritte"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-401.36218)">
+     transform="translate(0,-401.36218)"
+     sodipodi:insensitive="true">
     <path
        sodipodi:type="arc"
        style="fill:#f5fafa;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -348,7 +341,7 @@
        transform="matrix(0.80519138,0,0,0.444538,-37.04423,373.09246)" />
     <text
        xml:space="preserve"
-       style="font-size:23.93117331999999919px;font-style:normal;font-weight:bold;text-align:start;line-height:125%;letter-spacing:7.38000011000000011px;word-spacing:0px;text-anchor:start;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       style="font-size:23.93117332px;font-style:normal;font-weight:bold;text-align:start;line-height:125%;letter-spacing:7.38000011px;word-spacing:0px;text-anchor:start;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
        x="122.49556"
        y="412.0351"
        id="text3011"
@@ -365,7 +358,7 @@
          dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0">con autentica di firma</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:23.93117331999999919px;font-style:normal;font-weight:bold;text-align:start;line-height:125%;letter-spacing:8.67427920999999991px;word-spacing:0px;text-anchor:start;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       style="font-size:23.93117332px;font-style:normal;font-weight:bold;text-align:start;line-height:125%;letter-spacing:8.67427921px;word-spacing:0px;text-anchor:start;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
        x="81.604889"
        y="708.05615"
        id="text3017"
@@ -377,7 +370,7 @@
          y="708.05615">Rinnovo Patente</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:23.93117331999999919px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:7.38276719999999997px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       style="font-size:23.93117332px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:7.3827672px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
        x="84.897041"
        y="761.2038"
        id="text3021"
@@ -389,7 +382,7 @@
          y="761.2038">Pagemento Bolli</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:23.93117331999999919px;font-style:normal;font-weight:bold;line-height:100.99999905000001377%;letter-spacing:7.38276719999999997px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       style="font-size:23.93117332px;font-style:normal;font-weight:bold;line-height:100.99999905%;letter-spacing:7.3827672px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
        x="86.018822"
        y="822.8479"
        id="text3025"
@@ -405,7 +398,7 @@
          id="tspan3029">dell'automibilista (STA)</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:23.93117331999999919px;font-style:normal;font-weight:bold;line-height:100.99999905000001377%;letter-spacing:7.38276719999999997px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       style="font-size:23.93117332px;font-style:normal;font-weight:bold;line-height:100.99999905%;letter-spacing:7.3827672px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
        x="86.977005"
        y="903.8313"
        id="text3031"
@@ -421,7 +414,7 @@
          id="tspan3035">PRA</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:23.93117331999999919px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:7.38276719999999997px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       style="font-size:23.93117332px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:7.3827672px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
        x="89.731895"
        y="987.23206"
        id="text3037"
@@ -433,7 +426,7 @@
          y="987.23206">Immatricolazioni</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:23.93117331999999919px;font-style:normal;font-weight:bold;line-height:100.99999905000001377%;letter-spacing:7.38276719999999997px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       style="font-size:23.93117332px;font-style:normal;font-weight:bold;line-height:100.99999905%;letter-spacing:7.3827672px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
        x="90.900406"
        y="1056.589"
        id="text3037-5"
@@ -449,7 +442,7 @@
          id="tspan3062">esteri</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:23.93117331999999919px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:7.38276719999999997px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       style="font-size:23.93117332px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:7.3827672px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
        x="89.731895"
        y="1146.8328"
        id="text3037-4"
@@ -461,7 +454,7 @@
          y="1146.8328">Radiazioni</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:23.93117331999999919px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:7.38276719999999997px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       style="font-size:23.93117332px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:7.3827672px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
        x="90.966049"
        y="1235.4775"
        id="text3037-4-1"
@@ -477,7 +470,7 @@
          id="tspan3179">e certificati di proprietà</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:23.93117331999999919px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:7.38276719999999997px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       style="font-size:23.93117332px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:7.3827672px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
        x="91.877502"
        y="1327.5193"
        id="text3037-4-4"
@@ -489,7 +482,7 @@
          y="1327.5193">Trasporto conto terzi</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:23.93117331999999919px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:7.38276719999999997px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       style="font-size:23.93117332px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:7.3827672px;word-spacing:0px;fill:#f5fafa;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
        x="89.797539"
        y="1396.1179"
        id="text3037-4-0"
