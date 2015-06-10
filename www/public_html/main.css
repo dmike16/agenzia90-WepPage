@@ -39,6 +39,8 @@ h1{
     width:100%;
     position: fixed;
     z-index:20;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
 }
 
 .logo{
@@ -918,6 +920,14 @@ address{
     height:320px;
     background-color:transparent;
     width:940px;
+}
+.resources-card ul {
+    -webkit-transform: matrix(1,0,0,1,0,0);
+    -moz-transform: matrix(1,0,0,1,0,0);
+    transform: matrix(1,0,0,1,0,0);
+     -webkit-transition: -webkit-transform 0.1s 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    -moz-transition: -moz-transform 0.1s 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.7s 0.1s cubic-bezier(0.42, 0.13, 0.58, 1);
 }
 a.cardslide-prev{
     float:left;
