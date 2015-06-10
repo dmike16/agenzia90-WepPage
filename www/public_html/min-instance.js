@@ -44,7 +44,7 @@ function inserMainScript(url, callback, sID) {
             version : 'v2.3'
         });
     };
-    inserMainScript("http://connect.facebook.net/it_IT/sdk.js", fbInit, "facebook-jssdk");
+    inserMainScript("https://connect.facebook.net/it_IT/sdk.js", fbInit, "facebook-jssdk");
     
     //Insert the twitter share button
     inserMainScript("https://platform.twitter.com/widgets.js", function () {return; }, "twitter-wjs");

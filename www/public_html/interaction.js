@@ -4,6 +4,8 @@
         //
         // Dependencies
         var cssSelector = obj.doc.querySelector.bind(obj.doc) 
+        ,cssSelectorAll = obj.doc.querySelectorAll.bind(obj.doc)
+        ,crossClassList = obj.ClassList
         ,aEventListener = obj.EventUtility.aboutHandler.addListener
         //
         // Boolean Variables
@@ -25,6 +27,8 @@
         ,pag_markers = null
         ,pag_markers_len = 0
         ,pag_id = 0
+        ,o_date = null
+        ,fa_cog_icon = cssSelectorAll("i.fa-cog")
         //
         // Animations Core function 
         ,opacPan = function opacPan(delta) { panell.style.opacity = 1 * delta + ""; }
@@ -59,14 +63,14 @@
                 evt.currentTarget.setAttribute("aria-expanded", "false");
                 break;
             case 'focus':
-                obj.ClassList(evt.currentTarget).add("active");
+                crossClassList(evt.currentTarget).add("active");
                 break;
             case 'blur':
-                obj.ClassList(evt.currentTarget).remove("active");
+                crossClassList(evt.currentTarget).remove("active");
                 break;
             case 'click':
                 evt.preventDefault();
-                if ((obj.ClassList(evt.currentTarget).contains("cardslide-next"))) {
+                if ((crossClassList(evt.currentTarget).contains("cardslide-next"))) {
                     card_left -= 940;
                     pag_id += 1;
                     
@@ -74,30 +78,29 @@
                         card_left  = 0;
                     }
                     
-                    obj.ClassList(pag_markers[pag_id-1]).remove("active");
+                    crossClassList(pag_markers[pag_id-1]).remove("active");
                     
                     if (pag_id > pag_markers_len-1) {
                         pag_id = 0;
                     }
-                    
-                    obj.ClassList(pag_markers[pag_id]).add("active");
-                    card_frame.style.left =  card_left+"px";
+                    crossClassList(pag_markers[pag_id]).add("active");
+                    card_frame.style.transform =   "matrix(1,0,0,1,"+card_left+",0)";
                 }
-                if ((obj.ClassList(evt.currentTarget).contains("cardslide-prev"))) {
+                if ((crossClassList(evt.currentTarget).contains("cardslide-prev"))) {
                     if (card_left >= 0) {
                         card_left  = -presentation_width;
                     }
                     card_left += 940;
-                    obj.ClassList(pag_markers[pag_id]).remove("active");
+                    crossClassList(pag_markers[pag_id]).remove("active");
                     pag_id -= 1;
 
                     if (pag_id < 0) {
                         pag_id = pag_markers_len -1;
                     }
 
-                    obj.ClassList(pag_markers[pag_id]).add("active");
+                    crossClassList(pag_markers[pag_id]).add("active");
                     
-                    card_frame.style.left =  card_left+"px";
+                    card_frame.style.transform =  "matrix(1,0,0,1,"+card_left+",0)";
                 }
                 break;
             default:
@@ -122,9 +125,30 @@
             aEventListener(card_prev, 'click', gestureEvent);
             aEventListener(card_next, 'click', gestureEvent);
         }
-
+        //Set the animation of the time icon on the specific hour and day
+        o_date = new Date();
+        switch(o_date.getDay()){
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+            var o_hour = o_date.getHours(), o_min = o_date.getMinutes
+            ,morning = 13, afternoon = 15, evening = 19;
+            if ((9 <= o_hour  && o_hour < morning) || (o_hour === 13 && o_min >= 0 && o_min <= 30)) {
+                crossClassList(fa_cog_icon[0]).add("fa-spin");
+            } else if((afternoon < o_hour && o_hour < evening) || 
+            (o_hour === afternoon && o_min >= 30 && o_min < 60) || 
+            (o_hour === evening && o_min >=0 && o_min <= 30)) {
+                crossClassList(fa_cog_icon[1]).add("fa-spin");
+            }
+            break;
+        default:
+        break;
+        }
         //
         // Clear unuseful Dom Object
+        fa_cog_icon = null;
         tab1 = null;
         tab2 = null;
         sch = null;
