@@ -133,7 +133,7 @@
         case 3:
         case 4:
         case 5:
-            var o_hour = o_date.getHours(), o_min = o_date.getMinutes
+            var o_hour = o_date.getHours(), o_min = o_date.getMinutes()
             ,morning = 13, afternoon = 15, evening = 19;
             if ((9 <= o_hour  && o_hour < morning) || (o_hour === 13 && o_min >= 0 && o_min <= 30)) {
                 crossClassList(fa_cog_icon[0]).add("fa-spin");
@@ -141,6 +141,12 @@
             (o_hour === afternoon && o_min >= 30 && o_min < 60) || 
             (o_hour === evening && o_min >=0 && o_min <= 30)) {
                 crossClassList(fa_cog_icon[1]).add("fa-spin");
+            }
+            break;
+        case 6:
+            var o_hour = o_date.getHours(),morning = 13;
+            if (9 <= o_hour  && o_hour < morning) {
+                crossClassList(fa_cog_icon[0]).add("fa-spin");
             }
             break;
         default:
