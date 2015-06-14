@@ -454,8 +454,22 @@ button {
 .footer-grid{
     padding-top:10px;
 }
-.place-space.col-1{
+#linkUtil.col-1{
     width:400px;
+}
+#partneship.col-1{
+    clear:both;
+    width:400px;
+}
+#partneship-Logo.col-1{
+    margin-left:33px;
+    width:202px;
+}
+#partneship::after,#linkUtil::after{
+    clear:both;
+    content:"";
+    display:block;
+    visibility:hidden;
 }
 #pOne-16{
     float: right!important;
@@ -483,7 +497,7 @@ footer{
     clear: both;
     width: 100%;
     color: #999;
-    margin-top: -40px;
+    margin-top: 0px;
     padding:15px 0;
     -webkit-transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     -moz-transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -694,8 +708,8 @@ hr{
     background-color:#fff;
     border-radius:50%;
     box-shadow: 0 2px 5px rgba(0,0,0,0.26);
-    height:36px;
-    width:36px;
+    height:38px;
+    width:38px;
     line-height:36px;
     padding:0;
     vertical-align:middle;
@@ -711,6 +725,29 @@ hr{
 }
 .act-circ.act-circ-type1{
     background-color:#00c7a0;
+}
+.act-circ-type2{
+    background-color:#f9f9f9;
+}
+.lif-icon {
+    background-image:url("resources/icon/partnship/friendLogo.png");
+    display:inline-block;
+    vertical-align:middle;
+}
+.lif-icon.lif-generali{
+    background-position:-1.3px 0px;
+    height:24px;
+    width:30px;
+}
+.lif-icon.lif-bali{
+    background-position:-4.6px -30px;
+    height:24px;
+    width:33px;
+}
+.lif-icon.lif-mcm{
+    background-position:-1.2px -64px;
+    height:22px;
+    width:28px;
 }
 .info-space a {
     color:#fff;

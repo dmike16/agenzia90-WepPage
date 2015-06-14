@@ -146,7 +146,7 @@
         case 6:
             var o_hour = o_date.getHours(),morning = 13;
             if (9 <= o_hour  && o_hour < morning) {
-                crossClassList(fa_cog_icon[0]).add("fa-spin");
+                crossClassList(fa_cog_icon[2]).add("fa-spin");
             }
             break;
         default:
