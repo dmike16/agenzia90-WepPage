@@ -7,11 +7,15 @@
         ,cssSelectorAll = obj.doc.querySelectorAll.bind(obj.doc)
         ,crossClassList = obj.ClassList
         ,aEventListener = obj.EventUtility.aboutHandler.addListener
+        ,hidden
+        ,visibilityChange
         //
         // Boolean Variables
         ,mouse_hover = false
         ,click_on = false
         ,id = 0
+        ,id_s= 0
+        ,id_f = 0
         //
         // Dom Element
         ,tab1 = cssSelector("#horizontal-nav #tab3")
@@ -33,6 +37,34 @@
         // Animations Core function 
         ,opacPan = function opacPan(delta) { panell.style.opacity = 1 * delta + ""; }
         ,endPan = function endPan() { panell.removeAttribute("style"); }
+        ,forwardSlideCard = function forwardSlideCard() {
+            card_left -= 940;
+            pag_id += 1;
+                   
+            if (card_left <= -presentation_width) {
+                card_left  = 0;
+            }
+            crossClassList(pag_markers[pag_id-1]).remove("active");
+            if (pag_id > pag_markers_len-1) {
+                pag_id = 0;
+            }
+            crossClassList(pag_markers[pag_id]).add("active");
+            card_frame.style.transform =   "matrix(1,0,0,1,"+card_left+",0)";}
+        ,backwardCard = function backwardCard() {
+            if (card_left >= 0) {
+                card_left  = -presentation_width;
+            }
+            card_left += 940;
+            crossClassList(pag_markers[pag_id]).remove("active");
+            pag_id -= 1;
+
+            if (pag_id < 0) {
+                pag_id = pag_markers_len -1;
+            }
+
+            crossClassList(pag_markers[pag_id]).add("active");
+                 
+            card_frame.style.transform =  "matrix(1,0,0,1,"+card_left+",0)";}
         ,animations = obj.AnimateObject(200,300,'quadratic',opacPan,endPan)
         ,panell = null
         //
@@ -71,43 +103,42 @@
             case 'click':
                 evt.preventDefault();
                 if ((crossClassList(evt.currentTarget).contains("cardslide-next"))) {
-                    card_left -= 940;
-                    pag_id += 1;
-                    
-                    if (card_left <= -presentation_width) {
-                        card_left  = 0;
-                    }
-                    
-                    crossClassList(pag_markers[pag_id-1]).remove("active");
-                    
-                    if (pag_id > pag_markers_len-1) {
-                        pag_id = 0;
-                    }
-                    crossClassList(pag_markers[pag_id]).add("active");
-                    card_frame.style.transform =   "matrix(1,0,0,1,"+card_left+",0)";
+                    forwardSlideCard();
                 }
                 if ((crossClassList(evt.currentTarget).contains("cardslide-prev"))) {
-                    if (card_left >= 0) {
-                        card_left  = -presentation_width;
-                    }
-                    card_left += 940;
-                    crossClassList(pag_markers[pag_id]).remove("active");
-                    pag_id -= 1;
-
-                    if (pag_id < 0) {
-                        pag_id = pag_markers_len -1;
-                    }
-
-                    crossClassList(pag_markers[pag_id]).add("active");
-                    
-                    card_frame.style.transform =  "matrix(1,0,0,1,"+card_left+",0)";
+                    backwardCard();
                 }
                 break;
+            case visibilityChange:
+                if(obj.doc[hidden]) {
+                    obj.animatedFrame.cancel(id_f);
+                    obj.global.clearInterval(id_s);
+            } else {
+                id_s = obj.global.setInterval(function animateSlideCard(){
+                    id_f = obj.animatedFrame.request(forwardSlideCard);
+                },11000);
+            }
+            break;
             default:
                 return;
             }
         };
         //
+        //CrossBroswer visibilityChange
+        if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
+            hidden = "hidden";
+            visibilityChange = "visibilitychange";
+        } else if (typeof document.mozHidden !== "undefined") {
+            hidden = "mozHidden";
+            visibilityChange = "mozvisibilitychange";
+        } else if (typeof document.msHidden !== "undefined") {
+            hidden = "msHidden";
+            visibilityChange = "msvisibilitychange";
+        } else if (typeof document.webkitHidden !== "undefined") {
+            hidden = "webkitHidden";
+            visibilityChange = "webkitvisibilitychange";
+        }
+
         // Add Event Listenrs
         aEventListener(tab1, 'mouseover', gestureEvent);
         aEventListener(tab1, 'mouseout', gestureEvent);
@@ -124,6 +155,10 @@
             presentation_width = parseInt(card_frame.style.width);
             aEventListener(card_prev, 'click', gestureEvent);
             aEventListener(card_next, 'click', gestureEvent);
+            aEventListener(obj.doc, visibilityChange, gestureEvent, false);
+            id_s = obj.global.setInterval(function animateSlideCard(){
+                id_f = obj.animatedFrame.request(forwardSlideCard);
+            },11000);
         }
         //Set the animation of the time icon on the specific hour and day
         o_date = new Date();
