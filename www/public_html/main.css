@@ -426,6 +426,9 @@ button {
     text-transform: none;
     padding: 1px 6px;
 }
+button::-moz-focus-inner{
+    border:0;
+}
 .area-round-button{
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
