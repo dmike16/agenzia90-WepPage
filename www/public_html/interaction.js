@@ -24,16 +24,21 @@
         ,pan2 = cssSelector("#pannel4")
         ,sch = cssSelector(".header .search")
         ,card_prev = cssSelector(".cardslide-prev")
+        ,fa_cog_icon = cssSelectorAll("i.fa-cog")
+        ,mask_modal = cssSelector("div.mask-modal")
+        ,jb_wrapper = cssSelector("div.area-round-button")
+        ,jb = cssSelector("button.jelly-button")
         ,card_next = null
         ,card_frame = null
+        //Variables 
         ,presentation_width = 0
         ,card_left = 0
         ,pag_markers = null
         ,pag_markers_len = 0
         ,pag_id = 0
         ,o_date = null
-        ,fa_cog_icon = cssSelectorAll("i.fa-cog")
-        //
+        ,jb_limit_enable = 0
+        ,jb_padding_b = parseInt(getComputedStyle(jb_wrapper,null).paddingBottom)
         // Animations Core function 
         ,opacPan = function opacPan(delta) { panell.style.opacity = 1 * delta + ""; }
         ,endPan = function endPan() { panell.removeAttribute("style"); }
@@ -102,11 +107,20 @@
                 break;
             case 'click':
                 evt.preventDefault();
-                if ((crossClassList(evt.currentTarget).contains("cardslide-next"))) {
-                    forwardSlideCard();
-                }
-                if ((crossClassList(evt.currentTarget).contains("cardslide-prev"))) {
-                    backwardCard();
+                if (evt.currentTarget.tagName === "BUTTON" || evt.currentTarget.tagName === "button") {
+                        crossClassList(mask_modal).add("active"); 
+                        crossClassList(obj.doc.documentElement).add("mask-disable-scroll"); 
+                } else if (evt.currentTarget.tagName === "DIV" || evt.currentTarget.tagName === "div") {
+                    if((crossClassList(evt.currentTarget).contains("mask-modal","active"))) {
+                        crossClassList(mask_modal).remove("active");
+                        crossClassList(obj.doc.documentElement).remove("mask-disable-scroll");
+                    }
+                } else if (evt.currentTarget.tagName === "A" || evt.currentTarget.tagName === "a") {
+                    if ((crossClassList(evt.currentTarget).contains("cardslide-next"))) {
+                        forwardSlideCard();
+                    } else if ((crossClassList(evt.currentTarget).contains("cardslide-prev"))) {
+                        backwardCard();
+                    }
                 }
                 break;
             case visibilityChange:
@@ -146,6 +160,8 @@
         aEventListener(tab2, 'mouseout', gestureEvent);
         aEventListener(sch, 'focus', gestureEvent, true);
         aEventListener(sch, 'blur', gestureEvent, true);
+        aEventListener(jb, 'click', gestureEvent);
+        aEventListener(mask_modal, 'click', gestureEvent);
         
         if (card_prev !== null) {
             card_next = cssSelector(".cardslide-next");
@@ -187,6 +203,9 @@
         default:
         break;
         }
+        //Calculate the visible limit of jb Button
+        jb_limit_enable = obj.global.innerHeight + obj.global.scrollY - jb_padding_b;
+        console.log(jb_limit_enable);
         //
         // Clear unuseful Dom Object
         fa_cog_icon = null;
@@ -195,6 +214,8 @@
         sch = null;
         card_prev = null;
         card_next = null;
+        jb= null;
+        jb_wrapper = null;
     });
 }());
 
