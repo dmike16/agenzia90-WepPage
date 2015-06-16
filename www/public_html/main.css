@@ -486,13 +486,17 @@ button::-moz-focus-inner{
     box-sizing: content-box;
     outline:none;
     padding:0;
-    pointer-events: auto;
+    pointer-events: none;
     border:none;
     border-radius: 50%;
     -webkit-user-drag: none;
-    opacity:1;
+    opacity:0.04;
     -webkit-transition: opacity 150ms cubic-bezier(.4,0,1,1);
     transition: opacity 150ms cubic-bezier(.4,0,1,1);
+}
+.jelly-button.active {
+    opacity: 1;
+    pointer-events:auto;
 }
 .style-button{
     background-color:#289B62;
@@ -563,7 +567,7 @@ button.jelly-button:hover + label.label-button{
 }
 #partneship-Logo.col-1{
     margin-left:33px;
-    width:202px;
+    width:212px;
 }
 #partneship::after,#linkUtil::after{
     clear:both;

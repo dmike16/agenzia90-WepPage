@@ -16,6 +16,8 @@
         ,id = 0
         ,id_s= 0
         ,id_f = 0
+        ,ticking = false
+        ,jb_on = false
         //
         // Dom Element
         ,tab1 = cssSelector("#horizontal-nav #tab3")
@@ -39,6 +41,7 @@
         ,o_date = null
         ,jb_limit_enable = 0
         ,jb_padding_b = parseInt(getComputedStyle(jb_wrapper,null).paddingBottom)
+        ,pre_scroll = obj.global.scrollY
         // Animations Core function 
         ,opacPan = function opacPan(delta) { panell.style.opacity = 1 * delta + ""; }
         ,endPan = function endPan() { panell.removeAttribute("style"); }
@@ -72,6 +75,32 @@
             card_frame.style.transform =  "matrix(1,0,0,1,"+card_left+",0)";}
         ,animations = obj.AnimateObject(200,300,'quadratic',opacPan,endPan)
         ,panell = null
+        ,requestTick = function requestTick() {
+            if (!ticking) {
+                if (jb_limit_enable > 789) {
+                    if(!jb_on) {
+                        obj.animatedFrame.request(helloJellyButton);
+                        ticking = true;
+                    }
+                }
+                else if (jb_limit_enable <= 789) {
+                    if(jb_on) {
+                        obj.animatedFrame.request(byeJellyButton);
+                        ticking = true;
+                    }
+                }
+            }
+        }
+        ,byeJellyButton = function byeJellyButton () {
+            crossClassList(jb).remove("active");
+            jb_on = false;
+            ticking = false;
+        }
+        ,helloJellyButton = function helloJellyButton() {
+            crossClassList(jb).add("active");
+            jb_on = true;
+            ticking = false;
+        }
         //
         // Event Callback function
         ,gestureEvent = function gestureEvent(evt) {
@@ -133,6 +162,11 @@
                 },11000);
             }
             break;
+            case 'scroll':
+                jb_limit_enable = jb_limit_enable + (obj.global.scrollY -pre_scroll);
+                requestTick();
+                pre_scroll = obj.global.scrollY;
+                break;
             default:
                 return;
             }
@@ -162,6 +196,7 @@
         aEventListener(sch, 'blur', gestureEvent, true);
         aEventListener(jb, 'click', gestureEvent);
         aEventListener(mask_modal, 'click', gestureEvent);
+        aEventListener(obj.global, 'scroll', gestureEvent);
         
         if (card_prev !== null) {
             card_next = cssSelector(".cardslide-next");
@@ -204,7 +239,7 @@
         break;
         }
         //Calculate the visible limit of jb Button
-        jb_limit_enable = obj.global.innerHeight + obj.global.scrollY - jb_padding_b;
+        jb_limit_enable = obj.global.innerHeight + pre_scroll - jb_padding_b;
         console.log(jb_limit_enable);
         //
         // Clear unuseful Dom Object
@@ -214,7 +249,6 @@
         sch = null;
         card_prev = null;
         card_next = null;
-        jb= null;
         jb_wrapper = null;
     });
 }());
