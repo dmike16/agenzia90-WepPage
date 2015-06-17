@@ -18,6 +18,7 @@
         ,id_f = 0
         ,ticking = false
         ,jb_on = false
+        ,scroll_flag = false
         //
         // Dom Element
         ,tab1 = cssSelector("#horizontal-nav #tab3")
@@ -30,8 +31,10 @@
         ,mask_modal = cssSelector("div.mask-modal")
         ,jb_wrapper = cssSelector("div.area-round-button")
         ,jb = cssSelector("button.jelly-button")
+        ,intro_full_screen = cssSelector("section.section-full-screen")
         ,card_next = null
         ,card_frame = null
+        ,r_ele = cssSelector("header")
         //Variables 
         ,presentation_width = 0
         ,card_left = 0
@@ -42,6 +45,7 @@
         ,jb_limit_enable = 0
         ,jb_padding_b = parseInt(getComputedStyle(jb_wrapper,null).paddingBottom)
         ,pre_scroll = obj.global.scrollY
+        ,wind_inner_h = obj.global.innerHeight
         // Animations Core function 
         ,opacPan = function opacPan(delta) { panell.style.opacity = 1 * delta + ""; }
         ,endPan = function endPan() { panell.removeAttribute("style"); }
@@ -77,17 +81,26 @@
         ,panell = null
         ,requestTick = function requestTick() {
             if (!ticking) {
-                if (jb_limit_enable > 789) {
+                if (jb_limit_enable > wind_inner_h) {
                     if(!jb_on) {
                         obj.animatedFrame.request(helloJellyButton);
                         ticking = true;
                     }
                 }
-                else if (jb_limit_enable <= 789) {
+                else if (jb_limit_enable <= wind_inner_h) {
                     if(jb_on) {
                         obj.animatedFrame.request(byeJellyButton);
                         ticking = true;
                     }
+                }
+                if (!scroll_flag && pre_scroll !== 0) {
+                    scroll_flag = true;
+                    obj.animatedFrame.request(barShadowElement);
+                    ticking = true;
+                } else if (scroll_flag && pre_scroll === 0){
+                    scroll_flag = false;
+                    obj.animatedFrame.request(barShadowElement);
+                    ticking = true;
                 }
             }
         }
@@ -99,6 +112,10 @@
         ,helloJellyButton = function helloJellyButton() {
             crossClassList(jb).add("active");
             jb_on = true;
+            ticking = false;
+        }
+        ,barShadowElement = function barShadowElement() {
+            crossClassList(r_ele).toggle("bs-bar",scroll_flag);
             ticking = false;
         }
         //
@@ -164,8 +181,8 @@
             break;
             case 'scroll':
                 jb_limit_enable = jb_limit_enable + (obj.global.scrollY -pre_scroll);
-                requestTick();
                 pre_scroll = obj.global.scrollY;
+                requestTick();
                 break;
             default:
                 return;
@@ -239,8 +256,8 @@
         break;
         }
         //Calculate the visible limit of jb Button
-        jb_limit_enable = obj.global.innerHeight + pre_scroll - jb_padding_b;
-        console.log(jb_limit_enable);
+        intro_full_screen.style.height = wind_inner_h + "px";
+        jb_limit_enable = wind_inner_h + pre_scroll - jb_padding_b;
         //
         // Clear unuseful Dom Object
         fa_cog_icon = null;
