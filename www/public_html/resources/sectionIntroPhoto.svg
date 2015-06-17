@@ -21,6 +21,21 @@
    inkscape:export-ydpi="120">
   <defs
      id="defs4">
+    <linearGradient
+       id="linearGradient3840">
+      <stop
+         style="stop-color:#2e65e2;stop-opacity:1;"
+         offset="0"
+         id="stop3842" />
+      <stop
+         id="stop3848"
+         offset="0.72972971"
+         style="stop-color:#3d9b2d;stop-opacity:0.79636364" />
+      <stop
+         style="stop-color:#dce2e1;stop-opacity:0.45090909"
+         offset="1"
+         id="stop3844" />
+    </linearGradient>
     <inkscape:path-effect
        effect="spiro"
        id="path-effect5734"
@@ -238,14 +253,6 @@
        r="40.42835"
        gradientTransform="matrix(1.3153988,0.28425339,-0.22150165,1.2102428,-20.901449,-39.374436)"
        gradientUnits="userSpaceOnUse" />
-    <filter
-       inkscape:collect="always"
-       id="filter5294">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="0.39385034"
-         id="feGaussianBlur5296" />
-    </filter>
     <radialGradient
        inkscape:collect="always"
        xlink:href="#linearGradient5276"
@@ -301,6 +308,16 @@
        fx="101.45885"
        fy="50.105946"
        r="40.42835" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3840"
+       id="linearGradient3846"
+       x1="878.8877"
+       y1="750"
+       x2="858.9129"
+       y2="10"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.0012627,0,0,1,0.00255102,0)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -310,7 +327,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="854.58232"
+     inkscape:cx="739.82418"
      inkscape:cy="423.20023"
      inkscape:document-units="px"
      inkscape:current-layer="layer3"
@@ -350,9 +367,9 @@
        id="path5736"
        inkscape:connector-curvature="0" />
     <rect
-       style="fill:#40b6de;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       style="fill:url(#linearGradient3846);fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect6122"
-       width="1600"
+       width="1602.0203"
        height="740"
        x="-2.0203052"
        y="7.9796948" />
