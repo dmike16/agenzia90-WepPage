@@ -47,7 +47,6 @@ function inserMainScript(url, callback, sID) {
     inserMainScript("https://connect.facebook.net/it_IT/sdk.js", fbInit, "facebook-jssdk");
     
     //Insert the twitter share button
-    inserMainScript("https://platform.twitter.com/widgets.js", function () {return; }, "twitter-wjs");
     inserMainScript("interaction.js", function(){return;});
 
 }());

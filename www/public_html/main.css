@@ -1,5 +1,5 @@
 html{
-    font-size: 14px;
+    font-size: 16px;
    -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
@@ -11,9 +11,10 @@ body{
     line-height: 1.5;
     overflow:hidden;
     background-color: #fff;
+    font-size:16px;
 }
 html, body{
-    background-color: #f9f9f9;
+    background-color: rgb(238,238,238);
     color: #212121;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -42,10 +43,17 @@ html, body{
 .bs-FAB-press {
     box-shadow: 0 9px 16px rgba(0,0,0,0.3);
 }
-/*{
+.bs-no{
+    box-shadow: none;
+}
+*{
     -moz-box-sizing: preserv-3d;
-    box-sizing:border-box;
-}*/
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+
+}
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
     display: block; }
@@ -441,6 +449,46 @@ button {
 button::-moz-focus-inner{
     border:0;
 }
+.paper-button{
+    display:inline-block;
+    white-space:nowrap;
+    font-size:14px;
+    position:relative;
+    background:transparent;
+    text-transform:uppercase;
+    border-radius: 3px;
+    cursor:pointer;
+    z-index:0;
+    min-width:5em;
+    outline:none;
+    text-align:center;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.paper-button[raised] {
+    background-color: rgb(250,250,250);
+}
+a:hover .paper-button .fit {
+    background-color:rgb(250,250,250);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+} 
+.paper-button .bs-button-rest {
+    pointer-events:none;
+    border-radius:inherit;
+}
+.button-content{
+    padding:0.7em 0.57em;
+    position:relative;
+}
+.fit{
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+}
 .area-round-button{
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
@@ -566,15 +614,13 @@ button.jelly-button:hover + label.label-button{
     background-image: url("clubSandwich2.svg");
     left: 12px;
 }
-.footer-grid{
-    padding-top:10px;
+#linkUtil{
+    margin-left:0;
 }
-#linkUtil.col-1{
-    width:400px;
-}
-#partneship.col-1{
+#partneship{
+    display:block;
     clear:both;
-    width:400px;
+    margin-bottom:56px;
 }
 #partneship-Logo.col-1{
     margin-left:33px;
@@ -585,6 +631,29 @@ button.jelly-button:hover + label.label-button{
     content:"";
     display:block;
     visibility:hidden;
+}
+.paper-button > .icon{
+    margin-right:4px;
+}
+.icon {
+    display:inline-block;
+    vertical-align:middle;
+    background-repeat:no-repeat;
+    position:relative;
+    height:24px;
+    width:24px;
+}
+.icon.generali{
+    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-position: -1.3px 0px;
+}
+.icon.bali{
+    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-position:-4.6px -30px;
+}
+.icon.motocentromarconi{
+    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-position:-1.2px -64px;
 }
 #pOne-16{
     float: right!important;
@@ -608,23 +677,25 @@ button.jelly-button:hover + label.label-button{
 }
 
 footer{
-    font-size:11px;
     clear: both;
     width: 100%;
-    color: #999;
-    margin-top: 0px;
-    padding:15px 0;
+    padding:80px 0 80px 0px;
     -webkit-transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     -moz-transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.footer-grid a {
-    color:#999;
+footer a {
+    color:rgb(117,117,117);
+}
+#copyright ,#footerlinks {
+    font-size:14px;
+    color: rgb(117,117,117);
 }
 a{
     color: #045753;
     text-decoration: none;
     background: transparent;
+    margin-right:12px;
     transition: color 0.1s linear;
     -webkit-transition: color 0.1s linear;
     -moz-transition: color 0.1s linear;
@@ -641,10 +712,10 @@ img {
 img {
     display:inline-block;
 }
-a:active, a:hover, a:focus {
+/*a:active, a:hover, a:focus {
     outline: 0;
     color: #4386fc;
-}
+}*/
 
 #side-nav {
     bottom: 0;
