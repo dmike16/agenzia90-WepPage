@@ -30,8 +30,9 @@
         ,fa_cog_icon = cssSelectorAll("i.fa-cog")
         ,mask_modal = cssSelector("div.mask-modal")
         ,jb_wrapper = cssSelector("div.area-round-button")
-        ,jb = cssSelector("button.jelly-button")
+        ,jb = cssSelector("button.paper-fab")
         ,intro_full_screen = cssSelector("section.section-full-screen")
+        ,photo_intro = cssSelector(".section-full-screen .section-photo-intro")
         ,card_next = null
         ,card_frame = null
         ,r_ele = cssSelector("header")
@@ -115,7 +116,7 @@
             ticking = false;
         }
         ,barShadowElement = function barShadowElement() {
-            crossClassList(r_ele).toggle("bs-bar",scroll_flag);
+            crossClassList(r_ele).toggle("bs-zLevel-1",scroll_flag);
             ticking = false;
         }
         //
@@ -257,7 +258,16 @@
         }
         //Calculate the visible limit of jb Button
         intro_full_screen.style.height = wind_inner_h + "px";
+        photo_intro.style.height = wind_inner_h + "px";
         jb_limit_enable = wind_inner_h + pre_scroll - jb_padding_b;
+        //
+        //
+        //Raise nav bar if the page is scrolled
+        if (pre_scroll !== 0) {
+            scroll_flag = true;
+            obj.animatedFrame.request(barShadowElement);
+            ticking = true;
+        }
         //
         // Clear unuseful Dom Object
         fa_cog_icon = null;
@@ -267,6 +277,6 @@
         card_prev = null;
         card_next = null;
         jb_wrapper = null;
-    });
+        });
 }());
 
