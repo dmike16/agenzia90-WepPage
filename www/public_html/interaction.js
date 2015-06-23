@@ -21,8 +21,8 @@
         ,scroll_flag = false
         //
         // Dom Element
-        ,tab1 = cssSelector("#horizontal-nav #tab3")
-        ,tab2 = cssSelector("#horizontal-nav #tab4")
+        ,tab1 = cssSelector(".bar #tab3")
+        ,tab2 = cssSelector(".bar #tab4")
         ,pan1 = cssSelector("#pannel3")
         ,pan2 = cssSelector("#pannel4")
         ,sch = cssSelector(".header .search")
@@ -32,7 +32,6 @@
         ,jb_wrapper = cssSelector("div.area-round-button")
         ,jb = cssSelector("button.paper-fab")
         ,intro_full_screen = cssSelector("section.section-full-screen")
-        ,photo_intro = cssSelector(".section-full-screen .section-photo-intro")
         ,card_next = null
         ,card_frame = null
         ,r_ele = cssSelector("header")
@@ -47,10 +46,15 @@
         ,jb_padding_b = parseInt(getComputedStyle(jb_wrapper,null).paddingBottom)
         ,pre_scroll = obj.global.scrollY
         ,wind_inner_h = obj.global.innerHeight
-        // Animations Core function 
-        ,opacPan = function opacPan(delta) { panell.style.opacity = 1 * delta + ""; }
-        ,endPan = function endPan() { panell.removeAttribute("style"); }
-        ,forwardSlideCard = function forwardSlideCard() {
+        ,animations = obj.AnimateObject(200,300,'quadratic',opacPan,endPan)
+        ,panell = null;
+        // Animations Core function
+        //
+        function opacPan(delta) { panell.style.opacity = 1 * delta + ""; }
+        
+        function endPan() { panell.removeAttribute("style"); }
+        
+        function forwardSlideCard() {
             card_left -= 940;
             pag_id += 1;
                    
@@ -63,7 +67,8 @@
             }
             crossClassList(pag_markers[pag_id]).add("active");
             card_frame.style.transform =   "matrix(1,0,0,1,"+card_left+",0)";}
-        ,backwardCard = function backwardCard() {
+        
+        function backwardCard() {
             if (card_left >= 0) {
                 card_left  = -presentation_width;
             }
@@ -78,9 +83,8 @@
             crossClassList(pag_markers[pag_id]).add("active");
                  
             card_frame.style.transform =  "matrix(1,0,0,1,"+card_left+",0)";}
-        ,animations = obj.AnimateObject(200,300,'quadratic',opacPan,endPan)
-        ,panell = null
-        ,requestTick = function requestTick() {
+        
+        function requestTick() {
             if (!ticking) {
                 if (jb_limit_enable > wind_inner_h) {
                     if(!jb_on) {
@@ -105,23 +109,27 @@
                 }
             }
         }
-        ,byeJellyButton = function byeJellyButton () {
+        
+        function byeJellyButton () {
             crossClassList(jb).remove("active");
             jb_on = false;
             ticking = false;
         }
-        ,helloJellyButton = function helloJellyButton() {
+        
+        function helloJellyButton() {
             crossClassList(jb).add("active");
             jb_on = true;
             ticking = false;
         }
-        ,barShadowElement = function barShadowElement() {
+        
+        function barShadowElement() {
             crossClassList(r_ele).toggle("bs-zLevel-1",scroll_flag);
             ticking = false;
         }
         //
         // Event Callback function
-        ,gestureEvent = function gestureEvent(evt) {
+        //
+        function gestureEvent(evt) {
             var subject = animations
             ,aria_attr = ""; 
             
@@ -188,7 +196,7 @@
             default:
                 return;
             }
-        };
+        }
         //
         //CrossBroswer visibilityChange
         if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
@@ -210,7 +218,7 @@
         aEventListener(tab1, 'mouseout', gestureEvent);
         aEventListener(tab2, 'mouseover', gestureEvent);
         aEventListener(tab2, 'mouseout', gestureEvent);
-        aEventListener(sch, 'focus', gestureEvent, true);
+        aEventListener(sch, 'click', gestureEvent, true);
         aEventListener(sch, 'blur', gestureEvent, true);
         aEventListener(jb, 'click', gestureEvent);
         aEventListener(mask_modal, 'click', gestureEvent);
@@ -258,7 +266,6 @@
         }
         //Calculate the visible limit of jb Button
         intro_full_screen.style.height = wind_inner_h + "px";
-        photo_intro.style.height = wind_inner_h + "px";
         jb_limit_enable = wind_inner_h + pre_scroll - jb_padding_b;
         //
         //

@@ -7,19 +7,44 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="10"
-   height="10"
+   width="24"
+   height="24"
    id="svg3949"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="quicknav_icon.svg"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="times_icon.svg"
    inkscape:export-filename="/home/dmike/Development/web-developing/agenzia90-WepPage/www/public_html/resources/icon/navBar/quicknav_icon.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
-     id="defs3951" />
+     id="defs3951">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3764">
+      <stop
+         style="stop-color:#092598;stop-opacity:1"
+         offset="0"
+         id="stop3766" />
+      <stop
+         style="stop-color:#040608;stop-opacity:0.85454545"
+         offset="1"
+         id="stop3768" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3764"
+       id="radialGradient3774"
+       cx="4.9940495"
+       cy="1047.6038"
+       fx="4.9940495"
+       fy="1047.6038"
+       r="4.7998633"
+       gradientTransform="matrix(5.8663647,0.77191162,-0.52394656,4.6278299,531.78564,-3811.9307)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -27,16 +52,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="23.6"
-     inkscape:cx="2.9546753"
+     inkscape:zoom="11.8"
+     inkscape:cx="5.3514382"
      inkscape:cy="5"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
-     inkscape:window-width="1041"
-     inkscape:window-height="663"
-     inkscape:window-x="182"
-     inkscape:window-y="31"
+     inkscape:window-width="1330"
+     inkscape:window-height="684"
+     inkscape:window-x="255"
+     inkscape:window-y="114"
      inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
@@ -62,16 +87,11 @@
      inkscape:label="Livello 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-1042.3622)">
+     transform="translate(0,-1028.3622)">
     <path
-       style="fill:none;stroke:#8a8a8a;stroke-width:0.89999998000000003;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 1,1042.9622 4,4 4,-4"
-       id="path4473"
+       id="rect3759"
+       style="fill:url(#radialGradient3774);fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="m 21.757979,1028.056 2.436207,1.7681 -21.5637371,22.2319 -2.43620711,-1.7681 z m -21.56379284,1.7681 2.43620224,-1.7681 21.5637816,22.2319 -2.436203,1.7681 z"
        inkscape:connector-curvature="0" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path4475"
-       d="M 8.9876129,1051.6742 5,1047.6618 l -4.01234888,3.9876"
-       style="fill:none;stroke:#6fd2ea;stroke-width:0.89999998000000003;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   </g>
 </svg>

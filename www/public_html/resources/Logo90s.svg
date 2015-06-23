@@ -10,9 +10,9 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
-   width="100"
-   height="50"
-   viewBox="0 0 28.222222 14.111111"
+   width="168"
+   height="40"
+   viewBox="0 0 47.413333 11.288889"
    id="svg2"
    xml:space="preserve"
    style="fill-rule:evenodd"
@@ -31,12 +31,14 @@
      id="namedview26"
      showgrid="true"
      inkscape:zoom="2.5203252"
-     inkscape:cx="61.5"
+     inkscape:cx="134.94446"
      inkscape:cy="12.5"
-     inkscape:window-x="65"
+     inkscape:window-x="503"
      inkscape:window-y="24"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg2"><inkscape:grid
+     inkscape:current-layer="svg2"
+     showguides="true"
+     inkscape:guide-bbox="true"><inkscape:grid
        type="xygrid"
        id="grid3003"
        empspacing="5"
@@ -79,7 +81,7 @@
          in="SourceGraphic"
          result="composite2"
          id="feComposite3131" /></filter></defs><g
-     transform="matrix(0.28172816,0,0,0.15656789,-14.393975,-0.7708525)"
+     transform="matrix(0.19046997,0,0,0.1272275,-9.981416,-0.99622857)"
      id="Livello_x0020_1"
      style="filter:url(#filter3121)"><metadata
        id="CorelCorpID_0Corel-Layer" /><g
@@ -88,7 +90,7 @@
          id="_256049696"
          style="fill:#0000ff"
          inkscape:connector-curvature="0" /><polygon
-         points="125.77,81.1275 101.435,30.8633 74.9901,81.1276 65.7186,81.1276 101.51,11.9254 135.013,81.1275 "
+         points="101.51,11.9254 135.013,81.1275 125.77,81.1275 101.435,30.8633 74.9901,81.1276 65.7186,81.1276 "
          id="_256049576"
          style="fill:#00ff00" /><path
          d="m 126.593,56.2532 c 0.2962,-0.0591 9.8767,6.2454 8.1514,7.8337 -5.7041,5.1852 -13.5129,7.0961 -20.8327,5.5622 -2.2693,-0.4756 1.1072,-10.97 -0.8373,-12.0458 4.4476,2.27 9.8685,1.8827 13.5186,-1.3501 z m -35.8804,0.71 c 0.2776,-0.6107 -6.362,14.1708 -6.0283,13.5042 0.0496,-0.099 0.1069,-0.212 0.1684,-0.3341 -6.5145,-0.2374 -12.0268,-1.6618 -16.3961,-5.5235 -1.9132,-1.6909 8.8867,-5.9587 7.5864,-8.622 3.5892,3.2322 7.7697,4.2623 12.123,2.4243 0.9017,-0.3806 1.7571,-0.8706 2.5466,-1.4489 z"
@@ -112,4 +114,16 @@
            y="148.5"
            id="_256051856"
            style="font-size:6.71640015px;font-weight:bold;fill:#0000ff;font-family:Arial">s.r.l.s.</text>
-</g></g></g></svg>
+</g></g></g><text
+     xml:space="preserve"
+     style="font-size:7.90222216px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:200%;letter-spacing:0.0049383px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#666666;fill-opacity:1;stroke:none;font-family:URW Gothic L;-inkscape-font-specification:URW Gothic L Semi-Bold"
+     x="25.06986"
+     y="7.7515202"
+     id="text3001"
+     sodipodi:linespacing="200%"
+     transform="scale(0.83338347,1.1999278)"><tspan
+       sodipodi:role="line"
+       id="tspan3785"
+       x="25.06986"
+       y="7.7515202">90  s r l s</tspan></text>
+</svg>
