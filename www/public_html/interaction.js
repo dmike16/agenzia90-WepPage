@@ -15,6 +15,7 @@
         ,click_on = false
         ,id_s= 0
         ,id_f = 0
+        ,id_p = 0
         ,ticking = false
         ,jb_on = false
         ,scroll_flag = false
@@ -38,11 +39,7 @@
         ,pag_markers_len = 0
         ,pag_id = 0
         ,o_date = null
-        ,jb_limit_enable = 0
-        ,jb_padding_b = parseInt(getComputedStyle(jb_wrapper,null).paddingBottom)
         ,pre_scroll = obj.global.scrollY
-        ,wind_inner_h = 505 
-        ,animations = obj.AnimateObject(200,300,'quadratic',opacPan,endPan)
         ,panell = null
         ,appBar = {};
 
@@ -76,9 +73,10 @@
             appBar.pannel_active = str;
             scroller.ele.setAttribute("style",scroller.css_style);
             appBar[str].setAttribute("style","outline:none;z-index:12;right:0px;top:0px;");
-            setTimeout(function(){
+            obj.animatedFrame.cancel(id_p);
+            id_p = obj.animatedFrame.request(function(){
                 crossClassList(appBar[appBar.pannel_active]).add("active");
-            },30);
+            });
         };
         appBar.closePannel = function closePannel(str) {
             var scroller = appBar[str].scroller;
@@ -109,10 +107,7 @@
         };
         // Animations Core function
         //
-        function opacPan(delta) { panell.style.opacity = 1 * delta + ""; }
-        
-        function endPan() { panell.removeAttribute("style"); }
-        
+ /*       
         function forwardSlideCard() {
             card_left -= 940;
             pag_id += 1;
@@ -142,77 +137,34 @@
             crossClassList(pag_markers[pag_id]).add("active");
                  
             card_frame.style.transform =  "matrix(1,0,0,1,"+card_left+",0)";}
-        
+*/        
         function requestTick() {
             if (!ticking) {
-                if (jb_limit_enable > wind_inner_h) {
-                    if(!jb_on) {
-                        obj.animatedFrame.request(helloJellyButton);
-                        ticking = true;
-                    }
-                }
-                else if (jb_limit_enable <= wind_inner_h) {
-                    if(jb_on) {
-                        obj.animatedFrame.request(byeJellyButton);
-                        ticking = true;
-                    }
-                }
                 if (!scroll_flag && pre_scroll !== 0) {
                     scroll_flag = true;
+                    jb_on = true;
                     obj.animatedFrame.request(barShadowElement);
                     ticking = true;
                 } else if (scroll_flag && pre_scroll === 0){
                     scroll_flag = false;
+                    jb_on = false;
                     obj.animatedFrame.request(barShadowElement);
                     ticking = true;
                 }
             }
         }
-        
-        function byeJellyButton () {
-            crossClassList(jb).remove("active");
-            jb_on = false;
-            ticking = false;
-        }
-        
-        function helloJellyButton() {
-            crossClassList(jb).add("active");
-            jb_on = true;
-            ticking = false;
-        }
-        
+
         function barShadowElement() {
             crossClassList(r_ele).toggle("scrolling",scroll_flag);
+            crossClassList(jb).toggle("active",jb_on);
             ticking = false;
         }
         //
         // Event Callback function
         //
         function gestureEvent(evt) {
-            var subject = animations
-            ,aria_attr = ""; 
             
             switch (evt.type) {
-            case 'mouseover':
-                if (!mouse_hover) {
-                mouse_hover = true;
-                obj.animatedFrame.cancel(id);
-                evt.currentTarget.setAttribute("aria-expanded", "true");
-                aria_attr = evt.currentTarget.getAttribute("aria-controls");
-                if (aria_attr === 'pannel3') {
-                    panell = pan1;
-                } else if (aria_attr === 'pannel4') {
-                    panell = pan2;
-                }
-                subject.startTimeCount();
-                subject.timePassed = subject.getStartTime();
-                id = obj.animatedFrame.request(subject.animate.bind(subject));
-                }
-                break;
-            case 'mouseout':
-                mouse_hover = false;
-                evt.currentTarget.setAttribute("aria-expanded", "false");
-                break;
             case 'focus':
                 crossClassList(evt.currentTarget).add("active");
                 break;
@@ -229,15 +181,6 @@
                         crossClassList(mask_modal).remove("active");
                         crossClassList(obj.doc.documentElement).remove("mask-disable-scroll");
                     }
-                    if((crossClassList(evt.currentTarget).contains("search"))) {
-                        
-                    }
-                } else if (evt.currentTarget.tagName === "A" || evt.currentTarget.tagName === "a") {
-                    if ((crossClassList(evt.currentTarget).contains("cardslide-next"))) {
-                        forwardSlideCard();
-                    } else if ((crossClassList(evt.currentTarget).contains("cardslide-prev"))) {
-                        backwardCard();
-                    }
                 }
                 break;
             case visibilityChange:
@@ -249,7 +192,6 @@
             }
             break;
             case 'scroll':
-                jb_limit_enable = jb_limit_enable + (obj.global.scrollY -pre_scroll);
                 pre_scroll = obj.global.scrollY;
                 requestTick();
                 break;
@@ -280,7 +222,7 @@
             }
         });
         
-        if (card_prev !== null) {
+        /*if (card_prev !== null) {
             card_next = cssSelector(".cardslide-next");
             card_frame = cssSelector(".resources-card").getElementsByTagName("ul")[0];
             pag_markers = cssSelector('.pagination').getElementsByTagName("li");
@@ -288,7 +230,7 @@
             presentation_width = parseInt(card_frame.style.width);
             aEventListener(card_prev, 'click', gestureEvent);
             aEventListener(card_next, 'click', gestureEvent);
-        }
+        }*/
         //Set the animation of the time icon on the specific hour and day
         o_date = new Date();
         switch(o_date.getDay()){
@@ -316,13 +258,12 @@
         default:
         break;
         }
-        //Calculate the visible limit of jb Button
-        jb_limit_enable = wind_inner_h + pre_scroll - jb_padding_b;
         //
         //
         //Raise nav bar if the page is scrolled
         if (pre_scroll !== 0) {
             scroll_flag = true;
+            jb_on = true;
             obj.animatedFrame.request(barShadowElement);
             ticking = true;
         }
