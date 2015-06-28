@@ -245,66 +245,196 @@ ul li {
 }
 .core-tansiction .background{
     opacity:0;
+    -webkit-transform:scale3d(0.1,0.1,0.0);
+    -moz-transform:scale3d(0.1,0.1,0.0);
+    -ms-transform:scale3d(0.1,0.1,0.0);
+    -o-transform:scale3d(0.1,0.1,0.0);
     transform:scale3d(0.1,0.1,0.0);
 }
 .core-tansiction .scroller{
     opacity:0;
 }
 .core-tansiction.active .ripple{
-    -webkit-animation: ripple 0.15s cubic-bezier(0.2,0,0.4,1);
-    animation: ripple 0.15s cubic-bezier(0.2,0,0.4,1);
+    -webkit-animation: ripple 0.19s cubic-bezier(0.2,0,0.4,1);
+    -moz-animation: ripple 0.19s cubic-bezier(0.2,0,0.4,1);
+    -o-animation: ripple 0.19s cubic-bezier(0.2,0,0.4,1);
+    animation: ripple 0.19s cubic-bezier(0.2,0,0.4,1);
 }
 @-webkit-keyframes ripple{
     from{
         opacity:0;
+        -webkit-transform:scale3d(0.0,0.0,0.0);
+       -moz-transform:scale3d(0.0,0.0,0.0);
+        -ms-transform:scale3d(0.0,0.0,0.0);
+        -o-transform:scale3d(0.0,0.0,0.0);
         transform:scale3d(0.0,0.0,0.0);
     }
    to{
         opacity:0.2;
+        -webkit-transform:scale3d(1.0,1.0,1.0);
+        -moz-transform:scale3d(1.0,1.0,1.0);
+        -ms-transform:scale3d(1.0,1.0,1.0);
+        -o-transform:scale3d(1.0,1.0,1.0);
+        transform: scale3d(1.0,1.0,1.0);
+    }
+}
+@-moz-keyframes ripple{
+    from{
+        opacity:0;
+        -webkit-transform:scale3d(0.0,0.0,0.0);
+       -moz-transform:scale3d(0.0,0.0,0.0);
+        -ms-transform:scale3d(0.0,0.0,0.0);
+        -o-transform:scale3d(0.0,0.0,0.0);
+        transform:scale3d(0.0,0.0,0.0);
+    }
+   to{
+        opacity:0.2;
+        -webkit-transform:scale3d(1.0,1.0,1.0);
+        -moz-transform:scale3d(1.0,1.0,1.0);
+        -ms-transform:scale3d(1.0,1.0,1.0);
+        -o-transform:scale3d(1.0,1.0,1.0);
+        transform: scale3d(1.0,1.0,1.0);
+    }
+}
+@-o-keyframes ripple{
+    from{
+        opacity:0;
+        -webkit-transform:scale3d(0.0,0.0,0.0);
+       -moz-transform:scale3d(0.0,0.0,0.0);
+        -ms-transform:scale3d(0.0,0.0,0.0);
+        -o-transform:scale3d(0.0,0.0,0.0);
+        transform:scale3d(0.0,0.0,0.0);
+    }
+   to{
+        opacity:0.2;
+        -webkit-transform:scale3d(1.0,1.0,1.0);
+        -moz-transform:scale3d(1.0,1.0,1.0);
+        -ms-transform:scale3d(1.0,1.0,1.0);
+        -o-transform:scale3d(1.0,1.0,1.0);
         transform: scale3d(1.0,1.0,1.0);
     }
 }
 @keyframes ripple{
     from{
         opacity:0;
+        -webkit-transform:scale3d(0.0,0.0,0.0);
+       -moz-transform:scale3d(0.0,0.0,0.0);
+        -ms-transform:scale3d(0.0,0.0,0.0);
+        -o-transform:scale3d(0.0,0.0,0.0);
         transform:scale3d(0.0,0.0,0.0);
     }
     to{
         opacity:0.2;
+        -webkit-transform:scale3d(1.0,1.0,1.0);
+        -moz-transform:scale3d(1.0,1.0,1.0);
+        -ms-transform:scale3d(1.0,1.0,1.0);
+        -o-transform:scale3d(1.0,1.0,1.0);
         transform:scale3d(1.0,1.0,1.0);
     }
 }
 
 .core-tansiction.active .background{
     -webkit-animation: background 0.35s cubic-bezier(0.17,0.67,0.83,0.67) 0.10s forwards;
+    -moz-animation: background 0.35s cubic-bezier(0.17,0.67,0.83,0.67) 0.10s forwards;
+    -o-animation: background 0.35s cubic-bezier(0.17,0.67,0.83,0.67) 0.10s forwards;
     animation: background 0.35s cubic-bezier(0.17,0.67,0.83,0.67) 0.10s forwards;
 }
 @-webkit-keyframes background{
     from{
         opacity:0;
+        -webkit-transform:scale3d(0.1,0.1,0.0);
+        -moz-transform:scale3d(0.1,0.1,0.0);
+        -ms-transform:scale3d(0.1,0.1,0.0);
+        -o-transform:scale3d(0.1,0.1,0.0);
         transform:scale3d(0.1,0.1,0.0);
     }
    to{
         opacity:1.0;
+        -webkit-transform:scale3d(1.0,1.0,1.0);
+        -moz-transform:scale3d(1.0,1.0,1.0);
+        -ms-transform:scale3d(1.0,1.0,1.0);
+        -o-transform:scale3d(1.0,1.0,1.0);
+        transform: scale3d(1.0,1.0,1.0);
+    }
+}
+@-moz-keyframes background{
+    from{
+        opacity:0;
+        -webkit-transform:scale3d(0.1,0.1,0.0);
+        -moz-transform:scale3d(0.1,0.1,0.0);
+        -ms-transform:scale3d(0.1,0.1,0.0);
+        -o-transform:scale3d(0.1,0.1,0.0);
+        transform:scale3d(0.1,0.1,0.0);
+    }
+   to{
+        opacity:1.0;
+        -webkit-transform:scale3d(1.0,1.0,1.0);
+        -moz-transform:scale3d(1.0,1.0,1.0);
+        -ms-transform:scale3d(1.0,1.0,1.0);
+        -o-transform:scale3d(1.0,1.0,1.0);
+        transform: scale3d(1.0,1.0,1.0);
+    }
+}
+@-o-keyframes background{
+    from{
+        opacity:0;
+        -webkit-transform:scale3d(0.1,0.1,0.0);
+        -moz-transform:scale3d(0.1,0.1,0.0);
+        -ms-transform:scale3d(0.1,0.1,0.0);
+        -o-transform:scale3d(0.1,0.1,0.0);
+        transform:scale3d(0.1,0.1,0.0);
+    }
+   to{
+        opacity:1.0;
+        -webkit-transform:scale3d(1.0,1.0,1.0);
+        -moz-transform:scale3d(1.0,1.0,1.0);
+        -ms-transform:scale3d(1.0,1.0,1.0);
+        -o-transform:scale3d(1.0,1.0,1.0);
         transform: scale3d(1.0,1.0,1.0);
     }
 }
 @keyframes background{
     from{
         opacity:0;
+        -webkit-transform:scale3d(0.1,0.1,0.0);
+        -moz-transform:scale3d(0.1,0.1,0.0);
+        -ms-transform:scale3d(0.1,0.1,0.0);
+        -o-transform:scale3d(0.1,0.1,0.0);
         transform:scale3d(0.1,0.1,0.0);
     }
     to{
         opacity:1.0;
+        -webkit-transform:scale3d(1.0,1.0,1.0);
+        -moz-transform:scale3d(1.0,1.0,1.0);
+        -ms-transform:scale3d(1.0,1.0,1.0);
+        -o-transform:scale3d(1.0,1.0,1.0);
         transform:scale3d(1.0,1.0,1.0);
     }
 }
 
 .core-tansiction.active .scroller{
     -webkit-animation: scroller 0.20s ease-in 0.45s forwards;
+    -moz-animation: scroller 0.20s ease-in 0.45s forwards;
+    -o-animation: scroller 0.20s ease-in 0.45s forwards;
     animation: scroller 0.20s ease-in 0.45s forwards;
 }
 @-webkit-keyframes scroller{
+    from{
+        opacity:0;
+    }
+   to{
+        opacity:1.0;
+    }
+}
+@-moz-keyframes scroller{
+    from{
+        opacity:0;
+    }
+   to{
+        opacity:1.0;
+    }
+}
+@-o-keyframes scroller{
     from{
         opacity:0;
     }
@@ -732,6 +862,7 @@ button.paper-fab:hover + label.label-button{
 }
 #linkUtil{
     margin-left:0;
+    width:53%;
 }
 #partneship{
     display:block;
@@ -762,6 +893,22 @@ button.paper-fab:hover + label.label-button{
 }
 .icon i{
     font-size:18px;
+}
+.icon.sermetra{
+    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-position:-8.6px -105px;
+}
+.icon.unasca{
+    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-position:-9.9px -139.9px;
+}
+.icon.cna{
+    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-position:-9.9px -176px;
+}
+.icon.mctc{
+    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-position:-6.6px -211px;
 }
 .icon.generali{
     background-image:url("resources/icon/partnship/friendLogo.png");

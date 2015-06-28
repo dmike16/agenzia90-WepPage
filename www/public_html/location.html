@@ -16,41 +16,69 @@
                   <img class="site-logo-image" src="resources/Logo90s.svg" alt="90 s.r.l.s"/>
         </a>
           <nav class="bar fixed">
-                <dl class="nav-main" role="tablist">
-                    <dt id="tab2" tabindex="0" role="tab" aria-expanded="false">
-                        <a class="services" href="services.html"> Servizi </a>
-                    </dt>
-                    <dt id="tab3" tabindex="0" role="tab" aria-controls="pannel3" aria-expanded="false">
-                        <a class="pos" href="#" onclick="disableDefaultAction(event)">Dove Siamo<i class="icon-caret-down"></i></a>
-                    </dt>
-                    <div id="pannel3" class="pannell" role="tabpanel">
-                        <dd>
-                            <a href="location.html"><i class="fa fa-map-marker left-icon"></i>Map</a>
-                            <a class="nav-main-last" href="navigator.html"><i class="fa fa-location-arrow left-icon"></i>Come Raggiungerci</a>
-                        </dd>
+            <a class="paper-link" href="services.html"> Servizi </a>
+                 <div id="tab3" class="paper-dropdown-menu relative app-bar" tabindex="0" role="tab" aria-controls="pannel3" aria-expanded="false" horizontal>
+                    <div class="label">Dove Siamo</div>
+                    <div class="icon"><i class="icon-caret-down"></i></div>
+                    <div id="pannel3" class="paper-dropdown core-tansiction" halign="right" tabindex="-1" role="tabpanel" style="outline:none;display:none;">
+                        <div class="ripple"></div>
+                        <div class="background fit" style="-webkit-transform-origin: 100% 0% 0px; transform-origin: 100% 0% 0px;">
+                            <div class="shadow fit bs-zLevel-1"></div>
+                        </div>
+                        <div class="scroller relative" style="-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;">
+                            <div class="menu deep">
+                                <div class="paper-item" tabindex="0">
+                                    <div class="button-content">
+                                    <a href="location.html"><i class="fa fa-map-marker left-icon"></i>Map</a>
+                                    </div>
+                                </div>
+                                <div class="paper-item" tabindex="0">
+                                    <div class="button-content">
+                                        <a class="nav-main-last" href="navigator.html"><i class="fa fa-location-arrow left-icon"></i>Come Raggiungerci</a>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
-                    <dt id="tab4" tabindex="0" role="tab" aria-controls="pannel4" aria-expanded="false">
-                        <a class="soc" href="#" onclick="disableDefaultAction(event)">Social<i class="icon-caret-down"></i></a>
-                    </dt>
-                    <div id="pannel4" class="pannell" role="tabpanel">
-                        <dd>
-                            <a href="https://www.facebook.com/90srls" target="_blank"><i class="fa fa-facebook-official left-icon"></i>Facebook</a>
-                            <a class="nav-main-last" href="https://plus.google.com/b/112281711139690699166/112281711139690699166/posts" target="_blank"><i class="fa fa-google-plus-square left-icon"></i>Google+</a>
-                        </dd>
+                </div>
+            </div>
+            <div id="tab4" class="paper-dropdown-menu relative app-bar" tabindex="0" role="tab" aria-controls="pannel4" aria-expanded="false" horizontal> 
+                        <div class="label">Social</div>
+                        <div class="icon"><i class="icon-caret-down"></i></div>
+                        <div id="pannel4" class="paper-dropdown core-tansiction" halign="right" tabindex="-1" role="tabpanel" style="outline:none;display:none;">
+                        <div class="ripple"></div>
+                        <div class="background fit" style="-webkit-transform-origin: 100% 0% 0px; transform-origin: 100% 0% 0px;">
+                            <div class="shadow fit bs-zLevel-1"></div>
+                        </div>
+                        <div class="scroller relative" style="-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;">
+                            <div class="menu">
+                                <div class="paper-item" tabindex="0">
+                                    <div class="button-content">
+                                        <a href="https://www.facebook.com/90srls" target="_blank"><i class="fa fa-facebook-official left-icon"></i>Facebook</a>
+                                    </div>
+                                </div>
+                                <div class="paper-item">
+                                    <div class="button-content">
+                                        <a class="nav-main-last" href="https://plus.google.com/b/112281711139690699166/112281711139690699166/posts" target="_blank"><i class="fa fa-google-plus-square left-icon"></i>Google+</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                     <dt id="tab5" tabindex="0" role="tab" aria-expanded="false">
-                        <a class="link" href="#linkUtil"> Link Utili </a>
-                    </dt>
-                </dl>
+                </div>
+            <a class="paper-link" href="#linkUtil"> Link Utili </a>
              <div class="search">
-                <div class="paper-icon-button">
-                    <div class="icon" role="img">
+                <div class="paper-icon-button" role="button" tabindex="0" aria-label="search">
+                    <div class="paper-ripple fit">
+                        <div class="bg"></div>
+                        <div class="waves"></div>
+                    </div>
+                    <div class="icon" aria-label="search" role="img">
                         <i class="fa fa-search"></i>
                     </div>
                 </div>
                     <form action="https://www.google.com/search" target="_blank">
                         <input id="search-google" type="text" name="q" value="" placeholder="cerca con google"  autocomplete="off" ></input>
-                    <input id="reset-buttont" type="reset" value="x"></input>
+                        <input id="reset-buttont" type="reset" value="x"></input>
                     </form>
                 </div>
             </nav>
@@ -207,6 +235,7 @@
                  <div class="paper-button"  role="button" tabindex="0">
                     <div class="shadow fit bs-zLevel-0 "></div>
                     <div class="button-content">
+                        <div class="icon sermetra"></div>
                             Sermetra
                     </div>
                 </div>
@@ -215,6 +244,7 @@
                  <div class="paper-button"  role="button" tabindex="0">
                     <div class="shadow fit bs-zLevel-0 "></div>
                     <div class="button-content">
+                         <div class="icon unasca"></div>
                             Unasca
                     </div>
                 </div>
@@ -223,6 +253,7 @@
                  <div class="paper-button"  role="button" tabindex="0">
                     <div class="shadow fit bs-zLevel-0 "></div>
                     <div class="button-content">
+                         <div class="icon cna"></div>
                             C.N.A
                     </div>
                 </div>
@@ -231,6 +262,7 @@
                  <div class="paper-button"  role="button" tabindex="0">
                     <div class="shadow fit bs-zLevel-0 "></div>
                     <div class="button-content">
+                        <div class="icon mctc"></div>
                             Motorizzazione
                     </div>
                 </div>

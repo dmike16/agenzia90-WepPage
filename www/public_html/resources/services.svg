@@ -275,6 +275,70 @@
        x2="682.28564"
        y2="1068.7906"
        gradientUnits="userSpaceOnUse" />
+    <filter
+       id="filter3058"
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow">
+      <feFlood
+         id="feFlood3060"
+         flood-opacity="0.4"
+         flood-color="rgb(0,0,0)"
+         result="flood" />
+      <feComposite
+         id="feComposite3062"
+         in2="SourceGraphic"
+         in="flood"
+         operator="in"
+         result="composite1" />
+      <feGaussianBlur
+         id="feGaussianBlur3064"
+         in="composite"
+         stdDeviation="7.4"
+         result="blur" />
+      <feOffset
+         id="feOffset3066"
+         dx="3.5"
+         dy="0"
+         result="offset" />
+      <feComposite
+         id="feComposite3068"
+         in2="offset"
+         in="SourceGraphic"
+         operator="over"
+         result="composite2" />
+    </filter>
+    <filter
+       id="filter3070"
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow">
+      <feFlood
+         id="feFlood3072"
+         flood-opacity="0.37"
+         flood-color="rgb(0,0,0)"
+         result="flood" />
+      <feComposite
+         id="feComposite3074"
+         in2="SourceGraphic"
+         in="flood"
+         operator="in"
+         result="composite1" />
+      <feGaussianBlur
+         id="feGaussianBlur3076"
+         in="composite"
+         stdDeviation="4"
+         result="blur" />
+      <feOffset
+         id="feOffset3078"
+         dx="1.8"
+         dy="0"
+         result="offset" />
+      <feComposite
+         id="feComposite3080"
+         in2="offset"
+         in="SourceGraphic"
+         operator="over"
+         result="composite2" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -315,7 +379,7 @@
      transform="translate(0,-351)"
      sodipodi:insensitive="true">
     <rect
-       style="fill:#eeeeee;fill-opacity:1;fill-rule:nonzero;stroke:#eeeff0;stroke-width:1.39189422;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;filter:url(#filter4459)"
+       style="fill:#eeeeee;fill-opacity:1;fill-rule:nonzero;stroke:#eeeff0;stroke-width:1.39189422;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;filter:url(#filter3070)"
        id="rect3843"
        width="983.08185"
        height="267.26587"
@@ -335,7 +399,7 @@
            style="fill:#0000ff"
            inkscape:connector-curvature="0" />
         <polygon
-           points="101.51,11.9254 135.013,81.1275 125.77,81.1275 101.435,30.8633 74.9901,81.1276 65.7186,81.1276 "
+           points="125.77,81.1275 101.435,30.8633 74.9901,81.1276 65.7186,81.1276 101.51,11.9254 135.013,81.1275 "
            id="_256049576"
            style="fill:#00ff00" />
         <path
@@ -412,22 +476,22 @@
      id="layer1"
      transform="translate(0,-752.36218)">
     <rect
-       style="fill:url(#linearGradient4594);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-opacity:1"
+       style="fill:url(#linearGradient4594);fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect4584"
        width="194.28572"
        height="95.714287"
        x="189.14282"
        y="939.505" />
     <rect
-       style="opacity:0.72363639999999996;fill:#525356;fill-opacity:1;stroke:none;filter:url(#filter4527)"
+       style="opacity:0.7236364;fill:#525356;fill-opacity:1;stroke:none;filter:url(#filter4527)"
        id="rect4533"
        width="982.30408"
        height="19.009001"
        x="15.006191"
        y="616.8501"
-       transform="matrix(1,0,0,2.3205419,2,-442.05102)" />
+       transform="matrix(1,0,0,2.4259669,2,-526.06163)" />
     <rect
-       style="opacity:1;fill:url(#linearGradient4610);fill-opacity:1;fill-rule:nonzero;stroke:none"
+       style="fill:url(#linearGradient4610);fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect4546"
        width="194.28572"
        height="95.714287"
@@ -442,7 +506,7 @@
        style="fill:url(#linearGradient4602);fill-opacity:1;fill-rule:nonzero;stroke:none" />
     <text
        xml:space="preserve"
-       style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:1.51000011000000001px;word-spacing:0px;fill:#fdfffe;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:1.51000011px;word-spacing:0px;fill:#fdfffe;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
        x="204.05081"
        y="967.50934"
        id="text4612"
