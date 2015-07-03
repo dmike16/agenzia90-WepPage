@@ -1,5 +1,5 @@
 (function () {
-    var tmp = UtilityBuild(['dmUtil'],function(obj){
+    var tmp = UtilityBuild(['dmUtil','dmPaper'],function(obj){
         "use strict";
         //
         // Dependencies
@@ -40,10 +40,32 @@
         ,pag_id = 0
         ,o_date = null
         ,pre_scroll = obj.global.scrollY
-        ,panell = null
-        ,appBar = {};
+        ,appBar = {}
+        ,paper_buttons = []
+        ,rp = null
+        ,ele_a
+        ,to = 0.06
+        ,rp2
+        ,rp_id = 0;
 
+        function step (d) {
+            ele_a.style.opacity = to*d + "";
+        }
+        function ending () {}
+        rp = obj.AnimateConfig();
+        rp.setDuration(280);
+        rp.setTiming('cubicBezier(0.2,1.0,0.1,0.6)');
+        rp.setCore(step);
+        rp.setEnding(ending);
+        rp = obj.AnimateObject(rp);
+        rp2 = obj.AnimateConfig();
+        rp2.setDuration(450);
+        rp2.setCore(function(){});
+        rp2.setEnding(function(){ele_a.setAttribute('style','ocapity:0');});
+        rp2 = obj.AnimateObject(rp2);
         // Structure app bar
+        appBar.main = cssSelector(".bar");
+        appBar.search = sch;
         appBar.id = 0;
         appBar.pannel_on = false;
         appBar.search_on = false;
@@ -63,7 +85,7 @@
         appBar.pannel4.ripple = pan2.querySelector(".ripple");
         appBar.pannel4.background = pan2.querySelector(".background");
 
-
+        
         appBar.openPannel = function openPannel(str) {
             var scroller = appBar[str].scroller
             ,ripple = appBar[str].ripple
@@ -87,24 +109,66 @@
             scroller.ele.removeAttribute("style");
             crossClassList(appBar[str]).remove("active");
         };
-        appBar.handlerEvent = function handlerEvent(ele) {
-            var aria_controls = ele.getAttribute("aria-controls"),tmp_id = appBar.id;
-            obj.animatedFrame.cancel(tmp_id);
+        appBar.handlerEvent = function handlerEvent(str) {
             if (appBar.pannel_on) {
-                tmp_id = obj.animatedFrame.request(function(){
-                    appBar.closePannel(appBar.pannel_active);
-                });
-                if (!appBar.pannel_active.match(aria_controls)) {
-                    tmp_id = obj.animatedFrame.request(function(){
-                        appBar.openPannel(aria_controls);
-                    });
+                appBar.closePannel(appBar.pannel_active);
+                if (!appBar.pannel_active.match(str)) {
+                    appBar.openPannel(str);
                 }
             } else {
-                tmp_id = obj.animatedFrame.request(function(){
-                    appBar.openPannel(aria_controls);
-                });
+                    appBar.openPannel(str);
             }
         };
+        appBar.showSearch = function showSearch() {
+            if(!appBar.search_on) {
+                crossClassList(appBar.main).add('search-on');
+                crossClassList(appBar.search).add('active');
+                appBar.search_on = true;
+            }
+        };
+        appBar.closeSearch = function closeSearch() {
+                crossClassList(appBar.main).remove('search-on');
+                crossClassList(appBar.search).remove('active');
+                appBar.search_on = false;
+        };
+        //Paper Buttons
+        paper_buttons[0] = ({
+            main: cssSelectorAll(".paper-button")[0],
+            init: function () {
+                this.bg = this.main.querySelector(".bg");
+                this.shadow_level = this.main.querySelector(".shadow");
+                this.waves = this.main.querySelector(".waves");
+                delete(this.init);
+                return this;
+            }  
+        }.init());
+        aEventListener(paper_buttons[0].main,'mousedown',function(e) {
+            var tmp = crossClassList(paper_buttons[0].shadow_level);
+            tmp.remove("bs-zLevel-1");
+            tmp.add("bs-zLevel-2");
+            e.currentTarget.setAttribute('pressed','');
+            e.currentTarget.setAttribute('active','');
+            paper_buttons[0].bg.setAttribute('style','opacity:0;background-color:rgb(0,0,0);');
+            ele_a = paper_buttons[0].bg;
+            obj.animatedFrame.cancel(rp_id);
+            rp.startTimeCount();
+            rp_id = obj.animatedFrame.request(rp.animate.bind(rp));
+        });
+        aEventListener(paper_buttons[0].main,'mouseup',function(e) {
+            var tmp = crossClassList(paper_buttons[0].shadow_level);
+            tmp.remove("bs-zLevel-2");
+            tmp.add("bs-zLevel-1");
+            e.currentTarget.removeAttribute('pressed');
+            e.currentTarget.removeAttribute('active');
+            rp2.startTimeCount();
+            obj.animatedFrame.request(rp2.animate.bind(rp2));
+           // obj.animatedFrame.cancel(rp_id);
+           // paper_buttons[0].bg.setAttribute('style','opacity:0;');
+        });
+        aEventListener(paper_buttons[0].main,'contextmenu',function(e){
+            crossClassList(paper_buttons[0].shadow_level).add("bs-zLevel-1");
+            crossClassList(paper_buttons[0].shadow_level).remove("bs-zLevel-2");
+        });
         // Animations Core function
         //
  /*       
@@ -203,25 +267,53 @@
         // Add Event Listenrs
         aEventListener(jb, 'click', gestureEvent);
         aEventListener(mask_modal, 'click', gestureEvent);
-        aEventListener(obj.global, 'scroll', gestureEvent);
+        aEventListener(obj.global, "scroll", gestureEvent);
 
         //Event Gesture app-bar
         //-*- Open pannel in main nav bar
         //-*- Open serch form in app bar
-        aEventListener(obj.doc,'click',function(e) {
-            var target =  e.target.parentElement;
-            if(crossClassList(target).contains("paper-dropdown-menu")) {
-                appBar.handlerEvent(target);
+        aEventListener(appBar.pannel3.parentElement,'mouseup',function(e) {
+            var tmp_id = appBar.id;    
+            obj.animatedFrame.cancel(tmp_id);
+            function wrappH () {
+                appBar.handlerEvent('pannel3');
+            }
+            tmp_id = obj.animatedFrame.request(wrappH);
+            e.currentTarget.removeAttribute("pressed");
+            e.currentTarget.removeAttribute('active');
+/*if(target.getAttribute('aria-label') === 'search') {
+                if(appBar.pannel_on) {
+                    appBar.closePannel(appBar.pannel_active);
+                }
+                appBar.showSearch();
                 e.preventDefault();
+                e.stopPropagation();
+            } else if(appBar.search_on) {
+                if(target.nodeName !== 'FORM') {
+                    appBar.closeSearch();
+                }
                 e.stopPropagation();
             } else if(appBar.pannel_on) {
                 appBar.closePannel(appBar.pannel_active);
                 e.stopPropagation();
-            } else {
+            }  else {
                 return;
+            }*/
+        });
+        aEventListener(appBar.pannel3.parentElement,'mousedown',function(e) {
+            e.currentTarget.setAttribute('pressed','');
+            e.currentTarget.setAttribute('active','');
+        });
+        aEventListener(appBar.pannel3,'mouseup',function(e){
+            e.stopPropagation();
+        });
+        aEventListener(obj.doc,'click', function(e) {
+            if(appBar.pannel_on) { 
+                appBar.closePannel(appBar.pannel_active);
+            } else if (appBar.search_on) {
+                appBar.closeSearch();
             }
         });
-        
         /*if (card_prev !== null) {
             card_next = cssSelector(".cardslide-next");
             card_frame = cssSelector(".resources-card").getElementsByTagName("ul")[0];
@@ -276,8 +368,9 @@
         jb_wrapper = null;
         pan1=null;
         pan2=null;
-
-        console && console.log("%c90 s r l s\n%cPratiche Auto\nTel 06 01905227","font-size:1.5em;color:#4558c9;", "color:#d61a7f;font-size:1em;");
+        obj.PaperMaker.factory('button');
+        console.log(obj.PaperMaker.paperElement);
+        console && console.log("%c90 s r l s\n%cPratiche Auto\nTel 06 01905227","font-size:1.5em;color:#1945D5;", "color:#14BD4C;font-size:1em;");
 
         });
 }());

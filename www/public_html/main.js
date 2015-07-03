@@ -37,7 +37,7 @@ var UtilityBuild = (function () {
             return fbound;
 		};
 	}
-}());
+    }());
     /**
     * It's a collection of events utilities
     *
@@ -609,7 +609,87 @@ var UtilityBuild = (function () {
             request: function (callback) { rqAF(callback); },
             cancel: function (id) { cnAF(id); }
 		};
-	}()); 
+	}());
+  	/**
+    * It's a class that define the confgi animation object. 
+    * Simple call the function and you'll have an  object to pass to AnimateObject constructor. 
+    *
+    * 
+    * @class AnimateConfig(Singleton)
+    * @constructor
+    * @param{Integer} Rappresent the delay of the aniamtion
+    * @param{Integer} Rappresent the duration
+    * @param{String|Function} Rappresent the built-in progression function. if it's a function object will be used as 
+    * timing function
+    * @param{Function} Rappresent the function that handles the animation
+    * @param{Function} Rappresent the ending function optional
+    *
+    */
+    _self.AnimateConfig = (function (){
+        var singleton;
+        function AnimateConfig() {
+            if (singleton) {
+                return singleton;
+            }
+            if (!(this instanceof AnimateConfig)) {
+                return new AnimateConfig();
+            }
+            var _delay = 0
+            ,_duration = 150
+            ,_timing = 'linear'
+            ,_core = function () {}
+            ,_ending = function () {};
+
+            singleton = this;
+
+            singleton.getDelay = function getDelay(){
+                return _delay;
+            };
+            singleton.setDelay = function setDelay(value) {
+                if (typeof value !== 'number'){
+                    throw 'Delay Must Be a Number';
+                }
+                _delay = value;
+            };
+            singleton.getDuration = function getDuration() {
+                return _duration;
+            };
+            singleton.setDuration = function setDuration(value) {
+                if (typeof value !== 'number'){
+                    throw 'Duration Must Be a Number';
+                }
+                _duration = value;
+            };
+            singleton.getTiming = function getTiming () {
+                return _timing;
+            };
+            singleton.setTiming = function setTiming(str) {
+                if (typeof str !== 'string'){
+                    throw 'Timing Must Be a string';
+                }
+                _timing = str;
+            };
+            singleton.getCore = function setCore() {
+                return _core;
+            };
+            singleton.setCore = function setCore(func) {
+                if (typeof func !== 'function'){
+                    throw 'Core Must Be a Function';
+                }
+                _core = func;
+            };
+            singleton.getEnding = function getEnding() {
+                return _ending;
+            };
+            singleton.setEnding = function setEnding(func) {
+                if (typeof func !== 'function'){
+                    throw 'Ending Must Be a Function';
+                }
+                _ending = func;
+            };
+        }
+        return AnimateConfig;
+    }());
 	/**
     * It's a class that define the animation object. 
     * Simple call the function and you'll have an animation object.
@@ -617,11 +697,7 @@ var UtilityBuild = (function () {
     * 
     * @class AnimateObject
     * @constructor
-    * @param{Integer} Rappresent the delay of the aniamtion
-    * @param{Integer} Rappresent the duration
-    * @param{String|Function} Rappresent the built-in progression function. if it's a function object will be used as a 
-    * the progression function
-    * @param{Function} Rappresent the function that handles the animation
+    * @param{Object} A configuration object with all the required data for the animation
     *
     */
 	_self.AnimateObject = (function () {
@@ -634,65 +710,87 @@ var UtilityBuild = (function () {
 		,_cubic = function cubic(p) {
 			return Math.pow(p,3);
 		}
+        ,a,b,c,d
+        ,_cubicBezier = function cubicBezier(p) {
+            return (Math.pow(p,3)*a + Math.pow(p,2)*b + c*p + d -d)/(a + b + c);
+        }
 		,_circ = function circ(p) {
 			return 1-Math.sin(Math.acos(p));
 		}
 		,_back = function back(p,x) {
 			return Math.pow(p,2)*((x+1)*p-x);
 		}
-		,AnimateObject = function AnimateObject(_delay, _duration, _delta, _step, _closureAct) {
-			if (!(this instanceof AnimateObject)) {
-				return new AnimateObject(_delay, _duration, _delta, _step, _closureAct);
+		,AnimateObject = function AnimateObject(config) {
+            if (!(this instanceof AnimateObject)) {
+				return new AnimateObject(config);
 			}
-            var start = 0;
+            var _config = config || _self.AnimateConfig();
+			var start = 0;
             /** It's the delay of the animation
              *
              * @property delay
              * @type Integer
              */
-			this.delay = _delay;
+            this.delay = _config.getDelay();
             /** It's the duration of the animation
              *
              * @property duration
              * @type Integer
              */
-			this.duration = _duration;
+            this.duration = _config.getDuration();
             /** It's the progression method of the animation
              *
-             * @property delta
+             * @property timing
              * @type String|Function
              */
-			if (typeof _delta === "string" || typeof _delta === "undefined"){
-				switch (_delta) {
+            if (typeof _config.getTiming() === "string"){
+                var splitArray = _config.getTiming().split('(');
+				switch (splitArray[0]) {
 					case 'linear':
-						this.delta = _linear;
+						this.timing = _linear;
 						break;
 					case 'quadratic':
-						this.delta = _quadratic;
+						this.timing = _quadratic;
 						break;
 					case 'cubic':
-						this.delta = _cubic;
+						this.timing = _cubic;
 						break;
+                    case 'cubicBezier':
+                        if (splitArray[1]){
+                            var point_value = splitArray[1].split(','),p = [];
+                            for(var i = 0, len = point_value.length; i < len ; i++) {
+                                p[i] = parseFloat(point_value[i]);
+                            }
+                            d = p[0];
+                            c = 3.0 * (p[1]-d);
+                            b= 3.0 * (p[2]-p[1]) - c;
+                            a= p[3] - d - b - c;
+                            this.timing = _cubicBezier;
+                        } else {
+                            console.log('Few arguments for cubicBezier');
+                            this.timing = _linear;
+                        }
+                        break;
 					case 'circ':
-						this.delta =_circ;
+						this.timing =_circ;
 						break;
 					case 'back':
-						this.delta = _back;
+						this.timing = _back;
 						break;
 					default: 
-						this.delta = _linear;
+						this.timing = _linear;
 						break;
 					}
 			} else {
-				this.delta = _delta;				
+                this.timing = _config.geTiming();				
 			}
             /** It's the function thas handles the animation
              *
              * @property step
              * @type Function
              */
-			this.step = _step;
-            this.closureAct = _closureAct || function () {};
+            this.step = _config.getCore();
+            this.ending = _config.getEnding();
             /** It's the time passed
              * 
              * @property timePassed
@@ -714,22 +812,21 @@ var UtilityBuild = (function () {
                 return start;
             };   
 		}
-        , AnimateObjectProto = AnimateObject.prototype = [];
+        , AnimateObjectProto = AnimateObject.prototype;
         AnimateObjectProto.animate = function animate(time_stamp) {
             if (arguments.length !== 1) {
-                console.log("Error can't pass argument to this function");
-                return ;
+                throw "Error can't pass argument to this function";
             }
             this.timePassed = time_stamp - this.getStartTime();
             this.progress = this.timePassed / this.duration;
             if (this.progress > 1) {
                 this.progress = 1;
             }
-            var delta = this.delta(this.progress);
-            this.step(delta);
+            var timing = this.timing(this.progress);
+            this.step(timing);
             if (this.progress === 1) {
                 this.progress  = 0;
-                this.closureAct();
+                this.ending();
                 _self.animatedFrame.cancel(id);
             } else {
                 id = _self.animatedFrame.request(this.animate.bind(this));
@@ -739,6 +836,55 @@ var UtilityBuild = (function () {
 		return AnimateObject;
 	}());
 } ;
+/**
+ * This module rappresent all the function to gesture my widgets.
+ *
+ * @module dmPaper
+ */
+modules.dmPaper = function dmPaper(_self) {
+    _self.PaperMaker = (function(){
+        function PaperMaker() {}
+        
+        PaperMaker.gesturePaper = {
+            button: [],
+            fab_button: [],
+            scroll_area: null,
+            version: '0.5'
+        };
+        
+        PaperMaker.prototype.paperVersion = function (){
+            return PaperMaker.gesturePaper.version;
+        };
+
+        PaperMaker.factory = function factory(type) {
+            if((this instanceof factory)) {
+                throw "It's not a constructor";
+            }
+            var constr = type
+            ,newPaper;
+
+            if (typeof PaperMaker[constr] !== 'function') {
+                throw {
+                    name: "Error",
+                    message: constr + "doesn't exist"
+                };
+            }
+
+            if (typeof PaperMaker[constr].prototype.paperVersion !== 'function') {
+                PaperMaker[constr].prototype = Object.create(PaperMaker.prototype);
+            }
+
+            newPaper = new PaperMaker[constr]();
+            PaperMaker.gesturePaper[constr].push(newPaper);
+        };
+
+        PaperMaker.button = function () {
+            this.paper_type = 'button';
+        };
+
+        return { factory: PaperMaker.factory, paperElement: PaperMaker.gesturePaper};
+    }());
+};
 
 // Define SandBox constructor
     _UtilityBuild = function _UtilityBuild() {
