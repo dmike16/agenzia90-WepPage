@@ -695,6 +695,9 @@ button::-moz-focus-inner{
 .paper-fab.green{
     background:#259b24;
 }
+.paper-fab.blueH {
+    background-color:#26C6DA;
+}
 .paper-fab[dynamic]{
     opacity: 0.003;
     -webkit-transition: opacity 150ms cubic-bezier(.4,0,1,1);
@@ -827,6 +830,9 @@ a .paper-button {
 
 .b-icon{
     background-image:url(resources/icon/navBar/newsIcon.png);
+}
+.b-icon.go-inside{
+    background-image:url(resources/icon/ulElement/buttonInside.svg);
 }
 button.paper-fab:hover + label.label-button{
     opacity:1;
@@ -1241,6 +1247,12 @@ hr{
     background-repeat:no-repeat;
     position:absolute;
     width:49%;
+}
+.photo-crop .paper-fab.fit {
+    top: 475px;
+    left: 323px;
+    width:50px;
+    height:50px;
 }
 .section-base .photo-crop{
     height:570px;
