@@ -843,24 +843,110 @@ var UtilityBuild = (function () {
  */
 modules.dmPaper = function dmPaper(_self) {
     _self.PaperMaker = (function(){
+        var papersActive = 0
+        , gestureEvent = {
+            buttonEvent: function handlerEvent(e){
+                switch(e.type){
+                case 'mousedown':
+                    this.mouseIsDown = true;
+                    e.currentTarget.setAttribute('pressed','');
+                    e.currentTarget.setAttribute('active','');
+                    break;
+                case 'mouseup':
+                    this.mouseIsDown = false;
+                    e.currentTarget.removeAttribute('pressed');
+                    e.currentTarget.removeAttribute('active');
+                    break;
+                default:
+                    return;
+                }
+                _self.animatedFrame.cancel(this.anID);
+                this.anID = _self.animatedFrame.request(this.update.bind(this));
+            },
+            buttonUpdate : function () {
+                var tmp = _self.ClassList(this.shadow_level);
+                if (this.mouseIsDown) {
+
+                    tmp.remove("bs-zLevel-1");
+                    tmp.add("bs-zLevel-2");
+                    
+                    this.bg.setAttribute('style','opacity:0;background-color:rgb(0,0,0);');
+                
+                    this.dAnimation.startTimeCount();
+                    this.anID = _self.animatedFrame.request(this.dAnimation.animate.bind(this.dAnimation));
+                } else if(!this.mouseIsDown) {
+                    tmp.remove("bs-zLevel-2");
+                    tmp.add("bs-zLevel-1");
+
+                    
+                    this.upAnimation.startTimeCount();
+                    this.anID = _self.animatedFrame.request(this.upAnimation.animate.bind(this.upAnimation));
+
+                }
+            },
+            addHandler : function addHandler(evt_name,i) {
+                var _this = this;
+                _self.EventUtility.aboutHandler.addListener(this.paper_ele,evt_name,function (e){
+                    _this.handlerEvent.call(_this,e);
+                });
+            }
+        };
+        var PaperElemets = {
+            button: [],
+            buttonEvents : ['mousedown','mouseup','contextmenu'],
+        };
+        // Animation mousedown
+        function step(p) {
+            this.bg.style.opacity = 0.06 * p + "";
+        }
+        function ending() {}
+
+        // Animation mouseup
+        function endingUp() {
+            this.bg.setAttribute("style", "opacity:0");
+        }
+
         function PaperMaker() {}
         
-        PaperMaker.gesturePaper = {
-            button: [],
-            fab_button: [],
-            scroll_area: null,
-            version: '0.5'
-        };
+        PaperMaker.version = '0.5';
         
         PaperMaker.prototype.paperVersion = function (){
-            return PaperMaker.gesturePaper.version;
+            return PaperMaker.version;
         };
 
-        PaperMaker.factory = function factory(type) {
+        PaperMaker.prototype.initbutton = function initbutton(args) {
+            if (args.length === 0) {
+                    throw  "Need the top Paper Element";
+                }
+                var an_temp = _self.AnimateConfig() 
+                ,up_an = _self.AnimateConfig();
+
+                this.paper_ele = args[0];
+                this.bg = this.paper_ele.querySelector(".bg");
+                this.shadow_level = this.paper_ele.querySelector(".shadow");
+                this.waves = this.paper_ele.querySelector(".waves");
+
+                an_temp.setDuration(480);
+                an_temp.setTiming('cubicBezier(0.2,1.0,0.1,0.6)');
+                an_temp.setCore(step.bind(this));
+                an_temp.setEnding(ending);
+
+                this.dAnimation = _self.AnimateObject(an_temp);
+                
+                up_an.setDuration(450);
+                up_an.setCore(function(){});
+                up_an.setEnding(endingUp.bind(this));
+
+                this.upAnimation = _self.AnimateObject(up_an);
+            };
+
+        PaperMaker.factory = function factory() {
             if((this instanceof factory)) {
                 throw "It's not a constructor";
             }
-            var constr = type
+            var args  = Array.prototype.slice.call(arguments)
+            ,constr = args.shift()
+            ,init_func = 'init' + constr
             ,newPaper;
 
             if (typeof PaperMaker[constr] !== 'function') {
@@ -870,19 +956,48 @@ modules.dmPaper = function dmPaper(_self) {
                 };
             }
 
-            if (typeof PaperMaker[constr].prototype.paperVersion !== 'function') {
-                PaperMaker[constr].prototype = Object.create(PaperMaker.prototype);
+           if (typeof PaperMaker[constr].prototype.paperVersion !== 'function') {
+               PaperMaker[constr].prototype = Object.create(PaperMaker.prototype);
+               PaperMaker[constr].prototype.type = constr;
+               PaperMaker[constr].prototype.handlerEvent = gestureEvent[constr+'Event'];
+               PaperMaker[constr].prototype.update = gestureEvent[constr+'Update'];
+               PaperMaker[constr].prototype.addHandler = gestureEvent.addHandler;
+               gestureEvent = null;
             }
 
             newPaper = new PaperMaker[constr]();
-            PaperMaker.gesturePaper[constr].push(newPaper);
+            newPaper[init_func](args);
+            PaperElemets[constr].push(newPaper);
+            newPaper = null;
+            console.log(PaperElemets);
+        };
+        PaperMaker.factory.MakePaperLive = function () {
+            var buttons = PaperElemets.button
+            ,buttonEvents = PaperElemets.buttonEvents
+            ,b_lenght = buttons.length
+            ,i = b_lenght-1;
+
+            for(;i >= papersActive ; i--) {
+                buttons[i].addHandler(buttonEvents[0]);
+                buttons[i].addHandler(buttonEvents[1]);
+            }
+            
+            papersActive = b_lenght;
+
         };
 
         PaperMaker.button = function () {
-            this.paper_type = 'button';
-        };
+            this.paper_ele= null;
+            this.bg = null;
+            this.shadow_level = null;
+            this.waves = null;
+            this.mouseIsDown = false;
+            this.anID = 0;
+            this.dAnimation = null;
+            this.upAnimation = null;
+    };
 
-        return { factory: PaperMaker.factory, paperElement: PaperMaker.gesturePaper};
+        return PaperMaker.factory;
     }());
 };
 

@@ -53,7 +53,7 @@
         }
         function ending () {}
         rp = obj.AnimateConfig();
-        rp.setDuration(280);
+       rp.setDuration(280);
         rp.setTiming('cubicBezier(0.2,1.0,0.1,0.6)');
         rp.setCore(step);
         rp.setEnding(ending);
@@ -142,7 +142,7 @@
                 return this;
             }  
         }.init());
-        aEventListener(paper_buttons[0].main,'mousedown',function(e) {
+      /*  aEventListener(paper_buttons[0].main,'mousedown',function(e) {
             var tmp = crossClassList(paper_buttons[0].shadow_level);
             tmp.remove("bs-zLevel-1");
             tmp.add("bs-zLevel-2");
@@ -153,8 +153,8 @@
             obj.animatedFrame.cancel(rp_id);
             rp.startTimeCount();
             rp_id = obj.animatedFrame.request(rp.animate.bind(rp));
-        });
-        aEventListener(paper_buttons[0].main,'mouseup',function(e) {
+        });*/
+        /*aEventListener(paper_buttons[0].main,'mouseup',function(e) {
             var tmp = crossClassList(paper_buttons[0].shadow_level);
             tmp.remove("bs-zLevel-2");
             tmp.add("bs-zLevel-1");
@@ -164,7 +164,7 @@
             obj.animatedFrame.request(rp2.animate.bind(rp2));
            // obj.animatedFrame.cancel(rp_id);
            // paper_buttons[0].bg.setAttribute('style','opacity:0;');
-        });
+        });*/
         aEventListener(paper_buttons[0].main,'contextmenu',function(e){
             crossClassList(paper_buttons[0].shadow_level).add("bs-zLevel-1");
             crossClassList(paper_buttons[0].shadow_level).remove("bs-zLevel-2");
@@ -368,8 +368,8 @@
         jb_wrapper = null;
         pan1=null;
         pan2=null;
-        obj.PaperMaker.factory('button');
-        console.log(obj.PaperMaker.paperElement);
+        obj.PaperMaker('button',cssSelectorAll(".paper-button")[0]);
+        obj.PaperMaker.MakePaperLive();
         console && console.log("%c90 s r l s\n%cPratiche Auto\nTel 06 01905227","font-size:1.5em;color:#1945D5;", "color:#14BD4C;font-size:1em;");
 
         });
