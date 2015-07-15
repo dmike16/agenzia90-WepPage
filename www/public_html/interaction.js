@@ -142,66 +142,12 @@
                 return this;
             }  
         }.init());
-      /*  aEventListener(paper_buttons[0].main,'mousedown',function(e) {
-            var tmp = crossClassList(paper_buttons[0].shadow_level);
-            tmp.remove("bs-zLevel-1");
-            tmp.add("bs-zLevel-2");
-            e.currentTarget.setAttribute('pressed','');
-            e.currentTarget.setAttribute('active','');
-            paper_buttons[0].bg.setAttribute('style','opacity:0;background-color:rgb(0,0,0);');
-            ele_a = paper_buttons[0].bg;
-            obj.animatedFrame.cancel(rp_id);
-            rp.startTimeCount();
-            rp_id = obj.animatedFrame.request(rp.animate.bind(rp));
-        });*/
-        /*aEventListener(paper_buttons[0].main,'mouseup',function(e) {
-            var tmp = crossClassList(paper_buttons[0].shadow_level);
-            tmp.remove("bs-zLevel-2");
-            tmp.add("bs-zLevel-1");
-            e.currentTarget.removeAttribute('pressed');
-            e.currentTarget.removeAttribute('active');
-            rp2.startTimeCount();
-            obj.animatedFrame.request(rp2.animate.bind(rp2));
-           // obj.animatedFrame.cancel(rp_id);
-           // paper_buttons[0].bg.setAttribute('style','opacity:0;');
-        });*/
         aEventListener(paper_buttons[0].main,'contextmenu',function(e){
             crossClassList(paper_buttons[0].shadow_level).add("bs-zLevel-1");
             crossClassList(paper_buttons[0].shadow_level).remove("bs-zLevel-2");
         });
         // Animations Core function
         //
- /*       
-        function forwardSlideCard() {
-            card_left -= 940;
-            pag_id += 1;
-                   
-            if (card_left <= -presentation_width) {
-                card_left  = 0;
-            }
-            crossClassList(pag_markers[pag_id-1]).remove("active");
-            if (pag_id > pag_markers_len-1) {
-                pag_id = 0;
-            }
-            crossClassList(pag_markers[pag_id]).add("active");
-            card_frame.style.transform =   "matrix(1,0,0,1,"+card_left+",0)";}
-        
-        function backwardCard() {
-            if (card_left >= 0) {
-                card_left  = -presentation_width;
-            }
-            card_left += 940;
-            crossClassList(pag_markers[pag_id]).remove("active");
-            pag_id -= 1;
-
-            if (pag_id < 0) {
-                pag_id = pag_markers_len -1;
-            }
-
-            crossClassList(pag_markers[pag_id]).add("active");
-                 
-            card_frame.style.transform =  "matrix(1,0,0,1,"+card_left+",0)";}
-*/        
         function requestTick() {
             if (!ticking) {
                 if (!scroll_flag && pre_scroll !== 0) {

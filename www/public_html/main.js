@@ -606,7 +606,7 @@ var UtilityBuild = (function () {
 			};
 		}
 		return {
-            request: function (callback) { rqAF(callback); },
+            request: function (callback) { return rqAF(callback); },
             cancel: function (id) { cnAF(id); }
 		};
 	}());
@@ -805,6 +805,7 @@ var UtilityBuild = (function () {
              * @default 0
              */
             this.progress = 0;
+            this.id = 0;
             this.startTimeCount = function () {
                 start = performance.now() ? performance.now() : Date.now();
             };  
@@ -827,9 +828,9 @@ var UtilityBuild = (function () {
             if (this.progress === 1) {
                 this.progress  = 0;
                 this.ending();
-                _self.animatedFrame.cancel(id);
+                _self.animatedFrame.cancel(this.id);
             } else {
-                id = _self.animatedFrame.request(this.animate.bind(this));
+                this.id = _self.animatedFrame.request(this.animate.bind(this));
             }
         };
 
@@ -843,19 +844,33 @@ var UtilityBuild = (function () {
  */
 modules.dmPaper = function dmPaper(_self) {
     _self.PaperMaker = (function(){
-        var papersActive = 0
+
+       //
+       // global private static variables 
+       var now = Date.now;
+       if(_self.global.performance && performance.now) {
+            now = performance.now.bind(performance);
+       }
+        var PaperElemets = {
+            button: [],
+            buttonEvents : ['mousedown','mouseup','contextmenu'],
+        }
+        ,papersActive = 0
         , gestureEvent = {
             buttonEvent: function handlerEvent(e){
                 switch(e.type){
                 case 'mousedown':
-                    this.mouseIsDown = true;
                     e.currentTarget.setAttribute('pressed','');
                     e.currentTarget.setAttribute('active','');
+                    downAction.call(this, e);
                     break;
                 case 'mouseup':
-                    this.mouseIsDown = false;
                     e.currentTarget.removeAttribute('pressed');
                     e.currentTarget.removeAttribute('active');
+                    upAction.call(this);
+                    break;
+                case 'contextmenu':
+                    upAction.call(this, e);
                     break;
                 default:
                     return;
@@ -864,49 +879,324 @@ modules.dmPaper = function dmPaper(_self) {
                 this.anID = _self.animatedFrame.request(this.update.bind(this));
             },
             buttonUpdate : function () {
-                var tmp = _self.ClassList(this.shadow_level);
-                if (this.mouseIsDown) {
+                var tmp = _self.ClassList(this.chd.shadow_level);
+                if (this.wave.isMouseDown) {
 
                     tmp.remove("bs-zLevel-1");
                     tmp.add("bs-zLevel-2");
                     
-                    this.bg.setAttribute('style','opacity:0;background-color:rgb(0,0,0);');
-                
-                    this.dAnimation.startTimeCount();
-                    this.anID = _self.animatedFrame.request(this.dAnimation.animate.bind(this.dAnimation));
-                } else if(!this.mouseIsDown) {
-                    tmp.remove("bs-zLevel-2");
-                    tmp.add("bs-zLevel-1");
+                    this.wave.bg.style.backgroundColor= this.wave.bColor;
 
                     
-                    this.upAnimation.startTimeCount();
-                    this.anID = _self.animatedFrame.request(this.upAnimation.animate.bind(this.upAnimation));
-
+                } else if(!this.wave.isMouseDown) {
+                    tmp.remove("bs-zLevel-2");
+                    tmp.add("bs-zLevel-1");
                 }
             },
             addHandler : function addHandler(evt_name,i) {
-                var _this = this;
+                var type = this.type;
                 _self.EventUtility.aboutHandler.addListener(this.paper_ele,evt_name,function (e){
-                    _this.handlerEvent.call(_this,e);
+                    getPaperElement(type,i).handlerEvent.call(getPaperElement(type,i),e);
                 });
+            },
+        };
+        //Retrive the PaperElemet
+        //
+        function getPaperElement(str,index) {
+            return PaperElemets[str][index] || null;
+        }
+        // Copyright (c) 2014 The Polymer Authors. All rights reserved.
+        //
+        // Redistribution and use in source and binary forms, with or without
+        // modification, are permitted provided that the following conditions are
+        // met:
+        //
+        //    * Redistributions of source code must retain the above copyright
+        // notice, this list of conditions and the following disclaimer.
+        //    * Redistributions in binary form must reproduce the above
+        // copyright notice, this list of conditions and the following disclaimer
+        // in the documentation and/or other materials provided with the
+        // distribution.
+        //    * Neither the name of Google Inc. nor the names of its
+        // contributors may be used to endorse or promote products derived from
+        // this software without specific prior written permission.
+        //
+        // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+        // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+        // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+        // A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+        // OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+        // SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+        // LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+        // DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+        // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+        // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+        // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    
+        var waveMaxRadius = 150;
+        //
+        // Claculate the radius
+        //
+        function waveRadius(td, tup, anim) {
+            var touchDown = td / 1000
+            , touchUp = tup / 1000
+            ,totalElapsed = touchDown + touchUp
+            ,ww = anim.width, hh = anim.height
+            ,wave_radius = Math.min(Math.sqrt(ww*ww + hh*hh),waveMaxRadius)*1.1 + 5
+            ,duration = 1.1 - 0.2*(wave_radius/waveMaxRadius)
+            ,tt = (totalElapsed/duration)
+            ,size = wave_radius * (1 - Math.pow(80, -tt));
+
+            return Math.abs(size);
+        }
+        //
+        // calculate opacity of div[class = wave]
+        //
+        function waveInnerOpacity(td, tu, anim){
+            var touchDown = td / 1000
+            ,touchUp =  tu / 1000;
+
+            if (tu <= 0) {
+                return anim.initial_opacity;
             }
-        };
-        var PaperElemets = {
-            button: [],
-            buttonEvents : ['mousedown','mouseup','contextmenu'],
-        };
-        // Animation mousedown
-        function step(p) {
-            this.bg.style.opacity = 0.06 * p + "";
-        }
-        function ending() {}
 
-        // Animation mouseup
-        function endingUp() {
-            this.bg.setAttribute("style", "opacity:0");
+            return Math.max(0,anim.initial_opacity - touchUp * anim.opacity_dacay_vel);
+        }
+        //
+        // calculate opacity of div[class = bg]
+        //
+        function waveOuterOpacity(td, tu, anim) {
+            var touchDown = td / 1000
+            ,touchUp =  tu / 1000
+            ,outer_opacity = touchDown * 0.3
+            ,wave_opacity = waveInnerOpacity(td, tu, anim);
+
+            return Math.max(0, Math.min(outer_opacity, wave_opacity));
+        }
+        //
+        //Draw Ripple Class
+        //
+        function drawRipple(ctx, x, y, radius, inner_alpha, outer_alpha) {
+            if (outer_alpha !== undefined) {
+                ctx.bg.style.opacity = outer_alpha;
+            }
+            ctx.wave.style.opacity = inner_alpha;
+
+            var s = radius / (ctx.containerSize/2)
+            ,x_tilde = x - (ctx.containerWidth/2)
+            ,y_tilde = y - (ctx.containerHeight/2);
+
+            var tmp_str = 'translate3d(' + x_tilde + 'px,' + y_tilde + 'px,0px)';
+
+
+            ctx.wc.style.transform =  tmp_str;
+            ctx.wc.style.webkitTransform = tmp_str;
+
+      
+            ctx.wave.style.webkitTransform = 'scale(' + s + ',' + s + ')';
+            ctx.wave.style.transform = 'scale3d(' + s + ',' + s + ',1)';
+        }
+        //
+        // Determines when the wave should be removed
+        //
+        function waveDidFinish(wave, radius, anim) {
+            var wave_opacity = waveInnerOpacity(wave.td, wave.tu, anim);
+
+            return wave_opacity < 0.01 && radius >= Math.min(wave.max_radius, waveMaxRadius);
+        }
+        function waveAtMaximun(wave, radius, anim) {
+            var wave_opacity = waveInnerOpacity(wave.td, wave.tu, anim);
+
+            return wave_opacity  >= anim.initial_opacity && radius >= Math.min(wave.max_radius,waveMaxRadius);
+        }
+        //
+        // Create the wave
+        //
+        function createWave(ele) {
+            var ele_style = window.getComputedStyle(ele.paper_ele)
+            ,fg_color = ele_style.color
+            ,doc = _self.doc
+            ,inner = doc.createElement('div')
+            ,outer = doc.createElement('div');
+            
+            inner.style.backgroundColor = fg_color;
+            _self.ClassList(inner).add('wave');
+            _self.ClassList(outer).add('wave-wrapper');
+
+            outer.appendChild(inner);
+
+            
+            var wave = {
+                bg: ele.chd.bg,
+                container : ele.chd.waves,
+                wc: outer,
+                wave: inner,
+                bColor: fg_color, 
+                isMouseDown: false,
+                mouseDownS: 0.0,
+                mouseUpS: 0.0,
+                td: 0.0,
+                tu: 0.0
+            };
+
+            return wave;
+          
+        }
+        //
+        //Remuve wave
+        //
+        function removeWave(ele, wave) {
+            if (ele.waves) {
+                var pos = ele.waves.indexOf(wave);
+                ele.waves.splice(pos, 1);
+                wave.wc.remove();
+            }
+        }
+        //
+        // Function distance
+        //
+        function dist(p1, p2) {
+            return Math.sqrt(Math.pow(p1.x - p2.x,2) + Math.pow(p1.y - p2.y,2));
+        }
+        function distFromCornerPoint(p, size) {
+            var d_11 = dist(p, {x:0,y:0})
+            ,d_21 = dist(p, {x:size.w, y:0})
+            ,d_12 = dist(p, {x:0, y:size.h})
+            ,d_22 = dist(p, {x:size.w, y:size.h});
+
+            return Math.max(d_11,d_21,d_12,d_22);
+        }
+        //
+        //Moouse Down Action
+        //
+        function downAction(e) {
+            var wave = createWave(this);
+
+            wave.isMouseDown = true;
+            wave.td = 0.0;
+            wave.tu = 0.0;
+            wave.mouseUpS = 0.0;
+            wave.mouseDownS = now();
+
+            var rect = this.paper_ele.getBoundingClientRect()
+            ,width = rect.width
+            ,height = rect.height
+            ,touchX = e.clientX - rect.left
+            ,touchY = e.clientY - rect.top;
+
+            wave.origin = {x:touchX, y:touchY};
+
+            wave.containerSize = Math.max(width,height);
+            wave.containerWidth = width;
+            wave.containerHeight = height;
+
+            wave.wc.style.top = (wave.containerHeight - wave.containerSize)/2 + 'px';
+            wave.wc.style.left = (wave.containerWidth - wave.containerSize)/2 + 'px';
+            wave.wc.style.width = wave.containerSize + 'px';
+            wave.wc.style.height = wave.containerSize + 'px';
+            wave.max_radius = distFromCornerPoint(wave.origin, {w: width,h: height});
+
+            this.waves.push(wave);
+
+            wave.container.appendChild(wave.wc);
+
+            this.chd.bg.style.backgroundColor = wave.bColor;
+
+            if(!this.loop) {
+                this.loop = this.animate.bind(this,{
+                        width: width,
+                        height: height
+                });
+                _self.animatedFrame.request(this.loop);
+            }
+            
         }
 
+        function upAction() {
+            for(var i = 0,len = this.waves.length; i < len ; i++){
+                var wave = this.waves[i];
+
+                if (wave.isMouseDown) {
+                    wave.isMouseDown = false;
+                    wave.mouseUpS = now();
+                    wave.mouseDownS = 0.0;
+                    wave.tu = 0.0;
+                    break;
+                }
+            }
+            this.loop && _self.animatedFrame.request(this.loop);
+        }
+
+        function animate(ctx){
+            var nextFrame = false
+            ,deleteTheseWaves = []
+            ,longTouchDownDuration = 0
+            ,longTouchUpDuration = 0
+            ,anim = {
+                initial_opacity: this.initial_opacity,
+                opacity_dacay_vel: this.opacity_dacay_vel,
+                height: ctx.height,
+                width: ctx.width
+            };
+            for (var i = 0,len = this.waves.length; i < len; i++){
+                var wave = this.waves[i];
+
+                if (wave.mouseDownS > 0) {
+                    wave.td = now() - wave.mouseDownS;
+                }
+
+                if (wave.mouseUpS > 0) {
+                    wave.tu = now() - wave.mouseUpS;
+                }
+
+                var tup = wave.tu, tDown = wave.td;
+                longTouchDownDuration = Math.max(longTouchDownDuration,tDown);
+                longTouchUpDuration = Math.max(longTouchUpDuration,tup);
+
+
+                var radius = waveRadius(tDown, tup, anim)
+                ,wave_alpha = waveInnerOpacity(tDown, tup, anim)
+                ,x = wave.origin.x
+                ,y = wave.origin.y
+                ,bgAplha = waveOuterOpacity(tDown, tup, anim);
+
+                drawRipple(wave, x, y, radius, wave_alpha, bgAplha);
+
+                var maxWave = waveAtMaximun(wave, radius, anim)
+                ,waveDissipated = waveDidFinish(wave, radius, anim)
+                ,shouldKeepWave = !waveDissipated || maxWave;
+                shouldRenderWaveAgain = wave.mouseUpS ? !waveDissipated : !maxWave;
+                nextFrame = nextFrame || shouldRenderWaveAgain;
+                if(!shouldKeepWave) {
+                    deleteTheseWaves.push(wave);
+                }
+
+            }
+
+            if (nextFrame) {
+                _self.animatedFrame.request(this.loop);
+            }
+            
+            for (var i = 0,len = deleteTheseWaves.length; i < len; i++) {
+                var wave = deleteTheseWaves[i];
+                removeWave(this, wave);
+            }
+
+
+            if (!this.waves.length && this.loop) {
+                this.chd.bg.style.backgroundColor = null;
+                this.loop = null;
+            }
+        }
+        /**
+         *
+         *  This rappresent the parent constructor  of the factory pattern
+         *  @class PaperMaker
+         *  @static
+         *
+         */
         function PaperMaker() {}
+
         
         PaperMaker.version = '0.5';
         
@@ -918,28 +1208,23 @@ modules.dmPaper = function dmPaper(_self) {
             if (args.length === 0) {
                     throw  "Need the top Paper Element";
                 }
-                var an_temp = _self.AnimateConfig() 
-                ,up_an = _self.AnimateConfig();
-
-                this.paper_ele = args[0];
-                this.bg = this.paper_ele.querySelector(".bg");
-                this.shadow_level = this.paper_ele.querySelector(".shadow");
-                this.waves = this.paper_ele.querySelector(".waves");
-
-                an_temp.setDuration(480);
-                an_temp.setTiming('cubicBezier(0.2,1.0,0.1,0.6)');
-                an_temp.setCore(step.bind(this));
-                an_temp.setEnding(ending);
-
-                this.dAnimation = _self.AnimateObject(an_temp);
                 
-                up_an.setDuration(450);
-                up_an.setCore(function(){});
-                up_an.setEnding(endingUp.bind(this));
-
-                this.upAnimation = _self.AnimateObject(up_an);
+                this.paper_ele = args[0];
+                this.chd.shadow_level = this.paper_ele.querySelector(".shadow");
+                this.chd.bg = this.paper_ele.querySelector(".bg");
+                this.chd.waves = this.paper_ele.querySelector(".waves");
+                this.waves = [];
+                this.animate = animate;
             };
 
+        /**
+         *
+         * This is the public static method used to create all type od paper Elements supported
+         * @class factory
+         * @static
+         * @param {String} Type Rappresent the type of paper elemnt
+         * @param [...ARGS] Other args to pass to the specific constructor
+         */
         PaperMaker.factory = function factory() {
             if((this instanceof factory)) {
                 throw "It's not a constructor";
@@ -969,8 +1254,12 @@ modules.dmPaper = function dmPaper(_self) {
             newPaper[init_func](args);
             PaperElemets[constr].push(newPaper);
             newPaper = null;
-            console.log(PaperElemets);
         };
+        /**
+         * Add the event handle to the PaperElemets that you have created
+         * @method MakePaperLive
+         *
+         */
         PaperMaker.factory.MakePaperLive = function () {
             var buttons = PaperElemets.button
             ,buttonEvents = PaperElemets.buttonEvents
@@ -978,23 +1267,27 @@ modules.dmPaper = function dmPaper(_self) {
             ,i = b_lenght-1;
 
             for(;i >= papersActive ; i--) {
-                buttons[i].addHandler(buttonEvents[0]);
-                buttons[i].addHandler(buttonEvents[1]);
+                buttons[i].addHandler(buttonEvents[0],i);
+                buttons[i].addHandler(buttonEvents[1],i);
+                buttons[i].addHandler(buttonEvents[2],i);
             }
             
             papersActive = b_lenght;
 
         };
-
+        /**
+         * A private class that define a button paper object
+         * @class button
+         * @constructor
+         *
+         */
         PaperMaker.button = function () {
             this.paper_ele= null;
-            this.bg = null;
-            this.shadow_level = null;
-            this.waves = null;
-            this.mouseIsDown = false;
+            this.wave = {};
+            this.chd = {};
             this.anID = 0;
-            this.dAnimation = null;
-            this.upAnimation = null;
+            this.initial_opacity = 0.25;
+            this.opacity_dacay_vel = 0.8;
     };
 
         return PaperMaker.factory;
