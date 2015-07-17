@@ -7,62 +7,109 @@
         ,cssSelectorAll = obj.doc.querySelectorAll.bind(obj.doc)
         ,crossClassList = obj.ClassList
         ,aEventListener = obj.EventUtility.aboutHandler.addListener
-        ,hidden = ""
-        ,visibilityChange = ""
         //
         // Boolean Variables
-        ,mouse_hover = false
         ,click_on = false
-        ,id_s= 0
-        ,id_f = 0
         ,id_p = 0
-        ,ticking = false
-        ,jb_on = false
-        ,scroll_flag = false
         //
         // Dom Element
         ,pan1 = cssSelector("#pannel3")
         ,pan2 = cssSelector("#pannel4")
         ,sch = cssSelector(".header .search")
-        ,card_prev = cssSelector(".cardslide-prev")
         ,fa_cog_icon = cssSelectorAll("i.fa-cog")
         ,mask_modal = cssSelector("div.mask-modal")
-        ,jb_wrapper = cssSelector("div.area-round-button")
         ,jb = cssSelector("button.paper-fab")
-        ,card_next = null
-        ,card_frame = null
-        ,r_ele = obj.doc.body
-        //Variables 
-        ,presentation_width = 0
-        ,card_left = 0
-        ,pag_markers = null
-        ,pag_markers_len = 0
-        ,pag_id = 0
+        //Variables
+        //
         ,o_date = null
-        ,pre_scroll = obj.global.scrollY
         ,appBar = {}
-        ,paper_buttons = []
-        ,rp = null
-        ,ele_a
-        ,to = 0.06
-        ,rp2
-        ,rp_id = 0;
-
-        function step (d) {
-            ele_a.style.opacity = to*d + "";
+        ,scrollingPaper = {
+            view: obj.global,
+            body: obj.doc.body,
+            firstScroll: false,
+            scrollY : obj.global.scrollY,
+            ticking: false,
+            requestTick: function () {
+                if (!this.ticking) {
+                    obj.animatedFrame.request(this.update.bind(this));
+                    this.ticking = true;
+                }
+            },
+            update: function () {
+                if (this.scrollY > 0 && !this.firstScroll) {
+                    this.firstScroll = true;
+                    this.onOffPaper();
+                } else if (this.scrollY === 0 && this.firstScroll) {
+                    this.firstScroll = false;
+                    this.onOffPaper();
+                }
+                if (this.scrollY <= this.pageToScroll.fromObj.innerHeight) {
+                    var ptsfo = this.pageToScroll.fromObj
+                    ,pageD = - this.scrollY * 1.1
+                    ,op = (ptsfo.innerHeight + pageD) / ptsfo.innerHeight;
+                    ptsfo.section.style.transform = "translate3d(0," + pageD + "px,0)";
+                    this.pageToScroll.contentOpacity.style.opacity = op + " ";
+                }
+                this.ticking = false;
+            },
+            onOffPaper: function () {
+                crossClassList(this.body).toggle("scrolling",this.firstScroll);
+                crossClassList(jb).toggle("active",this.firstScroll);
+            },
+            init: function () {
+                if (this.scrollY > 0) {
+                    this.requestTick();
+                }
+                var _that = this;
+                aEventListener(this.view, "scroll", function () {
+                    _that.scrollY = _that.view.scrollY;
+                    _that.requestTick.call(_that,null);
+                });
+                delete(this.init);
+            }
         }
-        function ending () {}
-        rp = obj.AnimateConfig();
-       rp.setDuration(280);
-        rp.setTiming('cubicBezier(0.2,1.0,0.1,0.6)');
-        rp.setCore(step);
-        rp.setEnding(ending);
-        rp = obj.AnimateObject(rp);
-        rp2 = obj.AnimateConfig();
-        rp2.setDuration(450);
-        rp2.setCore(function(){});
-        rp2.setEnding(function(){ele_a.setAttribute('style','ocapity:0');});
-        rp2 = obj.AnimateObject(rp2);
+        ,makeFullScreen = {
+            domElement : {
+                            section: cssSelector(".section-full-screen"),
+                            innerHeight: obj.global.innerHeight,
+                            body: obj.doc.body
+                        },
+            ticking: false,
+            update: function () {
+                this.fit();
+                this.ticking = false;    
+            },
+            requestTick: function () {
+                if (!this.ticking) {
+                    obj.animatedFrame.request(this.update.bind(this));
+                    this.ticking = true;
+                }
+            },
+            fit: function () {
+                var domEle = this.domElement
+                ,hh = domEle.innerHeight + "px";
+                domEle.body.style.paddingTop = hh;
+                domEle.section.style.height = hh;
+            },
+            init: function () {
+                var _that = this;
+                _that.fit();
+                aEventListener(obj.global, "resize", function (){
+                    _that.domElement.innerHeight = obj.global.innerHeight;
+                    _that.requestTick.call(_that,null);
+                });
+                delete(this.init);
+            }
+        };
+        
+        scrollingPaper.pageToScroll = { 
+            fromObj : makeFullScreen.domElement,
+            contentOpacity : cssSelector(".section-intro .primary-block")
+        }
+        
+        function updateValue(v) {
+            scrollingPaper.pageLimit = v;
+        }
         // Structure app bar
         appBar.main = cssSelector(".bar");
         appBar.search = sch;
@@ -131,44 +178,6 @@
                 crossClassList(appBar.search).remove('active');
                 appBar.search_on = false;
         };
-        //Paper Buttons
-        paper_buttons[0] = ({
-            main: cssSelectorAll(".paper-button")[0],
-            init: function () {
-                this.bg = this.main.querySelector(".bg");
-                this.shadow_level = this.main.querySelector(".shadow");
-                this.waves = this.main.querySelector(".waves");
-                delete(this.init);
-                return this;
-            }  
-        }.init());
-        aEventListener(paper_buttons[0].main,'contextmenu',function(e){
-            crossClassList(paper_buttons[0].shadow_level).add("bs-zLevel-1");
-            crossClassList(paper_buttons[0].shadow_level).remove("bs-zLevel-2");
-        });
-        // Animations Core function
-        //
-        function requestTick() {
-            if (!ticking) {
-                if (!scroll_flag && pre_scroll !== 0) {
-                    scroll_flag = true;
-                    jb_on = true;
-                    obj.animatedFrame.request(barShadowElement);
-                    ticking = true;
-                } else if (scroll_flag && pre_scroll === 0){
-                    scroll_flag = false;
-                    jb_on = false;
-                    obj.animatedFrame.request(barShadowElement);
-                    ticking = true;
-                }
-            }
-        }
-
-        function barShadowElement() {
-            crossClassList(r_ele).toggle("scrolling",scroll_flag);
-            crossClassList(jb).toggle("active",jb_on);
-            ticking = false;
-        }
         //
         // Event Callback function
         //
@@ -193,18 +202,6 @@
                     }
                 }
                 break;
-            case visibilityChange:
-                if(obj.doc[hidden]) {
-                    obj.animatedFrame.cancel(id_f);
-                    obj.global.clearInterval(id_s);
-            } else {
-                id_s = obj.global.setInterval(animateSlideCard,11000);
-            }
-            break;
-            case 'scroll':
-                pre_scroll = obj.global.scrollY;
-                requestTick();
-                break;
             default:
                 return;
             }
@@ -213,7 +210,7 @@
         // Add Event Listenrs
         aEventListener(jb, 'click', gestureEvent);
         aEventListener(mask_modal, 'click', gestureEvent);
-        aEventListener(obj.global, "scroll", gestureEvent);
+//        aEventListener(obj.global, "scroll", gestureEvent);
 
         //Event Gesture app-bar
         //-*- Open pannel in main nav bar
@@ -260,15 +257,6 @@
                 appBar.closeSearch();
             }
         });
-        /*if (card_prev !== null) {
-            card_next = cssSelector(".cardslide-next");
-            card_frame = cssSelector(".resources-card").getElementsByTagName("ul")[0];
-            pag_markers = cssSelector('.pagination').getElementsByTagName("li");
-            pag_markers_len = pag_markers.length;
-            presentation_width = parseInt(card_frame.style.width);
-            aEventListener(card_prev, 'click', gestureEvent);
-            aEventListener(card_next, 'click', gestureEvent);
-        }*/
         //Set the animation of the time icon on the specific hour and day
         o_date = new Date();
         switch(o_date.getDay()){
@@ -299,23 +287,16 @@
         //
         //
         //Raise nav bar if the page is scrolled
-        if (pre_scroll !== 0) {
-            scroll_flag = true;
-            jb_on = true;
-            obj.animatedFrame.request(barShadowElement);
-            ticking = true;
-        }
+        scrollingPaper.init();            
+        makeFullScreen.init();
         //
         // Clear unuseful Dom Object
         fa_cog_icon = null;
         sch = null;
-        card_prev = null;
-        card_next = null;
-        jb_wrapper = null;
         pan1=null;
         pan2=null;
-        obj.PaperMaker('button',cssSelectorAll(".paper-button")[0]);
-        obj.PaperMaker.MakePaperLive();
+//        obj.PaperMaker('button',{ element: cssSelectorAll(".paper-button")[0]});
+//        obj.PaperMaker.MakePaperLive();
         console && console.log("%c90 s r l s\n%cPratiche Auto\nTel 06 01905227","font-size:1.5em;color:#1945D5;", "color:#14BD4C;font-size:1em;");
 
         });

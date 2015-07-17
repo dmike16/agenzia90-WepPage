@@ -1209,7 +1209,7 @@ modules.dmPaper = function dmPaper(_self) {
                     throw  "Need the top Paper Element";
                 }
                 
-                this.paper_ele = args[0];
+                this.paper_ele = args.element;
                 this.chd.shadow_level = this.paper_ele.querySelector(".shadow");
                 this.chd.bg = this.paper_ele.querySelector(".bg");
                 this.chd.waves = this.paper_ele.querySelector(".waves");
@@ -1251,7 +1251,7 @@ modules.dmPaper = function dmPaper(_self) {
             }
 
             newPaper = new PaperMaker[constr]();
-            newPaper[init_func](args);
+            newPaper[init_func](args[0]);
             PaperElemets[constr].push(newPaper);
             newPaper = null;
         };
