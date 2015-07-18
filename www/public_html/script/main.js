@@ -880,15 +880,16 @@ modules.dmPaper = function dmPaper(_self) {
             },
             buttonUpdate : function () {
                 var tmp = _self.ClassList(this.chd.shadow_level);
-                if (this.wave.isMouseDown) {
+
+                if (this.waves[0].isMouseDown) {
 
                     tmp.remove("bs-zLevel-1");
                     tmp.add("bs-zLevel-2");
                     
-                    this.wave.bg.style.backgroundColor= this.wave.bColor;
+                    this.waves[0].bg.style.backgroundColor= this.waves[0].bColor;
 
                     
-                } else if(!this.wave.isMouseDown) {
+                } else if (!this.waves[0].isMouseDown) {
                     tmp.remove("bs-zLevel-2");
                     tmp.add("bs-zLevel-1");
                 }
@@ -1283,7 +1284,6 @@ modules.dmPaper = function dmPaper(_self) {
          */
         PaperMaker.button = function () {
             this.paper_ele= null;
-            this.wave = {};
             this.chd = {};
             this.anID = 0;
             this.initial_opacity = 0.25;

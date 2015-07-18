@@ -9,6 +9,7 @@ body{
     font-family: 'RobotoDraft','Open Sans',sans-serif;
     margin: 0;
     line-height: 1.5;
+    overflow:hidden;
     background-color: #fff;
     font-size:16px;
 }
@@ -18,7 +19,6 @@ html, body{
     font-weight:300;
     margin:0;
     padding:0;
-    height:100%;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
@@ -975,6 +975,9 @@ button::-moz-focus-inner{
 .paper-fab.blueH {
     background-color:#26C6DA;
 }
+.paper-fab.blueH.pressed {
+    background-color:#fff;
+}
 .paper-fab[dynamic]{
     opacity: 0.003;
     -webkit-transition: opacity 150ms cubic-bezier(.4,0,1,1);
@@ -1110,6 +1113,9 @@ a .paper-button {
 }
 .b-icon.go-inside{
     background-image:url(/public_html/images/icon/ulElement/buttonInside.svg);
+}
+.paper-fab.pressed .b-icon.go-inside{
+    background-image:url(/public_html/images/icon/ulElement/buttonInsideActive.svg);
 }
 button.paper-fab:hover + label.label-button{
     opacity:1;

@@ -210,7 +210,7 @@
             case 'click':
                 evt.preventDefault();
                 if (evt.currentTarget.tagName === "BUTTON" || evt.currentTarget.tagName === "button") {
-                        crossClassList(mask_modal).add("active"); 
+                        crossClassList(mask_modal).add("active");  
                         crossClassList(obj.doc.documentElement).add("mask-disable-scroll"); 
                 } else if (evt.currentTarget.tagName === "DIV" || evt.currentTarget.tagName === "div") {
                     if((crossClassList(evt.currentTarget).contains("mask-modal","active"))) {
@@ -324,8 +324,9 @@
         sch = null;
         pan1=null;
         pan2=null;
-//        obj.PaperMaker('button',{ element: cssSelectorAll(".paper-button")[0]});
-//        obj.PaperMaker.MakePaperLive();
+        obj.PaperMaker('button',{ element: cssSelectorAll(".paper-fab")[1]});
+        obj.PaperMaker('button',{ element: cssSelectorAll(".paper-fab")[0]});
+        obj.PaperMaker.MakePaperLive();
         console && console.log("%c90 s r l s\n%cPratiche Auto\nTel 06 01905227","font-size:1.5em;color:#1945D5;", "color:#14BD4C;font-size:1em;");
 
         });
