@@ -3,6 +3,7 @@ html{
    -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
+    overflow-x: hidden;
 }
 body{
     font-family: 'RobotoDraft','Open Sans',sans-serif;
@@ -91,6 +92,10 @@ h1,h2,h3,h4,h5 {
 .logo{
     display: block;
     float:left;
+    -webkit-transition: all 0.28s ease-in;
+    -moz-transition: all 0.28s ease-in;
+    -o-transition: all 0.28s ease-in;
+    transition: all 0.28s ease-in;
 }
 .logo:after {
     clear:both;
@@ -544,7 +549,7 @@ i[class^="icon-"]::before{
     width:14px;
     cursor:pointer;
     text-indent:-9999em;
-    background-image:url("resources/icon/navBar/times_icon.svg");
+    background-image:url("/public_html/images/icon/navBar/times_icon.svg");
     background-repeat:no-repeat;
     background-size:14px 14px;
     background-position:center center;
@@ -627,6 +632,9 @@ i[class^="icon-"]::before{
     width:24px;
     position:absolute;
 }
+.arrow-hint.deactive{
+    display:none;
+}
 .icon.icon-arrow-hint {
     display:block;
     margin-bottom:20px;
@@ -635,7 +643,7 @@ i[class^="icon-"]::before{
     background-position:-2px -13px;
 }
 .icon-arrow-hint{
-    background:url("resources/icon/navBar/arrowHint.svg") no-repeat;
+    background:url("/public_html/images/icon/navBar/arrowHint.svg") no-repeat;
     text-indent:100%;
     white-space:nowrap;
 }
@@ -878,7 +886,7 @@ i[class^="icon-"]::before{
 
 
 .homePage .section-photo-intro {
-    background:url("resources/sectionIntroPhoto.png") center top no-repeat;
+    background:url("/public_html/images/sectionIntroPhoto.png") center top no-repeat;
     background-size:cover;
 }
 .services .section-photo-intro {
@@ -1098,10 +1106,10 @@ a .paper-button {
 }
 
 .b-icon{
-    background-image:url(resources/icon/navBar/newsIcon.png);
+    background-image:url(/public_html/images/icon/navBar/newsIcon.png);
 }
 .b-icon.go-inside{
-    background-image:url(resources/icon/ulElement/buttonInside.svg);
+    background-image:url(/public_html/images/icon/ulElement/buttonInside.svg);
 }
 button.paper-fab:hover + label.label-button{
     opacity:1;
@@ -1171,31 +1179,31 @@ button.paper-fab:hover + label.label-button{
     font-size:18px;
 }
 .icon.sermetra{
-    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-image:url("/public_html/images/icon/partnship/friendLogo.png");
     background-position:-8.6px -105px;
 }
 .icon.unasca{
-    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-image:url("/public_html/images/icon/partnship/friendLogo.png");
     background-position:-9.9px -139.9px;
 }
 .icon.cna{
-    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-image:url("/public_html/images/icon/partnship/friendLogo.png");
     background-position:-9.9px -176px;
 }
 .icon.mctc{
-    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-image:url("/public_html/images/icon/partnship/friendLogo.png");
     background-position:-6.6px -211px;
 }
 .icon.generali{
-    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-image:url("/public_html/images/icon/partnship/friendLogo.png");
     background-position: -1.3px 0px;
 }
 .icon.bali{
-    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-image:url("/public_html/images/icon/partnship/friendLogo.png");
     background-position:-4.6px -30px;
 }
 .icon.motocentromarconi{
-    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-image:url("/public_html/images/icon/partnship/friendLogo.png");
     background-position:-1.2px -64px;
 }
 #pOne-16{
@@ -1486,7 +1494,7 @@ hr{
     background-color:#f9f9f9;
 }
 .lif-icon {
-    background-image:url("resources/icon/partnship/friendLogo.png");
+    background-image:url("/public_html/images/icon/partnship/friendLogo.png");
     display:inline-block;
     vertical-align:middle;
 }
@@ -1519,14 +1527,23 @@ hr{
 }
 .photo-crop .paper-fab.fit {
     top: 475px;
-    left: 323px;
+    left: 50%;
     width:50px;
     height:50px;
 }
 .section-base .photo-crop{
     height:570px;
     left:0;
-    width:48%;
+    width:580px;
+    -webkit-transition: -webkit-transform 0.42s cubic-bezier(0.4,0.3,1.0,0.7);
+    -moz-transition: -moz-transform 0.42s cubic-bezier(0.4,0.3,1.0,0.7);
+    transition: transform 0.42s cubic-bezier(0.4,0.3,1.0,0.7);
+    -webkit-transform: translate3d(-580px,0px,0px);
+    transform: translate3d(-580px,0px,0px);
+}
+.section-base .photo-crop.come-in{
+    -webkit-transform: translate3d(0px,0px,0px);
+    transform: translate3d(0px,0px,0px);
 }
 .section-base .photo-crop .photo-container{
     height:570px;
@@ -1537,12 +1554,12 @@ hr{
 .heading-headline{
     color:#212121;
     font-size:48px;
-    font-weight:300;
+    font-weight:400;
     line-height:1;
     margin:5px 0 15px 0;
 }
 .section-body{
-    color:#555;
+    color:#f9f9f9;
     font-size:21px;
     font-weight:200;
     line-height:1.4;
@@ -1566,6 +1583,13 @@ hr{
     max-width:333px;
     display:inline-block;
     position:absolute;
+}
+.picture-frame{
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background-color: #26C6DA;
+    padding:25px;
 }
 .click-to-expand{
     position:relative;
@@ -1595,7 +1619,7 @@ hr{
     text-indent:-9999em;
     width:10px;
     height:5px;
-    background:url(resources/icon/navBar/quicknav_icon.png) no-repeat;
+    background:url(/public_html/images/icon/navBar/quicknav_icon.png) no-repeat;
 }
 .click-arrow a.arrow-active{
     background-position:0 -5px;
@@ -1731,11 +1755,11 @@ address{
 }
 a.cardslide-prev{
     float:left;
-    background-image:url(resources/icon/slideCard/arrowleft.svg);
+    background-image:url(/public_html/images/icon/slideCard/arrowleft.svg);
 }
 a.cardslide-next{
     float:right;
-    background-image:url(resources/icon/slideCard/arrowright.svg);
+    background-image:url(/public_html/images/icon/slideCard/arrowright.svg);
 }
 .cardslide-prev{
     position: absolute;
@@ -2019,7 +2043,7 @@ li{
 }
 @media only screen and (max-width: 1200px) and (min-width: 768px){
     .homePage .section-photo-intro {
-    background:url("resources/sectionIntroPhoto1200.png") center top no-repeat;
+    background:url("/public_html/images/sectionIntroPhoto1200.png") center top no-repeat;
     background-size:cover;
 }
 
@@ -2104,7 +2128,7 @@ li{
     background-size:150px 140px;
     }
      .header-subTitle li::before{
-    content:url("resources/icon/ulElement/discStyleSmall.svg");
+    content:url("/public_html/images/icon/ulElement/discStyleSmall.svg");
     }
     .header-wrapper.qp-headerfixed-active .header-title{
 	font-size: 28px;

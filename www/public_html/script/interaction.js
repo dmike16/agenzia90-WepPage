@@ -7,6 +7,7 @@
         ,cssSelectorAll = obj.doc.querySelectorAll.bind(obj.doc)
         ,crossClassList = obj.ClassList
         ,aEventListener = obj.EventUtility.aboutHandler.addListener
+        ,rEventListener = obj.EventUtility.aboutHandler.removeListener
         //
         // Boolean Variables
         ,click_on = false
@@ -19,8 +20,12 @@
         ,fa_cog_icon = cssSelectorAll("i.fa-cog")
         ,mask_modal = cssSelector("div.mask-modal")
         ,jb = cssSelector("button.paper-fab")
+        ,arrowHint = cssSelector(".section-intro .arrow-hint")
+        ,headLogo = cssSelector(".header .logo")
+        ,photoCrop = cssSelector(".section-base .photo-crop")
         //Variables
         //
+        ,visibility = 'hidden'
         ,o_date = null
         ,appBar = {}
         ,scrollingPaper = {
@@ -36,28 +41,43 @@
                 }
             },
             update: function () {
-                if (this.scrollY > 0 && !this.firstScroll) {
-                    this.firstScroll = true;
-                    this.onOffPaper();
-                } else if (this.scrollY === 0 && this.firstScroll) {
-                    this.firstScroll = false;
-                    this.onOffPaper();
-                }
-                if (this.scrollY <= this.pageToScroll.fromObj.innerHeight) {
+                if (this.scrollY < this.pageToScroll.fromObj.innerHeight || !this.firstScroll) {
+                     if (this.scrollY > 0 && !this.firstScroll) {
+                        this.firstScroll = true;
+                        this.onOffPaper();
+                    } else if (this.scrollY === 0 && this.firstScroll) {
+                        this.firstScroll = false;
+                        this.onOffPaper();
+                    }
+                    
                     var ptsfo = this.pageToScroll.fromObj
                     ,pageD = - this.scrollY * 1.1
                     ,op = (ptsfo.innerHeight + pageD) / ptsfo.innerHeight;
+                    if (op < 0 ) {
+                        op = 0.0;
+                    }
+                    var isTimeToShowTheLogo = (op <= 0.1) || false;
+                    if (isTimeToShowTheLogo && visibility === 'hidden') {
+                        visibility = 'visible';
+                        this.body.dispatchEvent(new Event("scrolledIntroPage"));
+                    } else if (!isTimeToShowTheLogo && visibility === 'visible') {
+                        visibility = 'hidden';
+                        this.body.dispatchEvent(new Event("scrolledIntroPage"));
+                    }
                     ptsfo.section.style.transform = "translate3d(0," + pageD + "px,0)";
-                    this.pageToScroll.contentOpacity.style.opacity = op + " ";
+                    this.pageToScroll.contentOpacity.setAttribute("style",["opacity:" + op + "","-webkit-transform:scale(" + op + "," + op+")","transform:scale3d(" + op + "," + op + ",1);"].join(';'));
                 }
                 this.ticking = false;
             },
             onOffPaper: function () {
-                crossClassList(this.body).toggle("scrolling",this.firstScroll);
-                crossClassList(jb).toggle("active",this.firstScroll);
+                var fs = this.firstScroll;
+                crossClassList(this.body).toggle("scrolling",fs);
+
+                crossClassList(jb).toggle("active",fs);
+                crossClassList(arrowHint).toggle("deactive",fs);
             },
             init: function () {
-                if (this.scrollY > 0) {
+                if (this.scrollY > 0){
                     this.requestTick();
                 }
                 var _that = this;
@@ -107,9 +127,6 @@
             contentOpacity : cssSelector(".section-intro .primary-block")
         }
         
-        function updateValue(v) {
-            scrollingPaper.pageLimit = v;
-        }
         // Structure app bar
         appBar.main = cssSelector(".bar");
         appBar.search = sch;
@@ -211,7 +228,19 @@
         aEventListener(jb, 'click', gestureEvent);
         aEventListener(mask_modal, 'click', gestureEvent);
 //        aEventListener(obj.global, "scroll", gestureEvent);
-
+        aEventListener(obj.doc.body, 'scrolledIntroPage', function (e){
+            headLogo.style.visibility = visibility;
+            if (photoCrop !== null){
+                aEventListener(photoCrop,'transitionend',function dmp(e){
+                    var paperDinamyc = e.currentTarget.querySelector(".paper-fab[dynamic]");
+                    crossClassList(paperDinamyc).add("active");
+                    rEventListener(e.currentTarget,'transitionend',dmp,false);
+                });
+                crossClassList(photoCrop).add("come-in");
+                photoCrop = null;
+            }
+            e.stopPropagation();
+        });
         //Event Gesture app-bar
         //-*- Open pannel in main nav bar
         //-*- Open serch form in app bar
