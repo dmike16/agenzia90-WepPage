@@ -1449,9 +1449,25 @@ hr{
     color:white;
     background-color:#1f2036;
 }
-.panel{
-    padding:75px 16px;
-    max-width:1032px;
+.layout.horizontal{
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+.layout.wrap{
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.content {
+    display: block;
+    padding: 50px 0;
+}
+#catalog.panel {
+    height:660px;
+    position:relative;
+    overflow-y:auto;
+    overflow-x: hidden;
 }
 .panel img{
     -webkit-align-self: center;

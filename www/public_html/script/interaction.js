@@ -51,7 +51,7 @@
                     }
                     
                     var ptsfo = this.pageToScroll.fromObj
-                    ,pageD = - this.scrollY * 1.1
+                    ,pageD = - this.scrollY * 1.0
                     ,op = (ptsfo.innerHeight + pageD) / ptsfo.innerHeight;
                     if (op < 0 ) {
                         op = 0.0;
