@@ -1,6 +1,18 @@
 (function () {
     var tmp = UtilityBuild(['dmUtil','dmPaper'],function(obj){
         "use strict";
+
+        function onscroll_() {
+            this.previewScroll = this.lastScroll;
+            this.lastScroll = window.scrollY || window.pageYOffset;
+            requestTick.bind(this)();
+        }
+        function requestTick() {
+                if (!this.ticking) {
+                    obj.animatedFrame.request(this.update.bind(this));
+                    this.ticking = true;
+                }
+        }
         //
         // Dependencies
         var cssSelector = obj.doc.querySelector.bind(obj.doc) 
@@ -31,60 +43,58 @@
         ,scrollingPaper = {
             view: obj.global,
             body: obj.doc.body,
+            lastScroll: 0,
+            previewScroll: 0,
             firstScroll: false,
-            scrollY : obj.global.scrollY,
             ticking: false,
-            requestTick: function () {
-                if (!this.ticking) {
-                    obj.animatedFrame.request(this.update.bind(this));
-                    this.ticking = true;
-                }
-            },
             update: function () {
-                if (this.scrollY < this.pageToScroll.fromObj.innerHeight || !this.firstScroll) {
-                     if (this.scrollY > 0 && !this.firstScroll) {
+                var lscroll = this.lastScroll, ihh = this.pageToScroll.fromObj.innerHeight;
+                if (lscroll < ihh || !this.firstScroll) {
+                     if (lscroll > 0 && !this.firstScroll) {
                         this.firstScroll = true;
                         this.onOffPaper();
-                    } else if (this.scrollY === 0 && this.firstScroll) {
+                    } else if (lscroll === 0 && this.firstScroll) {
                         this.firstScroll = false;
                         this.onOffPaper();
                     }
                     
-                    var ptsfo = this.pageToScroll.fromObj
-                    ,pageD = - this.scrollY * 1.0
-                    ,op = (ptsfo.innerHeight + pageD) / ptsfo.innerHeight;
-                    if (op < 0 ) {
-                        op = 0.0;
+                    var ptsfo = this.pageToScroll.fromObj;
+                    var section = ptsfo.section, content = this.pageToScroll.contentOpacity;
+                    var thh = ihh/3, nhh= ihh*0.8;
+
+                    if (lscroll >= thh && !this.tirth) {
+                        var qhh = -ihh/5;
+                        section.style.transform="translate3d(0px," + qhh +"px,0px)";
+                        content.style.opacity="0.01";
+                        headLogo.style.opacity = "1.0";
+                        this.tirth = true;
+                    } else if (lscroll < thh && this.tirth) {
+                        section.style.transform="translate3d(0px, 0px,0px)";
+                        content.style.opacity="1.0";
+                        headLogo.style.opacity = "0.0";
+                        this.tirth = false;
                     }
-                    var isTimeToShowTheLogo = (op <= 0.1) || false;
-                    if (isTimeToShowTheLogo && visibility === 'hidden') {
-                        visibility = 'visible';
-                        this.body.dispatchEvent(new Event("scrolledIntroPage"));
-                    } else if (!isTimeToShowTheLogo && visibility === 'visible') {
-                        visibility = 'hidden';
-                        this.body.dispatchEvent(new Event("scrolledIntroPage"));
+
+                    if (photoCrop !== null) {
+                        if (lscroll >= nhh){
+                            this.body.dispatchEvent(new Event('scrolledIntroPage'));
+                        }
                     }
-                    ptsfo.section.style.transform = "translate3d(0," + pageD + "px,0)";
-                    this.pageToScroll.contentOpacity.setAttribute("style",["opacity:" + op + "","-webkit-transform:scale(" + op + "," + op+")","transform:scale3d(" + op + "," + op + ",1);"].join(';'));
                 }
                 this.ticking = false;
             },
             onOffPaper: function () {
                 var fs = this.firstScroll;
                 crossClassList(this.body).toggle("scrolling",fs);
-
                 crossClassList(jb).toggle("active",fs);
                 crossClassList(arrowHint).toggle("deactive",fs);
             },
+            tirth: false,
             init: function () {
-                if (this.scrollY > 0){
-                    this.requestTick();
-                }
-                var _that = this;
-                aEventListener(this.view, "scroll", function () {
-                    _that.scrollY = _that.view.scrollY;
-                    _that.requestTick.call(_that,null);
-                });
+                this.scroll = onscroll_.bind(this);
+                this.scroll();
+                
+                aEventListener(this.view, "scroll", this.scroll,false);
                 delete(this.init);
             }
         }
@@ -107,9 +117,18 @@
             },
             fit: function () {
                 var domEle = this.domElement
-                ,hh = domEle.innerHeight + "px";
-                domEle.body.style.paddingTop = hh;
-                domEle.section.style.height = hh;
+                ,hh = domEle.innerHeight
+                ,shh = hh + "px";
+                domEle.body.style.paddingTop = shh;
+                domEle.section.style.height = shh;
+                if (hh <= 350) {
+                    var qhh = -hh/4;
+                    domEle.section.style.webkitTransform = "translate3d(0px,"+ qhh +"px,0px)";
+                    domEle.section.style.transform = "translate3d(0px,"+ qhh +"px,0px)";
+                } else {
+                    domEle.section.style.webkitTransform = null;
+                    domEle.section.style.transform = null;
+                }
             },
             init: function () {
                 var _that = this;
@@ -125,7 +144,7 @@
         scrollingPaper.pageToScroll = { 
             fromObj : makeFullScreen.domElement,
             contentOpacity : cssSelector(".section-intro .primary-block")
-        }
+        };
         
         // Structure app bar
         appBar.main = cssSelector(".bar");
@@ -229,8 +248,6 @@
         aEventListener(mask_modal, 'click', gestureEvent);
 //        aEventListener(obj.global, "scroll", gestureEvent);
         aEventListener(obj.doc.body, 'scrolledIntroPage', function (e){
-            headLogo.style.visibility = visibility;
-            if (photoCrop !== null){
                 aEventListener(photoCrop,'transitionend',function dmp(e){
                     var paperDinamyc = e.currentTarget.querySelector(".paper-fab[dynamic]");
                     crossClassList(paperDinamyc).add("active");
@@ -238,7 +255,6 @@
                 });
                 crossClassList(photoCrop).add("come-in");
                 photoCrop = null;
-            }
             e.stopPropagation();
         });
         //Event Gesture app-bar
@@ -286,7 +302,7 @@
                 appBar.closeSearch();
             }
         });
-        //Set the animation of the time icon on the specific hour and day
+        /*Set the animation of the time icon on the specific hour and day
         o_date = new Date();
         switch(o_date.getDay()){
         case 1:
@@ -312,7 +328,7 @@
             break;
         default:
         break;
-        }
+        }*/
         //
         //
         //Raise nav bar if the page is scrolled

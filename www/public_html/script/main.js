@@ -1326,6 +1326,12 @@ modules.dmPaper = function dmPaper(_self) {
     */
         this.doc = document;
 
+        this.now = Date.now;
+        if(window.performance && performance.now) {
+            this.now = performance.now.bind(performance);
+        }
+
+
     //Add modules
         if (!modules_set || modules_set === '*') {
             modules_set = [];

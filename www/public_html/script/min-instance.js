@@ -31,20 +31,20 @@ function inserMainScript(url, callback, sID) {
         lang: 'it',
         parsetags: 'explicit'
     };
-    inserMainScript("https://apis.google.com/js/platform.js", function () {
-        gapi.plusone.render("pOne-16", {"href": "https://plus.google.com/112281711139690699166", "size": "medium", "rel":"publisher"});
-        gapi.follow.render("follwOne-16",{"class":"g-follow", "href":"https://plus.google.com/112281711139690699166", "height": "20", "rel":"publisher"});
-    });
+    //inserMainScript("https://apis.google.com/js/platform.js", function () {
+    //    gapi.plusone.render("pOne-16", {"href": "https://plus.google.com/112281711139690699166", "size": "medium", "rel":"publisher"});
+    //    gapi.follow.render("follwOne-16",{"class":"g-follow", "href":"https://plus.google.com/112281711139690699166", "height": "20", "rel":"publisher"});
+    //});
 
     //insert the facebook like button
-    var fbInit = function () {
-        FB.init({
-            appId   : '1404574083193147',
-            xfbml   : true,
-            version : 'v2.3'
-        });
-    };
-    inserMainScript("https://connect.facebook.net/it_IT/sdk.js", fbInit, "facebook-jssdk");
+    //var fbInit = function () {
+    //    FB.init({
+    //        appId   : '1404574083193147',
+    //        xfbml   : true,
+    //        version : 'v2.3'
+    //    });
+    //};
+    //inserMainScript("https://connect.facebook.net/it_IT/sdk.js", fbInit, "facebook-jssdk");
     
     //Insert the twitter share button
     inserMainScript("script/interaction.js", function(){return;});
