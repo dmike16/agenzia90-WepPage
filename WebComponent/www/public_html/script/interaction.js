@@ -59,7 +59,7 @@
                     }
                     
                     var ptsfo = this.pageToScroll.fromObj;
-                    var section = ptsfo.section, content = this.pageToScroll.contentOpacity;
+                    var section = ptsfo.sections[0], content = this.pageToScroll.contentOpacity;
                     var thh = ihh/3, nhh= ihh*0.8;
 
                     if (lscroll >= thh && !this.tirth) {
@@ -100,7 +100,7 @@
         }
         ,makeFullScreen = {
             domElement : {
-                            section: cssSelector(".section-full-screen"),
+                            sections: cssSelectorAll("section"),
                             innerHeight: obj.global.innerHeight,
                             body: obj.doc.body
                         },
@@ -118,16 +118,20 @@
             fit: function () {
                 var domEle = this.domElement
                 ,hh = domEle.innerHeight
-                ,shh = hh + "px";
+                ,shh = hh + "px"
+                ,sections = domEle.sections
+                ,fsection = sections[0];
                 domEle.body.style.paddingTop = shh;
-                domEle.section.style.height = shh;
+                for (var i = 0, len = sections.length; i < len; i++) {
+                		sections[i].style.height = shh;
+                }
                 if (hh <= 350) {
                     var qhh = -hh/4;
-                    domEle.section.style.webkitTransform = "translate3d(0px,"+ qhh +"px,0px)";
-                    domEle.section.style.transform = "translate3d(0px,"+ qhh +"px,0px)";
+                    fsection.style.webkitTransform = "translate3d(0px,"+ qhh +"px,0px)";
+                    fsection.style.transform = "translate3d(0px,"+ qhh +"px,0px)";
                 } else {
-                    domEle.section.style.webkitTransform = null;
-                    domEle.section.style.transform = null;
+                    fsection.style.webkitTransform = null;
+                    fsection.style.transform = null;
                 }
             },
             init: function () {
@@ -145,7 +149,7 @@
             fromObj : makeFullScreen.domElement,
             contentOpacity : cssSelector(".section-intro .primary-block")
         };
-        
+
         // Structure app bar
         appBar.main = cssSelector(".bar");
         appBar.search = sch;
