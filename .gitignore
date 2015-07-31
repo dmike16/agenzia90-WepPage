@@ -49,3 +49,4 @@ arch/
 
 #jsHint config
 .jshintrc
+.idea/
