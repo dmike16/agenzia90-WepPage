@@ -53,9 +53,7 @@
         ,aEventListener = obj.EventUtility.aboutHandler.addListener
         ,rEventListener = obj.EventUtility.aboutHandler.removeListener
         //
-        // Boolean Variables
-        ,click_on = false
-        ,id_p = 0
+        //
         //
         // Dom Element
         ,sch = cssSelector(".header .search")
@@ -69,7 +67,6 @@
         ,middleTarget = cssSelector("#location .middle-target")
         //Variables
         //
-        ,visibility = 'hidden'
         ,scrollingPaper = {
             view: obj.global,
             body: obj.doc.body,
@@ -116,7 +113,7 @@
                 } else if (!this._allActive) {
                 	var nih,lim;
                 	if(!this._catalogActive){
-                		nih = 2*ihh
+                		nih = 2*ihh;
                     	lim = nih*0.8;
                 		if (lscroll > lim) {
                 			this._catalogActive = true;

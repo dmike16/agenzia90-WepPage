@@ -88,7 +88,7 @@ var UtilityBuild = (function () {
         *
         * @method formatEvent
         * @private
-        * @param {Object} event Object 
+        * @param {Object} evt Object
         * @return {Object} The event object 
         *
         */
