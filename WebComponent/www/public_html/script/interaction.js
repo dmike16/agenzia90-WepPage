@@ -44,7 +44,7 @@
         		return;
         	}
         	crossClassList(ele).toggle('animate',mouseOver);
-        };
+        }
         //
         // Dependencies
         var cssSelector = obj.doc.querySelector.bind(obj.doc) 
