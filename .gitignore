@@ -49,4 +49,5 @@ arch/
 
 #jsHint config
 .jshintrc
-.idea/
+.idea
+*.iml

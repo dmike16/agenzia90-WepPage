@@ -551,7 +551,7 @@ i[class^="icon-"]::before{
     width:14px;
     cursor:pointer;
     text-indent:-9999em;
-    background-image:url("/images/icon/navBar/times_icon.svg");
+    background-image:url("../images/icon/navBar/times_icon.svg");
     background-repeat:no-repeat;
     background-size:14px 14px;
     background-position:center center;
@@ -647,7 +647,7 @@ i[class^="icon-"]::before{
     background-position:-2px -13px;
 }
 .icon-arrow-hint{
-    background:url("/images/icon/navBar/arrowHint.svg") no-repeat;
+    background:url(../images/icon/navBar/arrowHint.svg) no-repeat;
     text-indent:100%;
     white-space:nowrap;
 }
@@ -890,7 +890,7 @@ i[class^="icon-"]::before{
 
 
 .homePage .section-photo-intro {
-    background:url("/images/sectionIntroPhoto.png") center top no-repeat;
+    background:url("../images/sectionIntroPhoto.png") center top no-repeat;
     background-size:cover;
 }
 .services .section-photo-intro {
@@ -1248,13 +1248,13 @@ a .paper-button {
 }
 
 .b-icon{
-    background-image:url(/images/icon/navBar/newsIcon.png);
+    background-image:url(../images/icon/navBar/newsIcon.png);
 }
 .b-icon.go-inside{
-    background-image:url(/images/icon/ulElement/buttonInside.svg);
+    background-image:url(../images/icon/ulElement/buttonInside.svg);
 }
 .paper-fab.pressed .b-icon.go-inside{
-    background-image:url(/images/icon/ulElement/buttonInsideActive.svg);
+    background-image:url(../images/icon/ulElement/buttonInsideActive.svg);
 }
 button.paper-fab:hover + label.label-button{
     opacity:1;
@@ -1324,31 +1324,31 @@ button.paper-fab:hover + label.label-button{
     font-size:18px;
 }
 .icon.sermetra{
-    background-image:url("/images/icon/partnship/friendLogo.png");
+    background-image:url("../images/icon/partnship/friendLogo.png");
     background-position:-8.6px -105px;
 }
 .icon.unasca{
-    background-image:url("/images/icon/partnship/friendLogo.png");
+    background-image:url("../images/icon/partnship/friendLogo.png");
     background-position:-9.9px -139.9px;
 }
 .icon.cna{
-    background-image:url("/images/icon/partnship/friendLogo.png");
+    background-image:url("../images/icon/partnship/friendLogo.png");
     background-position:-9.9px -176px;
 }
 .icon.mctc{
-    background-image:url("/images/icon/partnship/friendLogo.png");
+    background-image:url("../images/icon/partnship/friendLogo.png");
     background-position:-6.6px -211px;
 }
 .icon.generali{
-    background-image:url("/images/icon/partnship/friendLogo.png");
+    background-image:url("../images/icon/partnship/friendLogo.png");
     background-position: -1.3px 0px;
 }
 .icon.bali{
-    background-image:url("/images/icon/partnship/friendLogo.png");
+    background-image:url("../images/icon/partnship/friendLogo.png");
     background-position:-4.6px -30px;
 }
 .icon.motocentromarconi{
-    background-image:url("/images/icon/partnship/friendLogo.png");
+    background-image:url("../images/icon/partnship/friendLogo.png");
     background-position:-1.2px -64px;
 }
 #pOne-16{
@@ -2143,7 +2143,7 @@ a:hover > .act-circ{
 	box-shadow: 0 3px 8px rgba(0,0,0,0.35);
 }
 .lif-icon {
-    background-image:url("/images/icon/partnship/friendLogo.png");
+    background-image:url("../images/icon/partnship/friendLogo.png");
     display:inline-block;
     vertical-align:middle;
 }
@@ -2277,7 +2277,7 @@ a:hover > .act-circ{
     text-indent:-9999em;
     width:10px;
     height:5px;
-    background:url(/images/icon/navBar/quicknav_icon.png) no-repeat;
+    background:url(../images/icon/navBar/quicknav_icon.png) no-repeat;
 }
 .click-arrow a.arrow-active{
     background-position:0 -5px;
@@ -2413,11 +2413,11 @@ address{
 }
 a.cardslide-prev{
     float:left;
-    background-image:url(/images/icon/slideCard/arrowleft.svg);
+    background-image:url(../images/icon/slideCard/arrowleft.svg);
 }
 a.cardslide-next{
     float:right;
-    background-image:url(/images/icon/slideCard/arrowright.svg);
+    background-image:url(../images/icon/slideCard/arrowright.svg);
 }
 .cardslide-prev{
     position: absolute;
@@ -2701,7 +2701,7 @@ li{
 }
 @media only screen and (max-width: 1200px) and (min-width: 768px){
     .homePage .section-photo-intro {
-    background:url("/images/sectionIntroPhoto1200.png") center top no-repeat;
+    background:url("../images/sectionIntroPhoto1200.png") center top no-repeat;
     background-size:cover;
 }
 
@@ -2786,7 +2786,7 @@ li{
     background-size:150px 140px;
     }
      .header-subTitle li::before{
-    content:url("/images/icon/ulElement/discStyleSmall.svg");
+    content:url("../images/icon/ulElement/discStyleSmall.svg");
     }
     .header-wrapper.qp-headerfixed-active .header-title{
 	font-size: 28px;
