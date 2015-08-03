@@ -1087,6 +1087,10 @@ modules.dmPaper = function dmPaper(_self) {
 
             wave.origin = {x:touchX, y:touchY};
 
+            if (this.chd.bg.classList.contains("recenteringTouch")){
+                wave.endPosition = {x:width/2, y:height/2};
+            }
+
             wave.containerSize = Math.max(width,height);
             wave.containerWidth = width;
             wave.containerHeight = height;
@@ -1160,6 +1164,14 @@ modules.dmPaper = function dmPaper(_self) {
                 ,x = wave.origin.x
                 ,y = wave.origin.y
                 ,bgAplha = waveOuterOpacity(tDown, tup, anim);
+
+                if (wave.endPosition){
+
+                    var translateFraction = Math.min(1,radius / wave.containerSize * 2 / Math.sqrt(2));
+
+                    x += translateFraction * (wave.endPosition.x - wave.origin.x);
+                    y += translateFraction * (wave.endPosition.y - wave.origin.y);
+                }
 
                 drawRipple(wave, x, y, radius, wave_alpha, bgAplha);
 
