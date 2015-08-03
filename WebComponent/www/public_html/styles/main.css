@@ -47,10 +47,9 @@ html, body{
     box-shadow: 0 20px 40px 0 rgba(0,0,0,0.3);
 }
 .bs-zLevel-5{
-    box-shadow:0 27px 55px 0 rgba(0,0,0,0.3)
+    box-shadow:0 27px 55px 0 rgba(0,0,0,0.3);
 }
 *{
-    -moz-box-sizing: preserv-3d;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -73,7 +72,6 @@ h1,h2,h3,h4,h5 {
     background-color: #eee;
     height: 80px;
     left: 0;
-    padding: 0;
     top: 0;
     width:100%;
     position: fixed;
@@ -121,7 +119,6 @@ ul li {
 }
 .bar {
     display:-webkit-flex;
-    display:-moz-flex;
     display:flex;
     -webkit-align-items: center;
     align-items: center;
@@ -500,7 +497,6 @@ i[class^="icon-"]::before{
 }
 .search{
     display:-webkit-flex;
-    display:-moz-flex;
     display:flex;
     -webkit-align-items: center;
     align-items: center;
@@ -650,6 +646,94 @@ i[class^="icon-"]::before{
     background:url(../images/icon/navBar/arrowHint.svg) no-repeat;
     text-indent:100%;
     white-space:nowrap;
+}
+.embeddPhotoSphere{
+    margin-top: 172px;
+    width: 448px;
+    top:0;
+    background-color: #fff;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    z-index: 1;
+
+}
+.overSomething{
+    font-size: 64px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    padding: 20%;
+    z-index: -1;
+    background-color: transparent;
+}
+.paper-gp-link{
+    color: #434350;
+    border-radius: 23px;
+    padding: 2px 7px;
+    text-align: center;
+    min-width: 60px;
+    background-color: #f9f9f9;
+    margin:2px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+}
+.swing-animation{
+    -webkit-animation: swing 880ms cubic-bezier(1.0,0.23,0.23,1.0) forwards;
+    -moz-animation: swing 880ms cubic-bezier(1.0,0.23,0.23,1.0) forwards;
+    -o-animation:  swing 880ms cubic-bezier(1.0,0.23,0.23,1.0) forwards;
+    animation: swing 880ms cubic-bezier(1.0,0.23,0.73,1.0) forwards;
+    -webkit-transform-origin: 0 10%;
+    -moz-transform-origin: 0 10%;
+    transform-origin: 0 10%;
+}
+@-webkit-keyframes swing {
+    from {
+        -webkit-transform: rotate3d(1,0,0,85deg);
+        -moz-transform: rotate3d(1,0,0,85deg);
+        -ms-transform: rotate3d(1,0,0,85deg);
+        -o-transform: rotate3d(1,0,0,85deg);
+        transform: rotate3d(1,0,0,85deg);
+    }
+    25%{
+        -webkit-transform: rotate3d(1,0,0,-80deg);
+        -moz-transform: rotate3d(1,0,0,-80deg);
+        -ms-transform: rotate3d(1,0,0,-80deg);
+        -o-transform: rotate3d(1,0,0,-80deg);
+        transform: rotate3d(1,0,0,-80deg);
+    }
+    55%{
+        -webkit-transform: rotate3d(1,0,0,70deg);
+        -moz-transform: rotate3d(1,0,0,70deg);
+        -ms-transform: rotate3d(1,0,0,70deg);
+        -o-transform: rotate3d(1,0,0,70deg);
+        transform: rotate3d(1,0,0,70deg);
+    }
+    75%{
+        -webkit-transform: rotate3d(1,0,0,-50deg);
+        -moz-transform: rotate3d(1,0,0,-50deg);
+        -ms-transform: rotate3d(1,0,0,-50deg);
+        -o-transform: rotate3d(1,0,0,-50deg);
+        transform: rotate3d(1,0,0,-50deg);
+    }
+    90%{
+        -webkit-transform: rotate3d(1,0,0,10deg);
+        -moz-transform: rotate3d(1,0,0,10deg);
+        -ms-transform: rotate3d(1,0,0,10deg);
+        -o-transform: rotate3d(1,0,0,10deg);
+        transform: rotate3d(1,0,0,10deg);
+    }
+    to{
+        -webkit-transform: rotate3d(1,0,0,0deg);
+        -moz-transform: rotate3d(1,0,0,0deg);
+        -ms-transform: rotate3d(1,0,0,0deg);
+        -o-transform: rotate3d(1,0,0,0deg);
+        transform: rotate3d(1,0,0,0deg);
+    }
 }
 .animated-arrow-1{
     -webkit-animation: arrow1 3s infinite ease-out;
@@ -823,8 +907,8 @@ i[class^="icon-"]::before{
     40%{
         opacity:1.0;
     }
-    80%{
-        opacity:1.0
+    65%{
+        opacity:0.1
     }
     90%{
         opacity:0.05;
@@ -1017,7 +1101,7 @@ hr.service-title{
     -ms-transform: translate(-50px,0);
     -o-transform:translate(-50px,0);
     transform: translate(-50px,0);
-    font-size:13;
+    font-size:13px;
     margin:10px 0 0 0;
     line-height:20px;
     height:40px;
