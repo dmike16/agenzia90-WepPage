@@ -1,0 +1,24 @@
+@font-face {
+	font-family: 'dmFont';
+	src:url('fonts/dmFont.eot?c58q6n');
+	src:url('fonts/dmFont.eot?#iefixc58q6n') format('embedded-opentype'),
+		url('fonts/dmFont.ttf?c58q6n') format('truetype'),
+		url('fonts/dmFont.woff?c58q6n') format('woff'),
+		url('fonts/dmFont.svg?c58q6n#dmFont') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.dm {
+    display: inline-block;
+    font: normal normal normal 14px/1 dmFont;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0,0);
+}
+
+.dm-90srls:before {
+	content: "\e600";
+}
