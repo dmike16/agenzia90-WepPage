@@ -659,6 +659,14 @@ i[class^="icon-"]::before{
     z-index: 1;
 
 }
+.embeddPhotoSphere{
+    display: none;
+    visibility: hidden;
+}
+.embeddPhotoSphere.active{
+    display: block;
+    visibility: visible;
+}
 .overSomething{
     font-size: 64px;
     width: 100%;
@@ -1233,7 +1241,7 @@ button::-moz-focus-inner{
     opacity:0;
 }
 a:hover .paper-button .fit.bs-zLevel-0 {
-    background-color:rgb(250,250,250);
+    background-color:rgb(253,253,253);
     box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
 a .paper-button {
@@ -2332,6 +2340,12 @@ a:hover > .act-circ{
     background-color: #26C6DA;
     padding:25px;
     width: 448px;
+    opacity: 1;
+    -webkit-transition: opacity 200ms ease-out;
+    transition: opacity 200ms ease-out;
+}
+.picture-frame.hidden{
+    opacity: 0;
 }
 .click-to-expand{
     position:relative;

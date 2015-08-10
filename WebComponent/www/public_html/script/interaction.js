@@ -65,8 +65,11 @@
         ,bus = cssSelector("#location .bus p")
         ,car = cssSelector("#location .car p")
         ,middleTarget = cssSelector("#location .middle-target")
+            ,fab_one = cssSelectorAll(".paper-fab")[1]
+            ,photoSphere = cssSelector("#PhotoSphere")
+            ,picFrame = cssSelector(".picture-frame")
         //Variables
-        //
+        ,first_click = false
         ,scrollingPaper = {
             view: obj.global,
             body: obj.doc.body,
@@ -241,6 +244,21 @@
         aEventListener(bus,'mouseout',animateOnHover);
         aEventListener(car,'mouseover',animateOnHover);
         aEventListener(car,'mouseout',animateOnHover);
+        aEventListener(fab_one,'click',function(e){
+
+            if(!first_click){
+                crossClassList(e.currentTarget).add("pressed");
+                crossClassList(picFrame).add("hidden");
+                crossClassList(photoSphere).add("active");
+                first_click = true;
+            } else {
+                crossClassList(picFrame).remove("hidden");
+                crossClassList(photoSphere).remove("active");
+                crossClassList(e.currentTarget).remove("pressed");
+                first_click = false;
+            }
+        });
+
         //
         //
         //Raise nav bar if the page is scrolled
@@ -251,7 +269,7 @@
         sch = null;
         bus = null;
         car = null;
-        obj.PaperMaker('button',{ element: cssSelectorAll(".paper-fab")[1]});
+        obj.PaperMaker('button',{ element: fab_one});
         obj.PaperMaker('button',{ element: cssSelectorAll(".paper-fab")[0]});
         obj.PaperMaker.MakePaperLive();
         console && console.log("%c90 s r l s\n%cPratiche Auto\nTel 06 01905227","font-size:1.5em;color:#1945D5;", "color:#14BD4C;font-size:1em;");
