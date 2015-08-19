@@ -38,6 +38,76 @@ var UtilityBuild = (function () {
 		};
 	}
     }());
+    //Merge Sort Algoritm in iterative form
+        (function mergeSort(){
+            "use strict";
+            if(typeof Array.prototype.mergeSort === "undefined"){
+                Array.prototype.mergeSort = function _mergeSort(){
+
+                }
+            }
+        }());
+        // Emalutaing Class Functionalities like Interface and SubClass
+        _self.Class = function () {
+
+            var _Interface = function Interface(name, methods) {
+                if (arguments.length != 2) {
+                    throw new Error("Interface constructor called with " + arguments.length +
+                        "arguments, but expected exaclty 2");
+                }
+                if(!(this instanceof Interface)){
+                    return new Interface(name,methods);
+                }
+
+                this.name = name;
+                this.methods = [];
+                for (var i = 0, len = methods.length; i < len; i++) {
+                    if (typeof methods[i] !== 'string') {
+                        throw new Error("Interface constructor expects method names to be string");
+                    }
+                    this.methods.push(methods[i]);
+                }
+            };
+            _Interface.ensureImplements = function (obj) {
+                if (arguments.length < 2) {
+                    throw new Error("Function Interface,ensureImplements called with" +
+                        arguments.length + " arguments, but expected at least 2");
+                }
+
+                for (var i = 0, len = arguments.length; i < len; i++) {
+                    var interface = arguments[i];
+                    if (interface.constructor !== Interface) {
+                        throw new Error("Function expects arguments to be istances of Interface");
+                    }
+
+                    for (var j = 0, mLen = interface.methods.length; j < mLen; j++) {
+                        var method = interface.methods[j];
+                        if (!object[method] || typeof object[method] !== 'function') {
+                            throw new Error("function: object does not implement the" + interface.name
+                                + "interface Method" + method + "was not found");
+                        }
+                    }
+                }
+            };
+            var _extend = function extend(subClass, superClass) {
+                var F = function () {
+                };
+                F.prototype = superClass.prototype;
+                subClass.prototype = new F();
+                subClass.prototype.constructor = subClass;
+
+                subClass.superclass = superClass.prototype;
+                if (superClass.prototype.constructor == Object.prototype.constructor) {
+                    superClass.prototype.constructor = superClass;
+                }
+            };
+
+            return {
+                Interface: _Interface,
+                extend: _extend
+            };
+
+        }();
     /**
     * It's a collection of events utilities
     *
