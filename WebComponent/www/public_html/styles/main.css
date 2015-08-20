@@ -2772,3 +2772,25 @@ li{
     visibility:visible;
     opacity:1;
 }
+@media only screen and (min-width: 1700px){
+    .grid_outer{
+        max-width: 1080px;
+    }
+    .section-base .photo-crop .photo-container{
+        height: 700px;
+    }
+    .photo-crop .paper-fab.fit {
+        top: 583px;
+        left: 42%;
+    }
+    .picture-frame{
+        width: 501px;
+    }
+    .section-body{
+        font-size: 23px;
+        line-height: 1.9;
+    }
+    .embeddPhotoSphere{
+        margin-top: 228px;
+    }
+}
