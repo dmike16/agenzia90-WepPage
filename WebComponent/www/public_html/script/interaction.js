@@ -70,6 +70,10 @@
             ,picFrame = cssSelector(".picture-frame")
         //Variables
         ,first_click = false
+            //
+            //Object For Scrolling Event
+            //
+            //
         ,scrollingPaper = {
             view: obj.global,
             body: obj.doc.body,
@@ -152,6 +156,9 @@
                 delete(this.init);
             }
         }
+            //Object For Resize Event
+            //
+            //
         ,makeFullScreen = {
             domElement : {
                             sections: cssSelectorAll("section"),

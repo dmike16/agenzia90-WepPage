@@ -49,7 +49,9 @@ var UtilityBuild = (function () {
         }());
         // Emalutaing Class Functionalities like Interface and SubClass
         _self.Class = function () {
-
+            /*
+            Implements Interface For JavaScript from book "ProJavaScriptPattern"
+             */
             var _Interface = function Interface(name, methods) {
                 if (arguments.length != 2) {
                     throw new Error("Interface constructor called with " + arguments.length +
@@ -89,6 +91,9 @@ var UtilityBuild = (function () {
                     }
                 }
             };
+            /*
+            Implements The SubClass Inheritance from bool "ProJavaScriptPattern"
+             */
             var _extend = function extend(subClass, superClass) {
                 var F = function () {
                 };
@@ -101,10 +106,39 @@ var UtilityBuild = (function () {
                     superClass.prototype.constructor = superClass;
                 }
             };
+            /*
+            Implements Mixin Class
+             */
+            var _augment = function augment(recivingClass, givingClass){
+                if (arguments[2]){
+                    //Recive only certains methods
+                    for(var i = 2,len = arguments.length; i < len ; i++){
+                        recivingClass.prototype[arguments[i]] = givingClass.prototype[arguments[i]];
+                    }
+                }
+                else {
+                    //All Methods
+                    for(var methodName in givingClass.prototype){
+                        if(!recivingClass.prototype[methodName]){
+                            recivingClass.prototype[methodName] = givingClass.prototype[methodName];
+                        }
+                    }
+                }
+            };
+            /*
+            Implements Prototypal Inheritance
+             */
+            var _clone = function clone(object){
+                function F(){}
+                F.prototype = object;
+                return new F;
+            };
 
             return {
                 Interface: _Interface,
-                extend: _extend
+                extend: _extend,
+                augment: _augment,
+                clone: _clone
             };
 
         }();
