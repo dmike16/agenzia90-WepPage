@@ -44,7 +44,7 @@ var UtilityBuild = (function () {
             if(typeof Array.prototype.mergeSort === "undefined"){
                 Array.prototype.mergeSort = function _mergeSort(){
 
-                }
+                };
             }
         }());
         // Emalutaing Class Functionalities like Interface and SubClass
