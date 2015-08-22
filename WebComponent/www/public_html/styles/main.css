@@ -618,7 +618,12 @@ i[class^="icon-"]::before{
 .section-photo-intro {
     position:absolute;
 }
-
+#laptopScreen{
+   display: block;
+}
+#mobileScreen{
+   display: none;
+}
 .arrow-hint {
     bottom:0px;
     height:88px;
@@ -2497,9 +2502,8 @@ address{
     transform: translateZ(0);
 }
 .resources-card{
-    height:320px;
     background-color:transparent;
-    width:940px;
+    width:inherit;
 }
 .resources-card ul {
     -webkit-transform: matrix(1,0,0,1,0,0);
@@ -2794,3 +2798,33 @@ li{
         margin-top: 228px;
     }
 }
+@media only screen and (max-width: 580px){
+   .grid_outer{
+      margin: 0;
+   }
+   .grid_outer.primary-block{
+      padding: 0;
+   }
+   .resources-flow-layout{
+      width: 100%;
+   }
+   #laptopScreen{
+      display:none;
+   }
+   #mobileScreen{
+      display:block;
+   }
+   .resources-card p {
+      padding: 0 2%;
+      font-size: 1.3em;
+      font-weight: 400;
+      line-height: 1.3;
+      letter-spacing: 1px;
+   }
+}
+@media only screen and (max-height: 600px){
+   .arrow-hint{
+      bottom:auto;
+   }
+}
+
