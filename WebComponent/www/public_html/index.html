@@ -14,7 +14,7 @@
   </head>
   <body class="homePage" style="padding-top:800px">
     <header class="header bsa" role="banner">
-        <a class=" logo site-logo-link" href="index.html" style="opacity:0;">
+        <a class=" logo site-logo-link" href="index.html">
                   <img class="site-logo-image" src="images/Logo90s.svg" alt="90 s.r.l.s"/>
         </a>
           <nav class="bar fixed">
@@ -62,6 +62,45 @@
                     </form>
                 </div>
             </nav>
+	    <div id="dropdown-toggle" class="icon" aria-label="arrow-drop-down" role="img">
+		    <svg class="fit" viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" style="pointer-events:none;display:block;">
+			    <g>
+				    <path d="M7 10l5 5 5-5z"></path>
+			    </g>
+		    </svg>
+	    </div>
+	    <div class="dropdown-panel host">
+		    <div class="core-menu host">
+			    <div class="core-item host layout horizontal center">
+				    <div class="icon host"> 
+					    <i class="dm dm-90srls"></i>
+				    </div>
+				    <div class="label">Servizi</div>
+				    <a href="#catalog"></a>
+			    </div>
+			    <div class="core-item host layout horizontal center">
+				    <div class="icon host">
+					    <i class="dm dm-map-marker"></i>
+				    </div>
+				    <div class="label">Dove Siamo</div>
+				    <a href="#location"></a>
+			    </div>
+			    <div class="core-item host layout horizontal center">
+				    <div class="icon host">
+					    <i class="dm dm-map"></i>
+				    </div>
+				    <div class="label">Come Raggiungerci</div>
+				    <a href="#location"></a>
+			    </div>
+			    <div class="core-item host layout horizontal center">
+				    <div class="icon host">
+					    <i class="dm dm-paper"></i>
+				    </div>
+				    <div class="label">Link Utili</div>
+				    <a href="#linkUtil"></a>
+			    </div>
+		    </div>
+	    </div>
         </header>
         <section class="section-intro section-full-screen section-photo">
              <div class="grid_outer primary-block">
@@ -164,7 +203,7 @@
                </div>
              </div> 
          </section>
-         <section id="catalog" class="panel main-purple">
+         <section id="catalog" class=" section-base panel main-purple">
             <div class="content fit">
                 <div class=" grid_outer layout horizontal  wrap">
                     <h1>Catalogo dei Servizi</h1>
@@ -251,7 +290,7 @@
                 </div>
             </div>
          </section>
-         <section id="location" class="">
+         <section id="location" class="section-base">
          	<div class="grid_outer extend">
          		<div class="horizontal-strip top">
          			<div class="layout horizontal no-wrap space-between">
