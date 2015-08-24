@@ -224,6 +224,63 @@ ul li {
     overflow:visible;
     min-height:40px;
 }
+/***************
+* DropDown Panel it's a simple panel tha appera down a caret-down
+* icon without animation. Used for small nav-menu. 
+****************/
+.dropdown-panel{
+   position: absolute;
+   top: 75px;
+   left: 15px;
+   width: 240px;
+   z-index: 1000;
+}
+/***************
+* The host class give to the element the  proprieties
+* for the particular case.In this siituation it's not visible.
+***************/
+.dropdown-panel.host{
+   background:white;
+   opacity: 0;
+   visibility: hidden;
+   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.dropdown-panel.host[open]{
+   opacity: 1;
+   visibility: visible;
+}
+.core-menu > .core-item{
+   cursor: default;
+}
+.core-menu.host{
+   display: block;
+   margin:12px;
+}
+.core-item{
+   font-size: 14px;
+   font-weight: 500;
+   line-height: 32px;
+   padding: 0;
+   color: initial;
+   opacity:0.5;
+}
+.core-item.host{
+   display:block;
+   position: relative;
+   min-height: 40px;
+   white-space: nowrap;
+}
+.core-item > a{
+   position: absolute;
+   top:0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background-color: rgba(0,0,0,0.000001);
+}
+.core-menu .core-item:hover{
+   opacity:1.0;
+}
 .paper-item{
     display:block;
     position:relative;
@@ -1408,6 +1465,10 @@ button.paper-fab:hover + label.label-button{
 .paper-button > .icon{
     margin-right:4px;
 }
+/*************
+* Default icon Class used in div to
+* style icon.
+**************/
 .icon {
     display:inline-block;
     vertical-align:middle;
@@ -1416,6 +1477,25 @@ button.paper-fab:hover + label.label-button{
     fill:currentcolor;
     height:24px;
     width:24px;
+}
+/*************
+* Icon Class + host to give icon particular proprieties
+* used in dropdown-panel element.
+*************/
+.icon.host{
+   margin: 0 16px 0 4px;
+}
+.icon.host i {
+   font-size: 24px;
+   line-height: 24px;
+}
+#dropdown-toggle{
+   display: none;
+   margin-top: 9px;
+   opacity: 0.3;
+   fill: black;
+   height: 35px;
+   width: 35px;
 }
 .icon i{
     font-size:18px;
@@ -1708,6 +1788,11 @@ hr{
     -ms-flex-direction: column;
     -webkit-flex-direction: column;
     flex-direction: column;
+}
+.layout.center{
+   -ms-flex-align: center;
+   -webkit-align-items: center;
+   align-items: center;
 }
 .layout.wrap{
     -ms-flex-wrap: wrap;
@@ -2264,7 +2349,6 @@ a:hover > .act-circ{
 }
 .section-base {
     min-height:610px;
-    padding:40px 0;
 }
 .photo-crop {
     background-repeat:no-repeat;
@@ -2798,6 +2882,15 @@ li{
         margin-top: 228px;
     }
 }
+@media only screen and (max-width: 850px){
+   #dropdown-toggle{
+      display: inline-block;
+      z-index: 1000;
+   }
+   .bar a.paper-link{
+      display: none;
+   }
+}
 @media only screen and (max-width: 580px){
    .grid_outer{
       margin: 0;
@@ -2820,6 +2913,10 @@ li{
       font-weight: 400;
       line-height: 1.3;
       letter-spacing: 1px;
+   }
+   #dropdown-toggle{
+      height: 29px;
+      width: 29px;
    }
 }
 @media only screen and (max-height: 600px){
