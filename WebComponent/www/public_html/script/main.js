@@ -92,7 +92,7 @@ var UtilityBuild = (function () {
                 }
             };
             /*
-            Implements The SubClass Inheritance from bool "ProJavaScriptPattern"
+            Implements The SubClass Inheritance from book "ProJavaScriptPattern"
              */
             var _extend = function extend(subClass, superClass) {
                 var F = function () {
@@ -133,12 +133,110 @@ var UtilityBuild = (function () {
                 F.prototype = object;
                 return new F;
             };
+	    
+	    /* 
+	     * Clone Proprieties
+	     */
+	 
+	      /*
+	       * Helper function to iterate the method when the
+	       * prop is in child and it's an object
+	       */
+	     
+	     function _ff(givingProp, recivingProp, callback){
+	      if((typeof givingProp !== "object") ||
+		  (typeof recivingProp !== "object")){
+	       console.log(givingProp);
+	       return;
+	       }
+	      
+	      var _unsupportedObject =/^\[object (?=((?:HTML|global)[^"\r\n]*\]))\1/;
+	      
+	      var toStr = Object.prototype.toString;
+	      var gNotSupportedObject = _unsupportedObject.test(toStr.call(givingProp));
+	      var rNotSupportedObject = gNotSupportedObject || 
+	       _unsupportedObject.test(toStr.call(recivingProp));
+	      
+	      if (gNotSupportedObject || rNotSupportedObject){
+	       return;
+	       }
+	      callback(givingProp, recivingProp);
+	     }
+	 
+	     var _extendByCopy = function extendByCopy(parent, child) {
+	      
+	      /* WARNING
+	       ********* It's a shallow copy
+	       * WARnING
+	       */
+	      
+	      var p;
+	      child = child || {};
+	      
+	      /*
+	       * Check if the 3 argument it's defined. It rapresents an array 
+	       * of string that contains the parent's prop you would
+	       *  copy in child.  
+	       */
+	      
+	      if (arguments[2]) {
+	       var propNames = arguments[2];
+	       var astr = "[object Array]"
+	       ,toStr = Object.prototype.toString;
+	      
+	       /*
+		* Check if the 3 argument it's an array
+		*/
+	       
+	       if (toStr.call(propNames) !== astr){
+		throw new Error('function copyExtend: error in tirth argument type. It must be an array');
+		}
+	       
+	       /*
+		* Iterate through the array of coping prop
+		*/
+	       
+	       for(var i = propNames.length -1; i >= 0; i = i - 1){
+		p = propNames[i];
+		
+		/*
+		 * Check if the single prop it's a string and it's in
+		 * the parent object
+		 */
+		
+		if(typeof p === 'string' && parent.hasOwnProperty(p)){
+		 if (child.hasOwnProperty(p)){
+		  _ff(parent[p],child[p],extendByCopy);	  
+		 } else {
+		   child[p] = parent[p];
+		 }
+		} 
+	       }
+	      } else {
+	       
+	       /*
+		* Copy all parent prop
+		*/
+	       
+	       for (p in parent){
+		if(parent.hasOwnProperty(p)){
+		 if (child.hasOwnProperty(p)){
+		  _ff(parent[p],child[p],extendByCopy);
+		 } else {
+		   child[p] = parent[p];
+		 }
+		}
+	       }
+	      }
+	      return child;
+	     };
 
             return {
                 Interface: _Interface,
                 extend: _extend,
                 augment: _augment,
-                clone: _clone
+                clone: _clone,
+		extendByCopy: _extendByCopy
             };
 
         }();
