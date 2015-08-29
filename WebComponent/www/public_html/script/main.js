@@ -523,7 +523,7 @@ var UtilityBuild = (function () {
     * @static
     *
     */
-    _self.ArrayUtilty = (function buildArrayUtilities() {
+    _self.ArrayUtility = (function buildArrayUtilities() {
         "use strict";
         var indexOf, isArray;
         /**
@@ -581,9 +581,32 @@ var UtilityBuild = (function () {
         } else {
             isArray = Array.isArray;
         }
+	
+	 /*
+	  * Transform a HTML collection or a NodeList collection
+	  * in an array
+	  */
+	  var _collectionToArray = function collectionToArray(collection) {
+	   try{
+	    return Array.prototype.slice.call(collection);
+	   } catch (ex) {
+	     var i = 0
+	    ,len = collection.length
+	    ,result = Array(len);
+	    
+	    while (i < len){
+	     result[i] = collection[i];
+	     i++;
+	     }
+	    
+	    return result;
+	   }
+	  };
+			  
         return {
             indexOf : indexOf,
-            isArray : isArray
+            isArray : isArray,
+	    collectionToArray: _collectionToArray
         };
     }());
 
