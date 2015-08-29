@@ -13,7 +13,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'/>
   </head>
   <body class="homePage" style="padding-top:800px">
-    <header class="header bsa" role="banner">
+    <header class="header bsa layout horizontal center" role="banner">
         <a class=" logo site-logo-link" href="index.html">
                   <img class="site-logo-image" src="images/Logo90s.svg" alt="90 s.r.l.s"/>
         </a>
@@ -58,7 +58,7 @@
                 </div>
                     <form action="https://www.google.com/search" target="_blank">
                         <input id="search-google" type="text" name="q" value="" placeholder="cerca con google"  autocomplete="off" />
-                        <input id="reset-buttont" type="reset" value="x"/>
+                        <input id="reset-button" type="reset" value="x"/>
                     </form>
                 </div>
             </nav>
@@ -137,34 +137,6 @@
     </div>
 </div>
       <div id="grid-cont" style="opacity:1">
-          <!--section class="info-space" role="note">
-              <div class="grid_outer">
-                <div class="info-col-1">
-                    <h2>Contatti</h2>
-                    <address>
-                        <p><i class="fa fa-road left-icon"></i>Via Silvestro Gherardi 24 00146 Roma(RM)</p>
-                        <p><i class="fa fa-info-circle left-icon"></i>P.I. e C.F 02868410602</p>
-                        <p><i class="fa fa-mobile left-icon"></i>tel/cell 06 01905227/339 2457552</p>
-                        <p><i class="fa fa-envelope-o left-icon"></i>90srls@gmail.com <a href="mailto:90srls@gmail.com">
-                                <span class="act-circ act-circ-type1 bs-zLevel-1">
-                                        <i class="fa fa-envelope-o"></i>
-                                </span>
-                    </a>
-                        </p>
-                    </address>
-                </div>
-                <div class="info-col-2">
-                    <h2>Orario</h2>
-                    <dl>
-                        <dt><i class="fa fa-clock-o"></i> da Lunedi a Venerdi</dt>
-                        <dd><p>Matt. 09:00 <i class="fa fa-cog"></i>  &nbsp;13:30</p>
-                            <p>Pom. 15:30  <i class="fa fa-cog"></i>   &nbsp;19:30</p></dd>
-                        <dt><i class="fa fa-clock-o"></i> Sabato</dt>
-                        <dd><p>Matt. 09:00 <i class="fa fa-cog"></i>   &nbsp;13:00</p></dd>
-                    </dl>
-                </div>
-            </div>
-         </section-->
           <section id="history-block" class="section-base">
           <div class="content fit">
              <div class="grid_outer layout horizontal no-wrap">
@@ -203,7 +175,7 @@
                </div>
              </div> 
          </section>
-         <section id="catalog" class=" section-base panel main-purple">
+         <section id="catalog" class=" section-base panel no-scroll main-purple">
             <div class="content fit">
                 <div class=" grid_outer layout horizontal  wrap">
                     <h1>Catalogo dei Servizi</h1>
@@ -371,7 +343,7 @@
          	</div>
          </section>
         </div>
-    <footer>
+    <footer class="relative" style="z-index:10;">
         <div class="grid_outer">
              <div id="linkUtil" class="col-1">
             <h3>Link Utili</h3>

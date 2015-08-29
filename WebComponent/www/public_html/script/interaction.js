@@ -2,27 +2,52 @@
      
     var tmp = UtilityBuild(['dmUtil','dmPaper'],function(obj){
         "use strict";
-
+    /*
+     * Function call on scroll event.It just stores some values and
+     * and call requestTick to check if another animation frame can
+     * be request
+     */
+			    
     function onscroll_() {
      this.previewScroll = this.lastScroll;
      this.lastScroll = window.scrollY || window.pageYOffset;
      this._requestTick();
     }
+			    
+    /*
+     * Same logic of on scroll function
+     */
+			    
     function onresize_(){
        	this.px.innerHeight = obj.global.innerHeight;
+	this.px.innerWidth = obj.global.innerWidth;
 	this.px.calculate();
         this._requestTick();
     }
+			    
+    /*
+     * Check if can be made a new animation request
+     */
+			    
     function requestTick_() {
         if (!this.ticking) {
+	    this.ticking = true;
             obj.animatedFrame.request(this._update);
-            this.ticking = true;
         }
     }
+    /*
+     * Call the specific object animation function
+     * and set ticking to false so another animation can be request
+     */
+			    
    function update_(){
        this.update();
        this.ticking = false;
    }
+   /*
+    * Add the class active to a set of DOM element
+    */
+			    
    function _setActive(arr) {
        var len = arr.length;
        
@@ -30,6 +55,7 @@
            crossClassList(arr[i]).add("active");
        }
    }
+			    
    function animateOnHover(e){
        var ele = middleTarget;
        var eType = e.type;
@@ -47,6 +73,25 @@
        }
        crossClassList(ele).toggle('animate',mouseOver);
    }
+			    
+   /*
+    * Set an attribute if TOGGLE=false and Remove it if TOGGLE = TRUE
+    */
+    function attributeToggle(ele, attr, TOGGLE){
+     var contain = (ele.getAttribute(attr) !== null)? true: false;
+     var method = contain ? TOGGLE !== true && "removeAttribute":
+      TOGGLE !== false && "setAttribute";
+     
+     if (method) {
+      ele[method](attr,"");
+      }
+     
+     if (TOGGLE === true || TOGGLE === false) {
+      return TOGGLE;
+      } else {
+       return !contain;
+       }
+    }
    //
    // Dependencies
    var cssSelector = obj.doc.querySelector.bind(obj.doc) 
@@ -58,8 +103,7 @@
    //
    //
    // Dom Element
-   var sch = cssSelector(".header .search")
-   ,mask_modal = cssSelector("div.mask-modal")
+   var mask_modal = cssSelector("div.mask-modal")
    ,jb = cssSelector("button.paper-fab")
    ,arrowHint = cssSelector(".section-intro .arrow-hint")
    ,photoCrop = cssSelector(".section-base .photo-crop")
@@ -77,17 +121,34 @@
    //
    //
    var scrollingArea = {
+     /*
+      *  Object that contain useful DOM element
+      */
        $:{
 	 view: obj.global,
 	 body: obj.doc.body,
 	 sectionGridOuter: cssSelector(".section-intro .primary-block")
        },
+      /*
+       * Some Prop of scroll object:
+       * i)  lastScroll: store the last scoll quantity
+       * ii) previwScroll: cache the precedente scroll
+       * iii) _allActive: if true all the section are fully filled
+       * iv)  ticking: if false the broswer can request another animation frame
+       * v)   firstScroll: if false the page has not been scrolled ever
+       * vi)  tirth: if true the first page i scrolled by 1/3
+       */
+    
        lastScroll: 0,
        previewScroll: 0,
        _allActive: false,
        firstScroll: false,
        ticking: false,
        tirth: false,
+	
+       /*
+	* It's the function tha handle the on scroll animation
+	*/
        update: function () {
 	var lscroll = this.lastScroll
 	,ihh = this.px.innerHeight;
@@ -109,12 +170,10 @@
          if (lscroll >= this.px.pages[0] && !this.tirth) {
           var qhh = -ihh/5;
           section.style.transform="translate3d(0px," + qhh +"px,0px)";
-          section.style.zIndex = "-1";
           content.style.opacity="0.01";
           this.tirth = true;
          } else if (lscroll < this.px.pages[0] && this.tirth) {
           section.style.transform="translate3d(0px, 0px,0px)";
-          section.style.zIndex="0";
           content.style.opacity="1.0";
           this.tirth = false;
          }
@@ -179,6 +238,7 @@
        },
        px :{
 	 innerHeight: obj.global.innerHeight,
+	 innerWidth: obj.global.innerWidth,
 	 pages: [],
 	 calculate: function pxCalculate(){
 	  /*
@@ -202,6 +262,7 @@
        update: function () {
            var height = this.px.innerHeight
            ,sheight = height + "px"
+	   ,width = this.px.innerWidth
            ,sections = this.$.sections
            ,fsection = sections[0];
            this.$.body.style.paddingTop = sheight;
@@ -227,13 +288,65 @@
            delete(this.init);
        }
    };
+   
+   /*
+    * dropdown panel in the sidebar for mobile
+    */
+   var dropdownToggle = cssSelector("#dropdown-toggle")
+     ,dropdownPanel = cssSelector(".dropdown-panel");
+			    
+   dropdownPanel.openPanel = function openPanel() {
+    this.setAttribute("open","");
+    this.open = "open";
+   };
+   dropdownToggle && aEventListener(dropdownToggle,"click",function(e){
+     dropdownPanel.openPanel();
+     console.log("drop");
+   });
+			    
+   /*
+    * Extend Scrolling area coping some prop from 
+    * ResizeArea
+    */
+			    
    scrollingArea = obj.Class.extendByCopy(resizeArea,scrollingArea,['$','px']);
-   scrollingArea.$.catalogServices = cssSelectorAll("#catalog .service-title-0");
+   
+   /*
+    * Add reference to catalog and location section
+    */
+   var catalog = cssSelector("#catalog");
+   var arrayNodeServices = obj.ArrayUtility.collectionToArray(
+    cssSelectorAll("#catalog .service-title-0"));
+   
+   arrayNodeServices.push(catalog);
+   scrollingArea.$.catalogServices = arrayNodeServices;
+   
    scrollingArea.$.location = cssSelectorAll("#location .map");
    scrollingArea.$._cacheStatusEle = {
      'catalogServices': false,
     'location' : false
    };
+			    
+   /*
+    * AppBar Object
+    */
+   var appBar = cssSelector("#app-bar");
+   appBar.$ = {
+    search: cssSelector("#app-bar .search")
+   };
+   appBar.searchOn = false;
+   appBar.toggleSearch = function toggleSearch(e) {
+    var id = e.target.getAttribute("id");
+   if ( id !== "search-google" && id !== "reset-button"){
+     appBar.searchOn = appBar.searchOn ? false : true; 
+     crossClassList(this).toggle("search-on",appBar.searchOn);
+     attributeToggle(this.$.search,"show",appBar.searchOn);
+     e.stopPropagation();
+    }
+   };
+   appBar && aEventListener(appBar,'click',function(e){
+    appBar.toggleSearch(e);
+   });
    //
    // Event Callback function
    //
@@ -292,7 +405,18 @@
             first_click = false;
         }
     });
-
+    
+    aEventListener(obj.doc,"click",function(e){
+     if (dropdownPanel.open){
+      dropdownPanel.removeAttribute(dropdownPanel.open);
+      dropdownPanel.open = null;
+     }
+     console.log(e.target);
+     if (appBar.searchOn) {
+      appBar.toggleSearch(e);
+      }
+     
+    }, true);
     //
     //
     //Raise nav bar if the page is scrolled
@@ -300,9 +424,9 @@
     resizeArea.init();
     //
     // Clear unuseful Dom Object
-    sch = null;
     bus = null;
-    car = null;	      
+    car = null;
+    dropdownToggle = null;
     obj.PaperMaker('button',{ element: fab_one});
     obj.PaperMaker('button',{ element: cssSelectorAll(".paper-fab")[0]});
     obj.PaperMaker.MakePaperLive();
