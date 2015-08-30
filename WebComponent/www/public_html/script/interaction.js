@@ -105,7 +105,6 @@
    // Dom Element
    var mask_modal = cssSelector("div.mask-modal")
    ,jb = cssSelector("button.paper-fab")
-   ,arrowHint = cssSelector(".section-intro .arrow-hint")
    ,photoCrop = cssSelector(".section-base .photo-crop")
    ,bus = cssSelector("#location .bus p")
    ,car = cssSelector("#location .car p")
@@ -127,7 +126,9 @@
        $:{
 	 view: obj.global,
 	 body: obj.doc.body,
-	 sectionGridOuter: cssSelector(".section-intro .primary-block")
+	 sectionGridOuter: cssSelector(".section-intro .primary-block"),
+	 arrowHint: cssSelector(".section-intro .arrow-hint"),
+	 jellyButton: jb
        },
       /*
        * Some Prop of scroll object:
@@ -194,9 +195,14 @@
        },
        handleDynamicElement: function () {
         var fs = this.firstScroll;
-        crossClassList(this.$.body).toggle("scrolling",fs);
-        crossClassList(jb).toggle("active",fs);
-        crossClassList(arrowHint).toggle("deactive",fs);
+        var ele = this.$
+	,bodyClass = crossClassList(ele.body);
+	
+	if (!bodyClass.contains("mobile")){
+	 bodyClass.toggle("scrolling",fs);
+	}
+        crossClassList(ele.jellyButton).toggle("active",fs);
+        crossClassList(ele.arrowHint).toggle("deactive",fs);
        },
        activeElementWhenScrolledToLim: function (stringEle, lim, callback) {
 	 if (this.lastScroll > lim) {
@@ -277,6 +283,16 @@
                fsection.style.webkitTransform = null;
                fsection.style.transform = null;
            }
+	     
+	   if (width <= 580) {
+	     var bodyClass = crossClassList(this.$.body);
+			      
+	      bodyClass.remove("scrolling");
+	      bodyClass.add("mobile");
+	      
+	   } else {
+	    crossClassList(this.$.body).remove("mobile");
+	    }
        },
        init: function () {
            this._update = update_.bind(this);
