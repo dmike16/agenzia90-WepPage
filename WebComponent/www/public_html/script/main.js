@@ -831,8 +831,8 @@ var UtilityBuild = (function () {
 			};
 		}
 		return {
-            request: function (callback) { return rqAF(callback); },
-            cancel: function (id) { cnAF(id); }
+            request: rqAF.bind(window),
+            cancel:  cnAF.bind(window)
 		};
 	}());
   	/**

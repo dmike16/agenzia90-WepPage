@@ -28,6 +28,15 @@
    document.addEventListener('DOMContentLoaded',function(e){
      inserMainScript("script/interaction.js", function(){return;});
    });
-  
+
+   window.addEventListener('load', function(e){
+       window.applicationCache.addEventListener('updateready',function reload(e){
+	   if(window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+	       if(confirm('A new version of this site is available. Load it?')){
+		   window.location.reload();
+	       }
+	   }
+       }, false);
+   },false);
   console && console.log("%c90 s r l s\n%cPratiche Auto\nTel 06 01905227","font-size:1.5em;color:#1945D5;", "color:#14BD4C;font-size:1em;");
 }(window));

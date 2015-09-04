@@ -19,6 +19,8 @@
      */
 			    
     function onresize_(){
+	this.preH = this.px.innerHeight;
+	this.preW = this.px.innerWidth;
        	this.px.innerHeight = obj.global.innerHeight;
 	this.px.innerWidth = obj.global.innerWidth;
 	this.px.calculate();
@@ -128,6 +130,7 @@
 	 body: obj.doc.body,
 	 sectionGridOuter: cssSelector(".section-intro .primary-block"),
 	 arrowHint: cssSelector(".section-intro .arrow-hint"),
+	 sectionPhoto: cssSelector(".section-intro .section-photo"),
 	 jellyButton: jb
        },
       /*
@@ -151,47 +154,47 @@
 	* It's the function tha handle the on scroll animation
 	*/
        update: function () {
-	var lscroll = this.lastScroll
-	,ihh = this.px.innerHeight;
-	if (lscroll < ihh || !this.firstScroll) {
-         if (lscroll > 0 && !this.firstScroll) {
-          this.firstScroll = true;
-          this.handleDynamicElement();
-	  this.activeElementWhenScrolledToLim("catalogServices",this.px.pages[2],_setActive);
-	  this.activeElementWhenScrolledToLim("location",this.px.pages[3],_setActive);
-	  
-         } else if (lscroll === 0 && this.firstScroll) {
-          this.firstScroll = false;
-          this.handleDynamicElement();
-         }
-         
-         var section = this.$.sections[0]
-	 ,content = this.$.sectionGridOuter;
-	 
-         if (lscroll >= this.px.pages[0] && !this.tirth) {
-          var qhh = -ihh/5;
-          section.style.transform="translate3d(0px," + qhh +"px,0px)";
-          content.style.opacity="0.01";
-          this.tirth = true;
-         } else if (lscroll < this.px.pages[0] && this.tirth) {
-          section.style.transform="translate3d(0px, 0px,0px)";
-          content.style.opacity="1.0";
-          this.tirth = false;
-         }
+	   var lscroll = this.lastScroll
+	   ,ihh = this.px.innerHeight
+	   ,section = this.$.sections[0];
+           if (lscroll > 0) {
+               if(!this.firstScroll){
+		   this.firstScroll = true;
+		   this.handleDynamicElement();
+	       }
 	       
-         if (photoCrop !== null) {
-          if (lscroll >= this.px.pages[1]){
-           this.$.body.dispatchEvent(new Event('scrolledIntroPage'));
-          }
-         }
-          } else if (!this._allActive) {
-           if(!this.$._cacheStatusEle['catalogServices']){
-             this.activeElementWhenScrolledToLim("catalogServices",this.px.pages[2],_setActive);
-            
-           } else if (!this.$._cacheStatusEle['location']){
-             this.activeElementWhenScrolledToLim("location",this.px.pages[3],_setActive);
-            }
-          }
+               if (lscroll >= ihh && !section.hide){
+		   section.style.display = "none";
+		   section.hide = true;
+	       	   if (photoCrop !== null) {
+		       this.$.body.dispatchEvent(new Event('scrolledIntroPage'));
+		   }
+               } else if(lscroll < ihh && section.hide) {
+		   section.style.display = "block";
+		   section.hide = false;
+	       }
+               if (!this._allActive) {
+		   var lim1 = this.px.pages[0], lim2 = this.px.pages[1];
+		   if(lscroll >= lim1 && !this.$._cacheStatusEle['catalogServices']){
+		       this.activeElementWhenScrolledToLim("catalogServices",lim1,_setActive);
+		       
+		   }
+		   if (lscroll >= lim2 && !this.$._cacheStatusEle['location']){
+		       this.activeElementWhenScrolledToLim("location",lim2,_setActive);
+		   }
+               }
+	   } else {
+	       this.firstScroll = false;
+	       this.handleDynamicElement();
+	       if (section.hide){
+		   section.style.display= "block";
+		   section.hide = false;
+	       }
+	   }
+	   if (this.parallax.state) {
+	       this.parallax.core(7,-lscroll,this.$.sectionPhoto);
+	       this.parallax.core(3,-lscroll,this.$.sectionGridOuter,176);
+	   }
        },
        handleDynamicElement: function () {
         var fs = this.firstScroll;
@@ -230,7 +233,10 @@
         this.scroll = onscroll_.bind(this);
         this.scroll();
            
-        aEventListener(this.$.view, "scroll", this.scroll,false);
+	  // aEventListener(obj.doc,"touchmove",function(e){
+	   //    window.scrollTo(0,this.lastScroll);
+	   //    e.stopPropagation();},false);
+	   aEventListener(this.$.view, "scroll", this.scroll,false);
         delete(this.init);
        }
    };
@@ -250,49 +256,53 @@
 	  /*
 	   * The first page it's always in full screen
 	   */
-	  this.pages[0] = this.innerHeight/3;
 	  
-	  var portion = 0.8;
-	  this.pages[1] = this.innerHeight * portion;
-	  
+	     var portion =  0.8;
 	  /*
 	   * The Other pages have a min-heigh value of 610px;
 	   */
 	   var currentHeight =  (this.innerHeight < 610)? 610: this.innerHeight;
-	   this.pages[2] = (this.innerHeight + currentHeight)*portion;
-	   this.pages[3] = (this.innerHeight + 2*currentHeight)*portion;
+	   this.pages[0] = (this.innerHeight + currentHeight)*portion;
+	   this.pages[1] = (this.innerHeight + 2*currentHeight)*portion;
 	  
 	  }
        },
+       parallax:{
+	   state: false,
+	   core: function coreParallax(speed,space,ele){
+	       var quantity = space / speed;
+	       ele.style.transform = "translate3d(0px," + quantity +"px,0px)";
+	       if (arguments[3]){
+		   var opaQuantity =  1 +  space / arguments[3];
+		   ele.style.opacity = opaQuantity + "";
+	       }
+	   }
+       },
        ticking: false,
        update: function () {
-           var height = this.px.innerHeight
-           ,sheight = height + "px"
-	   ,width = this.px.innerWidth
-           ,sections = this.$.sections
-           ,fsection = sections[0];
-           this.$.body.style.paddingTop = sheight;
-           for (var i = 0, len = sections.length; i < len; i++) {
-               sections[i].style.height = sheight;
-           }
-           if (height <= 350) {
-               var qheight = -height/4;
-               fsection.style.webkitTransform = "translate3d(0px,"+ qheight +"px,0px)";
-               fsection.style.transform = "translate3d(0px,"+ qheight +"px,0px)";
-           } else {
-               fsection.style.webkitTransform = null;
-               fsection.style.transform = null;
-           }
-	     
-	   if (width <= 580) {
-	     var bodyClass = crossClassList(this.$.body);
-			      
-	      bodyClass.remove("scrolling");
-	      bodyClass.add("mobile");
-	      
-	   } else {
-	    crossClassList(this.$.body).remove("mobile");
-	    }
+	   var px = this.px;
+               var height = px.innerHeight
+               ,sheight = height + "px"
+	       ,width = px.innerWidth
+               ,sections = this.$.sections
+               ,fsection = sections[0];
+               this.$.body.style.paddingTop = sheight;
+               for (var i = 0, len = sections.length; i < len; i++) {
+		   sections[i].style.height = sheight;
+               }
+	       
+	       if (width <= 580) {
+		   var bodyClass = crossClassList(this.$.body);
+		   
+		   bodyClass.remove("scrolling");
+		   bodyClass.add("mobile");
+		   
+		   this.parallax.state = false;
+	       	   
+	       } else {
+		   crossClassList(this.$.body).remove("mobile");
+		   this.parallax.state = true;
+	       }
        },
        init: function () {
            this._update = update_.bind(this);
@@ -317,7 +327,6 @@
    };
    dropdownToggle && aEventListener(dropdownToggle,"click",function(e){
      dropdownPanel.openPanel();
-     console.log("drop");
    });
 			    
    /*
@@ -325,8 +334,8 @@
     * ResizeArea
     */
 			    
-   scrollingArea = obj.Class.extendByCopy(resizeArea,scrollingArea,['$','px']);
-   
+   scrollingArea = obj.Class.extendByCopy(resizeArea,scrollingArea,['$','px','parallax']);
+  
    /*
     * Add reference to catalog and location section
     */
@@ -353,14 +362,14 @@
    appBar.searchOn = false;
    appBar.toggleSearch = function toggleSearch(e) {
     var id = e.target.getAttribute("id");
+       console.log("inside search");
    if ( id !== "search-google" && id !== "reset-button"){
-     appBar.searchOn = appBar.searchOn ? false : true; 
+     appBar.searchOn = !appBar.searchOn ? true : false; 
      crossClassList(this).toggle("search-on",appBar.searchOn);
      attributeToggle(this.$.search,"show",appBar.searchOn);
-     e.stopPropagation();
     }
    };
-   appBar && aEventListener(appBar,'click',function(e){
+   appBar && aEventListener(appBar.$.search,'click',function(e){
     appBar.toggleSearch(e);
    });
    //
@@ -427,18 +436,19 @@
       dropdownPanel.removeAttribute(dropdownPanel.open);
       dropdownPanel.open = null;
      }
-     console.log(e.target);
      if (appBar.searchOn) {
       appBar.toggleSearch(e);
-      }
+     }
      
     }, true);
+		console.log(obj.animatedFrame);
     //
     //
     //Raise nav bar if the page is scrolled
-    scrollingArea.init();            
-    resizeArea.init();
-    //
+	resizeArea.init();
+	scrollingArea.init(); 
+
+	//
     // Clear unuseful Dom Object
     bus = null;
     car = null;
