@@ -57,25 +57,7 @@
            crossClassList(arr[i]).add("active");
        }
    }
-			    
-   function animateOnHover(e){
-       var ele = middleTarget;
-       var eType = e.type;
-       var mouseOver;
-       
-       switch(eType){
-       case 'mouseover':
-           mouseOver = true;
-           break;
-       case 'mouseout':
-           mouseOver = false;
-           break;
-       default:
-           return;
-       }
-       crossClassList(ele).toggle('animate',mouseOver);
-   }
-			    
+			    			    
    /*
     * Set an attribute if TOGGLE=false and Remove it if TOGGLE = TRUE
     */
@@ -108,9 +90,6 @@
    var mask_modal = cssSelector("div.mask-modal")
    ,jb = cssSelector("button.paper-fab")
    ,photoCrop = cssSelector(".section-base .photo-crop")
-   ,bus = cssSelector("#location .bus p")
-   ,car = cssSelector("#location .car p")
-   ,middleTarget = cssSelector("#location .middle-target")
    ,fab_one = cssSelectorAll(".paper-fab")[1]
    ,photoSphere = cssSelector("#PhotoSphere")
    ,picFrame = cssSelector(".picture-frame");
@@ -156,7 +135,7 @@
        update: function () {
 	   var lscroll = this.lastScroll
 	   ,ihh = this.px.innerHeight
-	   ,section = this.$.sections[0];
+	   ,section = this.$.sectionIntro;
            if (lscroll > 0) {
                if(!this.firstScroll){
 		   this.firstScroll = true;
@@ -245,7 +224,7 @@
    //
    var resizeArea = {
        $ : {
-           sections: cssSelectorAll("section"),
+           sectionIntro: cssSelector("section"),
            body: obj.doc.body
        },
        px :{
@@ -261,7 +240,7 @@
 	  /*
 	   * The Other pages have a min-heigh value of 610px;
 	   */
-	   var currentHeight =  (this.innerHeight < 610)? 610: this.innerHeight;
+	   var currentHeight =  650;
 	   this.pages[0] = (this.innerHeight + currentHeight)*portion;
 	   this.pages[1] = (this.innerHeight + 2*currentHeight)*portion;
 	  
@@ -283,15 +262,11 @@
 	   var px = this.px;
                var height = px.innerHeight
                ,sheight = height + "px"
-	       ,width = px.innerWidth
-               ,sections = this.$.sections
-               ,fsection = sections[0];
+	       ,width = px.innerWidth;
                this.$.body.style.paddingTop = sheight;
-               for (var i = 0, len = sections.length; i < len; i++) {
-		   sections[i].style.height = sheight;
-               }
+	       this.$.sectionIntro.style.height = sheight;
 	       
-	       if (width <= 580) {
+	       if (width <= 851) {
 		   var bodyClass = crossClassList(this.$.body);
 		   
 		   bodyClass.remove("scrolling");
@@ -337,13 +312,11 @@
    scrollingArea = obj.Class.extendByCopy(resizeArea,scrollingArea,['$','px','parallax']);
   
    /*
-    * Add reference to catalog and location section
+    * Add reference to location section
     */
-   var catalog = cssSelector("#catalog");
    var arrayNodeServices = obj.ArrayUtility.collectionToArray(
-    cssSelectorAll("#catalog .service-title-0"));
+    cssSelectorAll("#catalog .mobile-is-hidden .service-title-0"));
    
-   arrayNodeServices.push(catalog);
    scrollingArea.$.catalogServices = arrayNodeServices;
    
    scrollingArea.$.location = cssSelectorAll("#location .map");
@@ -413,10 +386,6 @@
                       photoCrop = null;
 		      e.stopPropagation();
 		  });
-   aEventListener(bus,'mouseover',animateOnHover);
-   aEventListener(bus,'mouseout',animateOnHover);
-   aEventListener(car,'mouseover',animateOnHover);
-   aEventListener(car,'mouseout',animateOnHover);
    aEventListener(fab_one,'click',function(e){
         if(!first_click){
             crossClassList(e.currentTarget).add("pressed");
@@ -441,17 +410,12 @@
      }
      
     }, true);
-		console.log(obj.animatedFrame);
     //
     //
     //Raise nav bar if the page is scrolled
-	resizeArea.init();
-	scrollingArea.init(); 
-
-	//
+    resizeArea.init();
+    scrollingArea.init(); 
     // Clear unuseful Dom Object
-    bus = null;
-    car = null;
     dropdownToggle = null;
     obj.PaperMaker('button',{ element: fab_one});
     obj.PaperMaker('button',{ element: cssSelectorAll(".paper-fab")[0]});
