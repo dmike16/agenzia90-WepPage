@@ -1820,6 +1820,10 @@ hr{
    -webkit-justify-content: center;
    justify-content: center;
 }
+.layout.y-flex-end{
+    -webkit-align-items:flex-end;
+    align-items: flex-end;
+}
 .content {
     display: block;
    width: 100%;
@@ -2379,7 +2383,9 @@ a:hover > .act-circ{
 .photo-crop {
     background-repeat:no-repeat;
     position:relative;
-    Background-attachment: fixed;
+    background-attachment: fixed;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 .photo-crop .paper-fab.fit {
    top: 475px;
@@ -2461,6 +2467,7 @@ a:hover > .act-circ{
    -webkit-transition: opacity 200ms ease-out;
    transition: opacity 200ms ease-out;
    position: relative;
+   z-index:1;
 }
 .picture-frame.hidden{
     opacity: 0;
