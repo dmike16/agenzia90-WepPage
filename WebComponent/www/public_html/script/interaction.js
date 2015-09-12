@@ -242,7 +242,7 @@
 	   */
 	   var currentHeight =  650;
 	   this.pages[0] = (this.innerHeight + currentHeight)*portion;
-	   this.pages[1] = (this.innerHeight + 2*currentHeight)*portion;
+	   this.pages[1] = (this.innerHeight + 2*currentHeight)*0.9;
 	  
 	  }
        },
