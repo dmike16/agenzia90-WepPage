@@ -429,7 +429,7 @@
             crossClassList(photoSphere).add("active");
             first_click = true;
         } else {
-            crossClassList(picFrame).remove("hidden");
+            crossClassList(e.currentTarget).remove("pressed");
             crossClassList(photoSphere).remove("active");
             crossClassList(picFrame).remove("hidden");
             first_click = false;
