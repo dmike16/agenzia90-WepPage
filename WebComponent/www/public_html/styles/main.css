@@ -224,7 +224,7 @@ ul li {
 }
 /***************
 * DropDown Panel it's a simple panel tha appera down a caret-down
-* icon without animation. Used for small nav-menu. 
+* icon without animation. Used for small nav-menu.
 ****************/
 .dropdown-panel{
    position: absolute;
@@ -1611,7 +1611,7 @@ img {
     height: 64px;
     position: relative;
     margin: auto;
-    padding: 12px 24px 10px 24px; 
+    padding: 12px 24px 10px 24px;
 }
 
 #side-nav nav{
@@ -1745,7 +1745,7 @@ hr{
     margin-top:10px;
     margin-left:5%;
     width:35%;
-    height:90%; 
+    height:90%;
 }
 .main-purple {
     color:white;
@@ -1813,7 +1813,6 @@ hr{
     position:relative;
     overflow-y:hidden;
     overflow-x: hidden;
-    margin-right: -24px;
     z-index: -1;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -2303,7 +2302,7 @@ a:hover > .act-circ{
 }
 .click-arrow.active .arrow-inactive{
     display:none;
-} 
+}
 .click-arrow.active .arrow-active{
     display:block;
 }
@@ -2554,7 +2553,7 @@ body .chapter .chapter-title,body .chapter .article-title{
     font-weight: 400;
     line-height: 40px;
     margin-bottom: 30px;
-    
+
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -2710,6 +2709,7 @@ li{
    backface-visibility: hidden;
    width:100%;
    height: 100%;
+  cursor: pointer;
 }
 .slides-pagination{
    margin-top:10px;
@@ -2786,7 +2786,10 @@ li{
       line-height: 1.3;
       letter-spacing: 1px;
    }
-   
+   .grid_outer{
+     padding: 0 20px;
+   }
+
 }
 @media only screen and (min-width:782px) and (max-width:951px){
    .picture-frame{
@@ -2823,7 +2826,7 @@ li{
    	width: 372px;
    	height: 362px;
    }
-   
+
 }
 @media only screen and (max-width: 781px){
    .section-base .photo-crop{
@@ -2842,11 +2845,11 @@ li{
    		position: fixed;
    		z-index:20;
    		margin-top:0;
-   	
+
    }
    .embeddPhotoSphere .paper-button{
 		display:	block;
-	}	
+	}
    #tourInside{
    display: block;
    }
@@ -2894,7 +2897,7 @@ li{
       }
    	.arrow-hint{
    		display: none;
-   	}	
+   	}
 }
 @media only screen and (max-width: 581px){
     .area-round-button{
@@ -2925,7 +2928,7 @@ li{
    .resources-flow-layout > img {
       width: 89%;
    }
-   
+
 }
 @media only screen and (max-width: 351px){
    #laptopScreen{

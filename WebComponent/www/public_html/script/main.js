@@ -70,13 +70,13 @@ var UtilityBuild = (function () {
                     this.methods.push(methods[i]);
                 }
             };
-            _Interface.ensureImplements = function (obj) {
+            _Interface.ensureImplements = function ensureImplements(object) {
                 if (arguments.length < 2) {
                     throw new Error("Function Interface,ensureImplements called with" +
                         arguments.length + " arguments, but expected at least 2");
                 }
 
-                for (var i = 0, len = arguments.length; i < len; i++) {
+                for (var i = 1, len = arguments.length; i < len; i++) {
                     var interface = arguments[i];
                     if (interface.constructor !== Interface) {
                         throw new Error("Function expects arguments to be istances of Interface");
@@ -131,93 +131,93 @@ var UtilityBuild = (function () {
             var _clone = function clone(object){
                 function F(){}
                 F.prototype = object;
-                return new F;
+                return new F();
             };
-	    
-	    /* 
+
+	    /*
 	     * Clone Proprieties
 	     */
-	 
+
 	      /*
 	       * Helper function to iterate the method when the
 	       * prop is in child and it's an object
 	       */
-	     
+
 	     function _ff(givingProp, recivingProp, callback){
 	      if((typeof givingProp !== "object") ||
 		  (typeof recivingProp !== "object")){
 	       console.log(givingProp);
 	       return;
 	       }
-	      
+
 	      var _unsupportedObject =/^\[object (?=((?:HTML|global)[^"\r\n]*\]))\1/;
-	      
+
 	      var toStr = Object.prototype.toString;
 	      var gNotSupportedObject = _unsupportedObject.test(toStr.call(givingProp));
-	      var rNotSupportedObject = gNotSupportedObject || 
+	      var rNotSupportedObject = gNotSupportedObject ||
 	       _unsupportedObject.test(toStr.call(recivingProp));
-	      
+
 	      if (gNotSupportedObject || rNotSupportedObject){
 	       return;
 	       }
 	      callback(givingProp, recivingProp);
 	     }
-	 
+
 	     var _extendByCopy = function extendByCopy(parent, child) {
-	      
+
 	      /* WARNING
 	       ********* It's a shallow copy
 	       * WARnING
 	       */
-	      
+
 	      var p;
 	      child = child || {};
-	      
+
 	      /*
-	       * Check if the 3 argument it's defined. It rapresents an array 
+	       * Check if the 3 argument it's defined. It rapresents an array
 	       * of string that contains the parent's prop you would
-	       *  copy in child.  
+	       *  copy in child.
 	       */
-	      
+
 	      if (arguments[2]) {
 	       var propNames = arguments[2];
 	       var astr = "[object Array]"
 	       ,toStr = Object.prototype.toString;
-	      
+
 	       /*
 		* Check if the 3 argument it's an array
 		*/
-	       
+
 	       if (toStr.call(propNames) !== astr){
 		throw new Error('function copyExtend: error in tirth argument type. It must be an array');
 		}
-	       
+
 	       /*
 		* Iterate through the array of coping prop
 		*/
-	       
+
 	       for(var i = propNames.length -1; i >= 0; i = i - 1){
 		p = propNames[i];
-		
+
 		/*
 		 * Check if the single prop it's a string and it's in
 		 * the parent object
 		 */
-		
+
 		if(typeof p === 'string' && parent.hasOwnProperty(p)){
 		 if (child.hasOwnProperty(p)){
-		  _ff(parent[p],child[p],extendByCopy);	  
+		  _ff(parent[p],child[p],extendByCopy);
 		 } else {
 		   child[p] = parent[p];
 		 }
-		} 
+		}
 	       }
 	      } else {
-	       
+
 	       /*
 		* Copy all parent prop
 		*/
-	       
+
 	       for (p in parent){
 		if(parent.hasOwnProperty(p)){
 		 if (child.hasOwnProperty(p)){
@@ -236,7 +236,7 @@ var UtilityBuild = (function () {
                 extend: _extend,
                 augment: _augment,
                 clone: _clone,
-		extendByCopy: _extendByCopy
+		            extendByCopy: _extendByCopy
             };
 
         }();
@@ -249,18 +249,18 @@ var UtilityBuild = (function () {
     */
     _self.EventUtility = (function crossBroswerEventMethod() {
         "use strict";
-        
+
         /**
-        * This method is used in the addListener to create a specific id to 
+        * This method is used in the addListener to create a specific id to
         * the envent. It's only an internal method
         *
         * @method getUniqueId
         * @private
-        * @param {Object} element DOM element 
+        * @param {Object} element DOM element
         * @return {Integer} unique ID  of the element
         *
         */
-        var getUniqueId; 
+        var getUniqueId;
         if (typeof document.documentElement.uniqueID !== 'undefined') {
             getUniqueId = function getUniqueId(element) {
                 return element.uniqueID;
@@ -285,13 +285,13 @@ var UtilityBuild = (function () {
             return ((tp === 'function' || tp === 'object') && !!obj[methodName]) || tp === 'unknown';
         }
         /**
-        * This method is used to format  
+        * This method is used to format
         * the envent object so it's proprities are almost the same in all broswer.
         *
         * @method formatEvent
         * @private
         * @param {Object} evt Object
-        * @return {Object} The event object 
+        * @return {Object} The event object
         *
         */
         ,formatEvent = function formatEvent(evt) {
@@ -325,21 +325,21 @@ var UtilityBuild = (function () {
         /**
         * The object that handles the cross Broswer add and remove envent listeners
         *
-        * 
+        *
         * @property aboutHandler
         * @type ClassObject
-        * 
-        * 
+        *
+        *
         */
 
         /**
         * The object that handles the cross Broswer add and remove envent listeners
         *
-        * 
+        *
         * @class aboutHandler
         * @static
-        * 
-        * 
+        *
+        *
         */
         var aboutHandler = {},docE = _self.doc.documentElement;
         if (isHostMethod(docE, 'addEventListener') && isHostMethod(docE, 'removeEventListener')){
@@ -350,7 +350,7 @@ var UtilityBuild = (function () {
             * @method addListener
             * @param {Object} element DOM element that handles the event
             * @param {String} eventName The name of the event
-            * @param {Boolean}[capture=false] If it's supported rappresent 
+            * @param {Boolean}[capture=false] If it's supported rappresent
             * the bubbling fase.True=(down to up).False=(up to down).
             * @return {Void}
             */
@@ -360,22 +360,22 @@ var UtilityBuild = (function () {
             /**
             * This method remove the event listener from a DOM object
             *
-            * 
+            *
             * @method removeListener
             * @param {Object} element DOM element that handles the event
             * @param {String} eventName The name of the event
-            * @param {Boolean}[capture=false] If it's supported rappresent 
+            * @param {Boolean}[capture=false] If it's supported rappresent
             * the bubbling fase.True=(down to up).False=(up to down).
             *  This value must be the same of that used in addListener.
             * @return {Void}
-            * 
-            * 
+            *
+            *
             */
             aboutHandler.removeListener = function removeListener(element, eventName, handler, capture) {
                 element.removeEventListener(eventName, handler, capture);
             };
     } else if (isHostMethod(docE, 'attachEvent') && isHostMethod(docE, 'deatachEvent')) {
-        
+
         var eventListeners = {}
         ,elements = {}
         ,getElement = function (uid) {
@@ -479,7 +479,7 @@ var UtilityBuild = (function () {
     /**
     * It's a collection of string utilities
     *
-    * 
+    *
     * @class StringUtil
     * @static
     *
@@ -517,7 +517,7 @@ var UtilityBuild = (function () {
 
     /**
     * It's a collection of array utilities
-    * 
+    *
     *
     * @class ArrayUtil
     * @static
@@ -557,7 +557,7 @@ var UtilityBuild = (function () {
                     }
                     k++;
                 } while(k < len);
-                
+
                 return - 1;
             };
         } else {
@@ -573,7 +573,7 @@ var UtilityBuild = (function () {
         *  @param {Object} obj An Object
         *  @return {Boolean} True if the Object is an Array false if not.
         */
-        
+
         if(typeof Array.isArray === 'undefined') {
             isArray = function isArray (arg) {
                 return Object.prototype.toString.call(arg) === "[Object Array]";
@@ -581,7 +581,7 @@ var UtilityBuild = (function () {
         } else {
             isArray = Array.isArray;
         }
-	
+
 	 /*
 	  * Transform a HTML collection or a NodeList collection
 	  * in an array
@@ -593,16 +593,16 @@ var UtilityBuild = (function () {
 	     var i = 0
 	    ,len = collection.length
 	    ,result = Array(len);
-	    
+
 	    while (i < len){
 	     result[i] = collection[i];
 	     i++;
 	     }
-	    
+
 	    return result;
 	   }
 	  };
-			  
+
         return {
             indexOf : indexOf,
             isArray : isArray,
@@ -611,10 +611,10 @@ var UtilityBuild = (function () {
     }());
 
     /**
-    * It's a cross broswer compatible class List function. You don't need to use new in the 
+    * It's a cross broswer compatible class List function. You don't need to use new in the
     * constructor, simple call the function and you'll have a cass list object.
     *
-    * 
+    *
     * @class classList
     * @constructor
     * @parem{Element} ele Rappresent the DOM element of which create the class list
@@ -660,8 +660,8 @@ var UtilityBuild = (function () {
             return checkTokenAndGetIndex(this,token) !== -1;
         };
         /**
-        * Adds a class to an element's list of classes. 
-        * If class already exists in the element's list of classes, 
+        * Adds a class to an element's list of classes.
+        * If class already exists in the element's list of classes,
         * it will not add the class again
         *
         *  @method add
@@ -716,7 +716,7 @@ var UtilityBuild = (function () {
         };
          /**
         * Toggles the existence of a class in an element's list of classes.
-        * The second argument will force the class name to be added or removed based 
+        * The second argument will force the class name to be added or removed based
         * on the truthiness of the second argument:
         *   true  -> add
         *   false -> remove
@@ -786,10 +786,10 @@ var UtilityBuild = (function () {
 	/**
     * It's a cross broswer compatible request animated Frame  function.
     *
-    * 
+    *
     * @class animatedFrame
     * @static
-    * 
+    *
     *
     */
 	_self.animatedFrame = (function () {
@@ -799,7 +799,7 @@ var UtilityBuild = (function () {
 		,x = vendor.length
 		,rqAF = window.requestAnimationFrame
 		,cnAF = window.cancelAnimationFrame;
-		
+
 		for(;x-- && !rqAF;){
 			rqAF = window[vendor[x] + 'RequestAnimationFrame'];
 			cnAF = window[vendor[x] + 'CancelAnimationFrame'] || window[vendor[x] + 'CancelAnimationFrame'];
@@ -807,12 +807,12 @@ var UtilityBuild = (function () {
 		if (!rqAF) {
 			return {
 				/**
-				*This method is used in the addListener to create a specific id to 
+				*This method is used in the addListener to create a specific id to
 				* the envent. It's only an internal method
 				*
 				* @method aminatedFramiRequest
-				* @param {Object} element DOM element 
-				* @param {function} the callback Method which is passed one element that represent 
+				* @param {Object} element DOM element
+				* @param {function} the callback Method which is passed one element that represent
 				*	the current time when callbacks queued by requestAnimationFrame begin to fire.
 				* @return {Integer} unique ID  of the element
 				*
@@ -820,7 +820,7 @@ var UtilityBuild = (function () {
 				request: function request(callback) {
 					var curr_time = performance.now()
 					,time_to_call = Math.max(0, 16 - (curr_time -lastTime))
-					,id = window.setTimeout(function () { 
+					,id = window.setTimeout(function () {
 					callback(curr_time + time_to_call);}, time_to_call);
 					lastTime = curr_time + time_to_call;
 					return id;
@@ -836,15 +836,15 @@ var UtilityBuild = (function () {
 		};
 	}());
   	/**
-    * It's a class that define the confgi animation object. 
-    * Simple call the function and you'll have an  object to pass to AnimateObject constructor. 
+    * It's a class that define the confgi animation object.
+    * Simple call the function and you'll have an  object to pass to AnimateObject constructor.
     *
-    * 
+    *
     * @class AnimateConfig(Singleton)
     * @constructor
     * @param{Integer} Rappresent the delay of the aniamtion
     * @param{Integer} Rappresent the duration
-    * @param{String|Function} Rappresent the built-in progression function. if it's a function object will be used as 
+    * @param{String|Function} Rappresent the built-in progression function. if it's a function object will be used as
     * timing function
     * @param{Function} Rappresent the function that handles the animation
     * @param{Function} Rappresent the ending function optional
@@ -916,10 +916,10 @@ var UtilityBuild = (function () {
         return AnimateConfig;
     }());
 	/**
-    * It's a class that define the animation object. 
+    * It's a class that define the animation object.
     * Simple call the function and you'll have an animation object.
     *
-    * 
+    *
     * @class AnimateObject
     * @constructor
     * @param{Object} A configuration object with all the required data for the animation
@@ -1002,12 +1002,12 @@ var UtilityBuild = (function () {
 					case 'back':
 						this.timing = _back;
 						break;
-					default: 
+					default:
 						this.timing = _linear;
 						break;
 					}
 			} else {
-                this.timing = _config.geTiming();				
+                this.timing = _config.geTiming();
 			}
             /** It's the function thas handles the animation
              *
@@ -1017,7 +1017,7 @@ var UtilityBuild = (function () {
             this.step = _config.getCore();
             this.ending = _config.getEnding();
             /** It's the time passed
-             * 
+             *
              * @property timePassed
              * @type Number
              * @default 0
@@ -1033,10 +1033,10 @@ var UtilityBuild = (function () {
             this.id = 0;
             this.startTimeCount = function () {
                 start = performance.now() ? performance.now() : Date.now();
-            };  
+            };
             this.getStartTime = function () {
                 return start;
-            };   
+            };
 		}
         , AnimateObjectProto = AnimateObject.prototype;
         AnimateObjectProto.animate = function animate(time_stamp) {
@@ -1071,7 +1071,7 @@ modules.dmPaper = function dmPaper(_self) {
     _self.PaperMaker = (function(){
 
        //
-       // global private static variables 
+       // global private static variables
        var now = Date.now;
        if(_self.global.performance && performance.now) {
             now = performance.now.bind(performance);
@@ -1110,10 +1110,10 @@ modules.dmPaper = function dmPaper(_self) {
 
                     tmp.remove("bs-zLevel-1");
                     tmp.add("bs-zLevel-2");
-                    
+
                     this.waves[0].bg.style.backgroundColor= this.waves[0].bColor;
 
-                    
+
                 } else if (!this.waves[0].isMouseDown) {
                     tmp.remove("bs-zLevel-2");
                     tmp.add("bs-zLevel-1");
@@ -1158,7 +1158,7 @@ modules.dmPaper = function dmPaper(_self) {
         // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
         // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
         // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-    
+
         var waveMaxRadius = 150;
         //
         // Claculate the radius
@@ -1218,7 +1218,7 @@ modules.dmPaper = function dmPaper(_self) {
             ctx.wc.style.transform =  tmp_str;
             ctx.wc.style.webkitTransform = tmp_str;
 
-      
+
             ctx.wave.style.webkitTransform = 'scale(' + s + ',' + s + ')';
             ctx.wave.style.transform = 'scale3d(' + s + ',' + s + ',1)';
         }
@@ -1244,20 +1244,20 @@ modules.dmPaper = function dmPaper(_self) {
             ,doc = _self.doc
             ,inner = doc.createElement('div')
             ,outer = doc.createElement('div');
-            
+
             inner.style.backgroundColor = fg_color;
             _self.ClassList(inner).add('wave');
             _self.ClassList(outer).add('wave-wrapper');
 
             outer.appendChild(inner);
 
-            
+
             var wave = {
                 bg: ele.chd.bg,
                 container : ele.chd.waves,
                 wc: outer,
                 wave: inner,
-                bColor: fg_color, 
+                bColor: fg_color,
                 isMouseDown: false,
                 mouseDownS: 0.0,
                 mouseUpS: 0.0,
@@ -1266,7 +1266,7 @@ modules.dmPaper = function dmPaper(_self) {
             };
 
             return wave;
-          
+
         }
         //
         //Remuve wave
@@ -1339,7 +1339,7 @@ modules.dmPaper = function dmPaper(_self) {
                 });
                 _self.animatedFrame.request(this.loop);
             }
-            
+
         }
 
         function upAction() {
@@ -1414,7 +1414,7 @@ modules.dmPaper = function dmPaper(_self) {
             if (nextFrame) {
                 _self.animatedFrame.request(this.loop);
             }
-            
+
             for (var i = 0,len = deleteTheseWaves.length; i < len; i++) {
                 var wave = deleteTheseWaves[i];
                 removeWave(this, wave);
@@ -1435,9 +1435,9 @@ modules.dmPaper = function dmPaper(_self) {
          */
         function PaperMaker() {}
 
-        
+
         PaperMaker.version = '0.5';
-        
+
         PaperMaker.prototype.paperVersion = function (){
             return PaperMaker.version;
         };
@@ -1446,7 +1446,7 @@ modules.dmPaper = function dmPaper(_self) {
             if (args.length === 0) {
                     throw  "Need the top Paper Element";
                 }
-                
+
                 this.paper_ele = args.element;
                 this.chd.shadow_level = this.paper_ele.querySelector(".shadow");
                 this.chd.bg = this.paper_ele.querySelector(".bg");
@@ -1509,7 +1509,7 @@ modules.dmPaper = function dmPaper(_self) {
                 buttons[i].addHandler(buttonEvents[1],i);
                 buttons[i].addHandler(buttonEvents[2],i);
             }
-            
+
             papersActive = b_lenght;
 
         };
@@ -1545,7 +1545,7 @@ modules.dmPaper = function dmPaper(_self) {
         /**
         *  Rappresent the globl object. In broswer enviroment is the window object
         *
-        * 
+        *
         * @property global
         * @for UtilityBuild
         * @type DOMObject

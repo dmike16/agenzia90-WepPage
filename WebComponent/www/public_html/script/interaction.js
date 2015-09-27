@@ -1,5 +1,5 @@
 (function () {
-     
+
     var tmp = UtilityBuild(['dmUtil','dmPaper'],function(obj){
         "use strict";
     /*
@@ -7,30 +7,30 @@
      * and call requestTick to check if another animation frame can
      * be request
      */
-			    
+
     function onscroll_() {
      this.previewScroll = this.lastScroll;
      this.lastScroll = window.scrollY || window.pageYOffset;
      this._requestTick();
     }
-			    
+
     /*
      * Same logic of on scroll function
      */
-			    
+
     function onresize_(){
     	var PX = this.px;
-    	
+
     	PX.innerHeight = obj.global.innerHeight;
     	PX.innerWidth = obj.global.innerWidth;
     	PX.calculate();
         this._requestTick();
     }
-			    
+
     /*
      * Check if can be made a new animation request
      */
-			    
+
     function requestTick_() {
         if (!this.ticking) {
 	    this.ticking = true;
@@ -41,7 +41,7 @@
      * Call the specific object animation function
      * and set ticking to false so another animation can be request
      */
-			    
+
    function update_(){
        this.update();
        this.ticking = false;
@@ -49,15 +49,15 @@
    /*
     * Add the class active to a set of DOM element
     */
-			    
+
    function _setActive(arr) {
        var len = arr.length;
-       
+
        for(var i = 0; i < len; i++) {
            crossClassList(arr[i]).add("active");
        }
    }
-			    			    
+
    /*
     * Set an attribute if TOGGLE=false and Remove it if TOGGLE = TRUE
     */
@@ -65,11 +65,11 @@
      var contain = (ele.getAttribute(attr) !== null)? true: false;
      var method = contain ? TOGGLE !== true && "removeAttribute":
       TOGGLE !== false && "setAttribute";
-     
+
      if (method) {
       ele[method](attr,"");
       }
-     
+
      if (TOGGLE === true || TOGGLE === false) {
       return TOGGLE;
       } else {
@@ -82,7 +82,7 @@
     function activeTour(e){
     	e.preventDefault();
     	e.stopPropagation();
-    	
+
     	crossClassList(obj.doc.documentElement).add("mask-disable-scroll");
     	crossClassList(picFrame).add("hidden");
         crossClassList(photoSphere).add("active");
@@ -94,11 +94,13 @@
     }
    //
    // Dependencies
-   var cssSelector = obj.doc.querySelector.bind(obj.doc) 
+   var cssSelector = obj.doc.querySelector.bind(obj.doc)
    ,cssSelectorAll = obj.doc.querySelectorAll.bind(obj.doc)
    ,crossClassList = obj.ClassList
    ,aEventListener = obj.EventUtility.aboutHandler.addListener
-   ,rEventListener = obj.EventUtility.aboutHandler.removeListener;
+   ,rEventListener = obj.EventUtility.aboutHandler.removeListener
+   ,Interface  = obj.Class.Interface
+   ,collectionToArray = obj.ArrayUtility.collectionToArray;
    //
    //
    //
@@ -109,7 +111,8 @@
    ,photoSphere = cssSelector("#PhotoSphere")
    ,picFrame = cssSelector(".picture-frame")
    ,makeATour = null
-   ,destroyTour = null;
+   ,destroyTour = null
+   ,slide = null;
    //Variables
    //
    var first_click = false;
@@ -135,19 +138,19 @@
        * v)   firstScroll: if false the page has not been scrolled ever
        * vi)  tirth: if true the first page i scrolled by 1/3
        */
-    
+
        lastScroll: 0,
        previewScroll: 0,
        _allActive: false,
        firstScroll: false,
        ticking: false,
        tirth: false,
-	
+
        /*
 	* It's the function that handle the on scroll animation
 	*/
        update: function () {
-    	   if (this.parallax.state) {	
+    	   if (this.parallax.state) {
     		   var lscroll = this.lastScroll
     		   ,ihh = this.px.innerHeight
     		   ,section = this.$.sectionIntro;
@@ -156,7 +159,7 @@
     				   this.firstScroll = true;
     				   this.handleDynamicElement();
     			   }
-	       
+
     			   if (lscroll >= ihh && !section.hide){
     				   section.style.display = "none";
     				   section.hide = true;
@@ -171,7 +174,7 @@
     				   var lim1 = this.px.pages[0], lim2 = this.px.pages[1];
     				   if(lscroll >= lim1 && !this.$._cacheStatusEle['catalogServices']){
     					   this.activeElementWhenScrolledToLim("catalogServices",lim1,_setActive);
-		       
+
     				   }
     				   if (lscroll >= lim2 && !this.$._cacheStatusEle['location']){
     					   this.activeElementWhenScrolledToLim("location",lim2,_setActive);
@@ -185,7 +188,7 @@
     				   section.hide = false;
     			   }
     		   }
-	   
+
     		   this.parallax.core(7,-lscroll,this.$.sectionPhoto);
     		   this.parallax.core(3,-lscroll,this.$.sectionGridOuter,176);
     	   }
@@ -193,8 +196,13 @@
        	handleDynamicElement: function () {
         var fs = this.firstScroll;
         var ele = this.$
+<<<<<<< HEAD
 	,bodyClass = crossClassList(ele.body);
-	
+
+=======
+	       ,bodyClass = crossClassList(ele.body);
+
+>>>>>>> 556cf1d... ADD THE Clikck event on pagiantion link to slide the service in the mobile
 	if (!bodyClass.contains("mobile")){
 	 bodyClass.toggle("scrolling",fs);
 	}
@@ -204,12 +212,12 @@
        activeElementWhenScrolledToLim: function (stringEle, lim, callback) {
 	 if (this.lastScroll > lim) {
 	   var eleDom = this.$[stringEle];
-	  
+
 	   callback(eleDom);
 	   var status = this.$._cacheStatusEle, p = "";
-	   
+
 	   status[stringEle] = true;
-	  
+
 	   for (p in status){
 	    if (status.hasOwnProperty(p)){
 	     if (!status[p]){
@@ -218,7 +226,7 @@
 	     }
 	    }
 	  this._allActive = status[p];
-	   
+
 	  }
        },
        init: function () {
@@ -226,7 +234,7 @@
         this._requestTick = requestTick_.bind(this);
         this.scroll = onscroll_.bind(this);
         this.scroll();
-    
+
 	   aEventListener(this.$.view, "scroll", this.scroll,false);
         delete(this.init);
        }
@@ -243,7 +251,7 @@
            _cacheStatusEle : {
     		     'catalogServices': false,
     		    'location' : false
-			   	},		
+			   	},
            body: obj.doc.body
        },
        px :{
@@ -254,7 +262,7 @@
 	  /*
 	   * The first page it's always in full screen
 	   */
-	  
+
 	     var portion =  0.8;
 	  /*
 	   * The Other pages have a min-heigh value of 610px;
@@ -262,7 +270,7 @@
 	   var currentHeight =  650;
 	   this.pages[0] = (this.innerHeight + currentHeight)*portion;
 	   this.pages[1] = (this.innerHeight + 2*currentHeight)*0.9;
-	  
+
 	  }
        },
        parallax:{
@@ -285,10 +293,10 @@
     	   ,domEle = this.$;
     	   domEle.body.style.paddingTop = sheight;
     	   domEle.sectionIntro.style.height = sheight;
-	       
+
     	   if (width <= 781) {
     		   var bodyClass = crossClassList(domEle.body);
-		   
+
     		   if(bodyClass.contains("scrolling")){
     			   bodyClass.remove("scrolling");
     			   this.parallax.core(1,0,this.$.sectionPhoto);
@@ -299,24 +307,27 @@
     		   _setActive(domEle.location);
     		   domEle._cacheStatusEle['location'] = true;
     		   this.parallax.state = false;
-    		   
+
     		   makeATour = makeATour || cssSelector("#tourInside");
     		   destroyTour = destroyTour || cssSelector("#closeTour");
+           slide = slide || new SlideControl(cssSelector('#catalog .tab-list'));
+           slide.active();
     		   aEventListener(makeATour,'click',activeTour);
     		   aEventListener(destroyTour,'click',closeTour)
     		   this.update = this.mobileResize;
-		   
-	       	   
+
+
 	       	}
        	},
        	mobileResize: function mobileResize(){
-       		console.log("mobile");
+
        		if(this.px.innerWidth > 781){
        			crossClassList(this.$.body).remove("mobile");
 	       		this.parallax.state = true;
 	       		rEventListener(makeATour,activeTour);
 	       		rEventListener(destroyTour,closeTour);
 	       		this.update = this.desktopResize;
+            slide.deactive();
        		}
        	},
        	init: function () {
@@ -325,18 +336,18 @@
            this.resize = onresize_.bind(this);
            this.update = this.desktopResize;
            this.resize();
-           
+
            aEventListener(obj.global, "resize", this.resize);
            delete(this.init);
        }
    };
-   
+
    /*
     * dropdown panel in the sidebar for mobile
     */
    var dropdownToggle = cssSelector("#dropdown-toggle")
      ,dropdownPanel = cssSelector(".dropdown-panel");
-			    
+
    dropdownPanel.openPanel = function openPanel() {
     this.setAttribute("open","");
     this.open = "open";
@@ -344,22 +355,22 @@
    dropdownToggle && aEventListener(dropdownToggle,"click",function(e){
      dropdownPanel.openPanel();
    });
-			    
+
    /*
-    * Extend Scrolling area coping some prop from 
+    * Extend Scrolling area coping some prop from
     * ResizeArea
     */
-			    
+
    scrollingArea = obj.Class.extendByCopy(resizeArea,scrollingArea,['$','px','parallax']);
-  
+
    /*
     * Add reference to location section
     */
-   var arrayNodeServices = obj.ArrayUtility.collectionToArray(
+   var arrayNodeServices = collectionToArray(
     cssSelectorAll("#catalog .mobile-is-hidden .service-title-0"));
-   
+
    scrollingArea.$.catalogServices = arrayNodeServices;
-			    
+
    /*
     * AppBar Object
     */
@@ -370,9 +381,8 @@
    appBar.searchOn = false;
    appBar.toggleSearch = function toggleSearch(e) {
     var id = e.target.getAttribute("id");
-       console.log("inside search");
    if ( id !== "search-google" && id !== "reset-button"){
-     appBar.searchOn = !appBar.searchOn ? true : false; 
+     appBar.searchOn = !appBar.searchOn ? true : false;
      crossClassList(this).toggle("search-on",appBar.searchOn);
      attributeToggle(this.$.search,"show",appBar.searchOn);
     }
@@ -381,8 +391,9 @@
     appBar.toggleSearch(e);
    });
    //
-   // Event Callback function
+   // Slide-control
    //
+<<<<<<< HEAD
    /*function gestureEvent(evt) {
        switch (evt.type) {
        case 'focus':
@@ -394,19 +405,179 @@
        case 'click':
            evt.preventDefault();
            if (evt.currentTarget.tagName === "BUTTON" || evt.currentTarget.tagName === "button") {
-               crossClassList(mask_modal).add("active");  
-               crossClassList(obj.doc.documentElement).add("mask-disable-scroll"); 
+               crossClassList(mask_modal).add("active");
+               crossClassList(obj.doc.documentElement).add("mask-disable-scroll");
            } else if (evt.currentTarget.tagName === "DIV" || evt.currentTarget.tagName === "div") {
                if((crossClassList(evt.currentTarget).contains("mask-modal","active"))) {
                    crossClassList(mask_modal).remove("active");
                    crossClassList(obj.doc.documentElement).remove("mask-disable-scroll");
                }
-           }
-           break;
-       default:
-           return;
+=======
+   //Interface implement by slide item and link pagination
+   var Slides = new Interface("Slides",['slideON','slideOFF','fitSlide',
+                              'fitSlideOff','fitPlusSlide']);
+   /*
+   * Slide Items Object
+   */
+   function SlideItem(items){ //Implement Slides
+     if (!(this instanceof SlideItem)){
+       return new SlideItem(items);
+     }
+     this.$ = collectionToArray(items);
+   }
+   SlideItem.prototype = {
+     slideON: function slideON(id_on){
+       var items = this.$;
+       var matrix = 'matrix(1,0,0,1,0,0)';
+       var z_index = '10';
+
+       items[id_on].style.zIndex = z_index;
+       items[id_on].style.webkitTransform = matrix;
+       items[id_on].style.transform = matrix;
+
+     },
+     slideOFF: function slideOFF(id_off){
+       var items = this.$;
+       var opacity = '0';
+       var z_index = '0';
+
+       items[id_off].style.opacity = opacity;
+       items[id_off].style.zIndex = z_index;
+     },
+     fitSlide: function fitSlide(id_fit,xOffSet){
+       var items = this.$;
+       var opacity = '1';
+       var matrix = 'matrix(1,0,0,1,'+ xOffSet +',0)';
+
+       items[id_fit].style.opacity = opacity;
+       items[id_fit].style.webkitTransform = matrix;
+       items[id_fit].style.transform = matrix;
+     },
+     fitSlideOff: function fitSlideOff(id_fit_off){
+       var items = this.$;
+       var opacity = '0';
+       var matrix = 'matrix(1,0,0,1,0,0)';
+
+       items[id_fit_off].style.opacity = opacity;
+       items[id_fit_off].style.webkitTransform = matrix;
+     },
+     fitPlusSlide: function(id){
+       this.fitSlide(id);
+       this.slideON(id);
+     }
+   };
+   /*
+    * Link Pagination Object
+    */
+    function Pagination(li){ //Implement slides
+      if (!(this instanceof Pagination)){
+        return new Pagination(items);
+      }
+      this.$ = collectionToArray(li);
+    }
+    Pagination.prototype = {
+      slideON: function slideON(id_on){
+        crossClassList(this.$[id_on]).add('active');
+      },
+      slideOFF: function slideOFF(id_off){
+        crossClassList(this.$[id_off]).remove('active');
+      },
+      fitSlide: function fitSlide(id){
+        return;
+      },
+      fitSlideOff: function fitSlideOff(id){
+        return;
+      },
+      fitPlusSlide: function fitPlusSlide(id){
+        return;
+      }
+    };
+   function SlideControl(container){
+     if (!(this instanceof SlideControl) ){
+       return new SlideControl(ele);
+     }
+     this.$ = {
+       slideControl: container.querySelector(".slide-control"),
+       a: collectionToArray(container.querySelectorAll('ul li .slides-pagination-link'))
+     };
+     this.items = new SlideItem(container.querySelectorAll('.slide-control .slides-item'));
+     this.pagination = new Pagination(container.querySelectorAll('ul li'));
+     this.items.fitSlide(1,980);
+     this._id = {
+       'active': 0,
+       'fit': 1
+     };
+   }
+   SlideControl.prototype = {
+     active: function active(){
+       var link = this.$.a;
+       this.click = this.click.bind(this);
+
+       for (var i = link.length -1; i >= 0 ;i--){
+         aEventListener(link[i],'click',this.click);
        }
-   }*/
+     },
+     deactive: function deactive(){
+       var link = this.$.a;
+       for(var i = link.length -1; i >=0; i--){
+         rEventListener(link[i],'click',this.click);
+       }
+     },
+     click: function click(e){
+       e.preventDefault();
+       var clicked = e.target;
+       var dataItem = parseInt(clicked.getAttribute('data-item'));
+       var id_active = this._id['active'];
+       var id_fit = this._id['fit'];
+       var nextFit = (dataItem < this.items.$.length-1)? dataItem+1:0;
+
+
+       if (dataItem === id_active){
+         return;
+       } else {
+         this.items.slideOFF(id_active);
+         this.pagination.slideOFF(id_active);
+         this.pagination.slideON(dataItem);
+         if (dataItem === id_fit){
+           this.items.slideON(dataItem);
+         } else {
+           this.items.fitPlusSlide(dataItem);
+           this.items.fitSlideOff(id_fit);
+         }
+         this.items.fitSlide(nextFit,980);
+         this._id['fit'] = nextFit;
+         this._id['active'] = dataItem;
+       }
+     },
+     _apply: function _apply(ele, prop, style, prefix){
+       var domEle;
+       if (typeof ele === 'string'){
+         domEle = this.$[ele];
+       } else {
+         domEle = ele;
+       }
+       if(prefix){
+         if(!obj.ArrayUtility.isArray(prefix)){
+           throw new Error("The 4th parameter must be an Array of string:['webkit',moz,...]");
+         }
+         var broswerStyle ='';
+         var Prop = prop.replace(/^[a-z]/,function javaNameStyle(match){
+           return match.toUpperCase();
+         });
+
+
+         for(var j = 0,len = prefix.length; j < len; j++){
+           if (typeof prefix[i] !== 'string'){
+             continue;
+           }
+           broswerStyle = prefix[j]+Prop;
+           domEle.style[broswerStyle] = style;
+         }
+       }
+       domEle.style[prop] = style;
+     }
+   };
+   //End SlideControl Constructor
 
         // Add Event Listenrs
    //aEventListener(jb, 'click', gestureEvent);
@@ -421,7 +592,7 @@
                       photoCrop = null;
 		      e.stopPropagation();
 		  });
-   
+
    aEventListener(fab_one,'click',function(e){
         if(!first_click){
             crossClassList(e.currentTarget).add("pressed");
@@ -435,11 +606,11 @@
             first_click = false;
         }
     });
-   
+
     /* If the panel it's active or the search-bar it's active
      * and you click on the document this function will close them.
      */
-   
+
     aEventListener(obj.doc,"click",function(e){
      if (dropdownPanel.open){
       dropdownPanel.removeAttribute(dropdownPanel.open);
@@ -448,7 +619,7 @@
      if (appBar.searchOn) {
       appBar.toggleSearch(e);
      }
-     
+
     }, true);
         /*
          * Canvas Test
@@ -826,11 +997,12 @@
     //
     //Raise nav bar if the page is scrolled
     resizeArea.init();
-    scrollingArea.init(); 
+    scrollingArea.init();
+        canvas.init();
+        
     // Clear unuseful Dom Object
     dropdownToggle = null;
     obj.PaperMaker('button',{ element: cssSelectorAll(".paper-fab")[0]});
     obj.PaperMaker.MakePaperLive();
     });
 }());
-
