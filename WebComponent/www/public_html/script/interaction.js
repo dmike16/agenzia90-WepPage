@@ -92,6 +92,33 @@
     	crossClassList(photoSphere).remove('active');
     	crossClassList(picFrame).remove('hidden');
     }
+    /*
+    * Apply function used to set a inline style to a DOM object
+    * Argument: domObj, css Prop , css Style, array prefix['webkit',...]
+    */
+    function _apply(ele, prop, style, prefix){
+      var domEle = ele;
+
+      if(prefix){
+        if(!obj.ArrayUtility.isArray(prefix)){
+          throw new Error("The 4th parameter must be an Array of string:['webkit',moz,...]");
+        }
+        var broswerStyle ='';
+        var Prop = prop.replace(/^[a-z]/,function javaNameStyle(match){
+          return match.toUpperCase();
+        });
+
+
+        for(var j = 0,len = prefix.length; j < len; j++){
+          if (typeof prefix[j] !== 'string'){
+            continue;
+          }
+          broswerStyle = prefix[j]+Prop;
+          domEle.style[broswerStyle] = style;
+        }
+      }
+      domEle.style[prop] = style;
+    }
    //
    // Dependencies
    var cssSelector = obj.doc.querySelector.bind(obj.doc)
@@ -507,6 +534,19 @@
        'active': 0,
        'fit': 1
      };
+     
+     this.frame = obj.AnimateObject();
+     this.frame.step = function step(p){
+       var v = step.a*(1-p);
+       var ele = step.ele;
+
+       ele.style.webkitTransform = 'matrix(1,0,0,1,'+v+',0)';
+       ele.style.transform = 'matrix(1,0,0,1,'+v+',0)';
+     };
+     this.frame.step.a = -980;
+     this.frame.step.ele = this.$.slideControl;
+     this.frame.id = 0;
+
    }
    SlideControl.prototype = {
      active: function active(){
@@ -529,6 +569,8 @@
        var dataItem = parseInt(clicked.getAttribute('data-item'));
        var id_active = this._id['active'];
        var id_fit = this._id['fit'];
+       var style = " ";
+       var v = 0,i = 0;
        var nextFit = (dataItem < this.items.$.length-1)? dataItem+1:0;
 
 
@@ -538,6 +580,11 @@
          this.items.slideOFF(id_active);
          this.pagination.slideOFF(id_active);
          this.pagination.slideON(dataItem);
+         obj.animatedFrame.cancel(this.frame.id);
+         this.frame.step.a = 980*(id_active-dataItem)/Math.abs(dataItem-id_active);
+
+         this.frame.startAnimate();
+
          if (dataItem === id_fit){
            this.items.slideON(dataItem);
          } else {
@@ -548,33 +595,6 @@
          this._id['fit'] = nextFit;
          this._id['active'] = dataItem;
        }
-     },
-     _apply: function _apply(ele, prop, style, prefix){
-       var domEle;
-       if (typeof ele === 'string'){
-         domEle = this.$[ele];
-       } else {
-         domEle = ele;
-       }
-       if(prefix){
-         if(!obj.ArrayUtility.isArray(prefix)){
-           throw new Error("The 4th parameter must be an Array of string:['webkit',moz,...]");
-         }
-         var broswerStyle ='';
-         var Prop = prop.replace(/^[a-z]/,function javaNameStyle(match){
-           return match.toUpperCase();
-         });
-
-
-         for(var j = 0,len = prefix.length; j < len; j++){
-           if (typeof prefix[i] !== 'string'){
-             continue;
-           }
-           broswerStyle = prefix[j]+Prop;
-           domEle.style[broswerStyle] = style;
-         }
-       }
-       domEle.style[prop] = style;
      }
    };
    //End SlideControl Constructor
