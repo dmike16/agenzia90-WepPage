@@ -852,7 +852,7 @@ var UtilityBuild = (function () {
     */
     _self.AnimateConfig = (function (){
         var singleton;
-        function AnimateConfig() {
+        function AnimateConfig() { //Implements Frames Interace
             if (singleton) {
                 return singleton;
             }
@@ -926,6 +926,11 @@ var UtilityBuild = (function () {
     *
     */
 	_self.AnimateObject = (function () {
+    // Define Frame interface
+    var Frames = new _self.Class.Interface("Frames",['getDelay','setDelay',
+  'getDuration','setDuration','getTiming','setTiming','getCore','setCore',
+'getEnding','setEnding']);
+
 		var _linear = function linear(p) {
 			return p;
 		}
@@ -946,10 +951,16 @@ var UtilityBuild = (function () {
 			return Math.pow(p,2)*((x+1)*p-x);
 		}
 		,AnimateObject = function AnimateObject(config) {
-            if (!(this instanceof AnimateObject)) {
+      if (!(this instanceof AnimateObject)) {
 				return new AnimateObject(config);
 			}
-            var _config = config || _self.AnimateConfig();
+      if (typeof config != 'undefined'){
+        _self.Class.Interface.ensureImplements(config,Frames);
+      } else {
+        config = _self.AnimateConfig();
+      }
+
+      var _config = config;
 			var start = 0;
             /** It's the delay of the animation
              *
@@ -1053,10 +1064,20 @@ var UtilityBuild = (function () {
             if (this.progress === 1) {
                 this.progress  = 0;
                 this.ending();
+                if (this._loop){
+                  this._loop = null;
+                }
                 _self.animatedFrame.cancel(this.id);
             } else {
-                this.id = _self.animatedFrame.request(this.animate.bind(this));
+                this.id = _self.animatedFrame.request(this._loop);
             }
+        };
+        AnimateObjectProto.startAnimate = function startAnimate(){
+          this.startTimeCount();
+          if (!this._loop){
+            this._loop = this.animate.bind(this);
+          }
+          this.id =_self.animatedFrame.request(this._loop);
         };
 
 		return AnimateObject;
