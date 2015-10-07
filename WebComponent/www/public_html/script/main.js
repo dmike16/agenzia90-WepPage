@@ -323,6 +323,36 @@ var UtilityBuild = (function () {
 
         };
         /**
+        * Check the device implementation of touch event
+        *
+        * @method touchEventSupport
+        * @return {Object}
+        *
+        */
+        var _touch = (function touchEventSupport(){
+          var result = {};
+          var events = ['touchstart','touchend','touchmove','touchcancel'];
+          var prop = ['start','end','move','cancel'];
+
+          if (_self.global.PointerEvent){
+            events = ['pointerdown','pointerup','pointerMove','pointercancel'];
+          } else if (_self.global.navigator.msPointerEnabled){
+            events = ['MSpointerDown','MSpointerUp','MSpointerMove','MSpointerCancel'];
+          }
+
+          for (var i = 0, len = prop.length; i < len; i++){
+            result[prop[i]] = events[i];
+          }
+          var ptTouch = _self.global.navigator.maxTouchPoints;
+          if (ptTouch){
+            result.touchSupport = true;
+            result.multiTouchSupport = (ptTouch > 1)? true : false;
+          } else {
+            result.touchSupport = false;
+          }
+          return result;
+        }());
+        /**
         * The object that handles the cross Broswer add and remove envent listeners
         *
         *
@@ -472,7 +502,8 @@ var UtilityBuild = (function () {
     }
     return {
         isHostMethod : isHostMethod,
-        aboutHandler : aboutHandler
+        aboutHandler : aboutHandler,
+        touchEvent: _touch
     };
     }());
 
