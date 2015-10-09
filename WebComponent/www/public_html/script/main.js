@@ -338,17 +338,19 @@ var UtilityBuild = (function () {
             events = ['pointerdown','pointerup','pointerMove','pointercancel'];
           } else if (_self.global.navigator.msPointerEnabled){
             events = ['MSpointerDown','MSpointerUp','MSpointerMove','MSpointerCancel'];
+          } else{
+            var ptTouch = _self.global.navigator.maxTouchPoints;
+            if (ptTouch){
+              result.touchSupport = true;
+              result.multiTouchSupport = (ptTouch > 1)? true : false;
+            } else {
+              result.touchSupport = false;
+              events = ['mousedown','mouseup','mousemove','mousecancel'];
+            }
           }
 
           for (var i = 0, len = prop.length; i < len; i++){
             result[prop[i]] = events[i];
-          }
-          var ptTouch = _self.global.navigator.maxTouchPoints;
-          if (ptTouch){
-            result.touchSupport = true;
-            result.multiTouchSupport = (ptTouch > 1)? true : false;
-          } else {
-            result.touchSupport = false;
           }
           return result;
         }());

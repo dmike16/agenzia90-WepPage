@@ -139,7 +139,7 @@
    ,makeATour = null
    ,destroyTour = null
    ,slide = null;
-
+   
    //
    //Object For Scrolling Event
    //
@@ -625,7 +625,7 @@
     //Raise nav bar if the page is scrolled
     resizeArea.init();
     scrollingArea.init();
-    
+
     // Clear unuseful Dom Object
     dropdownToggle = null;
     obj.PaperMaker('button',{ element: cssSelectorAll(".paper-fab")[0]});
