@@ -345,7 +345,7 @@ var UtilityBuild = (function () {
               result.multiTouchSupport = (ptTouch > 1)? true : false;
             } else {
               result.touchSupport = false;
-              events = ['mousedown','mouseup','mousemove','mousecancel'];
+              events = ['mousedown','mouseup','mousemove','mouseout'];
             }
           }
 
