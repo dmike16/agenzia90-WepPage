@@ -51,3 +51,5 @@ arch/
 .jshintrc
 .idea
 *.iml
+#Node Modules
+node_modules/
