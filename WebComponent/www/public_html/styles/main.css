@@ -2351,7 +2351,7 @@ address {
 .resources-flow-layout p {
   color: #fff;
   font-size: 20px;
-  font-weight: 200;
+  font-weight: 600;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.35);
 }
 .resources-card {
@@ -2730,7 +2730,6 @@ li {
     text-shadow: 0 2px 3px rgba(0, 0, 0, .2);
     padding: 0;
     font-size: 1.25em;
-    font-weight: 300;
     line-height: 1.3;
     letter-spacing: 1px;
   }
@@ -2864,7 +2863,6 @@ li {
   }
   .resources-flow-layout p {
     padding: 0 2%;
-    font-weight: 300;
     letter-spacing: 1px;
   }
   #dropdown-toggle {
