@@ -53,3 +53,5 @@ arch/
 *.iml
 #Node Modules
 node_modules/
+#Mac File DS
+.DS_Store
