@@ -2641,6 +2641,7 @@ li {
   width: 100%;
   position: relative;
   height: inherit;
+  touch-action: pan-y;
 }
 .slides-item {
   -webkit-backface-visibility: hidden;
@@ -2657,7 +2658,7 @@ li {
 }
 .slides-pagination-item {
   display: block;
-  margin: 0 10px;
+  margin: 0;
   padding: 0;
 }
 .slides-pagination-link {

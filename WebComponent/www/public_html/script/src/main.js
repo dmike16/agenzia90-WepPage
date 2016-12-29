@@ -330,13 +330,16 @@ var UtilityBuild = (function () {
         *
         */
         var _touch = (function touchEventSupport(){
-          var result = {};
+          var result = {pointerEventSupport :false ,
+											 touchSupport :false};
           var events = ['touchstart','touchend','touchmove','touchcancel'];
           var prop = ['start','end','move','cancel'];
 
           if (_self.global.PointerEvent){
-            events = ['pointerdown','pointerup','pointerMove','pointercancel'];
+						result.pointerEventSupport = true;
+            events = ['pointerdown','pointerup','pointermove','pointercancel'];
           } else if (_self.global.navigator.msPointerEnabled){
+						result.pointerEventSupport = true;
             events = ['MSpointerDown','MSpointerUp','MSpointerMove','MSpointerCancel'];
           } else{
             var ptTouch = _self.global.navigator.maxTouchPoints;
@@ -352,6 +355,7 @@ var UtilityBuild = (function () {
           for (var i = 0, len = prop.length; i < len; i++){
             result[prop[i]] = events[i];
           }
+          _self.global.PointerEventsSupport = result.pointerEventSupport;
           return result;
         }());
         /**
