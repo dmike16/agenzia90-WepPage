@@ -1,7 +1,7 @@
 //function to insert the script async to prevent the page block
 (function (exports) {
     "use strict";
-  
+
    function inserMainScript(url, callback, sID) {
     var script = document.createElement("script");
     script.type = "text/javascript";
