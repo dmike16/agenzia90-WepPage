@@ -2,7 +2,7 @@
   "name": "Studio 90 srls Consulenza Automobilistica",
   "short_name": "Studio90",
   "icons": [{
-    "src": "images/mobileScreenlogo.png",
+    "src": "images/mobilescreenLogo.png",
       "sizes": "144x144",
       "type": "image/png"
     }],
