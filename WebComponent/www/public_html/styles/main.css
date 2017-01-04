@@ -1451,32 +1451,38 @@ button.paper-fab:hover + label.label-button {
 }
 .icon.sermetra {
   background-image: url("../images/icon/partnship/friendLogo.png");
-  background-position: -8.6px -105px;
+  background-position: -8.6px -131px;
 }
 .icon.unasca {
   background-image: url("../images/icon/partnship/friendLogo.png");
-  background-position: -9.9px -139.9px;
+  background-position: -9.9px -169.9px;
 }
 .icon.cna {
   background-image: url("../images/icon/partnship/friendLogo.png");
-  background-position: -9.9px -176px;
+  background-position: -9.9px -206px;
 }
 .icon.mctc {
   background-image: url("../images/icon/partnship/friendLogo.png");
-  background-position: -6.6px -211px;
+  background-position: -6.6px -241px;
 }
 .icon.generali {
   background-image: url("../images/icon/partnship/friendLogo.png");
-  background-position: -1.3px 0px;
+  background-position: -1.3px -30px;
 }
 .icon.bali {
   background-image: url("../images/icon/partnship/friendLogo.png");
-  background-position: -4.6px -30px;
+  background-position: -4.6px -60px;
 }
 .icon.motocentromarconi {
   background-image: url("../images/icon/partnship/friendLogo.png");
-  background-position: -1.2px -64px;
+  background-position: -1.2px -94px;
 }
+
+.icon.youservice{
+  background-image: url("../images/icon/partnship/friendLogo.png");
+  background-position: -1.3px 4px;
+}
+
 #pOne-16 {
   float: right!important;
 }
