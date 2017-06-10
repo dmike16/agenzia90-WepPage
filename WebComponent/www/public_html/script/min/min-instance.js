@@ -1,7 +1,8 @@
 //function to insert the script async to prevent the page block
 (function (exports) {
     "use strict";
-  
+   var noope = function (){};
+
    function inserMainScript(url, callback, sID) {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -25,8 +26,11 @@
     document.getElementsByTagName("head")[0].appendChild(script);
     script = null;
    }
+
    document.addEventListener('DOMContentLoaded',function(e){
-     inserMainScript("script/min/interaction.min.js", function(){return;});
+     inserMainScript("bower_components/material-design-lite/material.min.js",noope);
+     //inserMainScript("script/min/interaction.min.js", function(){
+     //});
    });
 
    window.addEventListener('load', function(e){
@@ -38,5 +42,5 @@
 	   }
        }, false);
    },false);
-  console && console.log("%c90 s r l s\n%cPratiche Auto\nTel 06 01905227","font-size:1.5em;color:#1945D5;", "color:#14BD4C;font-size:1em;");
+  console.log("%c90 s r l s\n%cPratiche Auto\nTel 06 01905227","font-size:1.5em;color:#1945D5;", "color:#14BD4C;font-size:1em;");
 }(window));
