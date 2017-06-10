@@ -1,0 +1,24 @@
+{
+  "name": "studio90srls",
+  "description": "Web Page 90srls Agency",
+  "main": "index.html",
+  "authors": [
+    "dmike16"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "90srls"
+  ],
+  "homepage": "https://github.com/dmike16/90srls-WebPage",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "material-design-lite": "^1.3.0"
+  }
+}
