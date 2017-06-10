@@ -53,3 +53,7 @@ arch/
 *.iml
 #Node Modules
 node_modules/
+#Apple file
+.DS_STORE
+#Bower
+bower_components/

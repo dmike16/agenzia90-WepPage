@@ -1,128 +1,287 @@
 <!DOCTYPE html>
 <html class="" xmlns="http://www.w3.org./1999/xhtml" manifest="90srls.appcache">
+
 <head>
-	<meta charset="UTF-8"/>
-	<meta name="viewport" content="initial-scale=1.0, width=device-width"/>
-	<meta name="theme-color" content="#14d824"/>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+	<meta name="theme-color" content="#14d824" />
 	<title>90 s.r.l.s | Home Page</title>
-	<link rel="manifest" href="manifest.json"/>
-	<link rel="stylesheet" type="text/css" href="styles/main.css"/>
-	<link rel="shortcut icon" href="images/icon/tab/tabIcon.ico"/>
-	<link rel="stylesheet"
-	href="styles/font-awesome-4.3.0/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="styles/dm-font-1.0/style.css"/>
-	<link href="//fonts.googleapis.com/css?family=RobotoDraft:300,400,500|Source+Code+Pro:400,500,700" rel="stylesheet">
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'/>
+	<link rel="manifest" href="manifest.json" />
+	<link rel="shortcut icon" href="images/icon/tab/tabIcon.ico" />
+	<link rel="stylesheet" href="styles/material.min.css" />
+	<link rel="stylesheet" href="styles/font-awesome-4.3.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="styles/dm-font-1.0/style.css" />
+	<link rel="stylesheet" type="text/css" href="styles/dev.css" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-<body class="homePage" style="padding-top:800px">
-	<header class="header bsa layout horizontal center" role="banner">
-		<a class=" logo site-logo-link" href="index.html">
-			<img class="site-logo-image" src="images/Logo90s.svg" alt="90 s.r.l.s"/>
-		</a>
-		<nav id="app-bar" class="bar fixed">
-			<a class="paper-link" href="#catalog"> Servizi </a>
-                 <!-- div id="tab3" class="paper-dropdown-menu relative app-bar" tabindex="0" role="tab" aria-controls="pannel3" aria-expanded="false" horizontal>
-                    <div class="label">Dove Siamo</div>
-                    <div class="icon"><i class="icon-caret-down"></i></div>
-                    <div id="pannel3" class="paper-dropdown core-tansiction" halign="right" tabindex="-1" role="tabpanel" style="outline:none;display:none;">
-                        <div class="ripple"></div>
-                        <div class="background fit" style="-webkit-transform-origin: 100% 0% 0px; transform-origin: 100% 0% 0px;">
-                            <div class="shadow fit bs-zLevel-1"></div>
-                        </div>
-                        <div class="scroller relative" style="-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;">
-                            <div class="menu deep">
-                                <div class="paper-item" tabindex="0">
-                                    <div class="button-content">
-                                    <a href="#location"><i class="fa fa-map-marker left-icon"></i>Map</a>
-                                    </div>
-                                </div>
-                                <div class="paper-item" tabindex="0">
-                                    <div class="button-content">
-                                        <a class="nav-main-last" href="#location"><i class="fa fa-location-arrow left-icon"></i>Contatti</a>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-            </div-->
-            <a class="paper-link" href="#location">Dove Siamo</a>
-            <a class="paper-link" href="#location">Come Raggiungerci</a>
-            <a class="paper-link" href="#linkUtil"> Link Utili </a>
-            <div class="search">
-            	<div class="paper-icon-button" role="button" tabindex="0" aria-label="search">
-            		<div class="paper-ripple fit">
-            			<div class="bg"></div>
-            			<div class="waves"></div>
-            		</div>
-            		<div class="icon" aria-label="search" role="img">
-            			<i class="fa fa-search"></i>
-            		</div>
-            	</div>
-            	<form action="https://www.google.com/search" target="_blank">
-            		<input id="search-google" type="text" name="q" value="" placeholder="cerca con google"  autocomplete="off" />
-            		<input id="reset-button" type="reset" value="x"/>
-            	</form>
-            </div>
-        </nav>
-        <div id="dropdown-toggle" class="icon" aria-label="arrow-drop-down" role="img">
-        	<svg class="fit" viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" style="pointer-events:none;display:block;">
+
+<body class="homePage">
+	<div class="mdl-layout mdl-js-layout  mdl-layout--fixed-header">
+		<header class="mdl-layout__header mdl-layout__header--waterfall studio90-header">
+			<div class="mdl-layout-icon">
+			</div>
+			<div class="mdl-layout__header-row studio90-logo-row">
+				<span class="mdl-layout__title">
+					<div class="studio90-logo">
+					</div>
+					<span class="mdl-layout__title">Studio 90 srls</span>
+				</span>
+			</div>
+			<div class="mdl-layout__header-row mdl-layout--large-screen-only studio90-navigator-row">
+				<nav class="mdl-navigation">
+					<a class="mdl-navigation__link" href="#">Servizi</a>
+					<a class="mdl-navigation__link" href="#">Dove Siamo</a>
+					<a class="mdl-navigation__link" href="#">Come Raggiungerci</a>
+					<a class="mdl-navigation__link" href="#">Link Utili</a>
+				</nav>
+			</div>
+		</header>
+		<div class="mdl-layout__drawer mdl-layout--small-screen-only">
+			<span class="mdl-layout__title">
+			<div>
+				<a class="logo site-logo-link" href="index.html">
+					<img class="site-logo-image" src="images/Logo90s.svg" alt="90 s.r.l.s" />
+				</a>
+			</div>
+    </span>
+			<nav class="mdl-navigation">
+				<a class="mdl-navigation__link" href="#">Servizi</a>
+				<a class="mdl-navigation__link" href="#">Dove Siamo</a>
+				<a class="mdl-navigation__link" href="#">Come Raggiungerci</a>
+				<a class="mdl-navigation__link" href="#">Link Utili</a>
+			</nav>
+		</div>
+		<main class="mdl-layout__content">
+			<div class="mdl-grid studio90-grid">
+				<div class="mdl-cell mdl-cell--4-col">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae facilisis erat. Maecenas mattis, ipsum eu bibendum hendrerit, sapien elit convallis elit, sit amet convallis est nisi vitae sem. Pellentesque eu malesuada lorem, non hendrerit
+						justo. Pellentesque sit amet turpis in magna mollis blandit. Praesent malesuada metus risus, ac faucibus libero sodales id. Donec non tempus dui, scelerisque venenatis lorem. Nunc congue mauris interdum massa lobortis, ac viverra orci tempus. Mauris
+						semper in lacus in tempus. Integer fringilla massa sit amet erat lacinia, faucibus hendrerit dolor dignissim. Nunc convallis ac odio eu pharetra. Nunc fermentum turpis nec ex viverra, a eleifend dui sollicitudin. Mauris vestibulum auctor tortor,
+						quis efficitur justo volutpat ac. Nunc vehicula tempus imperdiet. Maecenas ante ipsum, auctor ut porta vel, pretium ut magna. Curabitur in volutpat lorem. Nulla vel sodales nunc, non luctus mauris. Suspendisse tempus arcu in massa viverra, vitae
+						semper lacus varius. Sed id enim orci. Sed rhoncus odio eget leo condimentum semper. Aenean accumsan sem quam, ac convallis justo tristique et. Nunc varius eget sapien at posuere. Orci varius natoque penatibus et magnis dis parturient montes, nascetur
+						ridiculus mus. Donec at turpis at nulla aliquam luctus non nec massa. Sed sit amet neque vitae magna laoreet iaculis non eu justo. Nulla ultrices lectus vel leo commodo, quis bibendum neque lobortis. Etiam in ex sit amet risus condimentum tincidunt
+						at in metus. Aliquam hendrerit, purus quis tristique blandit, purus elit posuere magna, et auctor massa orci non turpis. Phasellus non orci odio. Pellentesque pulvinar justo vitae velit convallis, ac lobortis elit posuere. </p>
+				</div>
+				<div class="mdl-cell mdl-cell--4-col">
+					<p>Phasellus dictum consectetur lacus vitae malesuada. Donec pharetra diam urna, et gravida odio feugiat in. Pellentesque ut enim diam. Donec ullamcorper enim sapien. Sed dapibus faucibus efficitur. Nulla eget est vel urna scelerisque convallis. Suspendisse
+						potenti. Cras sit amet urna neque. Nulla id velit turpis. Proin eleifend orci nec scelerisque fringilla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed diam lacus, porttitor ac fermentum nec, cursus vel
+						ligula. Ut ante nibh, dignissim sed sem quis, consequat pulvinar ligula. Curabitur quis risus at augue tincidunt efficitur. Suspendisse potenti. Proin finibus rhoncus sem, vel cursus orci efficitur auctor. Fusce volutpat condimentum nisi, faucibus
+						maximus arcu maximus in. Cras malesuada molestie sodales. Proin non augue nunc. Quisque aliquet, dolor ac ultrices varius, lacus est interdum tellus, vitae pretium est tellus vel ipsum. Integer turpis elit, fringilla in elementum non, sodales sit
+						amet ligula. Phasellus dignissim tempor quam quis convallis. Proin sit amet ultrices justo. Donec ullamcorper vulputate viverra. Aenean nibh eros, ornare quis semper quis, pellentesque ac lorem. Pellentesque fringilla aliquet lectus pretium venenatis.
+						Sed tellus lacus, faucibus vel libero eget, tempus rhoncus ipsum. Maecenas fermentum a nisi nec ultrices. Sed consequat ornare accumsan. Sed tempus bibendum lectus ac volutpat. Maecenas nec elit lacinia, volutpat diam ut, facilisis ex. Fusce fermentum
+						varius lorem. Nulla condimentum mollis tincidunt. Sed ut varius massa, eu sagittis metus. In condimentum, lorem in aliquet fermentum, sapien mi semper ante, vitae facilisis enim orci at erat. Donec quis turpis nisl. Curabitur fringilla finibus diam,
+						at dapibus sem.</p>
+				</div>
+				<div class="mdl-cell mdl-cell--4-col">
+					<p>Donec laoreet, neque et iaculis lacinia, urna odio mollis nibh, a posuere nibh orci at metus. Sed vitae lorem ligula. Vestibulum vitae metus elementum, dapibus nunc non, ultrices ante. Aliquam in nunc diam. Ut in dignissim tellus. Aliquam semper,
+						lacus ac interdum posuere, dui odio mattis dolor, feugiat condimentum enim est a magna. Donec tristique massa ac bibendum fringilla. Nunc a tellus lorem. Quisque scelerisque congue porta. Quisque feugiat luctus venenatis. In sed felis ut urna malesuada
+						ultricies. Fusce sed lorem est. Ut sagittis sem nec sapien cursus sollicitudin. Morbi faucibus, erat a semper fringilla, sapien neque facilisis est, nec euismod dui leo quis massa. Praesent lectus diam, scelerisque ut nunc ut, consequat accumsan
+						lorem. Aliquam in tellus id mauris imperdiet aliquet et at orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed suscipit erat sit amet dolor aliquet ornare. In pellentesque ex vel nisi varius tempor.
+						Suspendisse malesuada libero ac sodales laoreet. Pellentesque a mattis leo, sed posuere arcu. Cras semper est eu scelerisque blandit. Aenean quis faucibus massa. Vestibulum faucibus molestie ligula a hendrerit. Mauris scelerisque congue velit, et
+						faucibus nibh aliquam et. Aliquam erat volutpat. Praesent porttitor sed velit ac faucibus. In pretium purus sit amet interdum pellentesque. Donec blandit quam ipsum, at tempus diam rhoncus at. Phasellus congue massa nec elit mattis scelerisque.
+						Aenean tincidunt justo massa, nec commodo leo vestibulum ac.</p>
+				</div>
+			</div>
+			<footer class="mdl-mega-footer">
+				<div class="mdl-mega-footer__top-section">
+					<div class="mdl-mega-footer__left-section">
+
+					</div>
+					<div class="mdl-mega-footer__right-section studio90-footer__right-section">
+						<button class="mdl-mega-footer__social-btn studio90-button-social">
+							<a href="https://www.facebook.com/90srls">
+									<i class="fa fa-facebook"></i>
+							</a>
+						</button>
+						<button class="mdl-mega-footer__social-btn studio90-button-social">
+							<a href="https://www.google.com/+90srlsConsulenzaAutomobilisticaRoma">
+									<i class="fa fa-google"></i>
+							</a>
+						</button>
+					</div>
+				</div>
+				<div class="mdl-mega-footer__middle-section">
+					<div class="mdl-mega-footer__drop-down-section">
+						<h2 class="mdl-mega-footer__heading">
+							Link Utili
+						</h2>
+						<ul class="mdl-mega-footer__link-list">
+							<li>
+								<button class="mdl-button mdl-js-button mdl-button--accent">
+									<a href="http://www.sermetra.it/" target="_blank">
+										<div class="studio90-icon studio90-footer__icon studio90-icon_sermetra"></div>
+											Sermetra
+									</a>
+							</button>
+							</li>
+							<li>
+								<button class="mdl-button mdl-js-button mdl-button--accent">
+									<a href="http://www.unasca.it/" target="_blank">
+										<div class="studio90-icon studio90-footer__icon studio90-icon_unasca"></div>
+										Unasca
+									</a>
+								</button>
+							</li>
+							<li>
+								<button class="mdl-button mdl-js-button mdl-button--accent">
+									<a href="http://www.cna.it/" target="_blank">
+										<div class="studio90-icon studio90-footer__icon studio90-icon_cna"></div>
+										C.N.A
+									</a>
+								</button>
+							</li>
+							<li>
+								<button class="mdl-button mdl-js-button mdl-button--accent">
+									<a href="http://www.motorizzazioneroma.it/" target="_blank">
+										<div class="studio90-icon studio90-footer__icon  studio90-icon_mctc"></div>
+										Motorizzazione
+									</a>
+								</button>
+							</li>
+					</div>
+					<div class="mdl-mega-footer__drop-down-section">
+						<h2 class="mdl-mega-footer__heading">
+							Siti Amici
+						</h2>
+						<ul class="mdl-mega-footer__link-list">
+							<li>
+								<button class="mdl-button mdl-js-button mdl-button--accent">
+									<a href="http://www.generali.it/">
+										<div class="studio90-icon studio90-footer__icon studio90-icon_generali"></div>
+										Generali
+									</a>
+								</button>
+							</li>
+							<li>
+								<button class="mdl-button mdl-js-button mdl-button--accent">
+									<a href="http://www.bali-print.com/">
+										<div class="studio90-icon studio90-footer__icon studio90-icon_bali"></div>
+										Bali-Print
+									</a>
+								</button>
+							</li>
+							<li>
+								<button class="mdl-button mdl-js-button mdl-button--accent">
+									<a href="http://www.motocentromarconi.it/">
+										<div class="studio90-icon studio90-footer__icon studio90-icon_motocentromarconi"></div>
+										Moto Centro Marconi
+									</a>
+								</button>
+							</li>
+							<li>
+								<button class="mdl-button mdl-js-button mdl-button--accent">
+									<a href="http://www.youserviceweb.com/" >
+										<div class=""/>
+										You Service
+									</a>
+								</button>
+							</li>
+					</div>
+				</div>
+				<div class="mdl-mega-footer__bottom-section">
+					<div class="mdl-logo studio90-logo-footer">
+
+					</div>
+					<ul class="mdl-mega-footer__link-list">
+						<li>
+							<a href="mailto:cipmiky@gmail.com">WebMaster</a>
+						</li>
+						<li>
+							<a href="http://creativecommons.org/about">About Creative Commons</a>
+						</li>
+						<li>
+							<a href="https://github.com/dmike16/agenzia90-WepPage">Source Code</a>
+						</li>
+					</ul>
+					<div class="studio90-copyright">
+						Quest'opera è distribuita con Licenza <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribuzione 4.0 Internazionale</a>.
+					</div>
+				</div>
+			</footer>
+			<!--header class="header bsa layout horizontal center" role="banner">
+			<a class=" logo site-logo-link" href="index.html">
+				<img class="site-logo-image" src="images/Logo90s.svg" alt="90 s.r.l.s" />
+			</a>
+			<nav id="app-bar" class="bar fixed">
+				<a class="paper-link" href="#catalog"> Servizi </a>
+				<a class="paper-link" href="#location">Dove Siamo</a>
+				<a class="paper-link" href="#location">Come Raggiungerci</a>
+				<a class="paper-link" href="#linkUtil"> Link Utili </a>
+				<div class="search">
+					<div class="paper-icon-button" role="button" tabindex="0" aria-label="search">
+						<div class="paper-ripple fit">
+							<div class="bg"></div>
+							<div class="waves"></div>
+						</div>
+						<div class="icon" aria-label="search" role="img">
+							<i class="fa fa-search"></i>
+						</div>
+					</div>
+					<form action="https://www.google.com/search" target="_blank">
+						<input id="search-google" type="text" name="q" value="" placeholder="cerca con google" autocomplete="off" />
+						<input id="reset-button" type="reset" value="x" />
+					</form>
+				</div>
+			</nav>
+			<div id="dropdown-toggle" class="icon" aria-label="arrow-drop-down" role="img">
+				<svg class="fit" viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" style="pointer-events:none;display:block;">
         		<g>
         			<path d="M7 10l5 5 5-5z"></path>
         		</g>
         	</svg>
-        </div>
-        <div class="dropdown-panel host">
-        	<div class="core-menu host">
-        		<div class="core-item host layout horizontal center">
-        			<div class="icon host">
-        				<i class="dm dm-90srls"></i>
-        			</div>
-        			<div class="label">Servizi</div>
-        			<a href="#catalog"></a>
-        		</div>
-        		<div class="core-item host layout horizontal center">
-        			<div class="icon host">
-        				<i class="dm dm-map-marker"></i>
-        			</div>
-        			<div class="label">Dove Siamo</div>
-        			<a href="#location"></a>
-        		</div>
-        		<div class="core-item host layout horizontal center">
-        			<div class="icon host">
-        				<i class="dm dm-map"></i>
-        			</div>
-        			<div class="label">Come Raggiungerci</div>
-        			<a href="#location"></a>
-        		</div>
-        		<div class="core-item host layout horizontal center">
-        			<div class="icon host">
-        				<i class="dm dm-paper"></i>
-        			</div>
-        			<div class="label">Link Utili</div>
-        			<a href="#linkUtil"></a>
-        		</div>
-        	</div>
-        </div>
-    </header>
-    <section class="section-intro section-full-screen" style="display:block;opacity:1;">
-    	<div class="section-photo section-photo-intro" style="height:100%;transform:translate3d(0px,0px,0px);"></div>
-    	<div class="grid_outer primary-block" style=" opacity:1;">
-    		<div class="resources-flow-layout">
-    			<img id="laptopScreen" src="images/fullscreenLogo.svg"/>
-    			<img id="mobileScreen" src="images/mobilescreenLogo.png"/>
-    			<p>Facciamo di tutto per farti risparmiare tempo con la nostra professionalità </p>
-    		</div>
-    	</div>
-    	<div class="arrow-hint">
-    		<a class="" href="#history-block">
-    			<div class="icon icon-arrow-hint animated-arrow-1"></div>
-    			<div class="icon icon-arrow-hint animated-arrow-2"></div>
-    		</a>
-    	</div>
-    </section>
-    <div class="area-round-button" style="display:none;">
-    	<div class="rb">
-    		<button class="paper-fab green" dynamic role="button" tabindex="0">
+			</div>
+			<div class="dropdown-panel host">
+				<div class="core-menu host">
+					<div class="core-item host layout horizontal center">
+						<div class="icon host">
+							<i class="dm dm-90srls"></i>
+						</div>
+						<div class="label">Servizi</div>
+						<a href="#catalog"></a>
+					</div>
+					<div class="core-item host layout horizontal center">
+						<div class="icon host">
+							<i class="dm dm-map-marker"></i>
+						</div>
+						<div class="label">Dove Siamo</div>
+						<a href="#location"></a>
+					</div>
+					<div class="core-item host layout horizontal center">
+						<div class="icon host">
+							<i class="dm dm-map"></i>
+						</div>
+						<div class="label">Come Raggiungerci</div>
+						<a href="#location"></a>
+					</div>
+					<div class="core-item host layout horizontal center">
+						<div class="icon host">
+							<i class="dm dm-paper"></i>
+						</div>
+						<div class="label">Link Utili</div>
+						<a href="#linkUtil"></a>
+					</div>
+				</div>
+			</div>
+		</header>
+			<section class="section-intro section-full-screen" style="display:block;opacity:1;">
+				<div class="section-photo section-photo-intro" style="height:100%;transform:translate3d(0px,0px,0px);"></div>
+				<div class="grid_outer primary-block" style=" opacity:1;">
+					<div class="resources-flow-layout">
+						<img id="laptopScreen" src="images/fullscreenLogo.svg" />
+						<img id="mobileScreen" src="images/mobilescreenLogo.png" />
+						<p>Facciamo di tutto per farti risparmiare tempo con la nostra professionalità </p>
+					</div>
+				</div>
+				<div class="arrow-hint">
+					<a class="" href="#history-block">
+						<div class="icon icon-arrow-hint animated-arrow-1"></div>
+						<div class="icon icon-arrow-hint animated-arrow-2"></div>
+					</a>
+				</div>
+			</section>
+			<div class="area-round-button" style="display:none;">
+				<div class="rb">
+					<button class="paper-fab green" dynamic role="button" tabindex="0">
     			<div class="paper-ripple circle fit">
     				<div class="bg recenteringTouch"></div>
     				<div class="waves"></div>
@@ -132,500 +291,501 @@
     				<div class="icon b-icon bi-render"></div>
     			</div>
     		</button>
-    		<label class="label-button style-lb">
+					<label class="label-button style-lb">
     			<div class="capture-button">News</div>
     		</label>
-    	</div>
-    </div>
-    <div id="grid-cont" style="opacity:1">
-    	<section id="history-block" class="section-base">
-    		<div class="content">
-    			<div class="grid_outer layout horizontal no-wrap x-flex-end">
-    				<div class="photo-crop flex-none">
-    					<img class="photo-container" src="images/realEntryA90.png"/>
-    					<div class="paper-fab blueH fit" dynamic role="button" tabindex="0">
-    						<div class="paper-ripple circle fit">
-    							<div class="bg recenteringTouch"></div>
-    							<div class="waves"></div>
-    						</div>
-    						<div class=" shadow fit bs-zLevel-1"></div>
-    						<div class="button-content">
-    							<div class="icon b-icon go-inside bi-render"></div>
-    						</div>
-    					</div>
-    				</div>
-    				<div id="PhotoSphere" class="embeddPhotoSphere grow-animation">
-    					<div class="fit">
-    						<div class="overSomething">
-    							<i class="fa fa-picture-o"></i>
-    						</div>
-    					</div>
-    					<div id ="closeTour" class="paper-button" underline role="button" tabindex="0" style="z-index: 22;
+				</div>
+			</div>
+			<div id="grid-cont" style="opacity:1">
+				<section id="history-block" class="section-base">
+					<div class="content">
+						<div class="grid_outer layout horizontal no-wrap x-flex-end">
+							<div class="photo-crop flex-none">
+								<img class="photo-container" src="images/realEntryA90.png" />
+								<div class="paper-fab blueH fit" dynamic role="button" tabindex="0">
+									<div class="paper-ripple circle fit">
+										<div class="bg recenteringTouch"></div>
+										<div class="waves"></div>
+									</div>
+									<div class=" shadow fit bs-zLevel-1"></div>
+									<div class="button-content">
+										<div class="icon b-icon go-inside bi-render"></div>
+									</div>
+								</div>
+							</div>
+							<div id="PhotoSphere" class="embeddPhotoSphere grow-animation">
+								<div class="fit">
+									<div class="overSomething">
+										<i class="fa fa-picture-o"></i>
+									</div>
+								</div>
+								<div id="closeTour" class="paper-button" underline role="button" tabindex="0" style="z-index: 22;
     					top: 12.56%;right: 0;position:absolute;font-weight:400;color:#F1F5FD;">
-    					<div class="paper-ripple fit">
-    						<div class="bg"></div>
-    						<div class="waves"></div>
-    					</div>
-    					<div class="shadow fit bs-level-0"></div>
-    					<div class="button-content">
-    						<div class="icon">
-    							<i class="fa fa-times-circle-o"></i>
-    						</div>
-    						Chiudi
-    					</div>
-    				</div>
-    				<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?layer=c&amp;panoid=YdcpUJLwf5UAAAQfr9K9Bg&amp;ie=UTF8&amp;source=embed&amp;output=svembed&amp;cbp=13%2C178.99343312670413%2C%2C0%2C37.47445776060744" style="position: relative;z-index: inherit;width:100%;height:100%;"></iframe>
-    				<div class="layout horizontal wrap">
-    					<a class="flex-none paper-gp-link" href="https://www.google.com/maps/views/u/0/b/112281711139690699166/"><i class="fa fa-street-view left-icon"></i>Views</a>
-    					<a class="flex-none paper-gp-link" href="https://www.google.com/maps/views/u/0/b/112281711139690699166/view/112281711139690699166/gphoto/6178805124690575810" ><i class="fa fa-google-plus left-icon"></i> Un TOUR nel Nostro Ufficio....#photosphere</a>
-    					<a class="felx-none
-    					paper-gp-link"href="https://www.google.com/maps/views/u/0/b/112281711139690699166/profile/112281711139690699166">
-    					<i class="dm dm-90srls left-icon"></i> 90srls Consulenza Automobilistica</a>
-    				</div>
-    			</div>
-    			<div class="picture-frame flex-none">
-    				<h2 class="heading-headline">La Nostra Storia</h2>
-    				<p class="section-body">La nostra esperienza nel settore della consulenza automobilistica vanta 25 anni, sempre a disposizione del cittadino e della imprese con la massima competenza e serietà. Facciamo di tutto per farti risparmiare tempo con la nostra professionalità.</p>
-    				<a id="tourInside" href="#">
-    					<div class="paper-button" raised role="button" tabindex="0">
-    						<div class="paper-ripple fit">
-    							<div class="bg"></div>
-    							<div class="waves"></div>
-    						</div>
-    						<div class="shadow fit bs-zLevel-1"></div>
-    						<div class="button-content">
-    							<div class="icon">
-    								<i class="fa fa-street-view"></i>
-    							</div>
-    							Fai un Tour
-    						</div>
-    					</div>
-    				</a>
-    			</div>
-    		</div>
-    	</div>
-    </section>
-    <section id="catalog" class=" section-base panel no-scroll main-purple">
-    	<div class="content relative fill">
-    		<div class="fit mobile-is-hidden">
-    			<div class=" grid_outer layout horizontal  wrap">
-    				<h1>Catalogo dei Servizi</h1>
-    				<div class="service flex-none">
-    					<div class="service-title service-title-0">
-    						<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(240, 170, 43);background-color:rgb(240, 170, 43);">
-    							<h2 class="service-title">Bolli</h2>
-    							<h3 class="title service-title"> Servizo Pagamento Bolli </h3>
-    							<hr class="service-title"/>
-    							<p class="tagline service-title">Sermetra Net Service</p>
-    						</div>
-    					</div>
-    				</div>
-    				<div class="service flex-none">
-    					<div class="service-title service-title-0">
-    						<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(78, 203, 240);background-color:rgb(78, 203, 240);">
-    							<h2 class="service-title">Passaggi</h2>
-    							<h3 class="title service-title"> Rilascio CDP ed Etichetta </h3>
-    							<hr class="service-title"/>
-    							<p class="tagline service-title">Aci Copernico Service</p>
-    						</div>
-    					</div>
-    				</div>
-    				<div class="service flex-none">
-    					<div class="service-title service-title-0">
-    						<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(232, 139, 210);background-color:rgb(232, 139, 210);">
-    							<h2 class="service-title">Patenti</h2>
-    							<h3 class="title service-title"> Rinnvo Patenti</h3>
-    							<hr class="service-title"/>
-    							<p class="tagline service-title">MTCT Service</p>
-    						</div>
-    					</div>
-    				</div>
-    				<div class="service flex-none">
-    					<div class="service-title service-title-0">
-    						<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(244, 81, 87);background-color:rgb(244, 81, 87);">
-    							<h2 class="service-title">Visure</h2>
-    							<h3 class="title service-title"> Visure Motorizzazione e PRA </h3>
-    							<hr class="service-title"/>
-    							<p class="tagline service-title">Sermetra Net Service</p>
-    						</div>
-    					</div>
-    				</div>
-    				<div class="service flex-none">
-    					<div class="service-title service-title-0">
-    						<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(53, 224, 218);background-color:rgb(53, 224, 218);">
-    							<h2 class="service-title">Immatricolazioni</h2>
-    							<h3 class="title service-title"> Locali ed Esteri </h3>
-    							<hr class="service-title"/>
-    							<p class="tagline service-title">Sermetra Net Service</p>
-    						</div>
-    					</div>
-    				</div>
-    				<div class="service flex-none">
-    					<div class="service-title service-title-0">
-    						<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(209, 229, 83);background-color:rgb(209, 229, 83);">
-    							<h2 class="service-title">Radiazioni</h2>
-    							<h3 class="title service-title"> Servizo Pagamento Bolli </h3>
-    							<hr class="service-title"/>
-    							<p class="tagline service-title">Sermetra Net Service</p>
-    						</div>
-    					</div>
-    				</div>
-    				<div class="service flex-none">
-    					<div class="service-title service-title-0">
-    						<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(129,199,132);background-color:rgb(129,199,132);">
-    							<h2 class="service-title">Duplicati</h2>
-    							<h3 class="title service-title"> Carte di Circolazioni e CDP </h3>
-    							<hr class="service-title"/>
-    							<p class="tagline service-title">Sermetra Net Service</p>
-    						</div>
-    					</div>
-    				</div>
-    				<div class="service flex-none">
-    					<div class="service-title service-title-0">
-    						<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(255, 255, 255);background-color:rgb(255, 255, 255);">
-    							<h2 class="service-title">Licenze</h2>
-    							<h3 class="title service-title"> Conto Proprio e Terzi </h3>
-    							<hr class="service-title"/>
-    							<p class="tagline service-title">Sermetra Net Service</p>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    		</div>
-    		<div class="is-for-mobile grid_outer">
-    			<div class="tab-list">
-    				<h1>Catalogo dei Servizi</h1>
-    				<div class="slide-container" style="height:275px;">
-    					<div class="slide-control" style="-webkit-transform:matrix(1,0,0,1,0,0);transform:matrix(1,0,0,1,0,0);">
-    						<div class="fit slides-item" style="z-index:10;opacity:1">
-    							<div class="service-title service-title-0 active">
-    								<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(240, 170, 43);background-color:rgb(240, 170, 43);">
-    									<h2 class="service-title">Bolli</h2>
-    									<h3 class="title service-title"> Servizo Pagamento Bolli </h3>
-    									<hr class="service-title"/>
-    									<p class="tagline service-title">Sermetra Net Service</p>
-    								</div>
-    							</div>
-    						</div>
-    						<div class="fit slides-item" style="z-index:0;opacity:0">
-    							<div class="service-title service-title-0 active">
-    								<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(78, 203, 240);background-color:rgb(78, 203, 240);">
-    									<h2 class="service-title">Passaggi</h2>
-    									<h3 class="title service-title"> Rilascio CDP ed Etichetta </h3>
-    									<hr class="service-title"/>
-    									<p class="tagline service-title">Aci Copernico Service</p>
-    								</div>
-    							</div>
-    						</div>
+									<div class="paper-ripple fit">
+										<div class="bg"></div>
+										<div class="waves"></div>
+									</div>
+									<div class="shadow fit bs-level-0"></div>
+									<div class="button-content">
+										<div class="icon">
+											<i class="fa fa-times-circle-o"></i>
+										</div>
+										Chiudi
+									</div>
+								</div>
+								<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?layer=c&amp;panoid=YdcpUJLwf5UAAAQfr9K9Bg&amp;ie=UTF8&amp;source=embed&amp;output=svembed&amp;cbp=13%2C178.99343312670413%2C%2C0%2C37.47445776060744"
+								  style="position: relative;z-index: inherit;width:100%;height:100%;"></iframe>
+								<div class="layout horizontal wrap">
+									<a class="flex-none paper-gp-link" href="https://www.google.com/maps/views/u/0/b/112281711139690699166/"><i class="fa fa-street-view left-icon"></i>Views</a>
+									<a class="flex-none paper-gp-link" href="https://www.google.com/maps/views/u/0/b/112281711139690699166/view/112281711139690699166/gphoto/6178805124690575810"><i class="fa fa-google-plus left-icon"></i> Un TOUR nel Nostro Ufficio....#photosphere</a>
+									<a class="felx-none
+    					paper-gp-link" href="https://www.google.com/maps/views/u/0/b/112281711139690699166/profile/112281711139690699166">
+										<i class="dm dm-90srls left-icon"></i> 90srls Consulenza Automobilistica</a>
+								</div>
+							</div>
+							<div class="picture-frame flex-none">
+								<h2 class="heading-headline">La Nostra Storia</h2>
+								<p class="section-body">La nostra esperienza nel settore della consulenza automobilistica vanta 25 anni, sempre a disposizione del cittadino e della imprese con la massima competenza e serietà. Facciamo di tutto per farti risparmiare tempo con la nostra professionalità.</p>
+								<a id="tourInside" href="#">
+									<div class="paper-button" raised role="button" tabindex="0">
+										<div class="paper-ripple fit">
+											<div class="bg"></div>
+											<div class="waves"></div>
+										</div>
+										<div class="shadow fit bs-zLevel-1"></div>
+										<div class="button-content">
+											<div class="icon">
+												<i class="fa fa-street-view"></i>
+											</div>
+											Fai un Tour
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section id="catalog" class=" section-base panel no-scroll main-purple">
+					<div class="content relative fill">
+						<div class="fit mobile-is-hidden">
+							<div class=" grid_outer layout horizontal  wrap">
+								<h1>Catalogo dei Servizi</h1>
+								<div class="service flex-none">
+									<div class="service-title service-title-0">
+										<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(240, 170, 43);background-color:rgb(240, 170, 43);">
+											<h2 class="service-title">Bolli</h2>
+											<h3 class="title service-title"> Servizo Pagamento Bolli </h3>
+											<hr class="service-title" />
+											<p class="tagline service-title">Sermetra Net Service</p>
+										</div>
+									</div>
+								</div>
+								<div class="service flex-none">
+									<div class="service-title service-title-0">
+										<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(78, 203, 240);background-color:rgb(78, 203, 240);">
+											<h2 class="service-title">Passaggi</h2>
+											<h3 class="title service-title"> Rilascio CDP ed Etichetta </h3>
+											<hr class="service-title" />
+											<p class="tagline service-title">Aci Copernico Service</p>
+										</div>
+									</div>
+								</div>
+								<div class="service flex-none">
+									<div class="service-title service-title-0">
+										<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(232, 139, 210);background-color:rgb(232, 139, 210);">
+											<h2 class="service-title">Patenti</h2>
+											<h3 class="title service-title"> Rinnvo Patenti</h3>
+											<hr class="service-title" />
+											<p class="tagline service-title">MTCT Service</p>
+										</div>
+									</div>
+								</div>
+								<div class="service flex-none">
+									<div class="service-title service-title-0">
+										<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(244, 81, 87);background-color:rgb(244, 81, 87);">
+											<h2 class="service-title">Visure</h2>
+											<h3 class="title service-title"> Visure Motorizzazione e PRA </h3>
+											<hr class="service-title" />
+											<p class="tagline service-title">Sermetra Net Service</p>
+										</div>
+									</div>
+								</div>
+								<div class="service flex-none">
+									<div class="service-title service-title-0">
+										<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(53, 224, 218);background-color:rgb(53, 224, 218);">
+											<h2 class="service-title">Immatricolazioni</h2>
+											<h3 class="title service-title"> Locali ed Esteri </h3>
+											<hr class="service-title" />
+											<p class="tagline service-title">Sermetra Net Service</p>
+										</div>
+									</div>
+								</div>
+								<div class="service flex-none">
+									<div class="service-title service-title-0">
+										<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(209, 229, 83);background-color:rgb(209, 229, 83);">
+											<h2 class="service-title">Radiazioni</h2>
+											<h3 class="title service-title"> Servizo Pagamento Bolli </h3>
+											<hr class="service-title" />
+											<p class="tagline service-title">Sermetra Net Service</p>
+										</div>
+									</div>
+								</div>
+								<div class="service flex-none">
+									<div class="service-title service-title-0">
+										<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(129,199,132);background-color:rgb(129,199,132);">
+											<h2 class="service-title">Duplicati</h2>
+											<h3 class="title service-title"> Carte di Circolazioni e CDP </h3>
+											<hr class="service-title" />
+											<p class="tagline service-title">Sermetra Net Service</p>
+										</div>
+									</div>
+								</div>
+								<div class="service flex-none">
+									<div class="service-title service-title-0">
+										<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(255, 255, 255);background-color:rgb(255, 255, 255);">
+											<h2 class="service-title">Licenze</h2>
+											<h3 class="title service-title"> Conto Proprio e Terzi </h3>
+											<hr class="service-title" />
+											<p class="tagline service-title">Sermetra Net Service</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="is-for-mobile grid_outer">
+							<div class="tab-list">
+								<h1>Catalogo dei Servizi</h1>
+								<div class="slide-container" style="height:275px;">
+									<div class="slide-control" style="-webkit-transform:matrix(1,0,0,1,0,0);transform:matrix(1,0,0,1,0,0);">
+										<div class="fit slides-item" style="z-index:10;opacity:1">
+											<div class="service-title service-title-0 active">
+												<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(240, 170, 43);background-color:rgb(240, 170, 43);">
+													<h2 class="service-title">Bolli</h2>
+													<h3 class="title service-title"> Servizo Pagamento Bolli </h3>
+													<hr class="service-title" />
+													<p class="tagline service-title">Sermetra Net Service</p>
+												</div>
+											</div>
+										</div>
+										<div class="fit slides-item" style="z-index:0;opacity:0">
+											<div class="service-title service-title-0 active">
+												<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(78, 203, 240);background-color:rgb(78, 203, 240);">
+													<h2 class="service-title">Passaggi</h2>
+													<h3 class="title service-title"> Rilascio CDP ed Etichetta </h3>
+													<hr class="service-title" />
+													<p class="tagline service-title">Aci Copernico Service</p>
+												</div>
+											</div>
+										</div>
 
-    						<div class="fit slides-item" style="z-index:0;opacity:0">
-    							<div class="service-title service-title-0 active">
-    								<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(232, 139, 210);background-color:rgb(232, 139, 210);">
-    									<h2 class="service-title">Patenti</h2>
-    									<h3 class="title service-title"> Rinnvo Patenti</h3>
-    									<hr class="service-title"/>
-    									<p class="tagline service-title">MTCT Service</p>
-    								</div>
-    							</div>
-    						</div>
-    						<div class="fit slides-item" style="z-index:0;opacity:0">
-    							<div class="service-title service-title-0 active">
-    								<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(244, 81, 87);background-color:rgb(244, 81, 87);">
-    									<h2 class="service-title">Visure</h2>
-    									<h3 class="title service-title"> Visure Motorizzazione e PRA </h3>
-    									<hr class="service-title"/>
-    									<p class="tagline service-title">Sermetra Net Service</p>
-    								</div>
-    							</div>
-    						</div>
-    						<div class="fit slides-item" style="z-index:0;opacity:0">
-    							<div class="service-title service-title-0 active">
-    								<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(53, 224, 218);background-color:rgb(53, 224, 218);">
-    									<h2 class="service-title">Immatricolazioni</h2>
-    									<h3 class="title service-title"> Locali ed Esteri </h3>
-    									<hr class="service-title"/>
-    									<p class="tagline service-title">Sermetra Net Service</p>
-    								</div>
-    							</div>
-    						</div>
-    						<div class="fit slides-item" style="z-index:0;opacity:0">
-    							<div class="service-title service-title-0 active">
-    								<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(209, 229, 83);background-color:rgb(209, 229, 83);">
-    									<h2 class="service-title">Radiazioni</h2>
-    									<h3 class="title service-title"> Servizo Pagamento Bolli </h3>
-    									<hr class="service-title"/>
-    									<p class="tagline service-title">Sermetra Net Service</p>
-    								</div>
-    							</div>
-    						</div>
-    						<div class="fit slides-item" style="z-index:0;opacity:0">
-    							<div class="service-title service-title-0 active">
-    								<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(129,199,132);background-color:rgb(129,199,132);">
-    									<h2 class="service-title">Duplicati</h2>
-    									<h3 class="title service-title"> Carte di Circolazioni e CDP </h3>
-    									<hr class="service-title"/>
-    									<p class="tagline service-title">Sermetra Net Service</p>
-    								</div>
-    							</div>
-    						</div>
-    						<div class="fit slides-item" style="z-index:0;opacity:0">
-    							<div class="service-title service-title-0 active">
-    								<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(255, 255, 255);background-color:rgb(255, 255, 255);">
-    									<h2 class="service-title">Licenze</h2>
-    									<h3 class="title service-title"> Conto Proprio e Terzi </h3>
-    									<hr class="service-title"/>
-    									<p class="tagline service-title">Sermetra Net Service</p>
-    								</div>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    				<ul class="slides-pagination layout horizontal wrap x-center" style="z-index:100;">
-    					<li class="slides-pagination-item flex-110 active">
-    						<a class="slides-pagination-link" href="#" data-item="0">0</a>
-    					</li>
-    					<li class="slides-pagination-item flex-110" >
-    						<a class="slides-pagination-link" href="#" data-item="1">1</a>
-    					</li>
-    					<li class="slides-pagination-item flex-110">
-    						<a class="slides-pagination-link" href="#" data-item="2">2</a>
-    					</li>
-    					<li class="slides-pagination-item flex-110">
-    						<a class="slides-pagination-link" href="#" data-item="3">3</a>
-    					</li>
-    					<li class="slides-pagination-item flex-110">
-    						<a class="slides-pagination-link" href="#" data-item="4">4</a>
-    					</li>
-    					<li class="slides-pagination-item flex-110">
-    						<a class="slides-pagination-link" href="#" data-item="5">5</a>
-    					</li>
-    					<li class="slides-pagination-item flex-110">
-    						<a class="slides-pagination-link" href="#" data-item="6">6</a>
-    					</li>
-    					<li class="slides-pagination-item flex-110">
-    						<a class="slides-pagination-link" href="#" data-item="7">7</a>
-    					</li>
-    				</ul>
-    			</div>
-    		</div>
-    	</div>
-    </section>
-    <section id="location" class="section-base">
-    	<div class="grid_outer layout vertical">
-    		<div class="layout horizontal no-wrap">
-    			<div class="info-box flex-none">
-    				<h2 class="info-title">Sede Roma Eur</h2>
-    				<p><i class="fa fa-map-marker"></i>&nbsp; Via Silvestro Gherardi 24, Roma</p>
-    				<p><i class="fa fa-phone"></i></a>&nbsp;06 01 90 5227 <a href="tel:0601905227">
-    					<span class="act-circ act-circ-type1 bs-zLevel-1 bsa">
+										<div class="fit slides-item" style="z-index:0;opacity:0">
+											<div class="service-title service-title-0 active">
+												<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(232, 139, 210);background-color:rgb(232, 139, 210);">
+													<h2 class="service-title">Patenti</h2>
+													<h3 class="title service-title"> Rinnvo Patenti</h3>
+													<hr class="service-title" />
+													<p class="tagline service-title">MTCT Service</p>
+												</div>
+											</div>
+										</div>
+										<div class="fit slides-item" style="z-index:0;opacity:0">
+											<div class="service-title service-title-0 active">
+												<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(244, 81, 87);background-color:rgb(244, 81, 87);">
+													<h2 class="service-title">Visure</h2>
+													<h3 class="title service-title"> Visure Motorizzazione e PRA </h3>
+													<hr class="service-title" />
+													<p class="tagline service-title">Sermetra Net Service</p>
+												</div>
+											</div>
+										</div>
+										<div class="fit slides-item" style="z-index:0;opacity:0">
+											<div class="service-title service-title-0 active">
+												<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(53, 224, 218);background-color:rgb(53, 224, 218);">
+													<h2 class="service-title">Immatricolazioni</h2>
+													<h3 class="title service-title"> Locali ed Esteri </h3>
+													<hr class="service-title" />
+													<p class="tagline service-title">Sermetra Net Service</p>
+												</div>
+											</div>
+										</div>
+										<div class="fit slides-item" style="z-index:0;opacity:0">
+											<div class="service-title service-title-0 active">
+												<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(209, 229, 83);background-color:rgb(209, 229, 83);">
+													<h2 class="service-title">Radiazioni</h2>
+													<h3 class="title service-title"> Servizo Pagamento Bolli </h3>
+													<hr class="service-title" />
+													<p class="tagline service-title">Sermetra Net Service</p>
+												</div>
+											</div>
+										</div>
+										<div class="fit slides-item" style="z-index:0;opacity:0">
+											<div class="service-title service-title-0 active">
+												<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(129,199,132);background-color:rgb(129,199,132);">
+													<h2 class="service-title">Duplicati</h2>
+													<h3 class="title service-title"> Carte di Circolazioni e CDP </h3>
+													<hr class="service-title" />
+													<p class="tagline service-title">Sermetra Net Service</p>
+												</div>
+											</div>
+										</div>
+										<div class="fit slides-item" style="z-index:0;opacity:0">
+											<div class="service-title service-title-0 active">
+												<div class="service-content layout vertical" style="color:rgba(0,0,0,0.6);border-color:rgb(255, 255, 255);background-color:rgb(255, 255, 255);">
+													<h2 class="service-title">Licenze</h2>
+													<h3 class="title service-title"> Conto Proprio e Terzi </h3>
+													<hr class="service-title" />
+													<p class="tagline service-title">Sermetra Net Service</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<ul class="slides-pagination layout horizontal wrap x-center" style="z-index:100;">
+									<li class="slides-pagination-item flex-110 active">
+										<a class="slides-pagination-link" href="#" data-item="0">0</a>
+									</li>
+									<li class="slides-pagination-item flex-110">
+										<a class="slides-pagination-link" href="#" data-item="1">1</a>
+									</li>
+									<li class="slides-pagination-item flex-110">
+										<a class="slides-pagination-link" href="#" data-item="2">2</a>
+									</li>
+									<li class="slides-pagination-item flex-110">
+										<a class="slides-pagination-link" href="#" data-item="3">3</a>
+									</li>
+									<li class="slides-pagination-item flex-110">
+										<a class="slides-pagination-link" href="#" data-item="4">4</a>
+									</li>
+									<li class="slides-pagination-item flex-110">
+										<a class="slides-pagination-link" href="#" data-item="5">5</a>
+									</li>
+									<li class="slides-pagination-item flex-110">
+										<a class="slides-pagination-link" href="#" data-item="6">6</a>
+									</li>
+									<li class="slides-pagination-item flex-110">
+										<a class="slides-pagination-link" href="#" data-item="7">7</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section id="location" class="section-base">
+					<div class="grid_outer layout vertical">
+						<div class="layout horizontal no-wrap">
+							<div class="info-box flex-none">
+								<h2 class="info-title">Sede Roma Eur</h2>
+								<p><i class="fa fa-map-marker"></i>&nbsp; Via Silvestro Gherardi 24, Roma</p>
+								<p><i class="fa fa-phone"></i></a>&nbsp;06 01 90 5227
+									<a href="tel:0601905227">
+										<span class="act-circ act-circ-type1 bs-zLevel-1 bsa">
     						<i class="fa fa-phone"></i>
     					</span>
-    				</a>
-    			</p>
-    			<p><i class="fa fa-mobile"></i>&nbsp;339 24 57 552<a href="tel:3392457552">
-    				<span class="act-circ act-circ-type1 bs-zLevel-1 bsa">
+									</a>
+								</p>
+								<p><i class="fa fa-mobile"></i>&nbsp;339 24 57 552
+									<a href="tel:3392457552">
+										<span class="act-circ act-circ-type1 bs-zLevel-1 bsa">
     					<i class="fa fa-phone"></i>
     				</span>
-    			</a>
-    			<a href="sms:3392457552">
-    				<span class="act-circ act-circ-type1 bs-zLevel-1 bsa">
+									</a>
+									<a href="sms:3392457552">
+										<span class="act-circ act-circ-type1 bs-zLevel-1 bsa">
     					<i class="fa fa-mobile"></i>
     				</span>
-    			</a>
-    		</p>
-    		<p><i class="fa fa-clock-o"></i>&nbsp;Lunedi-Venerdi &nbsp; 9:00-13:30, 15:30-19:30</p>
-    		<p><i class="fa fa-envelope-o"></i>&nbsp;90srls@gmail.com<a href="mailto:90srls@gmail.com">
-    			<span class="act-circ act-circ-type1 bs-zLevel-1 bsa">
+									</a>
+								</p>
+								<p><i class="fa fa-clock-o"></i>&nbsp;Lunedi-Venerdi &nbsp; 9:00-13:30, 15:30-19:30</p>
+								<p><i class="fa fa-envelope-o"></i>&nbsp;90srls@gmail.com
+									<a href="mailto:90srls@gmail.com">
+										<span class="act-circ act-circ-type1 bs-zLevel-1 bsa">
     				<i class="fa fa-envelope"></i>
     			</span>
-    		</a>
-    	</p>
-    </div>
-    <div class="bus info-box flex-110">
-    	<h2 class="info-title black"><span class="act-circ"><i class="fa fa-bus"></i></span>In Bus</h2>
-    	<p>Metro linea B scendere alla fermata Marconi <br/>
-    		prendere il 170(Termini) o 766(Stazione Trastevere)<br/>
-    		scendere alla fermata Marconi-Edison (4 fermate).
-    	</p>
-    	<a href="http://www.atac.roma.it">
-    		<div class="paper-button" underline role="button" tabindex="0">
-    			<div class="paper-ripple circle fit">
-    				<div class="bg"></div>
-    				<div class="waves"></div>
-    			</div>
-    			<div class="button-content">
-    				Consulta Atac Roma
-    			</div>
-    		</div>
-    	</a>
-    </div>
+									</a>
+								</p>
+							</div>
+							<div class="bus info-box flex-110">
+								<h2 class="info-title black"><span class="act-circ"><i class="fa fa-bus"></i></span>In Bus</h2>
+								<p>Metro linea B scendere alla fermata Marconi <br/> prendere il 170(Termini) o 766(Stazione Trastevere)<br/> scendere alla fermata Marconi-Edison (4 fermate).
+								</p>
+								<a href="http://www.atac.roma.it">
+									<div class="paper-button" underline role="button" tabindex="0">
+										<div class="paper-ripple circle fit">
+											<div class="bg"></div>
+											<div class="waves"></div>
+										</div>
+										<div class="button-content">
+											Consulta Atac Roma
+										</div>
+									</div>
+								</a>
+							</div>
 
-</div>
-<div class="layout horizontal no-wrap">
-	<div class="flex-none map">
-		<a href="https://www.google.com/maps/place/90srls+Consulenza+Automobilistica/@41.862391,12.470731,17z/data=!3m1!4b1!4m2!3m1!1s0x13258a9ae671d03f:0x4e0bc4d6c51cf63c">
-			<img src="images/location90srls.png" class=" map-img round sdw"/>
-		</a>
-	</div>
-	<div class="car info-box flex-110">
-		<h2 class="info-title black"><span class="act-circ"><i class="fa fa-car"></i></span>In Auto</h2>
-		<p> Uscita 26 del grande raccordo anulare verso Roma Centro/Eur,<br/>
-			continuare su via Cristoforo Colombo alla rotonda prendere<br/>
-			la 3ª uscita. Superato il ponte prendi la seconda a destra.
-		</p>
-		<a href="https://www.google.com/maps/place/90srls+Consulenza+Automobilistica/@41.862391,12.470731,17z/data=!3m1!4b1!4m2!3m1!1s0x13258a9ae671d03f:0x4e0bc4d6c51cf63c">
-			<div class="paper-button" underline role="button" tabindex="0">
-				<div class="paper-ripple circle fit">
-					<div class="bg"></div>
-					<div class="waves"></div>
-				</div>
-				<div class="button-content">
-					Usa Google Navigator
-				</div>
+						</div>
+						<div class="layout horizontal no-wrap">
+							<div class="flex-none map">
+								<a href="https://www.google.com/maps/place/90srls+Consulenza+Automobilistica/@41.862391,12.470731,17z/data=!3m1!4b1!4m2!3m1!1s0x13258a9ae671d03f:0x4e0bc4d6c51cf63c">
+									<img src="images/location90srls.png" class=" map-img round sdw" />
+								</a>
+							</div>
+							<div class="car info-box flex-110">
+								<h2 class="info-title black"><span class="act-circ"><i class="fa fa-car"></i></span>In Auto</h2>
+								<p> Uscita 26 del grande raccordo anulare verso Roma Centro/Eur,<br/> continuare su via Cristoforo Colombo alla rotonda prendere<br/> la 3ª uscita. Superato il ponte prendi la seconda a destra.
+								</p>
+								<a href="https://www.google.com/maps/place/90srls+Consulenza+Automobilistica/@41.862391,12.470731,17z/data=!3m1!4b1!4m2!3m1!1s0x13258a9ae671d03f:0x4e0bc4d6c51cf63c">
+									<div class="paper-button" underline role="button" tabindex="0">
+										<div class="paper-ripple circle fit">
+											<div class="bg"></div>
+											<div class="waves"></div>
+										</div>
+										<div class="button-content">
+											Usa Google Navigator
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="flex-none layout horizontal no-wrap">
+							<div id="MobileInfoLocation" class="flex-none">
+								<a href="https://goo.gl/maps/1i2wm">
+									<div class="paper-button" raised role="button" tabindex="0">
+										<div class="paper-ripple fit">
+											<div class="bg"></div>
+											<div class="waves"></div>
+										</div>
+										<div class="shadow fit bs-zLevel-1"></div>
+										<div class="button-content">
+											<div class="icon">
+												<i class="dm dm-map"></i>
+											</div>
+											In Auto
+										</div>
+									</div>
+								</a>
+								<a href="https://goo.gl/maps/rfcsB">
+									<div class="paper-button" raised role="button" tabindex="0">
+										<div class="paper-ripple fit">
+											<div class="bg"></div>
+											<div class="waves"></div>
+										</div>
+										<div class="shadow fit bs-zLevel-1"></div>
+										<div class="button-content">
+											<div class="icon">
+												<i class="fa fa-bus"></i>
+											</div>
+											In Bus
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
 			</div>
-		</a>
-	</div>
-</div>
-<div  class="flex-none layout horizontal no-wrap">
-	<div id="MobileInfoLocation" class="flex-none">
-		<a href="https://goo.gl/maps/1i2wm">
-			<div class="paper-button" raised role="button" tabindex="0">
-				<div class="paper-ripple fit">
-					<div class="bg"></div>
-					<div class="waves"></div>
-				</div>
-				<div class="shadow fit bs-zLevel-1"></div>
-				<div class="button-content">
-					<div class="icon">
-						<i class="dm dm-map"></i>
+			<footer class="relative" style="z-index:10;">
+				<div class="grid_outer">
+					<div id="linkUtil" class="col-1">
+						<h3>Link Utili</h3>
+						<a href="http://www.sermetra.it/" target="_blank">
+							<div class="paper-button" role="button" tabindex="0">
+								<div class="shadow fit bs-zLevel-0"></div>
+								<div class="button-content">
+									<div class="icon sermetra"></div>
+									Sermetra
+								</div>
+							</div>
+						</a>
+						<a href="http://www.unasca.it/" target="_blank">
+							<div class="paper-button" role="button" tabindex="0">
+								<div class="shadow fit bs-zLevel-0"></div>
+								<div class="button-content">
+									<div class="icon unasca"></div>
+									Unasca
+								</div>
+							</div>
+						</a>
+						<a href="http://www.cna.it/" target="_blank">
+							<div class="paper-button" role="button" tabindex="0">
+								<div class="shadow fit bs-zLevel-0"></div>
+								<div class="button-content">
+									<div class="icon cna"></div>
+									C.N.A
+								</div>
+							</div>
+						</a>
+						<a href="http://www.motorizzazioneroma.it/" target="_blank">
+							<div class="paper-button" role="button" tabindex="0">
+								<div class="shadow fit bs-zLevel-0"></div>
+								<div class="button-content">
+									<div class="icon mctc"></div>
+									Motorizzazione
+								</div>
+							</div>
+						</a>
 					</div>
-					In Auto
-				</div>
-			</div>
-		</a>
-		<a href="https://goo.gl/maps/rfcsB">
-			<div class="paper-button" raised role="button" tabindex="0">
-				<div class="paper-ripple fit">
-					<div class="bg"></div>
-					<div class="waves"></div>
-				</div>
-				<div class="shadow fit bs-zLevel-1"></div>
-				<div class="button-content">
-					<div class="icon">
-						<i class="fa fa-bus"></i>
-					</div>
-					In Bus
-				</div>
-			</div>
-		</a>
-	</div>
-</div>
-</div>
-</section>
-</div>
-<footer class="relative" style="z-index:10;">
-	<div class="grid_outer">
-		<div id="linkUtil" class="col-1">
-			<h3>Link Utili</h3>
-			<a href="http://www.sermetra.it/" target="_blank">
-				<div class="paper-button"  role="button" tabindex="0">
-					<div class="shadow fit bs-zLevel-0"></div>
-					<div class="button-content">
-						<div class="icon sermetra"></div>
-						Sermetra
-					</div>
-				</div>
-			</a>
-			<a href="http://www.unasca.it/" target="_blank">
-				<div class="paper-button"  role="button" tabindex="0">
-					<div class="shadow fit bs-zLevel-0"></div>
-					<div class="button-content">
-						<div class="icon unasca"></div>
-						Unasca
-					</div>
-				</div>
-			</a>
-			<a href="http://www.cna.it/" target="_blank">
-				<div class="paper-button"  role="button" tabindex="0">
-					<div class="shadow fit bs-zLevel-0"></div>
-					<div class="button-content">
-						<div class="icon cna"></div>
-						C.N.A
-					</div>
-				</div>
-			</a>
-			<a href="http://www.motorizzazioneroma.it/" target="_blank">
-				<div class="paper-button"  role="button" tabindex="0">
-					<div class="shadow fit bs-zLevel-0"></div>
-					<div class="button-content">
-						<div class="icon mctc"></div>
-						Motorizzazione
-					</div>
-				</div>
-			</a>
-		</div>
-		<div class="col-1 social">
-			<div class="dac-footer-social">
-				<a href="https://www.facebook.com/90srls">
-					<span class="act-circ bs-zLevel-1 bsa">
+					<div class="col-1 social">
+						<div class="dac-footer-social">
+							<a href="https://www.facebook.com/90srls">
+								<span class="act-circ bs-zLevel-1 bsa">
 						<i class="fa fa-facebook"></i>
 					</span>
-				</a>
-				<a href="https://www.google.com/+90srlsConsulenzaAutomobilisticaRoma">
-					<span class="act-circ bs-zLevel-1 bsa">
+							</a>
+							<a href="https://www.google.com/+90srlsConsulenzaAutomobilisticaRoma">
+								<span class="act-circ bs-zLevel-1 bsa">
 						<i class="fa fa-google"></i>
 					</span>
-				</a>
-			</div>
+							</a>
+						</div>
 
-		</div>
-		<div id="partneship">
-			<h3>Siti Amici</h3>
-			<a href="http://www.generali.it/">
-				<div class="paper-button"  role="button" tabindex="0">
-					<div class="shadow fit bs-zLevel-0 "></div>
-					<div class="button-content">
-						<div class="icon generali"></div>
-						Generali
+					</div>
+					<div id="partneship">
+						<h3>Siti Amici</h3>
+						<a href="http://www.generali.it/">
+							<div class="paper-button" role="button" tabindex="0">
+								<div class="shadow fit bs-zLevel-0 "></div>
+								<div class="button-content">
+									<div class="icon generali"></div>
+									Generali
+								</div>
+							</div>
+						</a>
+						<a href="http://www.bali-print.com/">
+							<div class="paper-button" role="button" tabindex="0">
+								<div class=" shadow fit  bs-zLevel-0"></div>
+								<div class="button-content">
+									<div class="icon bali"></div>
+									Bali-Print
+								</div>
+							</div>
+						</a>
+						<a href="http://www.motocentromarconi.it/">
+							<div class="paper-button" role="button" tabindex="0">
+								<div class="shadow fit bs-zLevel-0">
+								</div>
+								<div class="button-content">
+									<div class="icon motocentromarconi"></div>
+									Moto Centro Marconi
+								</div>
+							</div>
+						</a>
+					</div>
+					<div id="copyright">
+						Quest'opera è distribuita con Licenza <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribuzione 4.0 Internazionale</a>.
+					</div>
+					<div id="footerlinks">
+						<p>
+							<a href="mailto:cipmiky@gmail.com">WebMaster</a> &nbsp;&nbsp;|&nbsp;
+							<a href="http://creativecommons.org/about">About Creative Commons</a> &nbsp;&nbsp;|&nbsp;
+							<a href="https://github.com/dmike16/agenzia90-WepPage">Source Code</a>
+						</p>
 					</div>
 				</div>
-			</a>
-			<a href="http://www.bali-print.com/">
-				<div class="paper-button" role="button" tabindex="0">
-					<div class=" shadow fit  bs-zLevel-0"></div>
-					<div class="button-content">
-						<div class="icon bali"></div>
-						Bali-Print
-					</div>
-				</div>
-			</a>
-			<a href="http://www.motocentromarconi.it/">
-				<div class="paper-button" role="button" tabindex="0">
-					<div class="shadow fit bs-zLevel-0">
-					</div>
-					<div class="button-content">
-						<div class="icon motocentromarconi"></div>
-						Moto Centro Marconi
-					</div>
-				</div>
-			</a>
-		</div>
-		<div id="copyright">
-			Quest'opera è distribuita con Licenza <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribuzione 4.0 Internazionale</a>.
-		</div>
-		<div id="footerlinks">
-			<p>
-				<a href="mailto:cipmiky@gmail.com">WebMaster</a>
-				&nbsp;&nbsp;|&nbsp;
-				<a href="http://creativecommons.org/about">About Creative Commons</a>
-				&nbsp;&nbsp;|&nbsp;
-				<a href="https://github.com/dmike16/agenzia90-WepPage">Source Code</a>
-			</p>
-		</div>
+				</footer-->
+		</main>
 	</div>
-</footer>
-<div class="mask-modal"></div>
-<script type="text/javascript" src="script/min/main.min.js"></script>
-<script type="text/javascript" src="script/min/min-instance.js"></script>
+	<div class="mask-modal"></div>
+	<!--script type="text/javascript" src="script/min/main.min.js"></script-->
+	<script type="text/javascript" src="script/min/min-instance.js"></script>
 </body>
+
 </html>
