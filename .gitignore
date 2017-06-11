@@ -55,5 +55,6 @@ arch/
 node_modules/
 #Apple file
 .DS_STORE
+.DS_Store
 #Bower
 bower_components/
