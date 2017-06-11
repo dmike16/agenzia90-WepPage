@@ -70,7 +70,7 @@
   background: url(../images/Logo90w.svg) 50% no-repeat;
   background-size: cover;
   width: 100px;
-  height: 15px;
+  height: 20px;
 }
 
 .studio90-icon {
@@ -81,46 +81,51 @@
   fill: currentcolor;
 }
 
-.studio90-footer__right-section a{
+.studio90-footer__right-section a {
   margin-left: 0;
 }
 
-.studio90-footer__icon{
+.studio90-footer__icon {
   height: 24px;
   width: 24px;
 }
 
 .studio90-icon_sermetra {
-    background-image: url("../images/icon/partnship/friendLogo.png");
-    background-position: -8.6px -105px;
+  background-image: url("../images/icon/partnship/friendLogo.png");
+  background-position: -8.6px -131px;
 }
 
 .studio90-icon_unasca {
-    background-image: url("../images/icon/partnship/friendLogo.png");
-    background-position: -9.9px -139.9px;
+  background-image: url("../images/icon/partnship/friendLogo.png");
+  background-position: -9.9px -169.9px;
 }
 
 .studio90-icon_cna {
-    background-image: url("../images/icon/partnship/friendLogo.png");
-    background-position: -9.9px -176px;
+  background-image: url("../images/icon/partnship/friendLogo.png");
+  background-position: -9.9px -206px;
 }
 
 .studio90-icon_mctc {
-    background-image: url("../images/icon/partnship/friendLogo.png");
-    background-position: -6.6px -211px;
+  background-image: url("../images/icon/partnship/friendLogo.png");
+  background-position: -6.6px -241px;
 }
 
 .studio90-icon_generali {
-    background-image: url("../images/icon/partnship/friendLogo.png");
-    background-position: -1.3px 0px;
+  background-image: url("../images/icon/partnship/friendLogo.png");
+  background-position: -1.3px -30px;
 }
 
 .studio90-icon_bali {
-    background-image: url("../images/icon/partnship/friendLogo.png");
-    background-position: -4.6px -30px;
+  background-image: url("../images/icon/partnship/friendLogo.png");
+  background-position: -4.6px -60px;
 }
 
 .studio90-icon_motocentromarconi {
-    background-image: url("../images/icon/partnship/friendLogo.png");
-    background-position: -1.2px -64px;
+  background-image: url("../images/icon/partnship/friendLogo.png");
+  background-position: -1.2px -94px;
+}
+
+.studio90-icon_you-service {
+  background-image: url("../images/icon/partnship/friendLogo.png");
+  background-position: -1.2px 4px;
 }
