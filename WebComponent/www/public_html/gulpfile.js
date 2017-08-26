@@ -15,12 +15,12 @@ var uglify = require('gulp-uglify');
 var pump = require('pump');
 var os = require('os');
 var fs = require('fs');
+var del = require('del');
+var vinyl_paths = require('vinyl-paths');
 var pkg = require('./package.json');
 const sep = require('path').sep;
 // Array of string containg all the task created
 let phony = [];
-// Successfull Promise to use to make async a task that always resolve
-const SUCCESS = Promise.resolve();
 // Type of build PRODACTION or SNAPSHOT
 const SNAP = 'SNAPSHOT';
 const PROD = 'PRODACTION';
@@ -35,27 +35,56 @@ const BANNER = ['/**',
   '**/'
 ].join('\n');
 // Define project glob src
-const gjs = ['./script/src/*.js'];
-const gjs_min = ['./script/min/*.js'];
-const gjs_dep = ['./bower_components/**/material.min.js'];
-const gcss = ['./styles/**/*.css'];
-const gfonts = ['./styles/**/fonts/*'];
-const gimages = ['./images/**/*.{svg,png,jpg,ico}'];
-const ghtml = ['./*.html'];
-const g_to_install = [].concat(gimages, gfonts, gjs_dep,gjs_min, gcss, ghtml);
+const gjs = ['script/src/*.js'];
+const gjs_min = ['script/min/*.js'];
+const gjs_dep = ['bower_components/**/material.min.js'];
+const gcss = ['styles/**/*.css'];
+const gfonts = ['styles/**/fonts/*'];
+const gimages = ['images/**/*.{svg,png,jpg,ico}'];
+const ghtml = ['*.html'];
+const g_to_install = [].concat(gimages, gfonts, gjs_dep, gjs_min, gcss, ghtml);
 
 gulp.task('install', (cb) => {
-  gutil.log('BUILD TYPE :',args.type);
-  gutil.log('INSTALL in :',args.installDir);
+  gutil.log('BUILD TYPE :', args.type);
+  gutil.log('INSTALL in :', args.installDir);
   pump([
-      gulp.src(g_to_install,{base:'./'}),
+      gulp.src(g_to_install, {
+        base: './'
+      }),
       gulp.dest(args.installDir)
     ],
     cb);
 });
 
-gulp.task('clobber', () => {
-  gutil.log('Remove: ' + args.prefix + sep + args.basename);
+gulp.task('clean',()=>{
+  return new Promise((resolve,reject)=>{
+    gutil.log('Clean',args.installDir,'......');
+
+    let vp = vinyl_paths();
+    let g_to_clean = args.installDir+sep+'*';
+
+    gulp.src(g_to_clean,{dot:true})
+    .pipe(vp)
+    .on('finish',()=>{
+      del(vp.paths,{force:true}).then(resolve).catch(reject);
+    })
+    .on('error',(err)=>{
+      reject(err);
+    });
+  });
+});
+
+gulp.task('clobber', ['clean'],() => {
+  return new Promise((resolve,reject)=>{
+    gutil.log('Clobber',args.installDir,'......');
+    fs.rmdir(args.installDir, (err) => {
+      if (err) {
+        reject(err);
+      }else{
+        resolve();
+      }
+    });
+  });
 });
 
 gulp.task('default', phony);
@@ -79,4 +108,8 @@ function _agumentsParse(genv) {
     basename: _baseDirName,
     installDir: _installDir
   };
+}
+
+function _rmdircb(err){
+
 }
