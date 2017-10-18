@@ -28,7 +28,7 @@
    }
 
    document.addEventListener('DOMContentLoaded',function(e){
-     inserMainScript("bower_components/material-design-lite/material.min.js",noope);
+     inserMainScript("assets/script/min/material.min.js",noope);
      //inserMainScript("script/min/interaction.min.js", function(){
      //});
    });

@@ -5,19 +5,20 @@
  * Version   : 3.0
  *
  */
-
+//
 // NodeJS dependencies
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var header = require('gulp-header');
-var csso = require('gulp-csso');
-var uglify = require('gulp-uglify');
-var pump = require('pump');
-var os = require('os');
-var fs = require('fs');
-var del = require('del');
-var vinyl_paths = require('vinyl-paths');
-var pkg = require('./package.json');
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const header = require('gulp-header');
+const csso = require('gulp-csso');
+const uglify = require('gulp-uglify');
+const sass = require('gulp-sass');
+const pump = require('pump');
+const os = require('os');
+const fs = require('fs');
+const del = require('del');
+const vinyl_paths = require('vinyl-paths');
+const pkg = require('./package.json');
 const sep = require('path').sep;
 // Array of string containg all the task created
 let phony = [];
@@ -35,25 +36,34 @@ const BANNER = ['/**',
   '**/'
 ].join('\n');
 // Define project glob src
-const gjs = ['script/src/*.js'];
-const gjs_min = ['script/min/*.js'];
-const gjs_dep = ['bower_components/**/material.min.js'];
-const gcss = ['styles/**/*.css'];
-const gfonts = ['styles/**/fonts/*'];
-const gimages = ['images/**/*.{svg,png,jpg,ico}'];
-const ghtml = ['*.html'];
-const g_to_install = [].concat(gimages, gfonts, gjs_dep, gjs_min, gcss, ghtml);
+const gjs = ['src/assets/script/src/*.js'];
+const gjs_min = ['src/assets/script/min/*.js'];
+const gcss = ['src/assets/css/**/*.css'];
+const gscss = ['src/assets/scss/*.scss'];
+const gfonts = ['src/assets/css/**/fonts/*'];
+const gimages = ['src/assets/images/**/*.{svg,png,jpg,ico}'];
+const ghtml = ['src/*.html'];
+const g_to_install = [].concat(gimages, gfonts, gjs_min, gcss, ghtml);
 
-gulp.task('install', (cb) => {
+gulp.task('install', ['sass'],(cb) => {
   gutil.log('BUILD TYPE :', args.type);
   gutil.log('INSTALL in :', args.installDir);
   pump([
       gulp.src(g_to_install, {
-        base: './'
+        base: './src'
       }),
       gulp.dest(args.installDir)
     ],
     cb);
+});
+
+gulp.task('sass',(cb)=>{
+  gutil.log('PARSING SCSS FILES');
+  pump([
+    gulp.src(gscss),
+    sass({outputStyle: 'compressed'}),
+    gulp.dest('./src/assets/css')
+  ],cb);
 });
 
 gulp.task('clean',()=>{
@@ -87,7 +97,13 @@ gulp.task('clobber', ['clean'],() => {
   });
 });
 
-gulp.task('default', phony);
+gulp.task('default', ()=>{
+  let data = {
+    pkg: pkg,
+    file: 'PLACEHOLDER'
+  };
+  gutil.log(gutil.template(BANNER,data));
+});
 
 /**
  * Parse the commnad line argumnets.
@@ -108,8 +124,4 @@ function _agumentsParse(genv) {
     basename: _baseDirName,
     installDir: _installDir
   };
-}
-
-function _rmdircb(err){
-
 }
