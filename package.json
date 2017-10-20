@@ -7,8 +7,8 @@
     "email": "cipmiky@gmail.com"
   },
   "scripts":{
-    "build": "gulp install",
-    "serve": "gulp",
+    "dist" : "gulp install --type=PRODACTION",
+    "serve": "gulp broswersync",
     "clean": "gulp clobber"
   },
   "repository": {

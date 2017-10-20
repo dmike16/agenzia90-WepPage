@@ -20,6 +20,7 @@ const del = require('del');
 const vinyl_paths = require('vinyl-paths');
 const pkg = require('./package.json');
 const sep = require('path').sep;
+const broswerSync = require('browser-sync').create();
 // Array of string containg all the task created
 let phony = [];
 // Type of build PRODACTION or SNAPSHOT
@@ -62,7 +63,8 @@ gulp.task('sass',(cb)=>{
   pump([
     gulp.src(gscss),
     sass({outputStyle: 'compressed'}),
-    gulp.dest('./src/assets/css')
+    gulp.dest('./src/assets/css'),
+    (PROD===args.type)?gutil.noop():broswerSync.stream()
   ],cb);
 });
 
@@ -95,6 +97,23 @@ gulp.task('clobber', ['clean'],() => {
       }
     });
   });
+});
+
+gulp.task('broswersync',()=>{
+  broswerSync.init({
+    server:{
+      baseDir: './src'
+    },
+    https:{
+      key: '/Users/dmike/Development/tools/nginx/ssl/localhost.key',
+      cert: '/Users/dmike/Development/tools/nginx/ssl/localhost.crt',
+    },
+    ui: false,
+    open: false,
+    port: 4200
+  });
+
+  gulp.watch('./src/assets/scss/**/*.scss',['sass']);
 });
 
 gulp.task('default', ()=>{

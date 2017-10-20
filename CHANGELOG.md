@@ -13,9 +13,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Add
  - gulpfile to build the project
  - material-design-lite css framwork
+ - browser-sync for sass files
 
 ### Changed
  - Change project structure:
+ ```
      src/
         assets/
               css/
@@ -23,3 +25,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
               script/
               scss/
         index.html
+```
