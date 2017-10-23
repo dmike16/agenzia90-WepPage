@@ -18,6 +18,7 @@ const os = require('os');
 const fs = require('fs');
 const del = require('del');
 const vinyl_paths = require('vinyl-paths');
+const watch = require('gulp-watch');
 const pkg = require('./package.json');
 const sep = require('path').sep;
 const broswerSync = require('browser-sync').create();
@@ -59,13 +60,7 @@ gulp.task('install', ['sass'],(cb) => {
 });
 
 gulp.task('sass',(cb)=>{
-  gutil.log('PARSING SCSS FILES');
-  pump([
-    gulp.src(gscss),
-    sass({outputStyle: 'compressed'}),
-    gulp.dest('./src/assets/css'),
-    (PROD===args.type)?gutil.noop():broswerSync.stream()
-  ],cb);
+  _sassTranspiler(cb,gscss);
 });
 
 gulp.task('clean',()=>{
@@ -100,20 +95,30 @@ gulp.task('clobber', ['clean'],() => {
 });
 
 gulp.task('broswersync',()=>{
-  broswerSync.init({
+  let params = {
     server:{
       baseDir: './src'
-    },
-    https:{
-      key: '/Users/dmike/Development/tools/nginx/ssl/localhost.key',
-      cert: '/Users/dmike/Development/tools/nginx/ssl/localhost.crt',
     },
     ui: false,
     open: false,
     port: 4200
+  };
+  try{
+    let ssl = require('./ssl.location.json');
+    params.https = {
+      key: ssl.key,
+      cert: ssl.cert
+    };
+  }catch(e){
+    gutil.log('Fallback to http server:');
+  }
+  broswerSync.watch('./src/assets/scss/**/*.scss',(event,file)=>{
+    _sassTranspiler(null,file);
   });
-
-  gulp.watch('./src/assets/scss/**/*.scss',['sass']);
+  broswerSync.watch('./src/index.html',(event,file)=>{
+    broswerSync.reload(file);
+  });
+  broswerSync.init(params);
 });
 
 gulp.task('default', ()=>{
@@ -143,4 +148,17 @@ function _agumentsParse(genv) {
     basename: _baseDirName,
     installDir: _installDir
   };
+}
+/**
+ * Parse scss files
+ * @private
+ */
+function _sassTranspiler(cb,file){
+  gutil.log('PARSING SCSS FILES');
+  pump([
+    gulp.src(file),
+    sass({outputStyle: 'compressed'}),
+    gulp.dest('./src/assets/css'),
+    (PROD===args.type)?gutil.noop():broswerSync.stream()
+  ],cb);
 }

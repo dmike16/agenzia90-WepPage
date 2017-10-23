@@ -6,10 +6,11 @@
     "name": "dmike",
     "email": "cipmiky@gmail.com"
   },
-  "scripts":{
-    "dist" : "gulp install --type=PRODACTION",
+  "scripts": {
+    "dist": "gulp install --type=PRODACTION",
     "serve": "gulp broswersync",
-    "clean": "gulp clobber"
+    "clean": "gulp clobber",
+    "help": "gulp"
   },
   "repository": {
     "type": "git",
