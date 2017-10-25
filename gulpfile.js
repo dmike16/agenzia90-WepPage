@@ -18,7 +18,6 @@ const os = require('os');
 const fs = require('fs');
 const del = require('del');
 const vinyl_paths = require('vinyl-paths');
-const watch = require('gulp-watch');
 const pkg = require('./package.json');
 const sep = require('path').sep;
 const broswerSync = require('browser-sync').create();
@@ -113,7 +112,11 @@ gulp.task('broswersync',()=>{
     gutil.log('Fallback to http server:');
   }
   broswerSync.watch('./src/assets/scss/**/*.scss',(event,file)=>{
-    _sassTranspiler(null,file);
+    _sassTranspiler((err)=>{
+      if(err){
+        gutil.log(gutil.colors.red(err.message));
+      }
+    },file);
   });
   broswerSync.watch('./src/index.html',(event,file)=>{
     broswerSync.reload(file);
