@@ -1,0 +1,179 @@
+//***********************
+//images location:
+// - header logo
+// - header background
+// - logo small
+//***********************
+$logo: "../images/header-studio90srsl.svg";
+$header-bg: "../images/header-bg.jpg";
+$logo-small: "../images/Logo90w.svg";
+//***********************
+//mixin for theming mdl-block
+//***********************
+@mixin studio90srls-theme($mdl-block) {
+  .#{$mdl-block}--theme--studio90srls {
+    @content;
+  }
+}
+//***********************
+//mixin for compact header view
+//***********************
+@mixin compact {
+  .is-compact {
+    @content;
+  }
+}
+//***********************
+//studio90srls MDL-THEME
+//***********************
+//main layout
+@include studio90srls-theme(mdl-layout) {
+  .mdl-layout__header {
+    position: relative;
+    background-image: url("#{$header-bg}");
+  }
+
+  .mdl-layout__header-row {
+    padding: 0;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  .mdl-layout__title {
+    text-align: center;
+    font-size: 14;
+    font-weight: 300;
+  }
+
+  .mdl-layout__drawer-button {
+    background-color: rgba(197, 197, 197, 0.44);
+  }
+
+  .mdl-layout__logo-row {
+    min-height: 200px;
+  }
+
+  .mdl-layout__logo {
+    background: url("#{$logo}") 50% no-repeat;
+    background-size: cover;
+    height: 150px;
+    width: 150px;
+    margin: auto auto 10px;
+  }
+
+  .mdl-layout__header-row--navigation {
+    background-color: rgba(0, 0, 0, 0.08);
+    text-transform: uppercase;
+    height: 45px;
+
+    .mdl-navigation {
+      text-align: center;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .is-active {
+      position: relative;
+      font-weight: bold;
+    }
+
+    .is-active::after {
+      content: "";
+      width: 70%;
+      height: 2px;
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: rgb(0, 0, 255);
+      left: 15%;
+    }
+
+    .mdl-navigation__link {
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      line-height: 42px;
+    }
+  }
+}
+// grid
+@include studio90srls-theme(mdl-grid) {
+  max-width: 900px;
+  margin: auto;
+}
+//***********************
+// Compact view
+//***********************
+@include compact {
+  .mdl-layout__title span {
+    display: none;
+  }
+
+  .mdl-layout__logo {
+    height: 60px;
+    width: 60px;
+    margin-top: 7px;
+  }
+
+  .mdl-layout__logo-row {
+    min-height: auto;
+  }
+}
+
+//***********************
+//splice map
+//***********************
+$splice-map: (
+  'sermetra': (-8.6px -131px),
+  'unasca': (-9.9px -169px),
+  'cna': (-9.9px -206px),
+  'mctc': (-6.6px -241px),
+  'generali': (-1.3px -30px),
+  'bali': (-4.6px -60px),
+  'motocentromarconi': (-1.2px -94px),
+  'you-service': (-1.2px 4px)
+);
+
+
+@include studio90srls-theme(mdl-mega-footer){
+  color: rgb(224, 224, 219);
+
+  .mdl-mega-footer__icon{
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    position: relative;
+    fill: currentcolor;
+  }
+
+  .mdl-mega-footer__social-btn{
+    font-size: 20px;
+  }
+
+  .mdl-mega-footer__logo{
+    background: url("#{$logo-small}") 50% no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 20px;
+  }
+
+  .mdl-mega-footer__right-section a {
+    margin-left: 0;
+  }
+
+  .mdl-mega-footer__copyright{
+    font-size: 14px;
+    color: rgb(224, 224, 219);
+  }
+
+  @each $friend, $point in $splice-map {
+    .mdl-mega-footer__icon-#{$friend}{
+      background-image: url("../images/icon/partnship/friendLogo.png");
+      background-position: $point;
+      height: 24px;
+      width: 24px;
+    }
+  }
+}
