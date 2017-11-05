@@ -40,7 +40,7 @@ const BANNER = ['/**',
 const gjs = ['src/assets/script/src/*.js'];
 const gjs_min = ['src/assets/script/min/*.js'];
 const gcss = ['src/assets/css/**/*.css'];
-const gscss = ['src/assets/scss/*.scss'];
+const gscss = ['src/assets/scss/studio90srls/mdl_studio90srls.scss'];
 const gfonts = ['src/assets/css/**/fonts/*'];
 const gimages = ['src/assets/images/**/*.{svg,png,jpg,ico}'];
 const ghtml = ['src/*.html'];
@@ -111,7 +111,7 @@ gulp.task('broswersync',()=>{
   }catch(e){
     gutil.log('Fallback to http server:');
   }
-  broswerSync.watch('./src/assets/scss/**/*.scss',(event,file)=>{
+  broswerSync.watch(gscss,(event,file)=>{
     _sassTranspiler((err)=>{
       if(err){
         gutil.log(gutil.colors.red(err.message));
@@ -160,7 +160,7 @@ function _sassTranspiler(cb,file){
   gutil.log('PARSING SCSS FILES');
   pump([
     gulp.src(file),
-    sass({outputStyle: 'compressed'}),
+    sass({outputStyle: (PROD===args.type?'compressed':'nested')}),
     gulp.dest('./src/assets/css'),
     (PROD===args.type)?gutil.noop():broswerSync.stream()
   ],cb);
