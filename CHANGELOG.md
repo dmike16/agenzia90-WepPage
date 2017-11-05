@@ -11,11 +11,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Add
- - gulpfile to build the project
- - material-design-lite css framwork
- - browser-sync for sass files
+ - Theming mdl block element (studio90srls-theme)
+ - Gulpfile to build the project
+ - Material-design-lite css framwork
+ - Browser-sync for sass files
 
 ### Changed
+ - On prod sass generates compressed css
+ - Using BEM syntax
  - Change project structure:
  ```
      src/
