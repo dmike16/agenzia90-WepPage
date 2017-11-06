@@ -7,6 +7,7 @@
 $logo: "../images/header-studio90srsl.svg";
 $header-bg: "../images/header-bg.jpg";
 $logo-small: "../images/Logo90w.svg";
+$card-title-images: "../images/welcome_card.jpg";
 //***********************
 //mixin for theming mdl-block
 //***********************
@@ -121,7 +122,6 @@ $logo-small: "../images/Logo90w.svg";
     min-height: auto;
   }
 }
-
 //***********************
 //splice map
 //***********************
@@ -135,12 +135,19 @@ $splice-map: (
   'motocentromarconi': (-1.2px -94px),
   'you-service': (-1.2px 4px)
 );
-
-
-@include studio90srls-theme(mdl-mega-footer){
+//card
+@include studio90srls-theme(mdl-card) {
+  .mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url(#{$card-title-images}) center / cover;
+  }
+}
+// footer
+@include studio90srls-theme(mdl-mega-footer) {
   color: rgb(224, 224, 219);
 
-  .mdl-mega-footer__icon{
+  .mdl-mega-footer__icon {
     display: inline-block;
     vertical-align: middle;
     background-repeat: no-repeat;
@@ -148,11 +155,11 @@ $splice-map: (
     fill: currentcolor;
   }
 
-  .mdl-mega-footer__social-btn{
+  .mdl-mega-footer__social-btn {
     font-size: 20px;
   }
 
-  .mdl-mega-footer__logo{
+  .mdl-mega-footer__logo {
     background: url("#{$logo-small}") 50% no-repeat;
     background-size: cover;
     width: 100px;
@@ -163,13 +170,12 @@ $splice-map: (
     margin-left: 0;
   }
 
-  .mdl-mega-footer__copyright{
+  .mdl-mega-footer__copyright {
     font-size: 14px;
     color: rgb(224, 224, 219);
   }
-
   @each $friend, $point in $splice-map {
-    .mdl-mega-footer__icon-#{$friend}{
+    .mdl-mega-footer__icon-#{$friend} {
       background-image: url("../images/icon/partnship/friendLogo.png");
       background-position: $point;
       height: 24px;

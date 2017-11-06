@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Add
+ - Cards title placeholder
  - Theming mdl block element (studio90srls-theme)
  - Gulpfile to build the project
  - Material-design-lite css framwork

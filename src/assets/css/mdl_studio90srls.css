@@ -68,6 +68,11 @@
 .is-compact .mdl-layout__logo-row {
   min-height: auto; }
 
+.mdl-card--theme--studio90srls .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url(../images/welcome_card.jpg) center/cover; }
+
 .mdl-mega-footer--theme--studio90srls {
   color: #e0e0db; }
   .mdl-mega-footer--theme--studio90srls .mdl-mega-footer__icon {
