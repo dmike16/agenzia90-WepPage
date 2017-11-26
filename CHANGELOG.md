@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Add
+ - creation of local dist directory
+ - now broswersync will serve contents from ./dist
+ - fs-extra lib
+ - factory-bundle plugin to create different bundles
+ - broswerify and typescript dependencies
  - Cards title placeholder
  - Theming mdl block element (studio90srls-theme)
  - Gulpfile to build the project
@@ -30,3 +35,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
               scss/
         index.html
 ```
+
+### Removed
+ - Removed grunt dependencies
