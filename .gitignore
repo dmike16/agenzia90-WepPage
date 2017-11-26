@@ -61,3 +61,6 @@ bower_components/
 
 #SSL Cert Location
 ssl.location.json
+
+#js in src
+dist/

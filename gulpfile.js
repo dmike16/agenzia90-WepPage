@@ -15,12 +15,18 @@ const uglify = require('gulp-uglify');
 const sass = require('gulp-sass');
 const pump = require('pump');
 const os = require('os');
-const fs = require('fs');
+const fse = require('fs-extra');
 const del = require('del');
 const vinyl_paths = require('vinyl-paths');
 const pkg = require('./package.json');
 const sep = require('path').sep;
 const broswerSync = require('browser-sync').create();
+const broswerify = require('browserify');
+const source = require('vinyl-source-stream');
+const sourceMaps = require('gulp-sourcemaps');
+const tsify = require('tsify');
+const factorBundle = require('factor-bundle');
+const watchify = require('watchify');
 // Array of string containg all the task created
 let phony = [];
 // Type of build PRODACTION or SNAPSHOT
@@ -37,99 +43,128 @@ const BANNER = ['/**',
   '**/'
 ].join('\n');
 // Define project glob src
-const gjs = ['src/assets/script/src/*.js'];
-const gjs_min = ['src/assets/script/min/*.js'];
+const gjs_min = ['src/assets/script/*.js'];
 const gcss = ['src/assets/css/**/*.css'];
-const gscss = ['src/assets/scss/studio90srls/mdl_studio90srls.scss'];
+const gscss = ['src/app/mdl_studio90srls.scss'];
+const gEntrify = ['src/main.ts', 'src/app/app.ts'];
+const gts = ['src/main.ts', 'src/boot/*.ts','src/app/**/*.ts'];
 const gfonts = ['src/assets/css/**/fonts/*'];
 const gimages = ['src/assets/images/**/*.{svg,png,jpg,ico}'];
 const ghtml = ['src/*.html'];
 const g_to_install = [].concat(gimages, gfonts, gjs_min, gcss, ghtml);
+const dist = 'dist';
+//broswerify option
+const optionify = {
+  entries: ['src/main.ts','src/app/app.ts'],
+  debug: true,
+};
 
-gulp.task('install', ['sass'],(cb) => {
+gulp.task('install', ['dist'], (cb) => {
   gutil.log('BUILD TYPE :', args.type);
   gutil.log('INSTALL in :', args.installDir);
+  fse.copy(dist,args.installDir,cb);
+});
+
+gulp.task('dist',['js','sass']);
+
+gulp.task('static-dist',(cb)=>{
   pump([
       gulp.src(g_to_install, {
         base: './src'
       }),
-      gulp.dest(args.installDir)
+      gulp.dest(dist)
     ],
     cb);
 });
 
-gulp.task('sass',(cb)=>{
-  _sassTranspiler(cb,gscss);
+gulp.task('sass',['static-dist'], (cb) => {
+  _sassTranspiler(cb, gscss);
 });
 
-gulp.task('clean',()=>{
-  return new Promise((resolve,reject)=>{
-    gutil.log('Clean',args.installDir,'......');
+gulp.task('js',['static-dist'],(cb)=>{
+  _broswerifyTs(cb,gts);
+});
+
+gulp.task('clean', () => {
+  return new Promise((resolve, reject) => {
+    gutil.log('Clean', args.installDir, '......');
 
     let vp = vinyl_paths();
-    let g_to_clean = args.installDir+sep+'*';
+    let g_to_clean = args.installDir + sep + '*';
 
-    gulp.src(g_to_clean,{dot:true})
-    .pipe(vp)
-    .on('finish',()=>{
-      del(vp.paths,{force:true}).then(resolve).catch(reject);
-    })
-    .on('error',(err)=>{
-      reject(err);
-    });
+    gulp.src(g_to_clean, {
+        dot: true
+      })
+      .pipe(vp)
+      .on('finish', () => {
+        del(vp.paths, {
+          force: true
+        }).then(resolve).catch(reject);
+      })
+      .on('error', (err) => {
+        reject(err);
+      });
   });
 });
 
-gulp.task('clobber', ['clean'],() => {
-  return new Promise((resolve,reject)=>{
-    gutil.log('Clobber',args.installDir,'......');
-    fs.rmdir(args.installDir, (err) => {
+gulp.task('clobber', ['clean'], () => {
+  return new Promise((resolve, reject) => {
+    gutil.log('Clobber', args.installDir, '......');
+    fse.rmdir(args.installDir, (err) => {
       if (err) {
         reject(err);
-      }else{
+      } else {
         resolve();
       }
     });
   });
 });
 
-gulp.task('broswersync',()=>{
+gulp.task('broswersync', ['static-dist'],(cb) => {
   let params = {
-    server:{
-      baseDir: './src'
+    server: {
+      baseDir: dist
     },
     ui: false,
     open: false,
     port: 4200
   };
-  try{
+  try {
     let ssl = require('./ssl.location.json');
     params.https = {
       key: ssl.key,
       cert: ssl.cert
     };
-  }catch(e){
+  } catch (e) {
     gutil.log('Fallback to http server:');
   }
-  broswerSync.watch(gscss,(event,file)=>{
-    _sassTranspiler((err)=>{
-      if(err){
+  broswerSync.watch(gscss, (event, file) => {
+    _sassTranspiler((err) => {
+      if (err) {
         gutil.log(gutil.colors.red(err.message));
       }
-    },file);
+    }, file);
   });
-  broswerSync.watch('./src/index.html',(event,file)=>{
+  broswerSync.watch('./src/index.html', (event, file) => {
     broswerSync.reload(file);
+  });
+  broswerSync.watch(gts, (event, file) => {
+    if(event === 'add' && !optionify.entries.includes(file))return;
+    _broswerifyTs((err) => {
+      if (err) {
+        gutil.log(gutil.colors.red(err.message));
+      }
+    }, file);
   });
   broswerSync.init(params);
 });
 
-gulp.task('default', ()=>{
+gulp.task('default', () => {
   let data = {
     pkg: pkg,
     file: 'PLACEHOLDER'
   };
-  gutil.log(gutil.template(BANNER,data));
+  gutil.log(gutil.template(BANNER, data));
 });
 
 /**
@@ -156,12 +191,26 @@ function _agumentsParse(genv) {
  * Parse scss files
  * @private
  */
-function _sassTranspiler(cb,file){
-  gutil.log('PARSING SCSS FILES');
+function _sassTranspiler(cb, file) {
+  gutil.log('PARSING SCSS FILE: ',file);
   pump([
     gulp.src(file),
-    sass({outputStyle: (PROD===args.type?'compressed':'nested')}),
-    gulp.dest('./src/assets/css'),
-    (PROD===args.type)?gutil.noop():broswerSync.stream()
-  ],cb);
+    sass({
+      outputStyle: (PROD === args.type ? 'compressed' : 'nested')
+    }),
+    gulp.dest(`${dist}/assets/css`),
+    (PROD === args.type) ? gutil.noop() : broswerSync.stream()
+  ], cb);
+}
+
+function _broswerifyTs(cb, file) {
+  gutil.log('PARSING TS FILE: ',file);
+
+  pump([broswerify(optionify).plugin(tsify)
+    .plugin(factorBundle,{o:[`${dist}/main.js`,`${dist}/assets/script/app.js`]}).bundle(),
+      source('./common.js'),
+      gulp.dest(dist),
+      (PROD === args.type) ? gutil.noop() : broswerSync.stream()
+    ],
+    cb);
 }
