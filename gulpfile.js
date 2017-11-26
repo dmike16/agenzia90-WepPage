@@ -59,13 +59,11 @@ const optionify = {
   debug: true,
 };
 
-gulp.task('install', ['dist'], (cb) => {
+gulp.task('install', ['js','sass'], (cb) => {
   gutil.log('BUILD TYPE :', args.type);
   gutil.log('INSTALL in :', args.installDir);
   fse.copy(dist,args.installDir,cb);
 });
-
-gulp.task('dist',['js','sass']);
 
 gulp.task('static-dist',(cb)=>{
   pump([
