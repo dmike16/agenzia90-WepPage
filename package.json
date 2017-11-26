@@ -7,7 +7,7 @@
     "email": "cipmiky@gmail.com"
   },
   "scripts": {
-    "dist" : "gulp dist --type=PRODACTION",
+    "dist": "gulp dist --type=PRODACTION",
     "install": "gulp install --type=PRODACTION",
     "serve": "gulp broswersync",
     "clean": "gulp clobber",
@@ -18,6 +18,7 @@
     "url": "https://github.com/dmike16/agenzia90-WepPage.git"
   },
   "devDependencies": {
+    "@types/material-design-lite": "^1.1.15",
     "browser-sync": "^2.18.13",
     "browserify": "^14.5.0",
     "del": "^3.0.0",
