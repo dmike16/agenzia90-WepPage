@@ -4,10 +4,10 @@
 // - header background
 // - logo small
 //***********************
-$logo: "../images/header-studio90srsl.svg";
-$header-bg: "../images/header-bg.jpg";
-$logo-small: "../images/Logo90w.svg";
-$card-title-images: "../images/welcome_card.jpg";
+$logo: "../assets/images/header-studio90srsl.svg";
+$header-bg: "../assets/images/header-bg.jpg";
+$logo-small: "../assets/images/Logo90w.svg";
+$card-title-images: "../assets/images/welcome_card.jpg";
 //***********************
 //mixin for theming mdl-block
 //***********************
@@ -176,7 +176,7 @@ $splice-map: (
   }
   @each $friend, $point in $splice-map {
     .mdl-mega-footer__icon-#{$friend} {
-      background-image: url("../images/icon/partnship/friendLogo.png");
+      background-image: url("../assets/images/icon/partnship/friendLogo.png");
       background-position: $point;
       height: 24px;
       width: 24px;
