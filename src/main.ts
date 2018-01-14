@@ -1,3 +1,3 @@
-import {bootstrap} from './boot/bootstrap';
+import {Studio90srls} from './app/app';
 
-bootstrap(Window);
+Studio90srls.bootstrap();

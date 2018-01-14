@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Add
+ - workbox tools to create a service worker
+ - modularized the gulp-task process
  - creation of local dist directory
  - now broswersync will serve contents from ./dist
  - fs-extra lib
