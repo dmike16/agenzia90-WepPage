@@ -1,5 +1,5 @@
 {
-  "name": "studio90srls",
+  "name": "@dmike/studio90srls",
   "version": "3.0.0",
   "description": "Web Page Studio90srls",
   "author": {
@@ -7,11 +7,11 @@
     "email": "cipmiky@gmail.com"
   },
   "scripts": {
-    "dist": "gulp dist --type=PRODACTION",
-    "install": "gulp install --type=PRODACTION",
-    "serve": "gulp broswersync",
-    "clean": "gulp clobber",
-    "help": "gulp"
+    "dist": "gulp dist",
+    "pack": "gulp pack",
+    "serve": "gulp serve",
+    "clean": "",
+    "info": "gulp default"
   },
   "repository": {
     "type": "git",
@@ -19,23 +19,32 @@
   },
   "devDependencies": {
     "@types/material-design-lite": "^1.1.15",
-    "browser-sync": "^2.18.13",
-    "browserify": "^14.5.0",
-    "del": "^3.0.0",
-    "factor-bundle": "^2.5.0",
+    "awesome-typescript-loader": "^3.4.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
     "fs-extra": "^4.0.2",
     "gulp": "^3.9.1",
-    "gulp-csso": "^3.0.0",
-    "gulp-header": "^1.8.9",
-    "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.6.1",
-    "gulp-uglify": "^3.0.0",
-    "pump": "^1.0.2",
-    "tsify": "^3.0.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.8",
+    "gulp-zip": "^4.0.0",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.2",
+    "pump": "^2.0.0",
+    "run-sequence": "^2.2.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
     "typescript": "^2.6.1",
     "vinyl-paths": "^2.1.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.9.0"
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.5",
+    "webpack-merge": "^4.1.1",
+    "webpack-stream": "^4.0.0",
+    "workbox-build": "^2.1.2",
+    "workbox-sw": "^2.1.2"
   },
   "license": "CC-BY-4.0",
   "jshintConfig": {
