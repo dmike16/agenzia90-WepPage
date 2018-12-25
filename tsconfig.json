@@ -1,8 +1,8 @@
 {
   "compileOnSave":false,
   "compilerOptions":{
-    "module": "ES6",
-    "target": "ES5",
+    "module": "esnext",
+    "target": "es6",
     "removeComments":false,
     "emitDecoratorMetadata":true,
     "experimentalDecorators":true,
@@ -10,10 +10,7 @@
     "noImplicitAny":true,
     "alwaysStrict": true,
     "declaration": false,
-    "lib":[
-      "DOM","ES6","DOM.Iterable","ScriptHost"
-    ],
-    "types": ["node","material-design-lite"]
+    "types": ["node"]
   },
   "include":[
     "src/**/*"
