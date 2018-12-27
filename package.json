@@ -10,6 +10,11 @@
     "web-dev": "node ./bin/web-dev-kit",
     "info": "npm run web-dev -- info"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "npm run web-dev -- validate-commit"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/dmike16/agenzia90-WepPage.git"

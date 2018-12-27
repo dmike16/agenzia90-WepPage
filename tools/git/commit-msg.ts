@@ -3,6 +3,39 @@ import { Observable, Subscriber } from "rxjs";
 import { map, takeLast } from "rxjs/operators";
 import { Logger } from "../logger";
 
+const template = "'<type>(<scope>): <subject>' OR 'Revert: <type(<scope>): <subject>'";
+
+const types: { [key: string]: { desc: string; hasScope: boolean; } } = {
+    feat: {
+        desc: 'A new app feature.',
+        hasScope: true
+    },
+    fix: {
+        desc: 'A bug fix.',
+        hasScope: true
+    },
+    refactor: {
+        desc: 'A code change that not add a new feature or fix a bug.',
+        hasScope: true
+    },
+    style: {
+        desc: 'A change that is not related to the code (formatting only).',
+        hasScope: true
+    },
+    docs: {
+        desc: 'A change related to documentation only',
+        hasScope: true
+    },
+    build: {
+        desc: 'Everything related to build process.',
+        hasScope: false
+    }
+};
+
+const scopes: { [key: string]: string } = {
+    app: "The root scope"
+}
+
 export class CommitMsgValidator {
 
     private pattern: RegExp = /^(\w+)(?:\(([^)]+)\))?\: (?:.+)$/;
@@ -45,7 +78,7 @@ export class CommitMsgValidator {
     }
 
     private logError(header: string, errorMessage: string): void {
-        this.log.error(` *INVALID COMMIT MSG: ${header}\n`, `*ERROR: ${errorMessage}`);
+        this.log.error(` *INVALID COMMIT MSG: ${header}\n *ERROR: ${errorMessage}`);
     }
 
     private observeHeader(): Observable<string> {
@@ -73,37 +106,4 @@ export class CommitMsgValidator {
             return () => commitFile.destroy();
         });
     }
-}
-
-const template = "'<type>(<scope>): <subject>' OR 'Revert: <type(<scope>): <subject>'";
-
-const types: { [key: string]: { desc: string; hasScope: boolean; } } = {
-    feat: {
-        desc: 'A new app feature.',
-        hasScope: true
-    },
-    fix: {
-        desc: 'A bug fix.',
-        hasScope: true
-    },
-    refactor: {
-        desc: 'A code change that not add a new feature or fix a bug.',
-        hasScope: true
-    },
-    style: {
-        desc: 'A change that is not related to the code (formatting only).',
-        hasScope: true
-    },
-    docs: {
-        desc: 'A change related to documentation only',
-        hasScope: true
-    },
-    build: {
-        desc: 'Everything related to build process.',
-        hasScope: false
-    }
-};
-
-const scopes: { [key: string]: string } = {
-    app: "The root scope"
 }
