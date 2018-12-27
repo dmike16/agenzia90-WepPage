@@ -47,7 +47,7 @@ export class CommitMsgValidator {
             .pipe(
                 takeLast(1),
                 map<string, boolean>((header) => {
-                    this.log.info(header);
+                    this.log.debug(header);
                     if (this.revert.test(header)) {
                         this.log.info("Revert commit accept.");
                         return true;
