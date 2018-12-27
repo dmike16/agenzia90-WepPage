@@ -1,10 +1,9 @@
 import { createReadStream } from "fs";
 import { Observable, Subscriber } from "rxjs";
 import { map, takeLast } from "rxjs/operators";
-import { Logger } from "../../logger";
+import { Logger } from "../logger";
 
 export class CommitMsgValidator {
-    static readonly config: any = require("./commit-msg.json");
 
     private pattern: RegExp = /^(\w+)(?:\(([^)]+)\))?\: (?:.+)$/;
     private revert: RegExp = /^revert:? /i;
@@ -20,29 +19,25 @@ export class CommitMsgValidator {
                         this.log.info("Revert commit accept.");
                         return true;
                     }
-                    const config = CommitMsgValidator.config as Config;
-                    if (header.length > config.maxLength) {
-                        this.logError(header, `This commit message is longer then ${config.maxLength} .`);
-                        return false;
-                    }
 
                     const match = this.pattern.exec(header);
                     if (!match) {
-                        this.logError(header, `The commit message does not match the pattern ${config.template}.`);
+                        this.logError(header, `The commit message does not match the pattern ${template}.`);
                         return false;
                     }
 
                     const type = match[1];
-                    if (!config.types[type]) {
+                    if (!types[type]) {
                         this.logError(header, `The type ${type} is not allowed -> TYPES:
-                        ${Object.keys(config.types).filter((key) => config.types[key]).join(" , ")}`);
+                        ${Object.keys(types).filter((key) => types[key]).join(" , ")}`);
                         return false;
                     }
 
+                    const typeObj = types[type];
                     const scope = match[2];
-                    if (!config.scopes[scope]) {
+                    if (typeObj.hasScope && !scopes[scope]) {
                         this.logError(header, `The scope ${scope} is not allowed -> SCOPES:
-                        ${Object.keys(config.scopes).filter((key) => config.scopes[key]).join(" , ")}`);
+                        ${Object.keys(scopes).filter((key) => scopes[key]).join(" , ")}`);
                         return false;
                     }
                     return true;
@@ -80,9 +75,35 @@ export class CommitMsgValidator {
     }
 }
 
-interface Config {
-    maxLength: number;
-    types: { [key: string]: boolean };
-    scopes: { [key: string]: boolean };
-    template: string;
+const template = "'<type>(<scope>): <subject>' OR 'Revert: <type(<scope>): <subject>'";
+
+const types: { [key: string]: { desc: string; hasScope: boolean; } } = {
+    feat: {
+        desc: 'A new app feature.',
+        hasScope: true
+    },
+    fix: {
+        desc: 'A bug fix.',
+        hasScope: true
+    },
+    refactor: {
+        desc: 'A code change that not add a new feature or fix a bug.',
+        hasScope: true
+    },
+    style: {
+        desc: 'A change that is not related to the code (formatting only).',
+        hasScope: true
+    },
+    docs: {
+        desc: 'A change related to documentation only',
+        hasScope: true
+    },
+    build: {
+        desc: 'Everything related to build process.',
+        hasScope: false
+    }
+};
+
+const scopes: { [key: string]: string } = {
+    app: "The root scope"
 }
