@@ -8,7 +8,9 @@
   },
   "scripts": {
     "web-dev": "node ./bin/web-dev-kit",
-    "info": "npm run web-dev -- info"
+    "info": "npm run web-dev -- info",
+    "specs": "npm run web-dev -- specs",
+    "clean": "npm run web-dev -- clean"
   },
   "husky": {
     "hooks": {
@@ -26,6 +28,7 @@
     "del": "^3.0.0",
     "eslint": "^5.11.0",
     "husky": "^1.2.1",
+    "markdown-pdf": "^9.0.0",
     "minimist": "^1.2.0",
     "rxjs": "^6.3.3",
     "tslint": "^5.12.0",
