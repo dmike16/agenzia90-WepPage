@@ -1,13 +1,14 @@
 import { Logger } from "../tools/logger";
 import { bindNodeCallback } from "rxjs";
 import { join } from "path";
+import pkg from "../lib/package";
 
 const markdowPdf = require('markdown-pdf');
 
-export default async function (args: any, root: string, log: Logger) {
+export default async function (args: any, log: Logger) {
     log.info("Generate specifications");
-    const specMd = join(root, 'docs', 'project.md');
-    const specPdf = join(root, 'build', 'project.pdf');
+    const specMd = join(pkg.root, 'docs', 'project.md');
+    const specPdf = join(pkg.root, 'build', 'docs', 'project.pdf');
     const pdfGenerator = markdowPdf().concat.from(specMd).to;
     const mdToPdf = bindNodeCallback(pdfGenerator);
 

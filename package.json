@@ -10,7 +10,11 @@
     "web-dev": "node ./bin/web-dev-kit",
     "info": "npm run web-dev -- info",
     "specs": "npm run web-dev -- specs",
-    "clean": "npm run web-dev -- clean"
+    "clean": "npm run web-dev -- clean",
+    "serve": "npm run web-dev -- serve",
+    "build": "npm run web-dev -- build",
+    "prepack": "npm run build",
+    "pack": "npm run web-dev -- pack"
   },
   "husky": {
     "hooks": {
