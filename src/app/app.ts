@@ -1,4 +1,3 @@
-import './mdl_studio90srls.scss';
 /**
  * Studio90srls main class
  */
