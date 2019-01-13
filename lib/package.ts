@@ -28,6 +28,6 @@ export default {
             main: 'main.ts',
             polyfill: 'polyfill.ts'
         },
-        styles: ['app.scss']
+        styles: ['app/app.scss']
     }
 } as PkgEnv;
