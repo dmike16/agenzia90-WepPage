@@ -64,3 +64,4 @@ ssl.location.json
 
 #js in src
 dist/
+build/

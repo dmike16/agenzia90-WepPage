@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+require('../lib/bootstrap-local');
+// Extract root dir
+const minimist = require('minimist');
+// Extract script to run
+// default to 'info'
+const args = minimist(process.argv.slice(2));
+const scriptName = args._.pop() || 'info';
+
+const { filter } = require('rxjs/operators');
+const { Logger, LogLevel } = require('../tools/logger');
+const { gray, red, white, bold } = require('ansi-colors');
+const output = process.stdout;
+const log = new Logger('root');
+log.logging$
+    .pipe(filter(({ level }) => level <= LogLevel.INFO))
+    .subscribe((logE) => {
+        let color = gray;
+        switch (logE.level) {
+            case LogLevel.INFO:
+                color = white;
+                break;
+            case LogLevel.ERROR:
+                color = red;
+                break;
+            case LogLevel.FATAL:
+                color = (txt) => bold(red(txt));
+                break;
+            default:
+                break;
+        }
+        output.write(`${color(`[${LogLevel[logE.level]}]`)}: ${logE.message}\n`);
+    });
+// Execute the main script passed as argument
+Promise.resolve()
+    .then(() => require(`../scripts/${scriptName}`).default(args, log))
+    .then((exitCode) => process.exitCode = exitCode)
+    .catch((err) => {
+        logger.error(err.stack);
+        process.exitCode = -1;
+    })
+    .then(() => log.dispose());
