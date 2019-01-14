@@ -28,6 +28,7 @@
   "license": "CC-BY-4.0",
   "devDependencies": {
     "@types/node": "^10.12.18",
+    "@types/webpack": "^4.4.22",
     "ansi-colors": "^3.2.3",
     "del": "^3.0.0",
     "eslint": "^5.11.0",

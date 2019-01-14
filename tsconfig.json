@@ -10,6 +10,7 @@
     "noImplicitAny":true,
     "alwaysStrict": true,
     "declaration": false,
+    "typeRoots": ["./node_modules"],
     "types": ["node"]
   },
   "include":[
