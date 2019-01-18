@@ -5,6 +5,6 @@ const del = require('del');
 
 export default async function(args: any, log: Logger){
     log.info("Cleaning project");
-    await del(pkg.buildCtx.output);
+    await del(pkg.buildCtx.output.parent);
     return 0;
 }

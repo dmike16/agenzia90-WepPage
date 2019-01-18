@@ -9,10 +9,16 @@ export type PkgEnv = {
     root: string;
     buildCtx: {
         src: string;
-        output: string;
-        entryPoints: {[key: string]: any};
-        target: string;
-        styles: string[];
+        config: string;
+        output: { [key: string]: any };
+        entryPoints: { [key: string]: any };
+        styles: Array<{ name: string; path: string; }>;
+        assets: Array<{ src: string; dest: string; glob: string; ignore?: string }>;
+        target: 'es5' | 'es2015';
+        enviromentModules: Array<{prod: string; dev: string}>;
+        extractCss: boolean;
+        optimizeCss: boolean;
+        inlineSource: boolean;
     };
 };
 
@@ -22,12 +28,18 @@ export default {
     version,
     buildCtx: {
         src: join(root, 'src'),
-        output: join(root, 'build'),
-        target: 'ES2015',
+        output: { parent: join(root, 'build'), app: join(root, 'build', 'ux')},
+        config: 'tsconfig-app.json',
+        target: 'es2015',
         entryPoints: {
-            main: 'main.ts',
-            polyfill: 'polyfill.ts'
+            main: './main.ts',
+            polyfill: './polyfill.ts'
         },
-        styles: ['app/app.scss']
+        styles: [{ name: 'app', path: './app/app.scss' }],
+        assets: [],
+        enviromentModules: [],
+        extractCss: false,
+        optimizeCss: false,
+        inlineSource: false
     }
 } as PkgEnv;

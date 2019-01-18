@@ -8,7 +8,7 @@ const markdowPdf = require('markdown-pdf');
 export default async function (args: any, log: Logger) {
     log.info("Generate specifications");
     const specMd = join(pkg.root, 'docs', 'project.md');
-    const specPdf = join(pkg.buildCtx.output, 'docs', 'project.pdf');
+    const specPdf = join(pkg.buildCtx.output.parent, 'docs', 'project.pdf');
     const pdfGenerator = markdowPdf().concat.from(specMd).to;
     const mdToPdf = bindNodeCallback(pdfGenerator);
 

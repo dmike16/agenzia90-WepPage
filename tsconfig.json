@@ -1,19 +1,20 @@
 {
   "compileOnSave":false,
-  "compilerOptions":{
-    "module": "esnext",
-    "target": "es6",
-    "removeComments":false,
-    "emitDecoratorMetadata":true,
-    "experimentalDecorators":true,
+  "compilerOptions": {
+    "outDir": "./build/ux",
     "sourceMap": true,
-    "noImplicitAny":true,
-    "alwaysStrict": true,
     "declaration": false,
-    "typeRoots": ["./node_modules"],
-    "types": ["node"]
-  },
-  "include":[
-    "src/**/*"
-  ]
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "target": "ES6",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ]
+  }
 }
