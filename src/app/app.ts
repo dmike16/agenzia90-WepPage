@@ -10,7 +10,7 @@ export class Studio90srls {
         "color:#a91839;font-size:1em;")
     }
     // Install service worker
-    BroswerPlatform.intallSW('/studio90srls-sw.js')
+    // BroswerPlatform.intallSW('/studio90srls-sw.js')
   }
 }
 

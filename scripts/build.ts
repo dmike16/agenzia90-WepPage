@@ -5,12 +5,14 @@ import assets from "../tools/webpack/create-config/assets";
 import styles from "../tools/webpack/create-config/styles";
 import typescript from "../tools/webpack/create-config/typescript";
 import broswer from "../tools/webpack/create-config/broswer"
+import pkg from "../lib/package";
 
 
 const merge = require('webpack-merge');
 
 export default async function (args: any, log: Logger) {
     const mode = "production";
+    pkg.buildCtx.extractCss = true;
     const configuratiion = [
         common(mode)
         , assets(mode)

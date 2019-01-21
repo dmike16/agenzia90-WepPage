@@ -33,8 +33,8 @@ export function webpackServer(webpackConfig: webpack.Configuration): Promise<str
             if (err) {
                 reject(err.message);
             }
-            const uri = `Application serving on 
-            ${options.http ? 'https' : 'http'}://${options.host}:${options.port}`
+            const uri = `\nApplication serving on 
+${options.http ? 'https' : 'http'}://${options.host}:${options.port}`
             resolve(uri);
         });
     });
