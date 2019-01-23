@@ -20,6 +20,17 @@ export default function (mode: ModeStyle): webpack.Configuration {
             extensions: ['.ts', '.js'],
             mainFields: mainFiledsResolve(pkg.buildCtx.target)
         },
+        module: {
+            rules: [
+                {
+                    test: /\.js$/,
+                    enforce: 'pre',
+                    use: {
+                        loader: 'source-map-loader'
+                    }
+                }
+            ]
+        },
         plugins: [
             new CleanWebpackPlugin(pkg.buildCtx.output.app, { root: pkg.root }),
             mode === 'development' ? new webpack.NamedModulesPlugin() : new webpack.HashedModuleIdsPlugin(),
