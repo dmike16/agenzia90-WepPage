@@ -24,7 +24,7 @@ export default async function (args: any, log: Logger) {
         const bundle: WebpackCompilationOutput = await webpackBundle(merge(configuratiion));
         log.info(bundle.result);
     } catch (err) {
-        log.error(err.error);
+        log.error(err.error || err);
         return 1;
     }
 

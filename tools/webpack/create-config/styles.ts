@@ -1,6 +1,7 @@
 import { ModeStyle, hashFormatStyle } from "./utils";
 import * as webpack from "webpack";
 import pkg from "../../../lib/package";
+import { join } from "path";
 
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -11,8 +12,8 @@ export default function (mode: ModeStyle): webpack.Configuration {
     const extraPlugins = [];
     if (pkg.buildCtx.extractCss) extraPlugins.push(
         new MiniCssExtractPlugin({
-            filename: `[name][${hashStyle.chunk}].css`,
-            chunkFilename: `[id][${hashStyle.chunk}].css`
+            filename: `[name]${hashStyle.chunk}.css`,
+            chunkFilename: `[id]${hashStyle.chunk}.css`
         })
     );
 
@@ -24,8 +25,17 @@ export default function (mode: ModeStyle): webpack.Configuration {
         , {}
     );
 
+    const resolveLoader = {
+        modules: ['node_modules'],
+        extensions: ['.js', '.json'],
+        mainFields: ['loader', 'main'],
+        alias: pkg.buildCtx.extractCss ? {
+            'css-raw-loader': require.resolve(join(__dirname, "..", "css-raw-loader"))
+        } : {}
+    };
     return {
         entry: stylesEntryPoint,
+        resolveLoader,
         optimization: {
             minimizer: [
                 ...(pkg.buildCtx.optimizeCss ? [new OptimizeCSSAssetsPlugin(
@@ -47,7 +57,7 @@ export default function (mode: ModeStyle): webpack.Configuration {
                     test: /\.scss$/,
                     use: [
                         { loader: pkg.buildCtx.extractCss ? MiniCssExtractPlugin.loader : 'style-loader' },
-                        { loader: 'raw-loader' }, // FIXME(dmike16): check the correct behavoir when used in combination with MiniCssExtract
+                        { loader: pkg.buildCtx.extractCss ? 'css-raw-loader' : 'raw-loader' }, // FIXME(dmike16): check the correct behavoir when used in combination with MiniCssExtract
                         {
                             loader: 'postcss-loader'
                             , options: {
