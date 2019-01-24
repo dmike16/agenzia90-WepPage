@@ -36,7 +36,7 @@ Promise.resolve()
     .then(() => require(`../scripts/${scriptName}`).default(args, log))
     .then((exitCode) => process.exitCode = exitCode)
     .catch((err) => {
-        logger.error(err.stack);
+        log.error(err.stack);
         process.exitCode = -1;
     })
     .then(() => log.dispose());
