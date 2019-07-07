@@ -1,5 +1,4 @@
-Studio90srls Specifications
-===========================
+# Studio90srls Specifications
 
 ```json
 {
@@ -10,7 +9,7 @@ Studio90srls Specifications
     "name": "dmike",
     "email": "cipmiky@gmail.com"
   }
-}
+
 ```
 
 ## Architect
@@ -32,21 +31,22 @@ For this project we have
 
 The webpack bundle should contains the 
 
-- _babel-loader_ with _env_ and _react_ preset 
-- _typescript_ transformer plus _fork-ts-checker-webpack-plugin_ for ts type checking
-- _sass_ and _css_ loader for style
-- _terser_ and _css optimize_ plugin for code optimitazion 
-- _file-loader_ and _url-loader_ for image icon and fonts.
+* _babel-loader_ with _env_ and _react_ preset 
+* _typescript_ transformer plus _fork-ts-checker-webpack-plugin_ for ts type checking
+* _sass_ and _css_ loader for style
+* _terser_ and _css optimize_ plugin for code optimitazion 
+* _file-loader_ and _url-loader_ for image icon and fonts.
 
 Project dependecies
- - _react_ and _reactDom_
- - all the MDC component used.
+
+* _react_ and _reactDom_
+* all the MDC component used.
 
 ### Directory structure
 
 Follow the one proposed by react create app cli.
 
-```
+```shell
  +-- public // All static assets
  +-- src // tsx files and sass ones
 ```
