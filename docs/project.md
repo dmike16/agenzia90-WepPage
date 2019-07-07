@@ -50,3 +50,23 @@ Follow the one proposed by react create app cli.
  +-- public // All static assets
  +-- src // tsx files and sass ones
 ```
+
+## Ux Structure
+
+```scss
+$primary-color: //TODO
+$accent-color: //TODO
+```
+
+The first section will have a background photo name logo and location of the agency,
+plus a button that scroll the broswer to the second section.
+
+### Header
+
+For the header will use the *MDC - top_app_bar*, with primary color, logo and agency name.
+The possible actions will be:
+
+* open the cookie rules
+* switch to dark theme
+
+### Services Section
