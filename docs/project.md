@@ -70,3 +70,21 @@ The possible actions will be:
 * switch to dark theme
 
 ### Services Section
+
+We need to create a custom carosel component wit buttons.
+A mix of grid layout, fab button and card.
+
+### Story section
+
+It's a *MDC Card* component, with a lateral image (on the left) and
+a small description of the story.
+
+### Info lateral section
+
+It' a lateral bar that opens when click on the fab button with info icon.
+A simple section with info, time and contact card information.
+
+### Cookie section
+
+A *MCD dialog* that containts cookie policies and configuration option. Till now the only
+configurable and used cookies are the ones from google analytics. The user will have the possibility to disable it or enable it.
