@@ -54,8 +54,8 @@ Follow the one proposed by react create app cli.
 ## Ux Structure
 
 ```scss
-$primary-color: //TODO
-$accent-color: //TODO
+$primary-color: #0D48A1
+$accent-color: #02D609
 ```
 
 The first section will have a background photo name logo and location of the agency,
