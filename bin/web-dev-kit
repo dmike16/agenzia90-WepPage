@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-require('../lib/bootstrap-local');
+const tsst = require('@dual-lab/tsst');
+const path = require('path');
 // Extract root dir
 const minimist = require('minimist');
 // Extract script to run
@@ -8,32 +9,43 @@ const args = minimist(process.argv.slice(2));
 const scriptName = args._.pop() || 'info';
 
 const { filter } = require('rxjs/operators');
-const { Logger, LogLevel } = require('../tools/logger');
 const { gray, red, white, bold } = require('ansi-colors');
-const output = process.stdout;
-const log = new Logger('root');
-log.logging$
-    .pipe(filter(({ level }) => level <= LogLevel.INFO))
-    .subscribe((logE) => {
-        let color = gray;
-        switch (logE.level) {
-            case LogLevel.INFO:
-                color = white;
-                break;
-            case LogLevel.ERROR:
-                color = red;
-                break;
-            case LogLevel.FATAL:
-                color = (txt) => bold(red(txt));
-                break;
-            default:
-                break;
-        }
-        output.write(`${color(`[${LogLevel[logE.level]}]`)}: ${logE.message}\n`);
-    });
+
+let log = null;
 // Execute the main script passed as argument
 Promise.resolve()
-    .then(() => require(`../scripts/${scriptName}`).default(args, log))
+    .then(() => {
+        const root = path.resolve(__dirname, '..')
+        // install ts transpiler compiler
+        if (tsst.toolchain().withTsconfig(path.join(root, 'tsconfig.json')).install() !== 0) {
+            throw new Error('Failed installing typescript on the fly compiler');
+        } else {
+            const { Logger, LogLevel } = require('../tools/logger');
+            const output = process.stdout;
+            log = new Logger('root');
+            log.logging$
+                .pipe(filter(({ level }) => level <= LogLevel.INFO))
+                .subscribe((logE) => {
+                    let color = gray;
+                    switch (logE.level) {
+                        case LogLevel.INFO:
+                            color = white;
+                            break;
+                        case LogLevel.ERROR:
+                            color = red;
+                            break;
+                        case LogLevel.FATAL:
+                            color = (txt) => bold(red(txt));
+                            break;
+                        default:
+                            break;
+                    }
+                    output.write(`${color(`[${LogLevel[logE.level]}]`)}: ${logE.message}\n`);
+                });
+            return log;
+        }
+    })
+    .then((log) => require(`../scripts/${scriptName}`).default(args, log))
     .then((exitCode) => process.exitCode = exitCode)
     .catch((err) => {
         log.error(err.stack);

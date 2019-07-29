@@ -27,6 +27,7 @@
   },
   "license": "CC-BY-4.0",
   "devDependencies": {
+    "@dual-lab/tsst": "https://github.com/dual-lab/tsst/releases/download/v1.0.3/dual-lab-tsst-v1.0.3.tgz",
     "@types/node": "^10.12.18",
     "@types/webpack": "^4.4.22",
     "@types/webpack-merge": "^4.1.3",
