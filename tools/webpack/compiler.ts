@@ -23,7 +23,7 @@ export function webpackBundle(webpackConfig: webpack.Configuration): Promise<Web
                     } else {
                         const out: WebpackCompilationOutput = {};
                         if (stats.hasWarnings()) {
-                            out.warning = info.warnings;
+                            out.warning = info.warnings.join('');
                         }
                         out.result = stats.toString({ colors: true });
                         resolve(out);
