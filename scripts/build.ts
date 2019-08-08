@@ -3,7 +3,6 @@ import { WebpackCompilationOutput, webpackBundle } from "../tools/webpack/compil
 import common from "../tools/webpack/create-config/common";
 import assets from "../tools/webpack/create-config/assets";
 import styles from "../tools/webpack/create-config/styles";
-import typescript from "../tools/webpack/create-config/typescript";
 import broswer from "../tools/webpack/create-config/broswer"
 import pkg from "../lib/package";
 
@@ -17,7 +16,6 @@ export default async function (args: any, log: Logger) {
         common(mode)
         , assets(mode)
         , styles(mode)
-        , typescript(mode)
         , broswer(mode)
     ];
     try {

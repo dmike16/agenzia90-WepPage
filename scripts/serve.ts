@@ -2,7 +2,6 @@ import { Logger } from "../tools/logger";
 import common from "../tools/webpack/create-config/common";
 import assets from "../tools/webpack/create-config/assets";
 import styles from "../tools/webpack/create-config/styles";
-import typescript from "../tools/webpack/create-config/typescript";
 import broswer from "../tools/webpack/create-config/broswer"
 import serve from "../tools/webpack/create-config/serve";
 import { webpackServer } from "../tools/webpack/dev-serve";
@@ -22,7 +21,6 @@ export default async function (args: any, log: Logger) {
         common(mode)
         , assets(mode)
         , styles(mode)
-        , typescript(mode)
         , broswer(mode)
         , serve(cert, key)
     ];
