@@ -13,11 +13,13 @@ export default function (mode: ModeStyle): webpack.Configuration {
         context: entry.src, to: entry.dest, from: { glob: entry.glob, dot: true, ignore: entry.ignore }
     }));
 
-    if (assetsOptions.length > 0) extraPLugins.push(
-        new CopyWebpackPlugin(assetsOptions, {
-            ignore: ['.gitkeep', ' ** /.DS_Store', '**/Thumbs.db']
-        })
-    )
+    if (assetsOptions.length > 0) {
+        extraPLugins.push(
+            new CopyWebpackPlugin(assetsOptions, {
+                ignore: ['.gitkeep', ' ** /.DS_Store', '**/Thumbs.db']
+            })
+        );
+    }
 
     return {
         module: {

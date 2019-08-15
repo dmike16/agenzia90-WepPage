@@ -1,7 +1,7 @@
 import { resolve, join } from "path";
 
 const { version } = require('../package.json');
-const root = resolve(__dirname, '..')
+const root = resolve(__dirname, '..');
 
 export type PkgEnv = {
     name: string;
@@ -32,8 +32,8 @@ export default {
         config: 'tsconfig-app.json',
         target: 'es2015',
         entryPoints: {
-            main: './main.ts',
-            polyfill: './polyfill.ts'
+            main: './main.js',
+            polyfill: './polyfill.js'
         },
         styles: [{ name: 'app', path: './app/app.scss' }],
         assets: [],

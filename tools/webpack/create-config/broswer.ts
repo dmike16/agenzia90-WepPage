@@ -1,7 +1,6 @@
 import { ModeStyle } from "./utils";
 import * as webpack from "webpack";
 import pkg from "../../../lib/package";
-import { join } from "path";
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
@@ -50,7 +49,7 @@ export default function (mode: ModeStyle): webpack.Configuration {
                         test(module, chunks) {
                             const moduleName = module.nameForCondition ? module.nameForCondition() : '';
                             return /[\\/]node_modules[\\/]/.test(moduleName)
-                                && !chunks.some(({ name }: { name: string }) => name === 'polyfills')
+                                && !chunks.some(({ name }: { name: string }) => name === 'polyfills');
                         }
                     },
                     default: {

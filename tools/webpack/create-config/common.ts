@@ -15,9 +15,10 @@ export default function (mode: ModeStyle): webpack.Configuration {
             path: pkg.buildCtx.output.app, // taken from Env Object,
             publicPath: '/'
         },
-        devtool: sourceMapStyle(mode), // development :'cheap-module-eval-source-map' -- production:'cheap-module-source-map',
+        devtool: sourceMapStyle(mode),
+        // development :'cheap-module-eval-source-map' -- production:'cheap-module-source-map',
         resolve: {
-            extensions: ['.ts', '.js'],
+            extensions: ['.js', '.jsx'],
             mainFields: mainFiledsResolve(pkg.buildCtx.target)
         },
         module: {
@@ -37,5 +38,5 @@ export default function (mode: ModeStyle): webpack.Configuration {
             new webpack.ProgressPlugin()
         ]
 
-    }
+    };
 }
