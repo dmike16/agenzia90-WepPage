@@ -7,10 +7,9 @@ export default function (cert: string, key: string, hot = true): { devServer: an
             publicPath: '/',
             https: key && cert ? {
                 key: readFileSync(key),
-                cert: readFileSync(cert),
-                ca: readFileSync(key.replace(/\.key$/, '.pem'))
+                cert: readFileSync(cert)
             } : false,
             port: 4200
         }
-    }
+    };
 }
