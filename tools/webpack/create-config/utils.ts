@@ -3,7 +3,7 @@ const utilRegistry = {
         return {
             none: { file: '', chunk: '' },
             all: { chunk: `.[chunkhash:${len}]`, file: `.[hash:${len}]` }
-        }
+        };
     },
     mainFieldsResolve: {
         es5: ['browser', 'module', 'main'],

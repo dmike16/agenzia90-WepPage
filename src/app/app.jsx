@@ -16,7 +16,7 @@ export class Studio90srls extends React.Component<{}> {
     const rootContainer = (document.getElementById('main-container'): any);
     ReactDOM.render(<Studio90srls />, rootContainer);
     // Install service worker
-    // BroswerPlatform.intallSW('/studio90srls-sw.js')
+    intallSW('/studio90srls-sw.js');
   }
 
   render() {
@@ -34,16 +34,15 @@ export class Studio90srls extends React.Component<{}> {
   }
 }
 
-/*namespace BroswerPlatform {
-  export function intallSW(name: string) {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register(name,{scope: './'}).then(registration => {
-          console.log('SW registered: ', registration);
-        }).catch(registrationError => {
-          console.log('SW registration failed: ', registrationError);
-        });
+function intallSW(name: string) {
+  const serviceWorker = navigator.serviceWorker;
+  if (serviceWorker) {
+    window.addEventListener('load', () => {
+      serviceWorker.register(name, { scope: './' }).then(registration => {
+        console.log('SW registered: ', registration);
+      }).catch(registrationError => {
+        console.log('SW registration failed: ', registrationError);
       });
-    }
+    });
   }
-}*/
+}

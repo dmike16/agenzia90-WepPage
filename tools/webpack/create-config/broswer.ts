@@ -2,6 +2,7 @@ import { ModeStyle } from "./utils";
 import * as webpack from "webpack";
 import pkg from "../../../lib/package";
 
+const workbox = require("workbox-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
@@ -70,6 +71,10 @@ export default function (mode: ModeStyle): webpack.Configuration {
             new HtmlWebpackPlugin({
                 template: "index.html",
                 xhtml: true
+            }),
+            new workbox.InjectManifest({
+                swSrc: './src/studio90srls-sw.js',
+                swDest: 'studio90srls-sw.js'
             })
         ]
     };
