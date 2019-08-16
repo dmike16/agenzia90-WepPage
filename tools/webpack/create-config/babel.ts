@@ -30,7 +30,8 @@ export default function(mode: ModeStyle): webpack.Configuration {
                                     corejs: '3.2.1'
                                 }],
                             "@babel/preset-flow",
-                            "@babel/preset-react"]
+                            "@babel/preset-react"],
+                            plugins: ["@babel/plugin-syntax-dynamic-import"]
                     }
                 }
             ]
