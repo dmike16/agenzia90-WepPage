@@ -10,7 +10,7 @@ export default function (mode: ModeStyle): webpack.Configuration {
     const extraPLugins = [];
 
     const assetsOptions = pkg.buildCtx.assets.map((entry) => ({
-        context: entry.src, to: entry.dest, from: { glob: entry.glob, dot: true, ignore: entry.ignore }
+        context: entry.src, to: entry.dest, from: { glob: entry.glob, dot: true, ignore: entry.ignore || [] }
     }));
 
     if (assetsOptions.length > 0) {
@@ -39,7 +39,11 @@ export default function (mode: ModeStyle): webpack.Configuration {
                     use: [
                         {
                             loader: 'url-loader',
-                            options: { limit: 10000 }
+                            options:
+                            {
+                                limit: 10000,
+                                name: `[path][name][${hashStyle.file}].[ext]`
+                            }
                         }
                     ]
                 }

@@ -2,6 +2,9 @@
 
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
+
+import { TopAppBarFixedAdjust } from '@material/react-top-app-bar';
+import { Header } from './header/header';
 /**
  * Studio90srls main class
  */
@@ -11,26 +14,25 @@ export class Studio90srls extends React.Component<{}> {
       "font-size:1.5em;color:#1945D5;", "color:#14BD4C;font-size:1em;");
     if (!process.env.PROD) {
       console.log("%cDeveloping mode enabled\n",
-        "color:#a91839;font-size:1em;")
+        "color:#a91839;font-size:1em;");
+    } else {
+      // Install service worker
+      intallSW('/studio90srls-sw.js');
     }
     const rootContainer = (document.getElementById('main-container'): any);
     ReactDOM.render(<Studio90srls />, rootContainer);
-    // Install service worker
-    intallSW('/studio90srls-sw.js');
   }
 
   render() {
-    return <>
-      <header>
-        <h1>Hello Studio90srls</h1>
-      </header>
-      <main>
+    return (<>
+      <Header></Header>
+      <TopAppBarFixedAdjust>
         <p>Main content working in progress....</p>
-      </main>
+      </TopAppBarFixedAdjust>
       <footer>
         <h4>Bye Studio90srls</h4>
       </footer>
-    </>;
+    </>);
   }
 }
 

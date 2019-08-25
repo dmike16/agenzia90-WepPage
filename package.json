@@ -69,6 +69,9 @@
     "workbox-webpack-plugin": "^4.3.1"
   },
   "dependencies": {
+    "@material/react-button": "^0.15.0",
+    "@material/react-material-icon": "^0.15.0",
+    "@material/react-top-app-bar": "^0.15.0",
     "core-js": "3.2.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
