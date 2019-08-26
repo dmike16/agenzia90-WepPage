@@ -74,6 +74,7 @@
     "@material/react-top-app-bar": "^0.15.0",
     "core-js": "3.2.1",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-hot-loader": "^4.12.11"
   }
 }

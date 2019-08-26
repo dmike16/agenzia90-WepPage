@@ -2,7 +2,7 @@ import { Logger } from "../tools/logger";
 import common from "../tools/webpack/create-config/common";
 import assets from "../tools/webpack/create-config/assets";
 import styles from "../tools/webpack/create-config/styles";
-import broswer from "../tools/webpack/create-config/broswer"
+import broswer from "../tools/webpack/create-config/broswer";
 import serve from "../tools/webpack/create-config/serve";
 import { webpackServer } from "../tools/webpack/dev-serve";
 import babel from "../tools/webpack/create-config/babel";
@@ -24,7 +24,7 @@ export default async function (args: any, log: Logger) {
         , styles(mode)
         , broswer(mode)
         , babel(mode)
-        , serve(cert, key)
+        , serve(cert, key, mode === 'development')
     ];
 
     try {

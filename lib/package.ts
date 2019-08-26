@@ -32,7 +32,7 @@ export default {
         config: 'tsconfig-app.json',
         target: 'es2015',
         entryPoints: {
-            main: './main.js',
+            main: ['react-hot-loader/patch', './main.js'],
             polyfill: './polyfill.js'
         },
         styles: [{ name: 'app', path: './app/app.scss' }],

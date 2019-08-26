@@ -3,12 +3,13 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 
+import {hot} from 'react-hot-loader/root';
 import { TopAppBarFixedAdjust } from '@material/react-top-app-bar';
-import { Header } from './header/header';
+import Header from './header/header';
 /**
  * Studio90srls main class
  */
-export class Studio90srls extends React.Component<{}> {
+class Studio90srls extends React.Component<{}> {
   static bootstrap() {
     console.log("%c90 s r l s\n%cPratiche Auto\nTel 06 01905227",
       "font-size:1.5em;color:#1945D5;", "color:#14BD4C;font-size:1em;");
@@ -48,3 +49,5 @@ function intallSW(name: string) {
     });
   }
 }
+
+export default hot(Studio90srls);

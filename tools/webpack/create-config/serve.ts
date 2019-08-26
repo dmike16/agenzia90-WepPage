@@ -9,7 +9,8 @@ export default function (cert: string, key: string, hot = true): { devServer: an
                 key: readFileSync(key),
                 cert: readFileSync(cert)
             } : false,
-            port: 4200
+            port: 4200,
+            hot
         }
     };
 }

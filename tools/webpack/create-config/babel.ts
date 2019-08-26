@@ -31,7 +31,7 @@ export default function(mode: ModeStyle): webpack.Configuration {
                                 }],
                             "@babel/preset-flow",
                             "@babel/preset-react"],
-                            plugins: ["@babel/plugin-syntax-dynamic-import"]
+                            plugins: ["@babel/plugin-syntax-dynamic-import", "react-hot-loader/babel"]
                     }
                 }
             ]
