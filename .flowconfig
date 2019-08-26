@@ -3,6 +3,7 @@
 [include]
 
 [libs]
+tools/flow-type-defs
 
 [lints]
 
