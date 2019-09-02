@@ -19,7 +19,10 @@ export default function (mode: ModeStyle): webpack.Configuration {
         // development :'cheap-module-eval-source-map' -- production:'cheap-module-source-map',
         resolve: {
             extensions: ['.js', '.jsx'],
-            mainFields: mainFiledsResolve(pkg.buildCtx.target)
+            mainFields: mainFiledsResolve(pkg.buildCtx.target),
+            alias: mode === 'development' ? {
+                'react-dom': '@hot-loader/react-dom'
+            } : {}
         },
         module: {
             rules: [
