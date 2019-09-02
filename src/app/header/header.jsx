@@ -5,6 +5,7 @@ import TopAppBar, { TopAppBarRow, TopAppBarSection, TopAppBarTitle, TopAppBarIco
 import MaterialIcon from '@material/react-material-icon';
 import { Logo } from '../logo/logo';
 import {hot} from 'react-hot-loader/root';
+import i18n from './i18n';
 
 class Header extends React.Component<{}> {
     render() {
@@ -15,7 +16,7 @@ class Header extends React.Component<{}> {
                         <TopAppBarSection align='start'>
                             <Logo></Logo>
                             <TopAppBarTitle>
-                                Studio 90srls
+                                {i18n().title}
                             </TopAppBarTitle>
                         </TopAppBarSection>
                         <TopAppBarSection align='end' role='toolbar'>
