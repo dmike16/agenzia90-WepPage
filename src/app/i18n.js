@@ -7,6 +7,9 @@ function i18n(locale: string = 'it-IT'): any {
         },
         get header() {
             return currentLocaleObjet.header;
+        },
+        get themeSwitcher() {
+            return currentLocaleObjet.header.actions.themeSwitcher;
         }
     }
 }
@@ -21,6 +24,7 @@ const localeObject = {
                     label: "Preferenze cookie"
                 },
                 themeSwitcher: {
+                    label: "Cambio tema",
                     dark: {
                         ariaLabel: "Scuro",
                         label: "Scuro"

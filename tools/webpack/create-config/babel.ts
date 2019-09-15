@@ -2,7 +2,7 @@ import { ModeStyle } from "./utils";
 import * as webpack from "webpack";
 import pkg from "../../../lib/package";
 
-export default function(mode: ModeStyle): webpack.Configuration {
+export default function (mode: ModeStyle): webpack.Configuration {
     const enviromentAlias = pkg.buildCtx.enviromentModules.reduce<{ [key: string]: string }>((acc, m) => {
         acc[m.dev] = m.prod;
         return acc;
@@ -31,7 +31,10 @@ export default function(mode: ModeStyle): webpack.Configuration {
                                 }],
                             "@babel/preset-flow",
                             "@babel/preset-react"],
-                            plugins: ["@babel/plugin-syntax-dynamic-import", "react-hot-loader/babel"]
+                        plugins: [
+                            "@babel/plugin-syntax-dynamic-import",
+                            "@babel/plugin-proposal-class-properties",
+                            "react-hot-loader/babel"]
                     }
                 }
             ]
