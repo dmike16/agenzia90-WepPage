@@ -29,7 +29,7 @@ export default function (mode: ModeStyle): webpack.Configuration {
                     use: [
                         {
                             loader: 'file-loader',
-                            options: { name: `[path][name][${hashStyle.file}].[ext]` }
+                            options: { name: `[path][name]${hashStyle.file}.[ext]` }
                         }
                     ]
 
@@ -42,7 +42,7 @@ export default function (mode: ModeStyle): webpack.Configuration {
                             options:
                             {
                                 limit: 10000,
-                                name: `[path][name][${hashStyle.file}].[ext]`
+                                name: `[path][name]${hashStyle.file}.[ext]`
                             }
                         }
                     ]
