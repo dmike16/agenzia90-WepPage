@@ -3,13 +3,14 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 
-import {hot} from 'react-hot-loader/root';
+import { hot } from 'react-hot-loader/root';
 import { TopAppBarFixedAdjust } from '@material/react-top-app-bar';
 import Header from './header/header';
+import AppContext, { ApplicationContext, DEFAULT_APP_CONTEXT, THEME_LIGHT, THEME_DARK } from './app.context';
 /**
  * Studio90srls main class
  */
-class Studio90srls extends React.Component<{}> {
+class Studio90srls extends React.Component<{}, ApplicationContext> {
   static bootstrap() {
     console.log("%c90 s r l s\n%cPratiche Auto\nTel 06 01905227",
       "font-size:1.5em;color:#1945D5;", "color:#14BD4C;font-size:1em;");
@@ -24,16 +25,37 @@ class Studio90srls extends React.Component<{}> {
     ReactDOM.render(<Studio90srls />, rootContainer);
   }
 
+  switchTheme = () => {
+    this.setState((state) => ({
+      theme: state.theme === THEME_LIGHT ? THEME_DARK : THEME_LIGHT
+    }));
+  }
+
+  changeLocale = (locale: string) => {
+    this.setState({ locale });
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...DEFAULT_APP_CONTEXT,
+      switchTheme: this.switchTheme,
+      changeLocale: this.changeLocale
+    };
+  }
+
   render() {
-    return (<>
-      <Header></Header>
-      <TopAppBarFixedAdjust>
-        <p>Main content working in progress....</p>
-      </TopAppBarFixedAdjust>
-      <footer>
-        <h4>Bye Studio90srls</h4>
-      </footer>
-    </>);
+    return (
+      <AppContext.Provider value={this.state}>
+        <Header></Header>
+        <TopAppBarFixedAdjust>
+          <p>Main content working in progress....</p>
+        </TopAppBarFixedAdjust>
+        <footer>
+          <h4>Bye Studio90srls</h4>
+        </footer>
+      </AppContext.Provider>
+    );
   }
 }
 

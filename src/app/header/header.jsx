@@ -7,10 +7,10 @@ import { Logo } from '../logo/logo';
 import { hot } from 'react-hot-loader/root';
 import i18n from '../i18n';
 import ThemeSwitcher from '../theme-switcher/theme-switcher';
-
-const headerI18n = i18n().header;
+import AppContext, { ApplicationContext } from '../app.context';
 
 class Header extends React.Component<{}> {
+    static contextType = AppContext;
     render() {
         return (
             <>
@@ -19,19 +19,19 @@ class Header extends React.Component<{}> {
                         <TopAppBarSection align='start'>
                             <Logo></Logo>
                             <TopAppBarTitle>
-                                {i18n().title}
+                                {i18n(this.context.locale).title}
                             </TopAppBarTitle>
                         </TopAppBarSection>
                         <TopAppBarSection align='end' role='toolbar'>
                             <TopAppBarIcon actionItem tabIndex={0}>
                                 <MaterialIcon
-                                    aria-label={headerI18n.actions.cookie.ariaLabel}
+                                    aria-label={i18n(this.context.locale).header.actions.cookie.ariaLabel}
                                     hasRipple
-                                    icon='tune' title={headerI18n.actions.cookie.label}>
+                                    icon='tune' title={i18n(this.context.locale).header.actions.cookie.label}>
                                 </MaterialIcon>
                             </TopAppBarIcon>
                             <TopAppBarIcon actionItem tabIndex={0}>
-                                <ThemeSwitcher/>
+                                <ThemeSwitcher />
                             </TopAppBarIcon>
                         </TopAppBarSection>
                     </TopAppBarRow>
