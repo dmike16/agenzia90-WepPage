@@ -25,10 +25,11 @@ class Studio90srls extends React.Component<{}, ApplicationContext> {
     ReactDOM.render(<Studio90srls />, rootContainer);
   }
 
-  switchTheme = () => {
-    this.setState((state) => ({
-      theme: state.theme === THEME_LIGHT ? THEME_DARK : THEME_LIGHT
-    }));
+  switchTheme = (theme: THEME_LIGHT | THEME_DARK) => {
+    console.info('Changing theme', theme);
+    this.setState({
+      theme
+    });
   }
 
   changeLocale = (locale: string) => {

@@ -11,6 +11,9 @@ import AppContext, { ApplicationContext } from '../app.context';
 
 class Header extends React.Component<{}> {
     static contextType = AppContext;
+
+    context: ApplicationContext;
+    
     render() {
         return (
             <>

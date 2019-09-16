@@ -6,7 +6,7 @@ const DEFAULT_APP_CONTEXT = {
     locale: 'it-IT',
     theme: THEME_LIGHT,
     changeLocale(){},
-    switchTheme(){}
+    switchTheme(theme: THEME_LIGHT | THEME_DARK){}
 };
 
 export type ApplicationContext = typeof DEFAULT_APP_CONTEXT;

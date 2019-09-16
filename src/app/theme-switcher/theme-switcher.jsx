@@ -4,6 +4,7 @@ import { Corner } from '@material/react-menu-surface';
 import Menu, { MenuList, MenuListItem, MenuListItemText } from '@material/react-menu';
 import { hot } from 'react-hot-loader/root';
 import i18n from '../i18n';
+import AppContext, { ApplicationContext, THEME_LIGHT, THEME_DARK } from '../app.context';
 
 interface ThemeSwitcherState {
     open: Boolean;
@@ -11,6 +12,9 @@ interface ThemeSwitcherState {
 }
 
 class ThemeSwitcher extends React.Component<{}, ThemeSwitcherState> {
+    static contextType = AppContext;
+
+    context: ApplicationContext;
 
     setAnchorEl = (el: HTMLElement) => {
         this.state.anchor || this.setState({ anchor: el });
@@ -30,8 +34,8 @@ class ThemeSwitcher extends React.Component<{}, ThemeSwitcherState> {
     }
 
     render() {
-        const themeActions = i18n().themeSwitcher;
-        const themes = [{ key: 'light', label: themeActions.light.label }, { key: 'dark', label: themeActions.dark.label }];
+        const themeActions = i18n(this.context.locale).themeSwitcher;
+        const themes = [{ key: THEME_LIGHT, label: themeActions.light.label }, { key: THEME_DARK, label: themeActions.dark.label }];
 
         return (
             <div className='mdc-menu-surface--anchor' ref={this.setAnchorEl}>
@@ -44,11 +48,12 @@ class ThemeSwitcher extends React.Component<{}, ThemeSwitcherState> {
                 <Menu
                     open={this.state.open}
                     onClose={this.setCloseState}
+                    onSelected={(idx) => this.context.switchTheme(themes[idx].key)}
                     anchorCorner={Corner.BOTTOM_LEFT} anchorElement={this.state.anchor}>
                     <MenuList>
                         {themes.map((th) => (
-                            <MenuListItem  key={th.key}>
-                                <MenuListItemText primaryText={th.label} aria-label={th.label}/>
+                            <MenuListItem key={th.key}>
+                                <MenuListItemText primaryText={th.label} aria-label={th.label} />
                             </MenuListItem>
                         ))}
                     </MenuList>
