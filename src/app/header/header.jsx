@@ -8,6 +8,7 @@ import { hot } from 'react-hot-loader/root';
 import i18n from '../i18n';
 import ThemeSwitcher from '../theme-switcher/theme-switcher';
 import AppContext, { ApplicationContext } from '../app.context';
+import CookiePolicy from '../cookie-policy/cookie-policy';
 
 class Header extends React.Component<{}> {
     static contextType = AppContext;
@@ -27,11 +28,7 @@ class Header extends React.Component<{}> {
                         </TopAppBarSection>
                         <TopAppBarSection align='end' role='toolbar'>
                             <TopAppBarIcon actionItem tabIndex={0}>
-                                <MaterialIcon
-                                    aria-label={i18n(this.context.locale).header.actions.cookie.ariaLabel}
-                                    hasRipple
-                                    icon='tune' title={i18n(this.context.locale).header.actions.cookie.label}>
-                                </MaterialIcon>
+                                <CookiePolicy/>
                             </TopAppBarIcon>
                             <TopAppBarIcon actionItem tabIndex={0}>
                                 <ThemeSwitcher />
