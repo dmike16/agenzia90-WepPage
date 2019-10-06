@@ -9,7 +9,13 @@ function i18n(locale: string = 'it-IT'): any {
             return currentLocaleObjet.header;
         },
         get themeSwitcher() {
-            return currentLocaleObjet.header.actions.themeSwitcher;
+            return this.header.actions.themeSwitcher;
+        },
+        get footer() {
+            return currentLocaleObjet.footer;
+        },
+        get socials() {
+            return this.footer.links.socials;
         }
     }
 }
@@ -32,6 +38,18 @@ const localeObject = {
                     light: {
                         ariaLabel: "Chiaro",
                         label: "Chiaro"
+                    }
+                }
+            }
+        },
+        footer: {
+            links: {
+                socials:{
+                    google: {
+                        ariaLabel: "Pagina google"
+                    },
+                    facebook: {
+                        ariaLabel: "Pagina facebook"
                     }
                 }
             }

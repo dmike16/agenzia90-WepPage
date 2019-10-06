@@ -5,7 +5,10 @@ import * as React from 'react';
 
 import { hot } from 'react-hot-loader/root';
 import { TopAppBarFixedAdjust } from '@material/react-top-app-bar';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import Header from './header/header';
+import Footer from './footer/footer';
 import AppContext, { ApplicationContext, DEFAULT_APP_CONTEXT, THEME_LIGHT, THEME_DARK } from './app.context';
 /**
  * Studio90srls main class
@@ -21,6 +24,7 @@ class Studio90srls extends React.Component<{}, ApplicationContext> {
       // Install service worker
       intallSW('/studio90srls-sw.js');
     }
+    library.add(fab);
     const rootContainer = (document.getElementById('main-container'): any);
     ReactDOM.render(<Studio90srls />, rootContainer);
   }
@@ -52,9 +56,7 @@ class Studio90srls extends React.Component<{}, ApplicationContext> {
         <TopAppBarFixedAdjust>
           <p>Main content working in progress....</p>
         </TopAppBarFixedAdjust>
-        <footer>
-          <h4>Bye Studio90srls</h4>
-        </footer>
+        <Footer></Footer>
       </AppContext.Provider>
     );
   }
