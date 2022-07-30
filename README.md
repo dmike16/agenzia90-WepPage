@@ -7,7 +7,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="docs/images/logo.svg" alt="Logo" width="500" height="100">
+    <img src="packages/app/docs/images/logo.svg" alt="Logo" width="500" height="100">
   </a>
 
 <h3 align="center">Studio90srls</h3>
