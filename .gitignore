@@ -65,3 +65,11 @@ ssl.location.json
 #js in src
 dist/
 build/
+server.key
+server.crt
+packages/**/build
+packages/**/*.js
+packages/**/*.tsbuildinfo
+packages/**/*.d.ts
+packages/**/*.map
+*.tsbuildinfo
