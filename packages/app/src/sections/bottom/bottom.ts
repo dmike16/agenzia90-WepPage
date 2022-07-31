@@ -1,5 +1,6 @@
 import { css, LitElement, html, CSSResultGroup } from "lit";
 import { customElement } from "lit/decorators.js";
+import { allCSS } from "../common/all";
 import { parallaxCSS } from "../common/parallax-style";
 import { sectionsCss } from "../common/section-style";
 
@@ -8,6 +9,7 @@ export class SWCBottomComponent extends LitElement {
   static override styles?: CSSResultGroup | undefined = [
     sectionsCss(),
     parallaxCSS(),
+    allCSS(),
     css`
       :host {
         color: var(--mdc-theme-on-surface);

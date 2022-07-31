@@ -10,12 +10,14 @@ import { css, CSSResultGroup, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 import { infoDecorator } from "./info_decorator";
 import { darkTheme } from "./themeing";
+import { allCSS } from "./sections/common/all";
 
 @customElement("swc-root")
 @infoDecorator
 export class SWCRootComponent extends LitElement {
   static override styles: CSSResultGroup = [
     darkTheme(),
+    allCSS(),
     css`
       main {
         min-height: 100vh;

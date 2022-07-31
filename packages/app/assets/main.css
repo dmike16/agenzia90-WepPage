@@ -7,14 +7,20 @@ html {
 }
 
 body {
-  font-family: "Sans", sans-serif;
-  font-size: 1.2em;
+  font-family: var(--mdc-typography-font-family);
+  font-size: var(--mdc-typography-body1-font-size);
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
 }
 
 html {
@@ -25,4 +31,7 @@ html {
   --mdc-theme-on-primary: #000000;
   --mdc-theme-on-secondary: #000000;
   --mdc-theme-on-surface: #ffffff;
+  --mdc-typography-font-family: "Sans", sans-serif;
+  --mdc-typography-body1-font-size: 1.2rem;
+  --mdc-typography-headline-font-size: 3.2rem;
 }
