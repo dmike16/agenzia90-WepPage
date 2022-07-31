@@ -2,6 +2,9 @@
 
 import "@studio90srls/swc-container";
 import "@studio90srls/swc-header";
+import "./sections/top/top";
+import "./sections/middle/middle";
+import "./sections/bottom/bottom";
 
 import { css, CSSResultGroup, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
@@ -14,8 +17,15 @@ export class SWCRootComponent extends LitElement {
   static override styles: CSSResultGroup = [
     darkTheme(),
     css`
-      :host {
-        color: blue;
+      main {
+        min-height: 100vh;
+        width: 100%;
+        perspective: 2px;
+        transform-style: preserve-3d;
+      }
+      swc-header {
+        --swc-custom-bg: transparent;
+        --swc-custom-color: var(--mdc-theme-on-surface);
       }
     `,
   ];
@@ -25,10 +35,11 @@ export class SWCRootComponent extends LitElement {
       <swc-container>
         <swc-header>
           <main>
-            <section>TODO Replace with main compoents</section>
+            <swc-top></swc-top>
+            <swc-middle></swc-middle>
+            <swc-bottom></swc-bottom>
           </main>
         </swc-header>
-        <footer>TODO Replace with a component</footer>
       </swc-container>
     `;
   }

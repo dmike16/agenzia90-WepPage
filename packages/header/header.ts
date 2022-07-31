@@ -1,10 +1,19 @@
 import "@material/mwc-top-app-bar";
 
-import { LitElement, html } from "lit";
+import { css, LitElement, html, PropertyValueMap, CSSResultGroup } from "lit";
 import { customElement } from "lit/decorators.js";
 
 @customElement("swc-header")
 export class SWCHeader extends LitElement {
+  static override styles: CSSResultGroup = [
+    css`
+      mwc-top-app-bar {
+        --mdc-theme-primary: var(--swc-custom-bg);
+        --mdc-theme-on-primary: var(--swc-custom-color);
+      }
+    `,
+  ];
+
   override render(): unknown {
     return html`
       <mwc-top-app-bar>
@@ -13,6 +22,14 @@ export class SWCHeader extends LitElement {
         <slot></slot>
       </mwc-top-app-bar>
     `;
+  }
+
+  protected override firstUpdated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    super.firstUpdated(_changedProperties);
+    this.renderRoot.querySelector("mwc-top-app-bar")!.scrollTarget =
+      document.body;
   }
 }
 
