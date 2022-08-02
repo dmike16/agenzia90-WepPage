@@ -69,6 +69,7 @@ server.key
 server.crt
 packages/**/build
 packages/**/*.js
+!packages/app/rollup.config.js
 packages/**/*.tsbuildinfo
 packages/**/*.d.ts
 packages/**/*.map
