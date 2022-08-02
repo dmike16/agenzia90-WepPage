@@ -2,7 +2,7 @@ import { css, CSSResultGroup } from "lit";
 
 export function parallaxCSS(): CSSResultGroup {
   return css`
-    .parallax::before {
+    .parallax::after {
       content: " ";
       position: absolute;
       top: 0;
@@ -10,26 +10,24 @@ export function parallaxCSS(): CSSResultGroup {
       bottom: 0;
       left: 0;
       display: block;
-      transform: translateZ(-1px) scale(2);
+      transform: translateZ(-2px) scale(2);
       z-index: -1;
       transform-origin: center center 0;
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
-      min-height: 100vh;
+      background-attachment: fixed;
+      height: 100%;
     }
 
-    .bg::before {
+    .bg::after {
       background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url("docs/images/infinite-loop-01.jpg");
     }
 
-    .bg2::before {
+    .bg2::after {
       background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url("docs/images/infinite-loop-02.jpg");
-    }
-    :host {
-      transform-style: inherit;
     }
   `;
 }

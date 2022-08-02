@@ -4,18 +4,13 @@ export function sectionsCss(): CSSResultGroup {
   return css`
     section {
       box-sizing: border-box;
-      transform-style: inherit;
+      transform-style: preserve-3d;
       position: relative;
-      min-height: 100vh;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
-    }
-
-    section,
-    section::before {
-      background: 50% 50% / cover;
     }
   `;
 }

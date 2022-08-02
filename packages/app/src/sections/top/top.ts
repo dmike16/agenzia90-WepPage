@@ -5,6 +5,8 @@ import { headlineCSS } from "../common/headline";
 import { parallaxCSS } from "../common/parallax-style";
 import { sectionsCss } from "../common/section-style";
 
+import "@material/mwc-icon-button";
+
 @customElement("swc-top")
 export class SWCTopComponent extends LitElement {
   static override styles?: CSSResultGroup | undefined = [
@@ -31,6 +33,19 @@ export class SWCTopComponent extends LitElement {
       .subtitle {
         text-shadow: 2px 2px 2px #333;
       }
+
+      .action {
+        height: 47vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        color: var(--mdc-theme-primary);
+      }
+
+      mwc-icon-button {
+        --mdc-icon-button-size: 6rem;
+        --mdc-icon-size: 4rem;
+      }
     `,
   ];
 
@@ -44,8 +59,21 @@ export class SWCTopComponent extends LitElement {
             professionalità
           </h4>
         </div>
+        <div class="action">
+          <mwc-icon-button
+            icon="arrow_drop_down_circle"
+            @click="${this._scrollToNext}"
+          ></mwc-icon-button>
+        </div>
       </section>
     `;
+  }
+
+  private _scrollToNext(): void {
+    window.scrollBy({
+      top: window.innerHeight,
+      behavior: "smooth",
+    });
   }
 }
 

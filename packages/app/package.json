@@ -7,6 +7,8 @@
   "dependencies": {
     "lit": "^2.1.3",
     "loglevel": "^1.8.0",
+    "@material/mwc-button": "^0.26.1",
+    "@material/mwc-icon-button": "^0.26.1",
     "@studio90srls/swc-base": "*",
     "@studio90srls/swc-container": "*",
     "@studio90srls/swc-header": "*"

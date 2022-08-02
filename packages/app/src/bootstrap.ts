@@ -20,10 +20,8 @@ export class SWCRootComponent extends LitElement {
     allCSS(),
     css`
       main {
-        min-height: 100vh;
+        height: 93vh;
         width: 100%;
-        perspective: 2px;
-        transform-style: preserve-3d;
       }
       swc-header {
         --swc-custom-bg: transparent;
