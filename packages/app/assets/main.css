@@ -21,8 +21,11 @@ body {
   box-sizing: border-box;
 }
 
-html {
+:root {
   --mdc-typography-font-family: "Sans", sans-serif;
   --mdc-typography-body1-font-size: 1.2rem;
-  --mdc-typography-headline-font-size: 3.2rem;
+  --mdc-typography-headline1-font-size: 3.2rem;
+  --mdc-typography-headline1-font-weight: 300;
+  --mdc-typography-headline4-font-size: 1.76rem;
+  --mdc-typography-headline4-font-weight: 300;
 }

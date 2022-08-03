@@ -16,7 +16,18 @@ export function headlineCSS() {
     }
 
     h1 {
-      font-size: var(--mdc-typography-headline-font-size);
+      font-size: var(--mdc-typography-headline1-font-size);
+      font-weight: var(--mdc-typography-headline1-font-weight);
+    }
+
+    h4 {
+      font-size: var(--mdc-typography-headline4-font-size);
+      font-weight: var(--mdc-typography-headline4-font-weight);
+    }
+
+    h5 {
+      font-size: var(--mdc-typography-headline5-font-size);
+      font-weight: var(--mdc-typography-headline5-font-weight);
     }
   `;
 }
