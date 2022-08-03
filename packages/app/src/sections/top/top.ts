@@ -23,10 +23,11 @@ export class SWCTopComponent extends LitElement {
       <section class="parallax bg">
         <div class="title-wrapper">
           <h1 class="title">Studio90srls</h1>
-          <h4 class="subtitle">
+          <h4 class="subtitle">Studio di consulenza automobilistica</h4>
+          <h5 class="subtitle">
             Facciamo di tutto per farti risparmiare tempo con la nostra
             professionalità
-          </h4>
+          </h5>
         </div>
         <div class="action">
           <mwc-icon-button

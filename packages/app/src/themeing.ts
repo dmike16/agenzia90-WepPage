@@ -16,8 +16,8 @@ export function darkTheme(): CSSResultGroup {
       --mdc-typography-headline1-font-weight: 300;
       --mdc-typography-headline4-font-size: 1.63rem;
       --mdc-typography-headline4-font-weight: 300;
-      --mdc-typography-headline4-font-size: 1.44rem;
-      --mdc-typography-headline4-font-weight: 300;
+      --mdc-typography-headline5-font-size: 1.34rem;
+      --mdc-typography-headline5-font-weight: 300;
     }
   `;
 }

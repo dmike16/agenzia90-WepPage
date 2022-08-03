@@ -18,6 +18,7 @@ export function stylesCSS(): CSSResultGroup {
     }
 
     .subtitle {
+      margin-top: 0.3rem;
       text-shadow: 2px 2px 2px #333;
     }
 
