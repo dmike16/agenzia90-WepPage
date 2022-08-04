@@ -3,7 +3,7 @@ import { css, CSSResultGroup } from "lit";
 export function stylesCSS(): CSSResultGroup {
   return css`
     footer {
-      height: 50%;
+      min-height: 50%;
       clear: both;
       margin-top: 0px;
       margin-left: auto;
@@ -69,6 +69,48 @@ export function stylesCSS(): CSSResultGroup {
       box-sizing: border-box;
       padding: 0px 12px;
       transition: background-color 0.1s ease-in-out 0s;
+    }
+    .link-utils-toolbar mwc-button,
+    .friends-toolbar mwc-button {
+      --mdc-theme-primary: var(--mdc-theme-secondary);
+    }
+
+    .sermetra,
+    .unasca,
+    .cna,
+    .motorizzazione,
+    .generali,
+    .moto-centro-marconi,
+    .you-service {
+      background-image: url(docs/images/friendLogo.png);
+    }
+
+    .sermetra {
+      background-position: -8.6px -131px;
+    }
+
+    .unasca {
+      background-position: -9.9px -169.9px;
+    }
+
+    .cna {
+      background-position: -9.9px -206px;
+    }
+
+    .motorizzazione {
+      background-position: -6.6px -241px;
+    }
+
+    .generali {
+      background-position: -1.3px -30px;
+    }
+
+    .moto-centro-marconi {
+      background-position: -1.2px -94px;
+    }
+
+    .you-service {
+      background-position: -1.3px 4px;
     }
   `;
 }
