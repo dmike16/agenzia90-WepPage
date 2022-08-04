@@ -1,4 +1,4 @@
-import { css, LitElement, html, CSSResultGroup } from "lit";
+import { LitElement, html, CSSResultGroup } from "lit";
 import { customElement } from "lit/decorators.js";
 import { allCSS } from "../common/all";
 import { headlineCSS } from "../common/headline";
@@ -6,6 +6,7 @@ import { parallaxCSS } from "../common/parallax-style";
 import { sectionsCss } from "../common/section-style";
 
 import "@material/mwc-icon-button";
+import { stylesCSS } from "./top-styles";
 
 @customElement("swc-top")
 export class SWCTopComponent extends LitElement {
@@ -14,39 +15,7 @@ export class SWCTopComponent extends LitElement {
     parallaxCSS(),
     headlineCSS(),
     allCSS(),
-    css`
-      :host {
-        color: var(--mdc-theme-on-surface);
-      }
-      .title-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: -3rem;
-      }
-
-      .title {
-        text-shadow: 2px 2px 2px #333;
-      }
-
-      .subtitle {
-        text-shadow: 2px 2px 2px #333;
-      }
-
-      .action {
-        height: 47vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        color: var(--mdc-theme-primary);
-      }
-
-      mwc-icon-button {
-        --mdc-icon-button-size: 6rem;
-        --mdc-icon-size: 4rem;
-      }
-    `,
+    stylesCSS(),
   ];
 
   override render(): unknown {
@@ -54,10 +23,11 @@ export class SWCTopComponent extends LitElement {
       <section class="parallax bg">
         <div class="title-wrapper">
           <h1 class="title">Studio90srls</h1>
-          <h4 class="subtitle">
+          <h4 class="subtitle">Studio di consulenza automobilistica</h4>
+          <h5 class="subtitle">
             Facciamo di tutto per farti risparmiare tempo con la nostra
             professionalità
-          </h4>
+          </h5>
         </div>
         <div class="action">
           <mwc-icon-button
