@@ -1,4 +1,4 @@
-import { LitElement, html, CSSResultGroup } from "lit";
+import { css, LitElement, html, CSSResultGroup } from "lit";
 import { customElement } from "lit/decorators.js";
 import { allCSS } from "../common/all";
 import { noParallaxCSS } from "../common/parallax-style";
@@ -10,6 +10,11 @@ export class SWCMiddleComponent extends LitElement {
     sectionsCss(),
     noParallaxCSS(),
     allCSS(),
+    css`
+      :host {
+        color: var(--mdc-theme-on-surface);
+      }
+    `,
   ];
 
   override render(): unknown {

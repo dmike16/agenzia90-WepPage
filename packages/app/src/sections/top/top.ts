@@ -5,7 +5,7 @@ import { headlineCSS } from "../common/headline";
 import { parallaxCSS } from "../common/parallax-style";
 import { sectionsCss } from "../common/section-style";
 
-import "@material/mwc-icon-button";
+import "@material/mwc-icon-button/mwc-icon-button";
 import { stylesCSS } from "./top-styles";
 
 @customElement("swc-top")

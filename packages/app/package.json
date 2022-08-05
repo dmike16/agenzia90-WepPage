@@ -10,6 +10,7 @@
     "@material/mwc-button": "^0.26.1",
     "@material/mwc-icon-button": "^0.26.1",
     "@material/mwc-fab": "^0.26.1",
+    "@material/mwc-list": "^0.26.1",
     "@studio90srls/swc-base": "*",
     "@studio90srls/swc-container": "*",
     "@studio90srls/swc-header": "*"
