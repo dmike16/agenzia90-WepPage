@@ -39,6 +39,12 @@ export class SWCBottomComponent extends LitElement {
       .contact-text p {
         margin-top: 0;
       }
+
+      mwc-list-item {
+        --mdc-theme-text-primary-on-background: var(--mdc-theme-on-surface);
+        --mdc-theme-text-icon-on-background: var(--mdc-theme-on-surface);
+        --mdc-theme-text-secondary-on-background: var(--mdc-theme-on-surface);
+      }
     `,
   ];
 

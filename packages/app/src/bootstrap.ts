@@ -21,14 +21,12 @@ export class SWCRootComponent extends LitElement {
     allCSS(),
     css`
       main {
-        height: 93vh;
+        height: 100vh;
         width: 100%;
-        perspective: 2px;
-        transform-style: preserve-3d;
       }
       swc-header {
-        --swc-custom-bg: transparent;
-        --swc-custom-color: var(--mdc-theme-on-surface);
+        --swc-custom-bg: var(--mdc-theme-primary);
+        --swc-custom-color: var(--mdc-theme-on-primary);
       }
     `,
   ];

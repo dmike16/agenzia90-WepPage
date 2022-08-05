@@ -10,7 +10,6 @@ body {
   font-size: var(--mdc-typography-body1-font-size);
   margin: 0;
   padding: 0;
-  perspective: 2px;
   overflow-x: hidden;
   overflow-y: auto;
 }
