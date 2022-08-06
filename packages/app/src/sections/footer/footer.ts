@@ -4,16 +4,14 @@ import { allCSS } from "../common/all";
 import { headlineCSS } from "../common/headline";
 import { noParallaxCSS } from "../common/parallax-style";
 
-import "@material/mwc-button";
-import "@material/mwc-fab";
+import "@material/mwc-button/mwc-button";
+import "@material/mwc-fab/mwc-fab";
 import { linkCSS } from "../common/link";
-import { darkTheme } from "../../themeing";
 import { stylesCSS } from "./footer-styles";
 
 @customElement("swc-footer")
 export class SWCFooterComponent extends LitElement {
   static override styles?: CSSResultGroup = [
-    darkTheme(),
     noParallaxCSS(),
     headlineCSS(),
     allCSS(),

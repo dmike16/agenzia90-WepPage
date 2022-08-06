@@ -10,7 +10,6 @@ export function parallaxCSS(): CSSResultGroup {
       bottom: 0;
       left: 0;
       display: block;
-      transform: translateZ(-2px) scale(2);
       z-index: -1;
       transform-origin: center center 0;
       background-position: center;
