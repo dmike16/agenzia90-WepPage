@@ -6,6 +6,7 @@ import polyFillsLoader from "@web/rollup-plugin-polyfills-loader";
 import summary from "rollup-plugin-summary";
 import { getBabelOutputPlugin } from "@rollup/plugin-babel";
 import path from "path";
+import { copy } from "@web/rollup-plugin-copy";
 
 // Html plugin configuration
 const htmlPlugin = html({
@@ -13,12 +14,13 @@ const htmlPlugin = html({
   flattenOutput: false,
   strictCSPInlineScripts: true,
 });
+const rootDir = path.join(process.cwd(), "..", "..");
 export default {
   input: "./index.html",
   plugins: [
     htmlPlugin,
     resolve({
-      rootDir: path.join(process.cwd(), "..", ".."),
+      rootDir,
     }), // Bare module resolver path
     minifyHtml(), // minifyHtml template litterals
     terser({
@@ -52,7 +54,9 @@ export default {
       },
     }),
     summary(),
-    // TODO: add copy images plugin
+    copy({
+      patterns: "docs/images/*.{svg,png,jpg,ico}",
+    }),
   ],
   output: [
     {
