@@ -11,9 +11,13 @@
     "@material/mwc-icon-button": "^0.26.1",
     "@material/mwc-fab": "^0.26.1",
     "@material/mwc-list": "^0.26.1",
+    "@material/mwc-tab": "^0.26.1",
+    "@material/mwc-tab-bar": "^0.26.1",
+    "@material/mwc-tab-scroller": "^0.26.1",
     "@studio90srls/swc-base": "*",
     "@studio90srls/swc-container": "*",
-    "@studio90srls/swc-header": "*"
+    "@studio90srls/swc-header": "*",
+    "@studio90srls/swc-card": "*"
   },
   "scripts": {
     "clean": "tsc --build --clean",

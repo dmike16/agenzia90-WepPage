@@ -1,0 +1,17 @@
+{
+  "name": "@studio90srls/swc-card",
+  "version": "3.0.0",
+  "description": "Card web element",
+  "main": "card.js",
+  "module": "card.js",
+  "author": "dmike16",
+  "license": "CC-BY-4.0",
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "build": "tsc --build tsconfig.json",
+    "build:watch": "tsc --build tsconfig.json --watch"
+  },
+  "dependencies": {
+    "lit": "^2.1.3"
+  }
+}
