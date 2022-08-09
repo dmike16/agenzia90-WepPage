@@ -25,8 +25,9 @@ export class SWCCard extends LitElement {
         border-radius: 5px;
         border: 1px solid rgb(224, 224, 224);
         background-color: var(--mdc-theme-surface);
-        box-shadow: rgb(255 255 255) 4px 4px 0px -1px, rgb(189 189 189) 4px 4px,
-          rgb(255 255 255) 8px 8px 0px -1px, rgb(189 189 189) 8px 8px;
+        box-shadow: var(--mdc-theme-surface) 4px 4px 0px -1px,
+          rgb(189 189 189) 4px 4px, var(--mdc-theme-surface) 8px 8px 0px -1px,
+          rgb(189 189 189) 8px 8px;
       }
 
       .card-container {
@@ -65,10 +66,11 @@ export class SWCCard extends LitElement {
         box-sizing: border-box;
         margin: 4px 0px 0px;
         min-width: 0px;
-        background-color: var(--mdc-theme-surface);
+        background-color: var(--mdc-theme-primary);
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
         padding: 4px 8px;
+        color: var(--mdc-theme-on-secondary);
       }
 
       .header ::slotted(*) {
