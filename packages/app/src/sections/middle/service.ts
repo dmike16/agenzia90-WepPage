@@ -10,43 +10,43 @@ export class Services {
       "Passaggi",
       "Rilascio CDP ed Etichetta",
       "ACI Copernico Service",
-      "hub"
+      "design_services"
     );
     const patenti = new Services(
       "Patenti",
       "Rinnovo Patenti",
       "MTCT Services",
-      "support"
+      "design_services"
     );
     const visure = new Services(
       "Visure",
       "Visure Motorizzazione e PRA",
       "Sermetra Net Service",
-      "batch_prediction"
+      "design_services"
     );
     const imma = new Services(
       "Immatricolazioni",
       "Locali ed Esteri",
       "Sermetra Net Service",
-      "build"
+      "design_services"
     );
     const radiozioni = new Services(
       "Radiazioni",
       "Servizio Radiazioni",
       "Sermetra Net Service",
-      "supervisor_account"
+      "design_services"
     );
     const duplicati = new Services(
       "Duplicati",
       "Carte di Circolazioni e CDP",
       "Sermetra Net Service",
-      "mediation"
+      "design_services"
     );
     const licenza = new Services(
       "Licenza",
       "Conto Proprio e Terzi",
       "Sermetra Net Service",
-      "waterfall_chart"
+      "design_services"
     );
 
     return [
