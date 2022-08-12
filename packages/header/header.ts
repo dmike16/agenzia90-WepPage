@@ -14,7 +14,7 @@ export class SWCHeader extends LitElement {
     `,
   ];
 
-  override render(): unknown {
+  protected override render(): unknown {
     return html`
       <mwc-top-app-bar>
         <img src="docs/images/logo.svg" alt="logo" slot="navigationIcon" />

@@ -2,7 +2,8 @@ import { css, CSSResultGroup } from "lit";
 
 export function darkTheme(): CSSResultGroup {
   return css`
-    swc-container {
+    swc-header,
+    main {
       --mdc-theme-primary: #80cbc4;
       --mdc-theme-secondary: #a5d6a7;
       --mdc-theme-surface: #121212;
