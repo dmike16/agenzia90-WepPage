@@ -2,6 +2,7 @@
 
 import "@studio90srls/swc-container";
 import "@studio90srls/swc-header";
+import "@studio90srls/swc-cookie-alert";
 import "./sections/top/top";
 import "./sections/middle/middle";
 import "./sections/bottom/bottom";
@@ -12,6 +13,7 @@ import { customElement } from "lit/decorators.js";
 import { infoDecorator } from "./info_decorator";
 import { darkTheme } from "./themeing";
 import { allCSS } from "./sections/common/all";
+import { CookieController } from "./cookie/cookie-controller";
 
 @customElement("swc-root")
 @infoDecorator
@@ -27,6 +29,8 @@ export class SWCRootComponent extends LitElement {
       swc-header {
         --swc-custom-bg: var(--mdc-theme-primary);
         --swc-custom-color: var(--mdc-theme-on-primary);
+        --mdc-dialog-heading-ink-color: var(--mdc-theme-on-surface);
+        --mdc-dialog-content-ink-color: var(--mdc-theme-on-surface);
       }
     `,
   ];
@@ -40,9 +44,19 @@ export class SWCRootComponent extends LitElement {
             <swc-middle></swc-middle>
             <swc-bottom></swc-bottom>
             <swc-footer></swc-footer>
+            <swc-cookie-alert
+              ?open=${!this._cookieController.isCookieAlterViewed}
+              @viewed=${this._setViewdCookie}
+            ></swc-cookie-alert>
           </main>
         </swc-header>
       </swc-container>
     `;
   }
+
+  private _setViewdCookie() {
+    this._cookieController.setCookieAlterViewd();
+  }
+
+  private _cookieController: CookieController = new CookieController(this);
 }

@@ -35,7 +35,7 @@ export function noParallaxCSS(): CSSResultGroup {
   return css`
     .no-parallax {
       background-color: var(--mdc-theme-background);
-      z-index: 999;
+      z-index: 5;
     }
   `;
 }
