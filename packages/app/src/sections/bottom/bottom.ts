@@ -7,6 +7,7 @@ import { sectionsCss } from "../common/section-style";
 import "@material/mwc-list/mwc-list";
 import "@material/mwc-list/mwc-list-item";
 import "@material/mwc-icon/mwc-icon";
+import { md } from "../../media-query/media-query";
 
 @customElement("swc-bottom")
 export class SWCBottomComponent extends LitElement {
@@ -46,6 +47,11 @@ export class SWCBottomComponent extends LitElement {
         --mdc-theme-text-secondary-on-background: var(--mdc-theme-on-surface);
       }
     `,
+    md(css`
+      section {
+        align-items: center;
+      }
+    `),
   ];
 
   override render(): unknown {

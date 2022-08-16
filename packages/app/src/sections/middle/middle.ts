@@ -2,6 +2,7 @@ import { css, LitElement, html, CSSResultGroup } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { repeat } from "lit/directives/repeat.js";
 import { choose } from "lit/directives/choose.js";
+import { cache } from "lit/directives/cache.js";
 import { allCSS } from "../common/all";
 import { noParallaxCSS } from "../common/parallax-style";
 import { sectionsCss } from "../common/section-style";
@@ -11,6 +12,8 @@ import "@material/mwc-tab";
 import "@material/mwc-tab-bar";
 import { headlineCSS } from "../common/headline";
 import { Services } from "./service";
+import { MediaQueryController } from "../../media-query/media-query.controller";
+import { sm } from "../../media-query/media-query";
 
 @customElement("swc-middle")
 export class SWCMiddleComponent extends LitElement {
@@ -22,6 +25,10 @@ export class SWCMiddleComponent extends LitElement {
     css`
       :host {
         color: var(--mdc-theme-on-surface);
+      }
+
+      section {
+        align-items: unset;
       }
 
       swc-card {
@@ -84,30 +91,61 @@ export class SWCMiddleComponent extends LitElement {
         margin: 0;
         padding: 0;
       }
+
+      .services-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        grid-auto-rows: minmax(100px, auto);
+      }
     `,
+    sm(css`
+      section {
+        align-items: center;
+      }
+    `),
   ];
 
   protected override render(): unknown {
     return html`
       <section class="no-parallax">
         <h2>I nostri servizi</h2>
-        <mwc-tab-bar
-          activeIndex="0"
-          @MDCTabBar:activated=${this._onTabSelected}
-        >
-          ${repeat(this._services, (v) => v.name, this._mattab)}
-        </mwc-tab-bar>
-        ${choose(this._indexTabSelected, [
-          [0, () => this._buildSericeCard(this._services[0])],
-          [1, () => this._buildSericeCard(this._services[1])],
-          [2, () => this._buildSericeCard(this._services[2])],
-          [3, () => this._buildSericeCard(this._services[3])],
-          [4, () => this._buildSericeCard(this._services[4])],
-          [5, () => this._buildSericeCard(this._services[5])],
-          [6, () => this._buildSericeCard(this._services[6])],
-          [7, () => this._buildSericeCard(this._services[7])],
-        ])}
+        ${cache(
+          this._mediaQueryController.isMobile
+            ? this._mobileView()
+            : this._desktopView()
+        )}
       </section>
+    `;
+  }
+
+  private _mobileView(): unknown {
+    return html`
+      <mwc-tab-bar activeIndex="0" @MDCTabBar:activated=${this._onTabSelected}>
+        ${repeat(this._services, (v) => v.name, this._mattab)}
+      </mwc-tab-bar>
+      ${choose(this._indexTabSelected, [
+        [0, () => this._buildSericeCard(this._services[0])],
+        [1, () => this._buildSericeCard(this._services[1])],
+        [2, () => this._buildSericeCard(this._services[2])],
+        [3, () => this._buildSericeCard(this._services[3])],
+        [4, () => this._buildSericeCard(this._services[4])],
+        [5, () => this._buildSericeCard(this._services[5])],
+        [6, () => this._buildSericeCard(this._services[6])],
+        [7, () => this._buildSericeCard(this._services[7])],
+      ])}
+    `;
+  }
+
+  private _desktopView(): unknown {
+    return html`
+      <div class="services-container">
+        ${repeat(
+          this._services,
+          (v) => v.name,
+          (s) => this._buildCardColumn(s)
+        )}
+      </div>
     `;
   }
 
@@ -139,6 +177,14 @@ export class SWCMiddleComponent extends LitElement {
     `;
   }
 
+  private _buildCardColumn(s: Services): unknown {
+    return html`
+      <div class="column-service">${this._buildSericeCard(s)}</div>
+    `;
+  }
+
+  private _mediaQueryController: MediaQueryController =
+    new MediaQueryController(this);
   private _services: Services[] = Services.load();
   @state()
   private _indexTabSelected: number = 0;

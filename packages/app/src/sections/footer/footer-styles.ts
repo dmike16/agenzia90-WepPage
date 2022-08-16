@@ -29,6 +29,10 @@ export function stylesCSS(): CSSResultGroup {
       color: var(--mdc-theme-on-surface);
     }
 
+    .copyright-wrapper {
+      flex-direction: column;
+    }
+
     .copyright-content,
     .link-utils-content,
     .friends-content {
@@ -43,10 +47,7 @@ export function stylesCSS(): CSSResultGroup {
     }
 
     .copyright-logo {
-      position: absolute;
-      right: 0px;
-      bottom: 50%;
-      transform: translateY(50%);
+      position: relative;
     }
 
     .link-social {

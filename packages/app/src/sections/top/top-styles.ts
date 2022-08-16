@@ -11,6 +11,7 @@ export function stylesCSS(): CSSResultGroup {
       justify-content: center;
       align-items: center;
       margin-top: -3rem;
+      text-align: center;
     }
 
     .title {
