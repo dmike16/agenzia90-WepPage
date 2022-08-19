@@ -1,4 +1,4 @@
-import { CSSResultGroup, html, LitElement } from "lit";
+import { css, CSSResultGroup, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 import { allCSS } from "../common/all";
 import { headlineCSS } from "../common/headline";
@@ -8,6 +8,7 @@ import "@material/mwc-button/mwc-button";
 import "@material/mwc-fab/mwc-fab";
 import { linkCSS } from "../common/link";
 import { stylesCSS } from "./footer-styles";
+import { sm, md, lg } from "../../media-query/media-query";
 
 @customElement("swc-footer")
 export class SWCFooterComponent extends LitElement {
@@ -17,6 +18,24 @@ export class SWCFooterComponent extends LitElement {
     allCSS(),
     linkCSS(),
     stylesCSS(),
+    sm(css`
+      section {
+        align-items: center;
+      }
+    `),
+    md(css`
+      .copyright-wrapper {
+        flex-direction: row;
+      }
+    `),
+    lg(css`
+      .copyright-logo {
+        position: absolute;
+        right: 0px;
+        bottom: 50%;
+        transform: translateY(50%);
+      }
+    `),
   ];
 
   private _openFacebookPage() {

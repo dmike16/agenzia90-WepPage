@@ -1,4 +1,4 @@
-import { LitElement, html, CSSResultGroup } from "lit";
+import { LitElement, html, CSSResultGroup, css } from "lit";
 import { customElement } from "lit/decorators.js";
 import { allCSS } from "../common/all";
 import { headlineCSS } from "../common/headline";
@@ -7,6 +7,7 @@ import { sectionsCss } from "../common/section-style";
 
 import "@material/mwc-icon-button/mwc-icon-button";
 import { stylesCSS } from "./top-styles";
+import { sm } from "../../media-query/media-query";
 
 @customElement("swc-top")
 export class SWCTopComponent extends LitElement {
@@ -16,6 +17,11 @@ export class SWCTopComponent extends LitElement {
     headlineCSS(),
     allCSS(),
     stylesCSS(),
+    sm(css`
+      section {
+        align-items: center;
+      }
+    `),
   ];
 
   override render(): unknown {
