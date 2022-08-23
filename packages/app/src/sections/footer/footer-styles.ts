@@ -36,7 +36,7 @@ export function stylesCSS(): CSSResultGroup {
     .copyright-content,
     .link-utils-content,
     .friends-content {
-      width: 100%;
+      width: 88%;
       margin-left: 3rem;
       margin-top: 3rem;
       display: flex;
