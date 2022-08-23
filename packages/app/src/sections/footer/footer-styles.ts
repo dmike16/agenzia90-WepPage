@@ -22,7 +22,7 @@ export function stylesCSS(): CSSResultGroup {
       display: flex;
       -webkit-box-align: center;
       align-items: center;
-      width: 100%;
+      width: 88%;
       max-width: 118.6rem;
       margin: 2.5rem;
       margin-top: auto;
@@ -36,7 +36,7 @@ export function stylesCSS(): CSSResultGroup {
     .copyright-content,
     .link-utils-content,
     .friends-content {
-      width: 88%;
+      width: 100%;
       margin-left: 3rem;
       margin-top: 3rem;
       display: flex;

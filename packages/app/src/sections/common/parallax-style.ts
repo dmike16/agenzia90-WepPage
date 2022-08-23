@@ -19,6 +19,12 @@ export function parallaxCSS(): CSSResultGroup {
       height: 100%;
     }
 
+    @supports (--webkit-touch-callout: none) {
+      .parallax::after {
+        background-attachment: scroll;
+      }
+    }
+
     .bg::after {
       background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url("docs/images/infinite-loop-01.jpg");
