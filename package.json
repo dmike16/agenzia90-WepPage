@@ -10,6 +10,8 @@
   "scripts": {
     "info": "lerna info",
     "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
+    "pack": "lerna run pack",
     "version": "lerna version",
     "prepare": "husky install"
   },

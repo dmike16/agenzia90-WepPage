@@ -1,0 +1,11 @@
+node_modules/
+**/node_modules/
+packages/**/build/
+
+CHANGELOG.md
+.prettierrc.json
+lerna-debug.log
+LICENSE
+README.md
+*.tsbuildinfo
+**/*.tsbuildinfo

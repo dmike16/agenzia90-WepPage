@@ -6,15 +6,18 @@ import polyFillsLoader from "@web/rollup-plugin-polyfills-loader";
 import summary from "rollup-plugin-summary";
 import { getBabelOutputPlugin } from "@rollup/plugin-babel";
 import path from "path";
+import zip from "rollup-plugin-zip";
 import { copy } from "@web/rollup-plugin-copy";
+import { version } from "./package.json";
 
+const rootDir = path.join(process.cwd(), "..", "..");
 // Html plugin configuration
 const htmlPlugin = html({
   rootDir: "./",
   flattenOutput: false,
   strictCSPInlineScripts: true,
 });
-const rootDir = path.join(process.cwd(), "..", "..");
+
 export default {
   input: "./index.html",
   plugins: [
@@ -61,15 +64,20 @@ export default {
   output: [
     {
       // modern configuration
-      format: "esm",
+      format: "es",
       chunkFileNames: "[name]-[hash].js",
       entryFileNames: "[name]-[hash].js",
       dir: "build",
-      plugins: [htmlPlugin.api.addOutput("modern")],
+      plugins: [
+        htmlPlugin.api.addOutput("modern"),
+        zip({
+          file: `app-${version}.zip`,
+        }),
+      ],
     },
     {
       // legacy build
-      format: "esm",
+      format: "es",
       chunkFileNames: "legacy-[name]-[hash].js",
       entryFileNames: "legacy-[name]-[hash].js",
       dir: "build",
@@ -88,6 +96,9 @@ export default {
               },
             ],
           ],
+        }),
+        zip({
+          file: `app-legacy-${version}.zip`,
         }),
       ],
     },
