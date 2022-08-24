@@ -22,7 +22,7 @@
     "@studio90srls/swc-cookie-alert": "*"
   },
   "scripts": {
-    "clean": "tsc --build --clean",
+    "clean": "tsc --build --clean && rm -rf build",
     "serve": "tsc --build tsconfig.json --watch --preserveWatchOutput & wds --watch",
     "build": "tsc --build tsconfig.json",
     "build:watch": "tsc --build tsconfig.json --watch",

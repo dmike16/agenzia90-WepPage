@@ -13,7 +13,8 @@
     "build": "lerna run build",
     "pack": "lerna run pack",
     "version": "lerna version",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "clean": "lerna run clean"
   },
   "repository": {
     "type": "git",
