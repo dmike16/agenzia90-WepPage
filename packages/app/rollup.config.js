@@ -71,7 +71,7 @@ export default {
       plugins: [
         htmlPlugin.api.addOutput("modern"),
         zip({
-          file: `app-${version}.zip`,
+          file: `app-v${version}.zip`,
         }),
       ],
     },
@@ -98,7 +98,7 @@ export default {
           ],
         }),
         zip({
-          file: `app-legacy-${version}.zip`,
+          file: `app-legacy-v${version}.zip`,
         }),
       ],
     },
