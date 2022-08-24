@@ -1,0 +1,70 @@
+name: Studio90srls release action
+on:
+  push:
+    tags:
+      - "v*"
+    paths:
+      - "lerna.json"
+
+jobs:
+  app-release:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16]
+    runs-on: ${{ matrix.os }}
+    steps:
+      # chekout repo
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      # setup node
+      - name: Setup node
+        uses: actions/checkout@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "npm"
+      # intstall deps
+      - name: Bootstrap project
+        run: npm install
+      # boostrap project
+      - name: Boostrap project
+        run: npm run boostrap
+      # build project
+      - name: Build packges + app
+        run: npm run build
+      # Pack the site
+      - name: Pack app
+        run: npm run pack
+      # Release on github
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: true
+      - name: Upload Release Modern Assert
+        id: upload-release-asset-modern
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./packages/app/build/app-${{github.ref}}.zip
+          asset_name: app-${{github.ref}}.zip
+          asset_content_type: application/zip
+      - name: Upload Release Legacy Assert
+        id: upload-release-asset-legacy
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./packages/app/build/app-legacy-${{github.ref}}.zip
+          asset_name: app-legacy-${{github.ref}}.zip
+          asset_content_type: application/zip
