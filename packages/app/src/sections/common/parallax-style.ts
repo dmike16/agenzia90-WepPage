@@ -19,7 +19,7 @@ export function parallaxCSS(): CSSResultGroup {
       height: 100%;
     }
 
-    @supports (--webkit-touch-callout: none) {
+    @supports (-webkit-touch-callout: none) {
       .parallax::after {
         background-attachment: scroll;
       }
